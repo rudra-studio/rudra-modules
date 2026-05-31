@@ -67,7 +67,7 @@ jobs:
 
       - name: Approve and Merge PR
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GIT_PAT }}
         run: |
           # Approve the PR
           gh pr review ${{ github.event.pull_request.number }} --approve
