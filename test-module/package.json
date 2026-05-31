@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "@simo-rudra/rudra-anim": "latest",
+    "@simo-rudra/rudra-core": "latest",
+    "@simo-rudra/rudra-three": "latest",
+    "lucide-react": "^1.17.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.0",
+    "vite": "^5.0.0"
+  },
+  "name": "@simo-rudra/test-module",
+  "type": "module",
+  "version": "1.0.1"
+}
