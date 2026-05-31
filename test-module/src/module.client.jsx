@@ -36,7 +36,7 @@ export default function CompiledModule(props) {
       </Reveal>
       <Badge id="el_1780194703954_5pa99kv" size="sm" variant="solid">
       </Badge>
-      <Badge id="el_1780194704450_aay3mbe" label="Sivasankar" variant="solid" size="sm">
+      <Badge id="el_1780194704450_aay3mbe" size="sm" label="Sivasankar" variant="solid">
       </Badge>
       <Badge id="el_1780194704123_vpqzwc4" size="sm" variant="solid">
       </Badge>
