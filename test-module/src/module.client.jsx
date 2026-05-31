@@ -34,13 +34,13 @@ export default function CompiledModule(props) {
       <Badge id="el_1780172014940_owagtzv" icon={<User size={18} color="#000000" strokeWidth={1.5}/>} size="sm" variant="solid">
       </Badge>
       </Reveal>
-      <Badge id="el_1780194703954_5pa99kv" variant="solid" size="sm">
+      <Badge id="el_1780194703954_5pa99kv" size="sm" variant="solid">
       </Badge>
-      <Badge id="el_1780194704450_aay3mbe" size="sm" label="Sivasankar" variant="solid">
+      <Badge id="el_1780194704450_aay3mbe" label="Sivasankar" variant="solid" size="sm">
       </Badge>
       <Badge id="el_1780194704123_vpqzwc4" size="sm" variant="solid">
       </Badge>
-      <ModelViewer id="el_1780226984719_1catrsp" environment="city" style={{}}>
+      <ModelViewer id="el_1780226984719_1catrsp" style={{}} environment="city">
       </ModelViewer>
       <DinoRunner3D id="el_1780226993702_9txnirx">
       </DinoRunner3D>
