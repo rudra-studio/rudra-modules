@@ -31,7 +31,7 @@ export default function CompiledModule(props) {
   return (
     <div className="rudra-module-wrapper">
       <Reveal id="el_1780193504228_1541bx3" direction="up">
-      <Badge id="el_1780172014940_owagtzv" icon={<User size={18} color="#000000" strokeWidth={1.5}/>} size="sm" variant="solid">
+      <Badge id="el_1780172014940_owagtzv" icon={<User strokeWidth={1.5} size={18} color="#000000"/>} size="sm" variant="solid">
       </Badge>
       </Reveal>
       <Badge id="el_1780194703954_5pa99kv" size="sm" variant="solid">
