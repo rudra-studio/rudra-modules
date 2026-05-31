@@ -27,7 +27,7 @@ function w(o) {
     /* @__PURE__ */ e(n, { id: "el_1780194703954_5pa99kv", size: "sm", variant: "solid" }),
     /* @__PURE__ */ e(n, { id: "el_1780194704450_aay3mbe", size: "sm", label: "Sivasankar", variant: "solid" }),
     /* @__PURE__ */ e(n, { id: "el_1780194704123_vpqzwc4", size: "sm", variant: "solid" }),
-    /* @__PURE__ */ e(u, { id: "el_1780226984719_1catrsp", style: {}, environment: "city" }),
+    /* @__PURE__ */ e(u, { id: "el_1780226984719_1catrsp", style: {}, environment: "city", "modelUrl":"https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Lantern/glTF-Binary/Lantern.glb" }),
     /* @__PURE__ */ e(_, { id: "el_1780226993702_9txnirx" })
   ] });
 }
