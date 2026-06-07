@@ -71,6 +71,7 @@ jobs:
         run: |
           # Approve the PR
           gh pr review ${{ github.event.pull_request.number }} --approve
+          sleep 5
           # Squash and Merge the PR into Main
           gh pr merge ${{ github.event.pull_request.number }} --squash --delete-branch
 
