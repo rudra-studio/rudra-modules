@@ -5,7 +5,6 @@ import { Badge } from '@simo-rudra/rudra-core';
 import { Reveal } from '@simo-rudra/rudra-anim';
 import { ModelViewer, DinoRunner3D } from '@simo-rudra/rudra-three';
 import { User } from 'lucide-react';
-import { execute_onLoadFunction } from './module.server.js';
 
 export default function CompiledModule(props) {
   const [user, set_user] = useState({"age":27,"name":"sivasankar"});
@@ -15,26 +14,19 @@ export default function CompiledModule(props) {
     // Client Step: New library function (library_function)
   }, []);
 
-  // Run backend initialization and hydrate state
-  useEffect(() => {
-    async function fetchInitialState() {
-      try {
-        const serverData = await execute_onLoadFunction();
-        if (serverData?.user !== undefined) set_user(serverData.user);
-      } catch (err) {
-        console.error('Failed to execute backend onLoad logic:', err);
-      }
-    }
-    fetchInitialState();
+  const onLoadFunction = useCallback(async (args) => {
+    console.log('Executing Client Function: onLoadFunction');
+    // Client Step: New declare variable (declare_variable)
+    // Client Step: New return value (return_value)
   }, []);
 
   return (
     <div className="rudra-module-wrapper">
       <Reveal id="el_1780193504228_1541bx3" direction="up">
-      <Badge id="el_1780172014940_owagtzv" icon={<User strokeWidth={1.5} size={18} color="#000000"/>} size="sm" variant="solid">
+      <Badge id="el_1780172014940_owagtzv" variant="solid" icon={<User size={18} color="#000000" strokeWidth={1.5}/>} size="sm">
       </Badge>
       </Reveal>
-      <Badge id="el_1780194703954_5pa99kv" size="sm" variant="solid">
+      <Badge id="el_1780194703954_5pa99kv" variant="solid" size="sm">
       </Badge>
       <Badge id="el_1780194704450_aay3mbe" size="sm" label="Sivasankar" variant="solid">
       </Badge>
