@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@rudra-studio/rudra-core": "latest",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.0",
+    "vite": "^5.0.0"
+  },
+  "name": "@rudra-studio/header",
+  "type": "module",
+  "version": "1.0.1"
+}
