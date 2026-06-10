@@ -1,24 +1,20 @@
-import { jsxs as n, jsx as e } from "react/jsx-runtime";
-import { useState as s, useCallback as o } from "react";
-import { Badge as i } from "@simo-rudra/rudra-core";
-import { Reveal as a } from "@simo-rudra/rudra-anim";
-import { ModelViewer as t, DinoRunner3D as l } from "@simo-rudra/rudra-three";
-import { User as d } from "lucide-react";
-function z(c) {
-  const [m, u] = s({ age: 27, name: "sivasankar" });
-  return o(async (r) => {
+import { jsxs as i, jsx as e } from "react/jsx-runtime";
+import { useState as r, useCallback as n } from "react";
+import { DinoRunner3D as a, FloatingShape as s, ModelViewer as t } from "@simo-rudra/rudra-three";
+import { SwapPlayground as l } from "@simo-rudra/rudra-anim";
+function f(u) {
+  const [c, p] = r({ age: 27, name: "sivasankar" });
+  return n(async (o) => {
     console.log("Executing Client Function: newFunction_1");
-  }, []), o(async (r) => {
+  }, []), n(async (o) => {
     console.log("Executing Client Function: onLoadFunction");
-  }, []), /* @__PURE__ */ n("div", { className: "rudra-module-wrapper", children: [
-    /* @__PURE__ */ e(a, { id: "el_1780193504228_1541bx3", direction: "up", children: /* @__PURE__ */ e(i, { id: "el_1780172014940_owagtzv", variant: "solid", icon: /* @__PURE__ */ e(d, { size: 18, color: "#000000", strokeWidth: 1.5 }), size: "sm" }) }),
-    /* @__PURE__ */ e(i, { id: "el_1780194703954_5pa99kv", variant: "solid", size: "sm" }),
-    /* @__PURE__ */ e(i, { id: "el_1780194704450_aay3mbe", size: "sm", label: "Sivasankar", variant: "solid" }),
-    /* @__PURE__ */ e(i, { id: "el_1780194704123_vpqzwc4", size: "sm", variant: "solid" }),
-    /* @__PURE__ */ e(t, { id: "el_1780226984719_1catrsp", style: {}, environment: "city" }),
-    /* @__PURE__ */ e(l, { id: "el_1780226993702_9txnirx" })
+  }, []), /* @__PURE__ */ i("div", { className: "rudra-module-wrapper", children: [
+    /* @__PURE__ */ e(l, { id: "el_1781059609991_gxgkcg9" }),
+    /* @__PURE__ */ e(a, { id: "el_1781059615559_7pplb88" }),
+    /* @__PURE__ */ e(s, { id: "el_1781059618614_iyzugcq", shape: "cube" }),
+    /* @__PURE__ */ e(t, { id: "el_1781059671238_skzjr75", style: {}, environment: "city" })
   ] });
 }
 export {
-  z as default
+  f as default
 };

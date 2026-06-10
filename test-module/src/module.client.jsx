@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './styles.css';
 
-import { Badge } from '@simo-rudra/rudra-core';
-import { Reveal } from '@simo-rudra/rudra-anim';
-import { ModelViewer, DinoRunner3D } from '@simo-rudra/rudra-three';
-import { User } from 'lucide-react';
+import { ModelViewer, DinoRunner3D, FloatingShape } from '@simo-rudra/rudra-three';
+import { SwapPlayground } from '@simo-rudra/rudra-anim';
 
 export default function CompiledModule(props) {
   const [user, set_user] = useState({"age":27,"name":"sivasankar"});
@@ -22,20 +20,14 @@ export default function CompiledModule(props) {
 
   return (
     <div className="rudra-module-wrapper">
-      <Reveal id="el_1780193504228_1541bx3" direction="up">
-      <Badge id="el_1780172014940_owagtzv" variant="solid" icon={<User size={18} color="#000000" strokeWidth={1.5}/>} size="sm">
-      </Badge>
-      </Reveal>
-      <Badge id="el_1780194703954_5pa99kv" variant="solid" size="sm">
-      </Badge>
-      <Badge id="el_1780194704450_aay3mbe" size="sm" label="Sivasankar" variant="solid">
-      </Badge>
-      <Badge id="el_1780194704123_vpqzwc4" size="sm" variant="solid">
-      </Badge>
-      <ModelViewer id="el_1780226984719_1catrsp" style={{}} environment="city">
-      </ModelViewer>
-      <DinoRunner3D id="el_1780226993702_9txnirx">
+      <SwapPlayground id="el_1781059609991_gxgkcg9">
+      </SwapPlayground>
+      <DinoRunner3D id="el_1781059615559_7pplb88">
       </DinoRunner3D>
+      <FloatingShape id="el_1781059618614_iyzugcq" shape="cube">
+      </FloatingShape>
+      <ModelViewer id="el_1781059671238_skzjr75" style={{}} environment="city">
+      </ModelViewer>
     </div>
   );
 }
