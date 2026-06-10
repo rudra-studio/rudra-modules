@@ -92,10 +92,9 @@ jobs:
           git push origin $TAG_NAME
 
       - name: Invoke Go Webhook
-        env:
-          WEBHOOK_URL: ${{ secrets.RUDRA_WEBHOOK_URL }} # Add this in Repo Settings -> Secrets
         run: |
-          curl -X POST $WEBHOOK_URL \
+          curl --location '${{ vars.RUDRA_WEBHOOK_URL }}' \
+          --header 'x-auth-code: ${{ secrets.WEBHOOK_SECRET }}' \
           -H "Content-Type: application/json" \
           -d '{
             "jobId": "${{ steps.meta.outputs.job_id }}",
