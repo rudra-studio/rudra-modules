@@ -1,8 +1,6 @@
 {
   "dependencies": {
     "@rudra-studio/rudra-anim": "latest",
-    "@rudra-studio/rudra-core": "latest",
-    "@rudra-studio/rudra-three": "latest",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
@@ -12,5 +10,5 @@
   },
   "name": "@rudra-studio/test-module",
   "type": "module",
-  "version": "1.0.4"
+  "version": "1.0.5"
 }
