@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './styles.css';
 
-import { ModelViewer, DinoRunner3D, FloatingShape } from '@simo-rudra/rudra-three';
-import { SwapPlayground } from '@simo-rudra/rudra-anim';
+import { SwapPlayground } from '@rudra-studio/rudra-anim';
+import { DinoRunner3D, FloatingShape, ModelViewer } from '@rudra-studio/rudra-three';
+import { Badge } from '@rudra-studio/rudra-core';
 
 export default function CompiledModule(props) {
   const [user, set_user] = useState({"age":27,"name":"sivasankar"});
@@ -28,6 +29,10 @@ export default function CompiledModule(props) {
       </FloatingShape>
       <ModelViewer id="el_1781059671238_skzjr75" style={{}} environment="city">
       </ModelViewer>
+      <Badge id="el_1781062001022_hg1wo3c" size="sm" variant="solid">
+      </Badge>
+      <Badge id="el_1781062038374_8btw0xs" size="sm" variant="solid">
+      </Badge>
     </div>
   );
 }

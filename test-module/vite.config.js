@@ -20,7 +20,7 @@ export default defineConfig({
         'react-dom', 
         'react/jsx-runtime',
         'lucide-react',
-        /^@simo-rudra\/.*/
+        /^@rudra-studio\/.*/
       ], 
       output: { 
         assetFileNames: "styles.css" 
