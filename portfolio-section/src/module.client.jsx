@@ -4,7 +4,7 @@ import './styles.css';
 import { Box as rudralayout_Box } from '@rudra-studio/rudra-layout';
 import { OptimizedImage as rudramedia_OptimizedImage } from '@rudra-studio/rudra-media';
 import { Typography as rudracore_Typography, Link as rudracore_Link } from '@rudra-studio/rudra-core';
-import { TextScramble as rudraanim_TextScramble, Marquee as rudraanim_Marquee, FlipTile as rudraanim_FlipTile, TypewriterText as rudraanim_TypewriterText } from '@rudra-studio/rudra-anim';
+import { TypewriterText as rudraanim_TypewriterText, TextScramble as rudraanim_TextScramble, Marquee as rudraanim_Marquee, FlipTile as rudraanim_FlipTile } from '@rudra-studio/rudra-anim';
 import { Repeater as rudrawidgets_Repeater, DataTabs as rudrawidgets_DataTabs } from '@rudra-studio/rudra-widgets';
 import { ProfileRPG as rudrathree_ProfileRPG } from '@rudra-studio/rudra-three';
 
@@ -24,16 +24,16 @@ export default function CompiledModule(props) {
       <rudralayout_Box id="el_1783116382087_hktrke1" className="flex-col lg:flex-col gap-6 md:gap-6 lg:gap-6 min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-blue-100 pb-20 w-full" customAttributes={[]}>
       <rudralayout_Box id="el_1783117555351_vqxm7ws" className="flex-col md:flex-row lg:flex-row justify-between items-start md:items-end lg:items-end gap-2 md:gap-2 lg:gap-2 max-w-6xl px-4 mx-auto w-full" customAttributes={[]}>
       <rudralayout_Box id="el_1783117704735_wru5yrv" className="flex-col flex-1" customAttributes={[]}>
-      <rudramedia_OptimizedImage id="el_1783117892371_bqn6tux" alt={{"sm":"Profile Pic"}} src={{"sm":"https://raw.githubusercontent.com/sivasankar-selvasundar/rudra-public/master/uploads/image.png"}} width={{"sm":150}} height={{"sm":150}} radius={{"sm":"full"}} aspectRatio="square">
+      <rudramedia_OptimizedImage id="el_1783117892371_bqn6tux" height={{"sm":150}} radius={{"sm":"full"}} aspectRatio="square" alt={{"sm":"Profile Pic"}} src={{"sm":"https://raw.githubusercontent.com/sivasankar-selvasundar/rudra-public/master/uploads/image.png"}} width={{"sm":150}}>
       </rudramedia_OptimizedImage>
       <rudracore_Typography id="el_1783118024559_oain35d" className="text-5xl md:text-6xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-none mb-3" as="h2">
       </rudracore_Typography>
-      <rudraanim_TypewriterText id="el_1783118365991_ifo3jxo" className="text-lg md:text-xl lg:text-xl font-medium max-w-xl mb-6" as="h2" loop={{"sm":"false"}} delay={{"sm":0}} showCursor="true" customColor={{"sm":"#0078ed"}} loopDelay={{"sm":10000000}} customAttributes={[]} hideCursorOnComplete="true">
+      <rudraanim_TypewriterText id="el_1783118365991_ifo3jxo" className="text-lg md:text-xl lg:text-xl font-medium max-w-xl mb-6" delay={{"sm":0}} customColor={{"sm":"#0078ed"}} customAttributes={[]} hideCursorOnComplete="true" as="h2" loop={{"sm":"false"}} loopDelay={{"sm":10000000}} showCursor="true">
       </rudraanim_TypewriterText>
-      <rudrawidgets_Repeater id="el_1783122541120_f986kyx" className="flex-row md:flex-row lg:flex-row flex-wrap md:flex-wrap lg:flex-wrap items-center md:gap-2 lg:gap-2 gap-4 text-sm text-slate-500 font-medium" gap="sm" layout={{"lg":"flex","sm":"flex"}} columns={{"lg":3,"sm":0}}>
+      <rudrawidgets_Repeater id="el_1783122541120_f986kyx" className="flex-row md:flex-row lg:flex-row flex-wrap md:flex-wrap lg:flex-wrap items-center md:gap-2 lg:gap-2 gap-4 text-sm text-slate-500 font-medium" layout={{"lg":"flex","sm":"flex"}} columns={{"lg":3,"sm":0}} gap="sm">
       <rudralayout_Box id="el_1783122592136_aq1kex8" className="text-sm text-slate-500 font-medium" customAttributes={[]}>
       <rudracore_Link id="el_1783122688079_k0fh8s3" leftIcon={false} rightIcon={false} customAttributes={[]}>
-      <div id="el_1783122598744_x2wce06" strokeWidth={1.2} size={20} color="#111827">
+      <div id="el_1783122598744_x2wce06" size={20} color="#111827" strokeWidth={1.2}>
       </div>
       <rudracore_Typography id="el_1783122719647_pyybzh6" className="text-sm text-slate-500 font-medium" as="h2">
       </rudracore_Typography>
@@ -43,18 +43,18 @@ export default function CompiledModule(props) {
       </rudralayout_Box>
       <rudralayout_Box id="el_1783117701363_ocxzll6" customAttributes={[]}>
       <rudralayout_Box id="el_1783123659603_5wvhewk" className="items-center bg-white border border-slate-200 rounded-3xl p-6 shadow-sm gap-5 shrink-0 hover:shadow-md transition-shadow" customAttributes={[]}>
-      <rudraanim_TextScramble id="el_1783123741703_5dkfvtb" className="text-5xl font-extrabold font-black text-blue-600" as="h2" trigger="onMount" customAttributes={[]}>
+      <rudraanim_TextScramble id="el_1783123741703_5dkfvtb" className="text-5xl font-extrabold font-black text-blue-600" customAttributes={[]} as="h2" trigger="onMount">
       </rudraanim_TextScramble>
       <rudralayout_Box id="el_1783123833648_v21toav" className="flex-col" customAttributes={[]}>
       <rudracore_Typography id="el_1783123877120_h7spqiy" className="text-sm font-bold text-slate-800 uppercase tracking-widest" as="h2" content={{"sm":"YEARS"}}>
       </rudracore_Typography>
-      <rudracore_Typography id="el_1783123879912_497quve" className="text-sm font-medium text-slate-500" as="h2" content={{"sm":"Experience"}}>
+      <rudracore_Typography id="el_1783123879912_497quve" className="text-sm font-medium text-slate-500" content={{"sm":"Experience"}} as="h2">
       </rudracore_Typography>
       </rudralayout_Box>
       </rudralayout_Box>
       </rudralayout_Box>
       </rudralayout_Box>
-      <rudraanim_Marquee id="el_1783124249993_7ltc9uh" className="overflow-hidden border-y border-slate-200 py-5 bg-white mb-8 shadow-sm" direction="left" customAttributes={[]} speed={{"lg":6,"sm":3}} pauseOnHover="true" pauseAnimation={false}>
+      <rudraanim_Marquee id="el_1783124249993_7ltc9uh" className="overflow-hidden border-y border-slate-200 py-5 bg-white mb-8 shadow-sm" pauseOnHover="true" speed={{"lg":6,"sm":3}} direction="left" pauseAnimation={false} customAttributes={[]}>
       <rudrawidgets_Repeater id="el_1783296242762_o8s63fo" className="gap-2 lg:gap-0" layout={{"lg":"flex","sm":"flex"}}>
       <rudralayout_Box id="el_1783296267155_t2j26td" className="items-center lg:items-center gap-2 lg:gap-2 md:text-sm font-semibold tracking-widest text-slate-400 mx-4  lg:text-sm font-semibold tracking-widest text-slate-400 mx-4 uppercase" customAttributes={[]}>
       <div id="el_1783296303075_i48zyfb" name="CircleStar" size={20} color="#111827" strokeWidth={1.2}>
@@ -67,7 +67,7 @@ export default function CompiledModule(props) {
       <rudralayout_Box id="el_1783299478908_st4uxgv" className="max-w-6xl mx-auto md:max-w-6xl mx-auto w-full lg:max-w-6xl mx-auto w-full" customAttributes={[]}>
       <rudrawidgets_DataTabs id="el_1783296958587_kor6gzk" variant="top" className={{"lg":"max-w-6xl","sm":"max-w-6xl"}}>
       <rudrawidgets_Repeater id="el_1783300722290_18dhtg0" className="flex-col md:flex-row lg:flex-row gap-2 md:gap-2 lg:gap-8" layout={{"lg":"flex","md":"flex","sm":"flex"}}>
-      <rudraanim_FlipTile id="el_1783319052953_6orgl0c" className="md:h-64 lg:h-64 h-full md: flex-1 lg:flex-1" backContent={null} hasBackContent={{"lg":true,"sm":{"dataPath":"item.moreContent","type":"binding"}}} customAttributes={[]} direction="horizontal">
+      <rudraanim_FlipTile id="el_1783319052953_6orgl0c" className="md:h-64 lg:h-64 h-full md: flex-1 lg:flex-1" hasBackContent={{"lg":true,"sm":{"dataPath":"item.moreContent","type":"binding"}}} customAttributes={[]} direction="horizontal" backContent={null}>
       <rudralayout_Box id="el_1783337050148_7chjh7v" className="flex-col md:flex-col lg:flex-col p-4 md:p-4 lg:p-4" customAttributes={[]}>
       <rudracore_Typography id="el_1783338048046_7g6nknp" className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4 md:text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4 lg:text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4" as="h2">
       </rudracore_Typography>
@@ -96,7 +96,7 @@ export default function CompiledModule(props) {
       <rudralayout_Box id="el_1783343580648_whnyakp" className="flex-col bg-white rounded-3xl overflow-hidden shadow-lg border border-slate-200" customAttributes={[]}>
       <rudralayout_Box id="el_1783343648304_oa6zsul" className="flex-row justify-between items-center p-6 bg-slate-50 gap-4 border-b border-slate-200" customAttributes={[]}>
       <rudralayout_Box id="el_1783343973473_q75y88h" className="flex-col" customAttributes={[]}>
-      <rudracore_Typography id="el_1783343980986_e0mok9g" className="text-2xl font-extrabold text-slate-900 flex items-center gap-3" as="h2" content={{"sm":"🎮 Bored of reading?"}}>
+      <rudracore_Typography id="el_1783343980986_e0mok9g" className="text-2xl font-extrabold text-slate-900 flex items-center gap-3" content={{"sm":"🎮 Bored of reading?"}} as="h2">
       </rudracore_Typography>
       <rudracore_Typography id="el_1783343985129_6wlfb2z" className="text-sm text-slate-500 mt-1 font-medium" as="h2" content={{"sm":"Play this mini-game to unlock fun facts about me."}}>
       </rudracore_Typography>
