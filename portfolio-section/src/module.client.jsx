@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './styles.css';
 
+import { Box as rudralayout_Box } from '@rudra-studio/rudra-layout';
 import { OptimizedImage as rudramedia_OptimizedImage } from '@rudra-studio/rudra-media';
 import { Typography as rudracore_Typography, Link as rudracore_Link } from '@rudra-studio/rudra-core';
 import { TypewriterText as rudraanim_TypewriterText, TextScramble as rudraanim_TextScramble, Marquee as rudraanim_Marquee, FlipTile as rudraanim_FlipTile } from '@rudra-studio/rudra-anim';
 import { Repeater as rudrawidgets_Repeater, DataTabs as rudrawidgets_DataTabs } from '@rudra-studio/rudra-widgets';
 import { ProfileRPG as rudrathree_ProfileRPG } from '@rudra-studio/rudra-three';
-import { Box as rudralayout_Box } from '@rudra-studio/rudra-layout';
 
 export default function CompiledModule(props) {
   const [profileImage, set_profileImage] = useState("https://raw.githubusercontent.com/sivasankar-selvasundar/rudra-public/master/uploads/image.png");
@@ -21,70 +21,70 @@ export default function CompiledModule(props) {
 
   return (
     <div className="rudra-module-wrapper">
-      <rudralayout_Box id="el_1783116382087_hktrke1" className={{"sm":"min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-blue-100 pb-20 w-full"}} customAttributes={[]} Gap={{"lg":"6","md":"6","sm":"6"}} Direction={{"lg":"col","sm":"col"}}>
-      <rudralayout_Box id="el_1783117555351_vqxm7ws" Gap={{"lg":"2","md":"2","sm":"2"}} Direction={{"lg":"row","md":"row","sm":"col"}} className={{"sm":"max-w-6xl px-4 mx-auto w-full"}} customAttributes={[]}>
-      <rudralayout_Box id="el_1783117704735_wru5yrv" customAttributes={[]} Direction={{"sm":"col"}} className={{"sm":"flex-1"}}>
-      <rudramedia_OptimizedImage id="el_1783117892371_bqn6tux" height={{"sm":150}} radius={{"sm":"full"}} aspectRatio="square" alt={{"sm":"Profile Pic"}} src={{"sm":"https://raw.githubusercontent.com/sivasankar-selvasundar/rudra-public/master/uploads/image.png"}} width={{"sm":150}}>
+      <rudralayout_Box id="el_1783116382087_hktrke1" className="flex-col lg:flex-col gap-6 md:gap-6 lg:gap-6 min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-blue-100 pb-20 w-full" customAttributes={[]}>
+      <rudralayout_Box id="el_1783117555351_vqxm7ws" className="flex-col md:flex-row lg:flex-row justify-between items-start md:items-end lg:items-end gap-2 md:gap-2 lg:gap-2 max-w-6xl px-4 mx-auto w-full" customAttributes={[]}>
+      <rudralayout_Box id="el_1783117704735_wru5yrv" className="flex-col flex-1" customAttributes={[]}>
+      <rudramedia_OptimizedImage id="el_1783117892371_bqn6tux" width={{"sm":150}} height={{"sm":150}} radius={{"sm":"full"}} aspectRatio="square" alt={{"sm":"Profile Pic"}} src={{"sm":"https://raw.githubusercontent.com/sivasankar-selvasundar/rudra-public/master/uploads/image.png"}}>
       </rudramedia_OptimizedImage>
-      <rudracore_Typography id="el_1783118024559_oain35d" className={{"sm":"text-slate-900 tracking-tight leading-none mb-3"}} as="h2" Size={{"lg":"6xl","md":"6xl","sm":"5xl"}} Weight={{"sm":"extrabold"}}>
+      <rudracore_Typography id="el_1783118024559_oain35d" className="text-5xl md:text-6xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-none mb-3" as="h2">
       </rudracore_Typography>
-      <rudraanim_TypewriterText id="el_1783118365991_ifo3jxo" Weight={{"sm":"medium"}} className={{"sm":"max-w-xl mb-6"}} loopDelay={{"sm":10000000}} showCursor="true" hideCursorOnComplete="true" as="h2" Size={{"lg":"xl","md":"xl","sm":"lg"}} loop={{"sm":"false"}} delay={{"sm":0}} customColor={{"sm":"#0078ed"}} customAttributes={[]}>
+      <rudraanim_TypewriterText id="el_1783118365991_ifo3jxo" className="text-lg md:text-xl lg:text-xl font-medium max-w-xl mb-6" delay={{"sm":0}} customColor={{"sm":"#0078ed"}} loop={{"sm":"false"}} loopDelay={{"sm":10000000}} showCursor="true" customAttributes={[]} hideCursorOnComplete="true" as="h2">
       </rudraanim_TypewriterText>
-      <rudrawidgets_Repeater id="el_1783122541120_f986kyx" className={{"sm":"gap-4 text-sm text-slate-500 font-medium"}} Gap={{"lg":"2","md":"2"}} columns={{"lg":3,"sm":0}} gap="sm" layout={{"lg":"flex","sm":"flex"}}>
-      <rudralayout_Box id="el_1783122592136_aq1kex8" customAttributes={[]} className={{"sm":"text-sm text-slate-500 font-medium"}}>
-      <rudracore_Link id="el_1783122688079_k0fh8s3" customAttributes={[]} leftIcon={false} className={[]} rightIcon={false}>
-      <div id="el_1783122598744_x2wce06" color="#111827" strokeWidth={1.2} size={20}>
+      <rudrawidgets_Repeater id="el_1783122541120_f986kyx" className="flex-row md:flex-row lg:flex-row flex-wrap md:flex-wrap lg:flex-wrap items-center md:gap-2 lg:gap-2 gap-4 text-sm text-slate-500 font-medium" gap="sm" layout={{"lg":"flex","sm":"flex"}} columns={{"lg":3,"sm":0}}>
+      <rudralayout_Box id="el_1783122592136_aq1kex8" className="text-sm text-slate-500 font-medium" customAttributes={[]}>
+      <rudracore_Link id="el_1783122688079_k0fh8s3" rightIcon={false} customAttributes={[]} leftIcon={false}>
+      <div id="el_1783122598744_x2wce06" size={20} color="#111827" strokeWidth={1.2}>
       </div>
-      <rudracore_Typography id="el_1783122719647_pyybzh6" as="h2" className={{"sm":"text-sm text-slate-500 font-medium"}}>
+      <rudracore_Typography id="el_1783122719647_pyybzh6" className="text-sm text-slate-500 font-medium" as="h2">
       </rudracore_Typography>
       </rudracore_Link>
       </rudralayout_Box>
       </rudrawidgets_Repeater>
       </rudralayout_Box>
-      <rudralayout_Box id="el_1783117701363_ocxzll6" className={[]} customAttributes={[]}>
-      <rudralayout_Box id="el_1783123659603_5wvhewk" className={{"sm":"bg-white border border-slate-200 rounded-3xl p-6 shadow-sm gap-5 shrink-0 hover:shadow-md transition-shadow"}} customAttributes={[]}>
-      <rudraanim_TextScramble id="el_1783123741703_5dkfvtb" customAttributes={[]} as="h2" Size={{"sm":"5xl"}} Weight={{"sm":"extrabold"}} trigger="onMount" className={{"sm":"font-black text-blue-600"}}>
+      <rudralayout_Box id="el_1783117701363_ocxzll6" customAttributes={[]}>
+      <rudralayout_Box id="el_1783123659603_5wvhewk" className="items-center bg-white border border-slate-200 rounded-3xl p-6 shadow-sm gap-5 shrink-0 hover:shadow-md transition-shadow" customAttributes={[]}>
+      <rudraanim_TextScramble id="el_1783123741703_5dkfvtb" className="text-5xl font-extrabold font-black text-blue-600" trigger="onMount" customAttributes={[]} as="h2">
       </rudraanim_TextScramble>
-      <rudralayout_Box id="el_1783123833648_v21toav" Direction={{"sm":"col"}} className={[]} customAttributes={[]}>
-      <rudracore_Typography id="el_1783123877120_h7spqiy" as="h2" Size={{"sm":"sm"}} Weight={{"sm":"bold"}} content={{"sm":"YEARS"}} className={{"sm":"text-slate-800 uppercase tracking-widest"}}>
+      <rudralayout_Box id="el_1783123833648_v21toav" className="flex-col" customAttributes={[]}>
+      <rudracore_Typography id="el_1783123877120_h7spqiy" className="text-sm font-bold text-slate-800 uppercase tracking-widest" content={{"sm":"YEARS"}} as="h2">
       </rudracore_Typography>
-      <rudracore_Typography id="el_1783123879912_497quve" Weight={{"sm":"medium"}} content={{"sm":"Experience"}} className={{"sm":"text-slate-500"}} as="h2" Size={{"sm":"sm"}}>
+      <rudracore_Typography id="el_1783123879912_497quve" className="text-sm font-medium text-slate-500" content={{"sm":"Experience"}} as="h2">
       </rudracore_Typography>
       </rudralayout_Box>
       </rudralayout_Box>
       </rudralayout_Box>
       </rudralayout_Box>
-      <rudraanim_Marquee id="el_1783124249993_7ltc9uh" className={{"sm":"overflow-hidden border-y border-slate-200 py-5 bg-white mb-8 shadow-sm"}} direction="left" customAttributes={[]} speed={{"lg":6,"sm":3}} pauseOnHover="true" pauseAnimation={false} trackClassName={[]}>
-      <rudrawidgets_Repeater id="el_1783296242762_o8s63fo" Gap={{"lg":"0","sm":"2"}} layout={{"lg":"flex","sm":"flex"}} className={[]}>
-      <rudralayout_Box id="el_1783296267155_t2j26td" className={{"lg":"text-sm font-semibold tracking-widest text-slate-400 mx-4 uppercase","md":"text-sm font-semibold tracking-widest text-slate-400 mx-4 "}} customAttributes={[]} Gap={{"lg":"2","sm":"2"}}>
-      <div id="el_1783296303075_i48zyfb" name="CircleStar" size={20} color="#111827" strokeWidth={1.2}>
+      <rudraanim_Marquee id="el_1783124249993_7ltc9uh" className="overflow-hidden border-y border-slate-200 py-5 bg-white mb-8 shadow-sm" pauseOnHover="true" customAttributes={[]} speed={{"lg":6,"sm":3}} direction="left" pauseAnimation={false}>
+      <rudrawidgets_Repeater id="el_1783296242762_o8s63fo" className="gap-2 lg:gap-0" layout={{"lg":"flex","sm":"flex"}}>
+      <rudralayout_Box id="el_1783296267155_t2j26td" className="items-center lg:items-center gap-2 lg:gap-2 md:text-sm font-semibold tracking-widest text-slate-400 mx-4  lg:text-sm font-semibold tracking-widest text-slate-400 mx-4 uppercase" customAttributes={[]}>
+      <div id="el_1783296303075_i48zyfb" size={20} color="#111827" strokeWidth={1.2} name="CircleStar">
       </div>
-      <rudracore_Typography id="el_1783296325949_zncv0sv" as="h2" className={[]}>
+      <rudracore_Typography id="el_1783296325949_zncv0sv" as="h2">
       </rudracore_Typography>
       </rudralayout_Box>
       </rudrawidgets_Repeater>
       </rudraanim_Marquee>
-      <rudralayout_Box id="el_1783299478908_st4uxgv" className={{"lg":"max-w-6xl mx-auto w-full","md":"max-w-6xl mx-auto w-full","sm":"max-w-6xl mx-auto"}} customAttributes={[]}>
-      <rudrawidgets_DataTabs id="el_1783296958587_kor6gzk" className={{"lg":"max-w-6xl","sm":"max-w-6xl"}} variant="top">
-      <rudrawidgets_Repeater id="el_1783300722290_18dhtg0" layout={{"lg":"flex","md":"flex","sm":"flex"}} Gap={{"lg":"8","md":"2","sm":"2"}}>
-      <rudraanim_FlipTile id="el_1783319052953_6orgl0c" hasBackContent={{"lg":true,"sm":{"dataPath":"item.moreContent","type":"binding"}}} customAttributes={[]} Height={{"lg":"64","md":"64"}} className={{"lg":"flex-1","md":" flex-1","sm":"h-full"}} direction="horizontal" backContent={null}>
-      <rudralayout_Box id="el_1783337050148_7chjh7v" customAttributes={[]} Direction={{"lg":"col","md":"col","sm":"col"}} className={{"lg":"p-4","md":"p-4","sm":"p-4"}}>
-      <rudracore_Typography id="el_1783338048046_7g6nknp" as="h2" className={{"lg":"text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4","md":"text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4","sm":"text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4"}}>
+      <rudralayout_Box id="el_1783299478908_st4uxgv" className="max-w-6xl mx-auto md:max-w-6xl mx-auto w-full lg:max-w-6xl mx-auto w-full" customAttributes={[]}>
+      <rudrawidgets_DataTabs id="el_1783296958587_kor6gzk" variant="top" className={{"lg":"max-w-6xl","sm":"max-w-6xl"}}>
+      <rudrawidgets_Repeater id="el_1783300722290_18dhtg0" className="flex-col md:flex-row lg:flex-row gap-2 md:gap-2 lg:gap-8" layout={{"lg":"flex","md":"flex","sm":"flex"}}>
+      <rudraanim_FlipTile id="el_1783319052953_6orgl0c" className="md:h-64 lg:h-64 h-full md: flex-1 lg:flex-1" hasBackContent={{"lg":true,"sm":{"dataPath":"item.moreContent","type":"binding"}}} customAttributes={[]} direction="horizontal" backContent={null}>
+      <rudralayout_Box id="el_1783337050148_7chjh7v" className="flex-col md:flex-col lg:flex-col p-4 md:p-4 lg:p-4" customAttributes={[]}>
+      <rudracore_Typography id="el_1783338048046_7g6nknp" className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4 md:text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4 lg:text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4" as="h2">
       </rudracore_Typography>
-      <rudracore_Typography id="el_1783338050412_2mw86jq" as="h2" className={{"lg":"text-xl font-bold text-slate-900 mb-1","md":"text-xl font-bold text-slate-900 mb-1","sm":"text-xl font-bold text-slate-900 mb-1"}}>
+      <rudracore_Typography id="el_1783338050412_2mw86jq" className="text-xl font-bold text-slate-900 mb-1 md:text-xl font-bold text-slate-900 mb-1 lg:text-xl font-bold text-slate-900 mb-1" as="h2">
       </rudracore_Typography>
-      <rudracore_Typography id="el_1783338052372_0u1gg50" as="h2" className={{"lg":"text-sm text-slate-500","md":"text-sm text-slate-500","sm":"text-sm text-slate-500"}}>
+      <rudracore_Typography id="el_1783338052372_0u1gg50" className="text-sm text-slate-500 md:text-sm text-slate-500 lg:text-sm text-slate-500" as="h2">
       </rudracore_Typography>
-      <rudracore_Typography id="el_1783338058221_rd2bncg" as="h2" Size={{"lg":"base"}} className={{"lg":"text-md","sm":"text-xs text-slate-600 leading-relaxed mb-4 flex-1"}}>
+      <rudracore_Typography id="el_1783338058221_rd2bncg" className="lg:text-base text-xs text-slate-600 leading-relaxed mb-4 flex-1 lg:text-md" as="h2">
       </rudracore_Typography>
       </rudralayout_Box>
-      <rudralayout_Box id="el_1783339928997_gw2xmmv" Direction={{"sm":"col"}} className={{"sm":"h-full p-4"}} customAttributes={[]}>
-      <rudracore_Typography id="el_1783340211173_f694ofw" as="h2" className={{"sm":"text-sm font-bold text-slate-900 mb-2"}}>
+      <rudralayout_Box id="el_1783339928997_gw2xmmv" className="flex-col h-full p-4" customAttributes={[]}>
+      <rudracore_Typography id="el_1783340211173_f694ofw" className="text-sm font-bold text-slate-900 mb-2" as="h2">
       </rudracore_Typography>
-      <rudracore_Typography id="el_1783340216477_2uijyff" as="h2" className={{"sm":"flex-1 text-xs text-slate-600 leading-relaxed mb-4 flex-1"}}>
+      <rudracore_Typography id="el_1783340216477_2uijyff" className="flex-1 text-xs text-slate-600 leading-relaxed mb-4 flex-1" as="h2">
       </rudracore_Typography>
-      <rudrawidgets_Repeater id="el_1783348883759_f0i46tv" layout={{"sm":"flex"}} className={{"sm":"gap-2"}}>
-      <rudracore_Typography id="el_1783348937488_933qc8f" as="h2" Size={{"sm":"xs"}} Weight={{"sm":"semibold"}} className={{"sm":"px-2 py-1 bg-white border border-slate-200 rounded   text-slate-600"}}>
+      <rudrawidgets_Repeater id="el_1783348883759_f0i46tv" className="flex-row flex-wrap items-center gap-2" layout={{"sm":"flex"}}>
+      <rudracore_Typography id="el_1783348937488_933qc8f" className="text-xs font-semibold px-2 py-1 bg-white border border-slate-200 rounded   text-slate-600" as="h2">
       </rudracore_Typography>
       </rudrawidgets_Repeater>
       </rudralayout_Box>
@@ -93,16 +93,16 @@ export default function CompiledModule(props) {
       </rudrawidgets_DataTabs>
       </rudralayout_Box>
       </rudralayout_Box>
-      <rudralayout_Box id="el_1783343580648_whnyakp" Direction={{"sm":"col"}} className={{"sm":"bg-white rounded-3xl overflow-hidden shadow-lg border border-slate-200"}} customAttributes={[]}>
-      <rudralayout_Box id="el_1783343648304_oa6zsul" Direction={{"sm":"row"}} className={{"sm":"p-6 bg-slate-50 gap-4 border-b border-slate-200"}} customAttributes={[]}>
-      <rudralayout_Box id="el_1783343973473_q75y88h" Direction={{"sm":"col"}} className={[]} customAttributes={[]}>
-      <rudracore_Typography id="el_1783343980986_e0mok9g" className={{"sm":"text-slate-900 flex items-center gap-3"}} as="h2" Size={{"sm":"2xl"}} Weight={{"sm":"extrabold"}} content={{"sm":"🎮 Bored of reading?"}}>
+      <rudralayout_Box id="el_1783343580648_whnyakp" className="flex-col bg-white rounded-3xl overflow-hidden shadow-lg border border-slate-200" customAttributes={[]}>
+      <rudralayout_Box id="el_1783343648304_oa6zsul" className="flex-row justify-between items-center p-6 bg-slate-50 gap-4 border-b border-slate-200" customAttributes={[]}>
+      <rudralayout_Box id="el_1783343973473_q75y88h" className="flex-col" customAttributes={[]}>
+      <rudracore_Typography id="el_1783343980986_e0mok9g" className="text-2xl font-extrabold text-slate-900 flex items-center gap-3" as="h2" content={{"sm":"🎮 Bored of reading?"}}>
       </rudracore_Typography>
-      <rudracore_Typography id="el_1783343985129_6wlfb2z" as="h2" content={{"sm":"Play this mini-game to unlock fun facts about me."}} className={{"sm":"text-sm text-slate-500 mt-1 font-medium"}}>
+      <rudracore_Typography id="el_1783343985129_6wlfb2z" className="text-sm text-slate-500 mt-1 font-medium" as="h2" content={{"sm":"Play this mini-game to unlock fun facts about me."}}>
       </rudracore_Typography>
       </rudralayout_Box>
       </rudralayout_Box>
-      <rudralayout_Box id="el_1783343630200_wklm9b7" className={{"lg":"h-screen"}} customAttributes={[]}>
+      <rudralayout_Box id="el_1783343630200_wklm9b7" className="lg:h-screen" customAttributes={[]}>
       <rudrathree_ProfileRPG id="el_1783344204113_cxj02nt" customAttributes={[]}>
       </rudrathree_ProfileRPG>
       </rudralayout_Box>
