@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './styles.css';
 
-import { OptimizedImage as rudramedia_OptimizedImage } from '@rudra-studio/rudra-media';
-import { Typography as rudracore_Typography, Link as rudracore_Link } from '@rudra-studio/rudra-core';
-import { TypewriterText as rudraanim_TypewriterText, TextScramble as rudraanim_TextScramble, Marquee as rudraanim_Marquee, FlipTile as rudraanim_FlipTile } from '@rudra-studio/rudra-anim';
-import { Repeater as rudrawidgets_Repeater, DataTabs as rudrawidgets_DataTabs } from '@rudra-studio/rudra-widgets';
-import { ProfileRPG as rudrathree_ProfileRPG } from '@rudra-studio/rudra-three';
-import { Box as rudralayout_Box } from '@rudra-studio/rudra-layout';
+import { Box as RudraLayoutBox } from '@rudra-studio/rudra-layout';
+import { OptimizedImage as RudraMediaOptimizedImage } from '@rudra-studio/rudra-media';
+import { Typography as RudraCoreTypography, Link as RudraCoreLink } from '@rudra-studio/rudra-core';
+import { TextScramble as RudraAnimTextScramble, Marquee as RudraAnimMarquee, FlipTile as RudraAnimFlipTile, TypewriterText as RudraAnimTypewriterText } from '@rudra-studio/rudra-anim';
+import { Repeater as RudraWidgetsRepeater, DataTabs as RudraWidgetsDataTabs } from '@rudra-studio/rudra-widgets';
+import { ProfileRPG as RudraThreeProfileRPG } from '@rudra-studio/rudra-three';
 
 export default function CompiledModule(props) {
   const [viewport, setViewport] = useState('lg');
@@ -40,70 +40,70 @@ export default function CompiledModule(props) {
 
   return (
     <div className="rudra-module-wrapper">
-      <rudralayout_Box id="el_1783116382087_hktrke1" className="flex-col gap-6 min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-blue-100 pb-20 w-full" customAttributes={[]}>
-      <rudralayout_Box id="el_1783117555351_vqxm7ws" className="flex-col md:flex-row justify-between items-start md:items-end gap-2 max-w-6xl px-4 mx-auto w-full" customAttributes={[]}>
-      <rudralayout_Box id="el_1783117704735_wru5yrv" className="flex-col flex-1" customAttributes={[]}>
-      <rudramedia_OptimizedImage id="el_1783117892371_bqn6tux" width={getResponsiveProp({"sm":150})} height={getResponsiveProp({"sm":150})} radius={getResponsiveProp({"sm":"full"})} aspectRatio="square" alt={getResponsiveProp({"sm":"Profile Pic"})} src={getResponsiveProp({"sm":"https://raw.githubusercontent.com/sivasankar-selvasundar/rudra-public/master/uploads/image.png"})} />
-      <rudracore_Typography id="el_1783118024559_oain35d" className="text-5xl md:text-6xl font-extrabold text-slate-900 tracking-tight leading-none mb-3" as="h2" />
-      <rudraanim_TypewriterText id="el_1783118365991_ifo3jxo" className="text-lg md:text-xl font-medium max-w-xl mb-6" as="h2" showCursor="true" customAttributes={[]} loop={getResponsiveProp({"sm":"false"})} delay={getResponsiveProp({"sm":0})} loopDelay={getResponsiveProp({"sm":10000000})} customColor={getResponsiveProp({"sm":"#0078ed"})} hideCursorOnComplete="true" />
-      <rudrawidgets_Repeater id="el_1783122541120_f986kyx" className="flex-row flex-wrap items-center md:gap-2 gap-4 text-sm text-slate-500 font-medium" gap="sm" columns={getResponsiveProp({"lg":3,"sm":0})} layout={getResponsiveProp({"lg":"flex","sm":"flex"})}>
-      <rudralayout_Box id="el_1783122592136_aq1kex8" className="text-sm text-slate-500 font-medium" customAttributes={[]}>
-      <rudracore_Link id="el_1783122688079_k0fh8s3" leftIcon={false} rightIcon={false} customAttributes={[]}>
-      <div id="el_1783122598744_x2wce06" size={20} color="#111827" strokeWidth={1.2} />
-      <rudracore_Typography id="el_1783122719647_pyybzh6" className="text-sm text-slate-500 font-medium" as="h2" />
-      </rudracore_Link>
-      </rudralayout_Box>
-      </rudrawidgets_Repeater>
-      </rudralayout_Box>
-      <rudralayout_Box id="el_1783117701363_ocxzll6" customAttributes={[]}>
-      <rudralayout_Box id="el_1783123659603_5wvhewk" className="flex items-center bg-white border border-slate-200 rounded-3xl p-6 shadow-sm gap-5 shrink-0 hover:shadow-md transition-shadow" customAttributes={[]}>
-      <rudraanim_TextScramble id="el_1783123741703_5dkfvtb" className="text-5xl font-extrabold font-black text-blue-600" trigger="onMount" customAttributes={[]} as="h2" />
-      <rudralayout_Box id="el_1783123833648_v21toav" className="flex-col" customAttributes={[]}>
-      <rudracore_Typography id="el_1783123877120_h7spqiy" className="text-sm font-bold text-slate-800 uppercase tracking-widest" as="h2" content={getResponsiveProp({"sm":"YEARS"})} />
-      <rudracore_Typography id="el_1783123879912_497quve" className="text-sm font-medium text-slate-500" content={getResponsiveProp({"sm":"Experience"})} as="h2" />
-      </rudralayout_Box>
-      </rudralayout_Box>
-      </rudralayout_Box>
-      </rudralayout_Box>
-      <rudraanim_Marquee id="el_1783124249993_7ltc9uh" className="overflow-hidden border-y border-slate-200 py-5 bg-white mb-8 shadow-sm" speed={getResponsiveProp({"lg":6,"sm":3})} pauseAnimation={false} direction="left" pauseOnHover="true" customAttributes={[]}>
-      <rudrawidgets_Repeater id="el_1783296242762_o8s63fo" className="gap-2 lg:gap-0" layout={getResponsiveProp({"lg":"flex","sm":"flex"})}>
-      <rudralayout_Box id="el_1783296267155_t2j26td" className="flex items-center gap-2 md:text-sm font-semibold tracking-widest text-slate-400 mx-4  lg:text-sm font-semibold tracking-widest text-slate-400 mx-4 uppercase" customAttributes={[]}>
+      <RudraLayoutBox id="el_1783116382087_hktrke1" className="flex-col gap-6 min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-blue-100 pb-20 w-full" customAttributes={[]}>
+      <RudraLayoutBox id="el_1783117555351_vqxm7ws" className="flex-col md:flex-row justify-between items-start md:items-end gap-2 max-w-6xl px-4 mx-auto w-full" customAttributes={[]}>
+      <RudraLayoutBox id="el_1783117704735_wru5yrv" className="flex-col flex-1" customAttributes={[]}>
+      <RudraMediaOptimizedImage id="el_1783117892371_bqn6tux" src={getResponsiveProp({"sm":"https://raw.githubusercontent.com/sivasankar-selvasundar/rudra-public/master/uploads/image.png"})} width={getResponsiveProp({"sm":150})} height={getResponsiveProp({"sm":150})} radius={getResponsiveProp({"sm":"full"})} aspectRatio="square" alt={getResponsiveProp({"sm":"Profile Pic"})} />
+      <RudraCoreTypography id="el_1783118024559_oain35d" className="text-5xl md:text-6xl font-extrabold text-slate-900 tracking-tight leading-none mb-3" as="h2" />
+      <RudraAnimTypewriterText id="el_1783118365991_ifo3jxo" className="text-lg md:text-xl font-medium max-w-xl mb-6" delay={getResponsiveProp({"sm":0})} loopDelay={getResponsiveProp({"sm":10000000})} showCursor="true" as="h2" customColor={getResponsiveProp({"sm":"#0078ed"})} customAttributes={[]} hideCursorOnComplete="true" loop={getResponsiveProp({"sm":"false"})} />
+      <RudraWidgetsRepeater id="el_1783122541120_f986kyx" className="flex-row flex-wrap items-center md:gap-2 gap-4 text-sm text-slate-500 font-medium" columns={getResponsiveProp({"lg":3,"sm":0})} gap="sm" layout={getResponsiveProp({"lg":"flex","sm":"flex"})}>
+      <RudraLayoutBox id="el_1783122592136_aq1kex8" className="text-sm text-slate-500 font-medium" customAttributes={[]}>
+      <RudraCoreLink id="el_1783122688079_k0fh8s3" rightIcon={false} customAttributes={[]} leftIcon={false}>
+      <div id="el_1783122598744_x2wce06" strokeWidth={1.2} size={20} color="#111827" />
+      <RudraCoreTypography id="el_1783122719647_pyybzh6" className="text-sm text-slate-500 font-medium" as="h2" />
+      </RudraCoreLink>
+      </RudraLayoutBox>
+      </RudraWidgetsRepeater>
+      </RudraLayoutBox>
+      <RudraLayoutBox id="el_1783117701363_ocxzll6" customAttributes={[]}>
+      <RudraLayoutBox id="el_1783123659603_5wvhewk" className="flex items-center bg-white border border-slate-200 rounded-3xl p-6 shadow-sm gap-5 shrink-0 hover:shadow-md transition-shadow" customAttributes={[]}>
+      <RudraAnimTextScramble id="el_1783123741703_5dkfvtb" className="text-5xl font-extrabold font-black text-blue-600" trigger="onMount" customAttributes={[]} as="h2" />
+      <RudraLayoutBox id="el_1783123833648_v21toav" className="flex-col" customAttributes={[]}>
+      <RudraCoreTypography id="el_1783123877120_h7spqiy" className="text-sm font-bold text-slate-800 uppercase tracking-widest" content={getResponsiveProp({"sm":"YEARS"})} as="h2" />
+      <RudraCoreTypography id="el_1783123879912_497quve" className="text-sm font-medium text-slate-500" as="h2" content={getResponsiveProp({"sm":"Experience"})} />
+      </RudraLayoutBox>
+      </RudraLayoutBox>
+      </RudraLayoutBox>
+      </RudraLayoutBox>
+      <RudraAnimMarquee id="el_1783124249993_7ltc9uh" className="overflow-hidden border-y border-slate-200 py-5 bg-white mb-8 shadow-sm" direction="left" pauseOnHover="true" customAttributes={[]} speed={getResponsiveProp({"lg":6,"sm":3})} pauseAnimation={false}>
+      <RudraWidgetsRepeater id="el_1783296242762_o8s63fo" className="gap-2 lg:gap-0" layout={getResponsiveProp({"lg":"flex","sm":"flex"})}>
+      <RudraLayoutBox id="el_1783296267155_t2j26td" className="flex items-center gap-2 md:text-sm font-semibold tracking-widest text-slate-400 mx-4  lg:text-sm font-semibold tracking-widest text-slate-400 mx-4 uppercase" customAttributes={[]}>
       <div id="el_1783296303075_i48zyfb" name="CircleStar" size={20} color="#111827" strokeWidth={1.2} />
-      <rudracore_Typography id="el_1783296325949_zncv0sv" as="h2" />
-      </rudralayout_Box>
-      </rudrawidgets_Repeater>
-      </rudraanim_Marquee>
-      <rudralayout_Box id="el_1783299478908_st4uxgv" className="max-w-6xl mx-auto md:max-w-6xl mx-auto w-full" customAttributes={[]}>
-      <rudrawidgets_DataTabs id="el_1783296958587_kor6gzk" templateContent={<>\n      <rudrawidgets_Repeater id="el_1783300722290_18dhtg0" className="flex-col md:flex-row gap-2 lg:gap-8" layout={getResponsiveProp({"lg":"flex","md":"flex","sm":"flex"})}>
-      <rudraanim_FlipTile id="el_1783319052953_6orgl0c" className="md:h-64 h-full md: flex-1 lg:flex-1" frontContent={<>\n      <rudralayout_Box id="el_1783337050148_7chjh7v" className="flex-col p-4" customAttributes={[]}>
-      <rudracore_Typography id="el_1783338048046_7g6nknp" className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4" as="h2" />
-      <rudracore_Typography id="el_1783338050412_2mw86jq" className="text-xl font-bold text-slate-900 mb-1" as="h2" />
-      <rudracore_Typography id="el_1783338052372_0u1gg50" className="text-sm text-slate-500" as="h2" />
-      <rudracore_Typography id="el_1783338058221_rd2bncg" className="lg:text-base text-xs text-slate-600 leading-relaxed mb-4 flex-1 lg:text-md" as="h2" />
-      </rudralayout_Box>
-</>} backContent={<>\n      <rudralayout_Box id="el_1783339928997_gw2xmmv" className="flex-col h-full p-4" customAttributes={[]}>
-      <rudracore_Typography id="el_1783340211173_f694ofw" className="text-sm font-bold text-slate-900 mb-2" as="h2" />
-      <rudracore_Typography id="el_1783340216477_2uijyff" className="flex-1 text-xs text-slate-600 leading-relaxed mb-4 flex-1" as="h2" />
-      <rudrawidgets_Repeater id="el_1783348883759_f0i46tv" className="flex-row flex-wrap items-center gap-2" layout={getResponsiveProp({"sm":"flex"})}>
-      <rudracore_Typography id="el_1783348937488_933qc8f" className="text-xs font-semibold px-2 py-1 bg-white border border-slate-200 rounded   text-slate-600" as="h2" />
-      </rudrawidgets_Repeater>
-      </rudralayout_Box>
-</>} customAttributes={[]} direction="horizontal" backContent={null} hasBackContent={getResponsiveProp({"lg":true,"sm":{"dataPath":"item.moreContent","type":"binding"}})} />
-      </rudrawidgets_Repeater>
+      <RudraCoreTypography id="el_1783296325949_zncv0sv" as="h2" />
+      </RudraLayoutBox>
+      </RudraWidgetsRepeater>
+      </RudraAnimMarquee>
+      <RudraLayoutBox id="el_1783299478908_st4uxgv" className="max-w-6xl mx-auto md:max-w-6xl mx-auto w-full" customAttributes={[]}>
+      <RudraWidgetsDataTabs id="el_1783296958587_kor6gzk" templateContent={<>\n      <RudraWidgetsRepeater id="el_1783300722290_18dhtg0" className="flex-col md:flex-row gap-2 lg:gap-8" layout={getResponsiveProp({"lg":"flex","md":"flex","sm":"flex"})}>
+      <RudraAnimFlipTile id="el_1783319052953_6orgl0c" className="md:h-64 h-full md: flex-1 lg:flex-1" backContent={<>\n      <RudraLayoutBox id="el_1783339928997_gw2xmmv" className="flex-col h-full p-4" customAttributes={[]}>
+      <RudraCoreTypography id="el_1783340211173_f694ofw" className="text-sm font-bold text-slate-900 mb-2" as="h2" />
+      <RudraCoreTypography id="el_1783340216477_2uijyff" className="flex-1 text-xs text-slate-600 leading-relaxed mb-4 flex-1" as="h2" />
+      <RudraWidgetsRepeater id="el_1783348883759_f0i46tv" className="flex-row flex-wrap items-center gap-2" layout={getResponsiveProp({"sm":"flex"})}>
+      <RudraCoreTypography id="el_1783348937488_933qc8f" className="text-xs font-semibold px-2 py-1 bg-white border border-slate-200 rounded   text-slate-600" as="h2" />
+      </RudraWidgetsRepeater>
+      </RudraLayoutBox>
+</>} frontContent={<>\n      <RudraLayoutBox id="el_1783337050148_7chjh7v" className="flex-col p-4" customAttributes={[]}>
+      <RudraCoreTypography id="el_1783338048046_7g6nknp" className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4" as="h2" />
+      <RudraCoreTypography id="el_1783338050412_2mw86jq" className="text-xl font-bold text-slate-900 mb-1" as="h2" />
+      <RudraCoreTypography id="el_1783338052372_0u1gg50" className="text-sm text-slate-500" as="h2" />
+      <RudraCoreTypography id="el_1783338058221_rd2bncg" className="lg:text-base text-xs text-slate-600 leading-relaxed mb-4 flex-1 lg:text-md" as="h2" />
+      </RudraLayoutBox>
+</>} backContent={null} hasBackContent={getResponsiveProp({"lg":true,"sm":{"dataPath":"item.moreContent","type":"binding"}})} customAttributes={[]} direction="horizontal" />
+      </RudraWidgetsRepeater>
 </>} variant="top" className={getResponsiveProp({"lg":"max-w-6xl","sm":"max-w-6xl"})} />
-      </rudralayout_Box>
-      </rudralayout_Box>
-      <rudralayout_Box id="el_1783343580648_whnyakp" className="flex-col bg-white rounded-3xl overflow-hidden shadow-lg border border-slate-200" customAttributes={[]}>
-      <rudralayout_Box id="el_1783343648304_oa6zsul" className="flex-row justify-between items-center p-6 bg-slate-50 gap-4 border-b border-slate-200" customAttributes={[]}>
-      <rudralayout_Box id="el_1783343973473_q75y88h" className="flex-col" customAttributes={[]}>
-      <rudracore_Typography id="el_1783343980986_e0mok9g" className="text-2xl font-extrabold text-slate-900 flex items-center gap-3" as="h2" content={getResponsiveProp({"sm":"🎮 Bored of reading?"})} />
-      <rudracore_Typography id="el_1783343985129_6wlfb2z" className="text-sm text-slate-500 mt-1 font-medium" as="h2" content={getResponsiveProp({"sm":"Play this mini-game to unlock fun facts about me."})} />
-      </rudralayout_Box>
-      </rudralayout_Box>
-      <rudralayout_Box id="el_1783343630200_wklm9b7" className="lg:h-screen" customAttributes={[]}>
-      <rudrathree_ProfileRPG id="el_1783344204113_cxj02nt" customAttributes={[]} />
-      </rudralayout_Box>
-      </rudralayout_Box>
+      </RudraLayoutBox>
+      </RudraLayoutBox>
+      <RudraLayoutBox id="el_1783343580648_whnyakp" className="flex-col bg-white rounded-3xl overflow-hidden shadow-lg border border-slate-200" customAttributes={[]}>
+      <RudraLayoutBox id="el_1783343648304_oa6zsul" className="flex-row justify-between items-center p-6 bg-slate-50 gap-4 border-b border-slate-200" customAttributes={[]}>
+      <RudraLayoutBox id="el_1783343973473_q75y88h" className="flex-col" customAttributes={[]}>
+      <RudraCoreTypography id="el_1783343980986_e0mok9g" className="text-2xl font-extrabold text-slate-900 flex items-center gap-3" as="h2" content={getResponsiveProp({"sm":"🎮 Bored of reading?"})} />
+      <RudraCoreTypography id="el_1783343985129_6wlfb2z" className="text-sm text-slate-500 mt-1 font-medium" as="h2" content={getResponsiveProp({"sm":"Play this mini-game to unlock fun facts about me."})} />
+      </RudraLayoutBox>
+      </RudraLayoutBox>
+      <RudraLayoutBox id="el_1783343630200_wklm9b7" className="lg:h-screen" customAttributes={[]}>
+      <RudraThreeProfileRPG id="el_1783344204113_cxj02nt" customAttributes={[]} />
+      </RudraLayoutBox>
+      </RudraLayoutBox>
     </div>
   );
 }
