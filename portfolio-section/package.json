@@ -6,6 +6,7 @@
     "@rudra-studio/rudra-media": "latest",
     "@rudra-studio/rudra-three": "latest",
     "@rudra-studio/rudra-widgets": "latest",
+    "lucide-react": "^1.17.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
