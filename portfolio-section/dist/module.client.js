@@ -1,13 +1,13 @@
 import { jsxs as n, jsx as s, Fragment as x } from "react/jsx-runtime";
 import { useRef as Y, useState as u, useEffect as y, useCallback as X } from "react";
-import * as _ from "lucide-react";
-import { CircleStar as ee } from "lucide-react";
+import { Typography as m, Link as _ } from "@rudra-studio/rudra-core";
+import { TypewriterText as ee, TextScramble as te, Marquee as ie, FlipTile as le } from "@rudra-studio/rudra-anim";
+import { Repeater as b, DataTabs as se } from "@rudra-studio/rudra-widgets";
+import { ProfileRPG as ne } from "@rudra-studio/rudra-three";
+import * as re from "lucide-react";
+import { CircleStar as ae } from "lucide-react";
 import { Box as o } from "@rudra-studio/rudra-layout";
-import { OptimizedImage as te } from "@rudra-studio/rudra-media";
-import { Typography as m, Link as ie } from "@rudra-studio/rudra-core";
-import { TypewriterText as le, TextScramble as se, Marquee as ne, FlipTile as re } from "@rudra-studio/rudra-anim";
-import { Repeater as b, DataTabs as ae } from "@rudra-studio/rudra-widgets";
-import { ProfileRPG as oe } from "@rudra-studio/rudra-three";
+import { OptimizedImage as oe } from "@rudra-studio/rudra-media";
 function Ie(i) {
   var p, D, A, N, E, I, L, T, P;
   const k = {}, v = Y(null), [S, w] = u("lg");
@@ -29,12 +29,12 @@ Passionate about software architecture, developer experience, and continuous lea
       "      ",
       /* @__PURE__ */ n(o, { id: "el_1783117555351_vqxm7ws", className: `flex ${e({ sm: "max-w-6xl px-4 mx-auto w-full" }) || ""} ${e({ sm: "flex-col", md: "flex-row", lg: "flex-row" }) || ""} ${e({ sm: "justify-between" }) || ""} ${e({ sm: "items-start", md: "items-end", lg: "items-end" }) || ""} gap-2`, children: [
         "      ",
-        /* @__PURE__ */ n(o, { id: "el_1783117704735_wru5yrv", className: `flex ${e({ sm: "flex-1" }) || ""} ${e({ sm: "flex-col" }) || ""}`, children: [
+        /* @__PURE__ */ n(o, { id: "el_1783117704735_wru5yrv", className: `flex ${e({ sm: "flex-1 pt-2" }) || ""} ${e({ sm: "flex-col" }) || ""}`, children: [
           "      ",
-          /* @__PURE__ */ s(te, { id: "el_1783117892371_bqn6tux", height: e({ sm: 150 }), radius: e({ sm: "full" }), aspectRatio: "square", alt: e({ sm: "Profile Pic" }), src: e({ sm: "https://raw.githubusercontent.com/sivasankar-selvasundar/rudra-public/master/uploads/image.png" }), width: e({ sm: 150 }) }),
-          /* @__PURE__ */ s(m, { id: "el_1783118024559_oain35d", className: `${e({ sm: "text-slate-900 tracking-tight leading-none mb-3" }) || ""} ${e({ sm: "text-5xl", md: "text-6xl", lg: "text-6xl" }) || ""} ${e({ sm: "font-extrabold" }) || ""}`, content: O, as: "h2" }),
-          /* @__PURE__ */ s(le, { id: "el_1783118365991_ifo3jxo", className: `${e({ sm: "max-w-xl mb-6" }) || ""} ${e({ sm: "text-lg", md: "text-xl", lg: "text-xl" }) || ""} ${e({ sm: "font-medium" }) || ""}`, loopDelay: e({ sm: 1e7 }), showCursor: "true", customColor: e({ sm: "#0078ed" }), text: H, delay: e({ sm: 0 }), hideCursorOnComplete: "true", as: "h2", loop: e({ sm: "false" }) }),
-          /* @__PURE__ */ s(b, { id: "el_1783122541120_f986kyx", className: `flex ${e({ sm: "gap-4 text-sm text-slate-500 font-medium" }) || ""} flex-row flex-wrap ${e({ sm: "items-center" }) || ""} ${e({ md: "gap-2", lg: "gap-2" }) || ""}`, layout: e({ lg: "flex", sm: "flex" }), columns: e({ lg: 3, sm: 0 }), gap: "sm", items: Q, children: (t) => {
+          /* @__PURE__ */ s(oe, { id: "el_1783117892371_bqn6tux", src: e({ sm: "https://raw.githubusercontent.com/sivasankar-selvasundar/rudra-public/master/uploads/image.png" }), width: e({ sm: 150 }), height: e({ sm: 150 }), radius: e({ sm: "full" }), aspectRatio: "square", alt: e({ sm: "Profile Pic" }) }),
+          /* @__PURE__ */ s(m, { id: "el_1783118024559_oain35d", className: `${e({ sm: "text-slate-900 tracking-tight leading-none mb-3" }) || ""} ${e({ sm: "text-5xl", md: "text-6xl", lg: "text-6xl" }) || ""} font-extrabold`, as: "h2", content: O }),
+          /* @__PURE__ */ s(ee, { id: "el_1783118365991_ifo3jxo", className: `${e({ sm: "max-w-xl mb-6" }) || ""} ${e({ sm: "text-lg", md: "text-xl", lg: "text-xl" }) || ""} ${e({ sm: "font-medium" }) || ""}`, hideCursorOnComplete: "true", loopDelay: e({ sm: 1e7 }), showCursor: "true", customColor: e({ sm: "#0078ed" }), as: "h2", loop: e({ sm: "false" }), text: H, delay: e({ sm: 0 }) }),
+          /* @__PURE__ */ s(b, { id: "el_1783122541120_f986kyx", className: `flex ${e({ sm: "gap-4 text-sm text-slate-500 font-medium" }) || ""} flex-row flex-wrap ${e({ sm: "items-center" }) || ""} ${e({ md: "gap-2", lg: "gap-2" }) || ""}`, gap: "sm", columns: e({ lg: 3, sm: 0 }), items: Q, layout: e({ lg: "flex", sm: "flex" }), children: (t) => {
             const g = k || {};
             return (() => {
               var c;
@@ -43,14 +43,14 @@ Passionate about software architecture, developer experience, and continuous lea
                 "      ",
                 /* @__PURE__ */ n(o, { id: "el_1783122592136_aq1kex8", className: `${e({ sm: "text-sm text-slate-500 font-medium" }) || ""}`, children: [
                   "      ",
-                  /* @__PURE__ */ n(ie, { id: "el_1783122688079_k0fh8s3", leftIcon: !1, rightIcon: !1, children: [
+                  /* @__PURE__ */ n(_, { id: "el_1783122688079_k0fh8s3", leftIcon: !1, rightIcon: !1, children: [
                     "      ",
                     (() => {
                       var h;
                       const r = (h = a == null ? void 0 : a.item) == null ? void 0 : h.icon;
                       if (!r) return null;
-                      const $ = typeof r == "string" ? r : r.name, l = typeof r == "object" && r.props ? r.props : {}, f = _[$];
-                      return f ? /* @__PURE__ */ s(f, { ...l, id: "el_1783122598744_x2wce06", color: "#111827", strokeWidth: 1.2, size: 20 }) : null;
+                      const $ = typeof r == "string" ? r : r.name, l = typeof r == "object" && r.props ? r.props : {}, f = re[$];
+                      return f ? /* @__PURE__ */ s(f, { ...l, id: "el_1783122598744_x2wce06", size: 20, color: "#111827", strokeWidth: 1.2 }) : null;
                     })(),
                     /* @__PURE__ */ s(m, { id: "el_1783122719647_pyybzh6", className: `${e({ sm: "text-sm text-slate-500 font-medium" }) || ""}`, as: "h2", content: (c = a == null ? void 0 : a.item) == null ? void 0 : c.label })
                   ] })
@@ -63,7 +63,7 @@ Passionate about software architecture, developer experience, and continuous lea
           "      ",
           /* @__PURE__ */ n(o, { id: "el_1783123659603_5wvhewk", className: `flex ${e({ sm: "bg-white border border-slate-200 rounded-3xl p-6 shadow-sm gap-5 shrink-0 hover:shadow-md transition-shadow" }) || ""} ${e({ sm: "items-center" }) || ""}`, children: [
             "      ",
-            /* @__PURE__ */ s(se, { id: "el_1783123741703_5dkfvtb", className: `${e({ sm: "font-black text-blue-600" }) || ""} ${e({ sm: "text-5xl" }) || ""} ${e({ sm: "font-extrabold" }) || ""}`, trigger: "onMount", as: "h2", text: J }),
+            /* @__PURE__ */ s(te, { id: "el_1783123741703_5dkfvtb", className: `${e({ sm: "font-black text-blue-600" }) || ""} ${e({ sm: "text-5xl" }) || ""} ${e({ sm: "font-extrabold" }) || ""}`, text: J, trigger: "onMount", as: "h2" }),
             /* @__PURE__ */ n(o, { id: "el_1783123833648_v21toav", className: `flex ${e({ sm: "flex-col" }) || ""}`, children: [
               "      ",
               /* @__PURE__ */ s(m, { id: "el_1783123877120_h7spqiy", className: `${e({ sm: "text-slate-800 uppercase tracking-widest" }) || ""} ${e({ sm: "text-sm" }) || ""} ${e({ sm: "font-bold" }) || ""}`, as: "h2", content: e({ sm: "YEARS" }) }),
@@ -72,7 +72,7 @@ Passionate about software architecture, developer experience, and continuous lea
           ] })
         ] })
       ] }),
-      /* @__PURE__ */ n(ne, { id: "el_1783124249993_7ltc9uh", className: `${e({ sm: "overflow-hidden border-y border-slate-200 py-5 bg-white mb-8 shadow-sm" }) || ""}`, speed: e({ lg: 6, sm: 3 }), direction: "left", pauseOnHover: "true", pauseAnimation: !1, children: [
+      /* @__PURE__ */ n(ie, { id: "el_1783124249993_7ltc9uh", className: `${e({ sm: "overflow-hidden border-y border-slate-200 py-5 bg-white mb-8 shadow-sm" }) || ""}`, direction: "left", pauseOnHover: "true", pauseAnimation: !1, speed: e({ lg: 6, sm: 3 }), children: [
         "      ",
         /* @__PURE__ */ s(b, { id: "el_1783296242762_o8s63fo", className: `flex ${e({ sm: "gap-2", lg: "gap-0" }) || ""}`, items: Z, layout: e({ lg: "flex", sm: "flex" }), children: (t) => {
           const g = k || {};
@@ -83,8 +83,8 @@ Passionate about software architecture, developer experience, and continuous lea
               "      ",
               /* @__PURE__ */ n(o, { id: "el_1783296267155_t2j26td", className: `flex ${e({ md: "text-sm font-semibold tracking-widest text-slate-400 mx-4 ", lg: "text-sm font-semibold tracking-widest text-slate-400 mx-4 uppercase" }) || ""} ${e({ sm: "items-center", lg: "items-center" }) || ""} ${e({ sm: "gap-2", lg: "gap-2" }) || ""}`, children: [
                 "      ",
-                /* @__PURE__ */ s(ee, { id: "el_1783296303075_i48zyfb", size: 20, color: "#111827", strokeWidth: 1.2 }),
-                /* @__PURE__ */ s(m, { id: "el_1783296325949_zncv0sv", as: "h2", content: (c = a == null ? void 0 : a.item) == null ? void 0 : c.skill })
+                /* @__PURE__ */ s(ae, { id: "el_1783296303075_i48zyfb", color: "#111827", strokeWidth: 1.2, size: 20 }),
+                /* @__PURE__ */ s(m, { id: "el_1783296325949_zncv0sv", className: `${e({ sm: "font-semibold" }) || ""}`, as: "h2", content: (c = a == null ? void 0 : a.item) == null ? void 0 : c.skill })
               ] })
             ] });
           })();
@@ -92,7 +92,7 @@ Passionate about software architecture, developer experience, and continuous lea
       ] }),
       /* @__PURE__ */ n(o, { id: "el_1783299478908_st4uxgv", className: `${e({ sm: "max-w-6xl mx-auto", md: "max-w-6xl mx-auto w-full", lg: "max-w-6xl mx-auto w-full" }) || ""}`, children: [
         "      ",
-        /* @__PURE__ */ s(ae, { id: "el_1783296958587_kor6gzk", className: `${e({ sm: "max-w-6xl", lg: "max-w-6xl" }) || ""}`, templateContent: (t) => {
+        /* @__PURE__ */ s(se, { id: "el_1783296958587_kor6gzk", className: `${e({ sm: "max-w-6xl", lg: "max-w-6xl" }) || ""}`, templateContent: (t) => {
           const g = k || {};
           return (() => {
             var c;
@@ -106,13 +106,13 @@ Passionate about software architecture, developer experience, and continuous lea
                   const l = { ...$, ...r || {}, item: (r == null ? void 0 : r.item) ?? r, index: (r == null ? void 0 : r.index) ?? (r == null ? void 0 : r.i) ?? 0 };
                   return /* @__PURE__ */ n(x, { children: [
                     "      ",
-                    /* @__PURE__ */ s(re, { id: "el_1783319052953_6orgl0c", className: `${e({ sm: "h-full", md: " flex-1", lg: "flex-1" }) || ""} ${e({ md: "h-64", lg: "h-64" }) || ""}`, frontContent: /* @__PURE__ */ n(x, { children: [
+                    /* @__PURE__ */ s(le, { id: "el_1783319052953_6orgl0c", className: `${e({ sm: "h-full", md: " flex-1", lg: "flex-1" }) || ""} ${e({ md: "h-64", lg: "h-64" }) || ""}`, frontContent: /* @__PURE__ */ n(x, { children: [
                       "      ",
                       /* @__PURE__ */ n(o, { id: "el_1783337050148_7chjh7v", className: "flex p-4 flex-col", children: [
                         "      ",
                         /* @__PURE__ */ s(m, { id: "el_1783338048046_7g6nknp", className: "text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4", as: "h2", content: (f = l == null ? void 0 : l.item) == null ? void 0 : f.indicator }),
-                        /* @__PURE__ */ s(m, { id: "el_1783338050412_2mw86jq", className: "text-xl font-bold text-slate-900 mb-1", as: "h2", content: (h = l == null ? void 0 : l.item) == null ? void 0 : h.title }),
-                        /* @__PURE__ */ s(m, { id: "el_1783338052372_0u1gg50", className: "text-sm text-slate-500", as: "h2", content: (R = l == null ? void 0 : l.item) == null ? void 0 : R.subTitle }),
+                        /* @__PURE__ */ s(m, { id: "el_1783338050412_2mw86jq", className: "text-xl font-bold text-slate-900 mb-1", content: (h = l == null ? void 0 : l.item) == null ? void 0 : h.title, as: "h2" }),
+                        /* @__PURE__ */ s(m, { id: "el_1783338052372_0u1gg50", className: "text-sm text-slate-500", content: (R = l == null ? void 0 : l.item) == null ? void 0 : R.subTitle, as: "h2" }),
                         /* @__PURE__ */ s(m, { id: "el_1783338058221_rd2bncg", className: `${e({ sm: "text-xs text-slate-600 leading-relaxed mb-4 flex-1", lg: "text-md" }) || ""} ${e({ lg: "text-base" }) || ""}`, as: "h2", content: (z = l == null ? void 0 : l.item) == null ? void 0 : z.content })
                       ] })
                     ] }), backContent: /* @__PURE__ */ n(x, { children: [
@@ -130,7 +130,7 @@ Passionate about software architecture, developer experience, and continuous lea
                           ] });
                         })() })
                       ] })
-                    ] }), direction: "horizontal", hasBackContent: (U = l == null ? void 0 : l.item) == null ? void 0 : U.moreContent })
+                    ] }), hasBackContent: (U = l == null ? void 0 : l.item) == null ? void 0 : U.moreContent, direction: "horizontal" })
                   ] });
                 })();
               } })
@@ -151,7 +151,7 @@ Passionate about software architecture, developer experience, and continuous lea
       ] }),
       /* @__PURE__ */ n(o, { id: "el_1783343630200_wklm9b7", className: `${e({ lg: "h-screen" }) || ""}`, children: [
         "      ",
-        /* @__PURE__ */ s(oe, { id: "el_1783344204113_cxj02nt", zones: V })
+        /* @__PURE__ */ s(ne, { id: "el_1783344204113_cxj02nt", zones: V })
       ] })
     ] })
   ] });
