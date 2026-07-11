@@ -1,13 +1,13 @@
 import { jsxs as n, jsx as s, Fragment as x } from "react/jsx-runtime";
 import { useRef as Y, useState as u, useEffect as y, useCallback as X } from "react";
-import * as _ from "lucide-react";
-import { CircleStar as ee } from "lucide-react";
+import { OptimizedImage as _ } from "@rudra-studio/rudra-media";
+import { Typography as m, Link as ee } from "@rudra-studio/rudra-core";
+import { TypewriterText as te, TextScramble as ie, Marquee as le, FlipTile as se } from "@rudra-studio/rudra-anim";
+import { Repeater as v, DataTabs as ne } from "@rudra-studio/rudra-widgets";
+import { ProfileRPG as re } from "@rudra-studio/rudra-three";
+import * as ae from "lucide-react";
+import { CircleStar as oe } from "lucide-react";
 import { Box as a } from "@rudra-studio/rudra-layout";
-import { OptimizedImage as te } from "@rudra-studio/rudra-media";
-import { Typography as m, Link as ie } from "@rudra-studio/rudra-core";
-import { TypewriterText as le, TextScramble as se, Marquee as ne, FlipTile as re } from "@rudra-studio/rudra-anim";
-import { Repeater as v, DataTabs as ae } from "@rudra-studio/rudra-widgets";
-import { ProfileRPG as oe } from "@rudra-studio/rudra-three";
 function Ie(i) {
   var D, A, N, E, I, L, T, P, R;
   const S = {}, w = Y(null), [$, C] = u("lg");
@@ -27,14 +27,14 @@ Passionate about software architecture, developer experience, and continuous lea
   return /* @__PURE__ */ n("div", { ref: w, className: "rudra-module-wrapper", children: [
     /* @__PURE__ */ n(a, { id: "el_1783116382087_hktrke1", className: `flex ${e({ sm: "min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-blue-100 pb-20 w-full" }) || ""} ${e({ sm: "flex-col", lg: "flex-col" }) || ""} gap-6`, children: [
       "      ",
-      /* @__PURE__ */ n(a, { id: "el_1783117555351_vqxm7ws", className: `flex ${e({ sm: "max-w-6xl px-4 mx-auto w-full" }) || ""} ${e({ sm: "flex-col", md: "flex-row", lg: "flex-row" }) || ""} ${e({ sm: "justify-between" }) || ""} ${e({ sm: "items-start", md: "items-end", lg: "items-end" }) || ""} gap-2`, children: [
+      /* @__PURE__ */ n(a, { id: "el_1783117555351_vqxm7ws", className: `flex ${e({ sm: "max-w-6xl px-4 mx-auto w-full max-md:items-start" }) || ""} ${e({ sm: "flex-col", md: "flex-row", lg: "flex-row" }) || ""} ${e({ sm: "justify-between" }) || ""} ${e({ md: "items-end", lg: "items-end" }) || ""} gap-2`, children: [
         "      ",
         /* @__PURE__ */ n(a, { id: "el_1783117704735_wru5yrv", className: `flex ${e({ sm: "flex-1 pt-2" }) || ""} ${e({ sm: "flex-col" }) || ""}`, children: [
           "      ",
-          /* @__PURE__ */ s(te, { id: "el_1783117892371_bqn6tux", aspectRatio: "square", alt: e({ sm: "Profile Pic" }), src: e({ sm: "https://raw.githubusercontent.com/sivasankar-selvasundar/rudra-public/master/uploads/image.png" }), width: e({ sm: 150 }), height: e({ sm: 150 }), radius: e({ sm: "full" }) }),
+          /* @__PURE__ */ s(_, { id: "el_1783117892371_bqn6tux", aspectRatio: "square", alt: e({ sm: "Profile Pic" }), src: e({ sm: "https://raw.githubusercontent.com/sivasankar-selvasundar/rudra-public/master/uploads/image.png" }), width: e({ sm: 150 }), height: e({ sm: 150 }), radius: e({ sm: "full" }) }),
           /* @__PURE__ */ s(m, { id: "el_1783118024559_oain35d", className: `${e({ sm: "text-slate-900 tracking-tight leading-none mb-3" }) || ""} text-5xl font-extrabold`, as: "h2", content: O }),
-          /* @__PURE__ */ s(le, { id: "el_1783118365991_ifo3jxo", className: `${e({ sm: "max-w-xl mb-6" }) || ""} ${e({ sm: "text-lg", md: "text-xl", lg: "text-xl" }) || ""} ${e({ sm: "font-medium" }) || ""}`, delay: e({ sm: 0 }), hideCursorOnComplete: "true", as: "h2", loopDelay: e({ sm: 1e7 }), showCursor: "true", customColor: e({ sm: "#0078ed" }), loop: e({ sm: "false" }), text: H }),
-          /* @__PURE__ */ s(v, { id: "el_1783122541120_f986kyx", className: `flex ${e({ sm: "gap-4 text-sm text-slate-500 font-medium" }) || ""} flex-row flex-wrap ${e({ sm: "items-center" }) || ""} ${e({ md: "gap-2", lg: "gap-2" }) || ""}`, columns: e({ lg: 3, sm: 0 }), gap: "sm", layout: e({ lg: "flex", sm: "flex" }), items: Q, children: (t) => {
+          /* @__PURE__ */ s(te, { id: "el_1783118365991_ifo3jxo", className: `${e({ sm: "max-w-xl mb-6" }) || ""} ${e({ sm: "text-lg", md: "text-xl", lg: "text-xl" }) || ""} ${e({ sm: "font-medium" }) || ""}`, hideCursorOnComplete: "true", loop: e({ sm: "false" }), text: H, delay: e({ sm: 0 }), loopDelay: e({ sm: 1e7 }), showCursor: "true", customColor: e({ sm: "#0078ed" }), as: "h2" }),
+          /* @__PURE__ */ s(v, { id: "el_1783122541120_f986kyx", className: `flex ${e({ sm: "gap-4 text-sm text-slate-500 font-medium" }) || ""} flex-row flex-wrap ${e({ sm: "items-center" }) || ""} ${e({ md: "gap-2", lg: "gap-2" }) || ""}`, columns: e({ lg: 3, sm: 0 }), gap: "sm", items: Q, layout: e({ lg: "flex", sm: "flex" }), children: (t) => {
             const f = S || {};
             return (() => {
               var c, o;
@@ -43,13 +43,13 @@ Passionate about software architecture, developer experience, and continuous lea
                 "      ",
                 /* @__PURE__ */ n(a, { id: "el_1783122592136_aq1kex8", className: `${e({ sm: "text-sm text-slate-500 font-medium" }) || ""}`, children: [
                   "      ",
-                  /* @__PURE__ */ n(ie, { id: "el_1783122688079_k0fh8s3", leftIcon: !1, rightIcon: !1, href: (c = r == null ? void 0 : r.item) == null ? void 0 : c.href, children: [
+                  /* @__PURE__ */ n(ee, { id: "el_1783122688079_k0fh8s3", href: (c = r == null ? void 0 : r.item) == null ? void 0 : c.href, leftIcon: !1, rightIcon: !1, children: [
                     "      ",
                     (() => {
                       var b;
                       const g = (b = r == null ? void 0 : r.item) == null ? void 0 : b.icon;
                       if (!g) return null;
-                      const l = typeof g == "string" ? g : g.name, k = typeof g == "object" && g.props ? g.props : {}, h = _[l];
+                      const l = typeof g == "string" ? g : g.name, k = typeof g == "object" && g.props ? g.props : {}, h = ae[l];
                       return h ? /* @__PURE__ */ s(h, { ...k, id: "el_1783122598744_x2wce06", size: 20, color: "#111827", strokeWidth: 1.2 }) : null;
                     })(),
                     /* @__PURE__ */ s(m, { id: "el_1783122719647_pyybzh6", className: `${e({ sm: "text-sm text-slate-500 font-medium" }) || ""}`, as: "h2", content: (o = r == null ? void 0 : r.item) == null ? void 0 : o.label })
@@ -63,16 +63,16 @@ Passionate about software architecture, developer experience, and continuous lea
           "      ",
           /* @__PURE__ */ n(a, { id: "el_1783123659603_5wvhewk", className: `flex ${e({ sm: "bg-white border border-slate-200 rounded-3xl p-6 shadow-sm gap-5 shrink-0 hover:shadow-md transition-shadow" }) || ""} ${e({ sm: "items-center" }) || ""}`, children: [
             "      ",
-            /* @__PURE__ */ s(se, { id: "el_1783123741703_5dkfvtb", className: `${e({ sm: "font-black text-blue-600" }) || ""} ${e({ sm: "text-5xl" }) || ""} ${e({ sm: "font-extrabold" }) || ""}`, text: J, trigger: "onMount", as: "h2" }),
+            /* @__PURE__ */ s(ie, { id: "el_1783123741703_5dkfvtb", className: `${e({ sm: "font-black text-blue-600" }) || ""} ${e({ sm: "text-5xl" }) || ""} ${e({ sm: "font-extrabold" }) || ""}`, as: "h2", text: J, trigger: "onMount" }),
             /* @__PURE__ */ n(a, { id: "el_1783123833648_v21toav", className: `flex ${e({ sm: "flex-col" }) || ""}`, children: [
               "      ",
-              /* @__PURE__ */ s(m, { id: "el_1783123877120_h7spqiy", className: `${e({ sm: "text-slate-800 uppercase tracking-widest" }) || ""} ${e({ sm: "text-sm" }) || ""} ${e({ sm: "font-bold" }) || ""}`, content: e({ sm: "YEARS" }), as: "h2" }),
-              /* @__PURE__ */ s(m, { id: "el_1783123879912_497quve", className: `${e({ sm: "text-slate-500" }) || ""} ${e({ sm: "text-sm" }) || ""} ${e({ sm: "font-medium" }) || ""}`, as: "h2", content: e({ sm: "Experience" }) })
+              /* @__PURE__ */ s(m, { id: "el_1783123877120_h7spqiy", className: `${e({ sm: "text-slate-800 uppercase tracking-widest" }) || ""} ${e({ sm: "text-sm" }) || ""} ${e({ sm: "font-bold" }) || ""}`, as: "h2", content: e({ sm: "YEARS" }) }),
+              /* @__PURE__ */ s(m, { id: "el_1783123879912_497quve", className: `${e({ sm: "text-slate-500" }) || ""} ${e({ sm: "text-sm" }) || ""} ${e({ sm: "font-medium" }) || ""}`, content: e({ sm: "Experience" }), as: "h2" })
             ] })
           ] })
         ] })
       ] }),
-      /* @__PURE__ */ n(ne, { id: "el_1783124249993_7ltc9uh", className: `${e({ sm: "overflow-hidden border-y border-slate-200 py-5 bg-white mb-8 shadow-sm" }) || ""}`, direction: "left", pauseOnHover: "true", pauseAnimation: !1, speed: e({ lg: 6, sm: 3 }), children: [
+      /* @__PURE__ */ n(le, { id: "el_1783124249993_7ltc9uh", className: `${e({ sm: "overflow-hidden border-y border-slate-200 py-5 bg-white mb-8 shadow-sm" }) || ""}`, speed: e({ lg: 6, sm: 3 }), direction: "left", pauseOnHover: "true", pauseAnimation: !1, children: [
         "      ",
         /* @__PURE__ */ s(v, { id: "el_1783296242762_o8s63fo", className: `flex ${e({ sm: "gap-2", lg: "gap-0" }) || ""}`, items: Z, layout: e({ lg: "flex", sm: "flex" }), children: (t) => {
           const f = S || {};
@@ -83,8 +83,8 @@ Passionate about software architecture, developer experience, and continuous lea
               "      ",
               /* @__PURE__ */ n(a, { id: "el_1783296267155_t2j26td", className: `flex ${e({ md: "text-sm font-semibold tracking-widest text-slate-400 mx-4 ", lg: "text-sm font-semibold tracking-widest text-slate-400 mx-4 uppercase" }) || ""} ${e({ sm: "items-center", lg: "items-center" }) || ""} ${e({ sm: "gap-2", lg: "gap-2" }) || ""}`, children: [
                 "      ",
-                /* @__PURE__ */ s(ee, { id: "el_1783296303075_i48zyfb", size: 20, color: "#111827", strokeWidth: 1.2 }),
-                /* @__PURE__ */ s(m, { id: "el_1783296325949_zncv0sv", className: `${e({ sm: "font-semibold" }) || ""}`, content: (c = r == null ? void 0 : r.item) == null ? void 0 : c.skill, as: "h2" })
+                /* @__PURE__ */ s(oe, { id: "el_1783296303075_i48zyfb", size: 20, color: "#111827", strokeWidth: 1.2 }),
+                /* @__PURE__ */ s(m, { id: "el_1783296325949_zncv0sv", className: `${e({ sm: "font-semibold" }) || ""}`, as: "h2", content: (c = r == null ? void 0 : r.item) == null ? void 0 : c.skill })
               ] })
             ] });
           })();
@@ -92,7 +92,7 @@ Passionate about software architecture, developer experience, and continuous lea
       ] }),
       /* @__PURE__ */ n(a, { id: "el_1783299478908_st4uxgv", className: `${e({ sm: "max-w-6xl mx-auto", md: "max-w-6xl mx-auto w-full", lg: "max-w-6xl mx-auto w-full" }) || ""}`, children: [
         "      ",
-        /* @__PURE__ */ s(ae, { id: "el_1783296958587_kor6gzk", className: `${e({ sm: "max-w-6xl", lg: "max-w-6xl" }) || ""}`, templateContent: (t) => {
+        /* @__PURE__ */ s(ne, { id: "el_1783296958587_kor6gzk", className: `${e({ sm: "max-w-6xl", lg: "max-w-6xl" }) || ""}`, templateContent: (t) => {
           const f = S || {};
           return (() => {
             var c;
@@ -106,27 +106,27 @@ Passionate about software architecture, developer experience, and continuous lea
                   const l = { ...g, ...o || {}, item: (o == null ? void 0 : o.item) ?? o, index: (o == null ? void 0 : o.index) ?? (o == null ? void 0 : o.i) ?? 0 };
                   return /* @__PURE__ */ n(x, { children: [
                     "      ",
-                    /* @__PURE__ */ s(re, { id: "el_1783319052953_6orgl0c", className: `${e({ sm: "h-full", md: " flex-1", lg: "flex-1" }) || ""} ${e({ md: "h-64", lg: "h-64" }) || ""}`, frontContent: /* @__PURE__ */ n(x, { children: [
+                    /* @__PURE__ */ s(se, { id: "el_1783319052953_6orgl0c", className: `${e({ sm: "h-full", md: " flex-1", lg: "flex-1" }) || ""} ${e({ md: "h-64", lg: "h-64" }) || ""}`, frontContent: /* @__PURE__ */ n(x, { children: [
                       "      ",
                       /* @__PURE__ */ n(a, { id: "el_1783337050148_7chjh7v", className: "flex p-4 flex-col", children: [
                         "      ",
                         /* @__PURE__ */ s(m, { id: "el_1783338048046_7g6nknp", className: "text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4", as: "h2", content: (k = l == null ? void 0 : l.item) == null ? void 0 : k.indicator }),
                         /* @__PURE__ */ s(m, { id: "el_1783338050412_2mw86jq", className: "text-xl font-bold text-slate-900 mb-1", as: "h2", content: (h = l == null ? void 0 : l.item) == null ? void 0 : h.title }),
                         /* @__PURE__ */ s(m, { id: "el_1783338052372_0u1gg50", className: "text-sm text-slate-500", as: "h2", content: (b = l == null ? void 0 : l.item) == null ? void 0 : b.subTitle }),
-                        /* @__PURE__ */ s(m, { id: "el_1783338058221_rd2bncg", className: `${e({ sm: "text-xs text-slate-600 leading-relaxed mb-4 flex-1", lg: "text-md" }) || ""} ${e({ lg: "text-base" }) || ""}`, as: "h2", content: (z = l == null ? void 0 : l.item) == null ? void 0 : z.content })
+                        /* @__PURE__ */ s(m, { id: "el_1783338058221_rd2bncg", className: `${e({ sm: " text-slate-600 leading-relaxed mb-4 flex-1", lg: "text-md" }) || ""} ${e({ sm: "text-sm", md: "text-sm", lg: "text-base" }) || ""}`, as: "h2", content: (z = l == null ? void 0 : l.item) == null ? void 0 : z.content })
                       ] })
                     ] }), backContent: /* @__PURE__ */ n(x, { children: [
                       "      ",
                       /* @__PURE__ */ n(a, { id: "el_1783339928997_gw2xmmv", className: `flex ${e({ sm: "h-full p-4" }) || ""} ${e({ sm: "flex-col" }) || ""}`, children: [
                         "      ",
-                        /* @__PURE__ */ s(m, { id: "el_1783340211173_f694ofw", className: `${e({ sm: "text-sm font-bold text-slate-900 mb-2" }) || ""}`, as: "h2", content: (M = (j = l == null ? void 0 : l.item) == null ? void 0 : j.moreContent) == null ? void 0 : M.title }),
+                        /* @__PURE__ */ s(m, { id: "el_1783340211173_f694ofw", className: `${e({ sm: "text-sm font-bold text-slate-900 mb-2" }) || ""}`, content: (M = (j = l == null ? void 0 : l.item) == null ? void 0 : j.moreContent) == null ? void 0 : M.title, as: "h2" }),
                         /* @__PURE__ */ s(m, { id: "el_1783340216477_2uijyff", className: `${e({ sm: "flex-1 text-xs text-slate-600 leading-relaxed mb-4 flex-1" }) || ""}`, as: "h2", content: (G = (B = l == null ? void 0 : l.item) == null ? void 0 : B.moreContent) == null ? void 0 : G.description }),
                         /* @__PURE__ */ s(v, { id: "el_1783348883759_f0i46tv", className: `flex ${e({ sm: "gap-2" }) || ""} ${e({ sm: "flex-row" }) || ""} ${e({ sm: "flex-wrap" }) || ""} ${e({ sm: "items-center" }) || ""}`, items: (W = (F = l == null ? void 0 : l.item) == null ? void 0 : F.moreContent) == null ? void 0 : W.labels, layout: e({ sm: "flex" }), children: (d) => (() => {
                           var q;
                           const p = { ...d || {}, item: (d == null ? void 0 : d.item) ?? d, index: (d == null ? void 0 : d.index) ?? (d == null ? void 0 : d.i) ?? 0 };
                           return /* @__PURE__ */ n(x, { children: [
                             "      ",
-                            /* @__PURE__ */ s(m, { id: "el_1783348937488_933qc8f", className: `${e({ sm: "px-2 py-1 bg-white border border-slate-200 rounded   text-slate-600" }) || ""} ${e({ sm: "text-xs" }) || ""} ${e({ sm: "font-semibold" }) || ""}`, as: "h2", content: (q = p == null ? void 0 : p.item) == null ? void 0 : q.label })
+                            /* @__PURE__ */ s(m, { id: "el_1783348937488_933qc8f", className: `${e({ sm: "px-2 py-1 bg-white border border-slate-200 rounded   text-slate-600" }) || ""} ${e({ sm: "text-xs" }) || ""} ${e({ sm: "font-semibold" }) || ""}`, content: (q = p == null ? void 0 : p.item) == null ? void 0 : q.label, as: "h2" })
                           ] });
                         })() })
                       ] })
@@ -136,7 +136,7 @@ Passionate about software architecture, developer experience, and continuous lea
               } })
             ] });
           })();
-        }, variant: "top", tabs: K })
+        }, tabs: K, variant: "top" })
       ] })
     ] }),
     /* @__PURE__ */ n(a, { id: "el_1783343580648_whnyakp", className: `flex ${e({ sm: "bg-white rounded-3xl overflow-hidden shadow-lg border border-slate-200 max-w-6xl mx-auto" }) || ""} ${e({ sm: "flex-col" }) || ""}`, children: [
@@ -151,7 +151,7 @@ Passionate about software architecture, developer experience, and continuous lea
       ] }),
       /* @__PURE__ */ n(a, { id: "el_1783343630200_wklm9b7", className: `${e({ lg: "h-screen" }) || ""}`, children: [
         "      ",
-        /* @__PURE__ */ s(oe, { id: "el_1783344204113_cxj02nt", zones: V })
+        /* @__PURE__ */ s(re, { id: "el_1783344204113_cxj02nt", zones: V })
       ] })
     ] })
   ] });
