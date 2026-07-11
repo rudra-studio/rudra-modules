@@ -69,6 +69,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # 1. Fetch main so the GitHub CLI doesn't crash during local cleanup
+          git fetch origin main
           # Approve the PR
           gh pr review ${{ github.event.pull_request.number }} --approve
           sleep 5
