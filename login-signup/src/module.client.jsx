@@ -9,7 +9,37 @@ import { Command } from 'lucide-react';
 
 export default function CompiledModule(props) {
   const _scope = {};
-  const _externalActions = props.actions || props.runtime?.actions || {};
+
+  const _externalActions = {
+    ...(props.runtime?.functions || {}),
+    ...(props.runtime?.actions || {}),
+    ...(props.functions || {}),
+    ...(props.actions || {}),
+  };
+  const _explicitTheme = props.$theme ?? props.theme ?? props.data?.$theme ?? props.runtime?.data?.$theme ?? props.runtime?.theme;
+  const _getDocumentTheme = () => {
+    if (typeof document === 'undefined') return 'light';
+    return document.documentElement.dataset.theme || (document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+  };
+  const [$theme, set_$theme] = useState(() => _explicitTheme ?? _getDocumentTheme());
+
+  useEffect(() => {
+    if (_explicitTheme !== undefined && _explicitTheme !== null) set_$theme(_explicitTheme);
+  }, [_explicitTheme]);
+
+  useEffect(() => {
+    if (_explicitTheme !== undefined && _explicitTheme !== null || typeof document === 'undefined') return;
+    const root = document.documentElement;
+    const syncTheme = (event) => set_$theme(event?.detail?.theme ?? _getDocumentTheme());
+    const observer = new MutationObserver(syncTheme);
+    observer.observe(root, { attributes: true, attributeFilter: ['class', 'data-theme'] });
+    window.addEventListener('rudra:theme-change', syncTheme);
+    syncTheme();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('rudra:theme-change', syncTheme);
+    };
+  }, [_explicitTheme]);
   const wrapperRef = useRef(null);
   const [viewport, setViewport] = useState('lg');
   useEffect(() => {
@@ -33,11 +63,11 @@ export default function CompiledModule(props) {
     return val.lg !== undefined ? val.lg : (val.md !== undefined ? val.md : val.sm);
   }, [viewport]);
 
-  const [isLoading, set_isLoading] = useState(props.isLoading !== undefined ? props.isLoading : (props.serverData?.isLoading !== undefined ? props.serverData.isLoading : false));
-  const [signInForm, set_signInForm] = useState(props.signInForm !== undefined ? props.signInForm : (props.serverData?.signInForm !== undefined ? props.serverData.signInForm : [{"fields":[{"id":"email","label":"Email Address","placeholder":"hello@rudra.com","required":true,"type":"email"},{"id":"password","label":"Password","placeholder":"Enter your password","required":true,"type":"password"}],"title":"Welcome Back"}]));
-  const [signUpForm, set_signUpForm] = useState(props.signUpForm !== undefined ? props.signUpForm : (props.serverData?.signUpForm !== undefined ? props.serverData.signUpForm : [{"fields":[{"icon":"Mail","id":"email","label":"Email Address","placeholder":"you@example.com","required":true,"type":"email"},{"icon":"Lock","id":"password","label":"Password","placeholder":"Create a strong password","required":true,"type":"password"},{"icon":"Lock","id":"confirmPassword","label":"Confirm Password","placeholder":"Type your password again","required":true,"type":"password"}],"title":"Create Account"}]));
-  const [form, set_form] = useState(props.form !== undefined ? props.form : (props.serverData?.form !== undefined ? props.serverData.form : "signup"));
-  const [loading, set_loading] = useState(props.loading !== undefined ? props.loading : (props.serverData?.loading !== undefined ? props.serverData.loading : {"github":false,"google":false,"signIn":false,"signUp":false}));
+  const [isLoading, set_isLoading] = useState(props.isLoading !== undefined ? props.isLoading : (props.data?.isLoading !== undefined ? props.data.isLoading : (props.runtime?.data?.isLoading !== undefined ? props.runtime.data.isLoading : (props.serverData?.isLoading !== undefined ? props.serverData.isLoading : (props.serverState?.isLoading !== undefined ? props.serverState.isLoading : false)))));
+  const [signInForm, set_signInForm] = useState(props.signInForm !== undefined ? props.signInForm : (props.data?.signInForm !== undefined ? props.data.signInForm : (props.runtime?.data?.signInForm !== undefined ? props.runtime.data.signInForm : (props.serverData?.signInForm !== undefined ? props.serverData.signInForm : (props.serverState?.signInForm !== undefined ? props.serverState.signInForm : [{"fields":[{"id":"email","label":"Email Address","placeholder":"hello@rudra.com","required":true,"type":"email"},{"id":"password","label":"Password","placeholder":"Enter your password","required":true,"type":"password"}],"title":"Welcome Back"}])))));
+  const [signUpForm, set_signUpForm] = useState(props.signUpForm !== undefined ? props.signUpForm : (props.data?.signUpForm !== undefined ? props.data.signUpForm : (props.runtime?.data?.signUpForm !== undefined ? props.runtime.data.signUpForm : (props.serverData?.signUpForm !== undefined ? props.serverData.signUpForm : (props.serverState?.signUpForm !== undefined ? props.serverState.signUpForm : [{"fields":[{"icon":"Mail","id":"email","label":"Email Address","placeholder":"you@example.com","required":true,"type":"email"},{"icon":"Lock","id":"password","label":"Password","placeholder":"Create a strong password","required":true,"type":"password"},{"icon":"Lock","id":"confirmPassword","label":"Confirm Password","placeholder":"Type your password again","required":true,"type":"password"}],"title":"Create Account"}])))));
+  const [form, set_form] = useState(props.form !== undefined ? props.form : (props.data?.form !== undefined ? props.data.form : (props.runtime?.data?.form !== undefined ? props.runtime.data.form : (props.serverData?.form !== undefined ? props.serverData.form : (props.serverState?.form !== undefined ? props.serverState.form : "signup")))));
+  const [loading, set_loading] = useState(props.loading !== undefined ? props.loading : (props.data?.loading !== undefined ? props.data.loading : (props.runtime?.data?.loading !== undefined ? props.runtime.data.loading : (props.serverData?.loading !== undefined ? props.serverData.loading : (props.serverState?.loading !== undefined ? props.serverState.loading : {"github":false,"google":false,"signIn":false,"signUp":false})))));
 
   const _setState = useCallback((name, value) => {
     switch (name) {
@@ -172,18 +202,18 @@ export default function CompiledModule(props) {
       <RudraCoreTypography id="el_1784647076610_5ykfkc9" className={`${getResponsiveProp({sm: 'text-xl font-semibold text-gray-900 dark:text-white tracking-tight'}) || ''}`} as="h2" content={((form === "login") ? "Welcome Back" : "Create an Account")} />
       <RudraCoreTypography id="el_1784647187929_yb4jnky" className={`${getResponsiveProp({sm: 'text-sm text-gray-500 mt-1'}) || ''}`} as="h2" content={((form === "login") ? "Enter your credentials to continue" : "Start building your next application")} />
 </RudraLayoutBox>
-      <RudraLayoutBox id="el_1784647320002_5rofwo5" className={`grid flex ${getResponsiveProp({sm: 'grid grid-cols-2 gap-3 mb-6'}) || ''}`}>      <RudraCoreButton id="el_1784647347690_dv24ei4" className={`flex ${getResponsiveProp({sm: 'flex items-center justify-center gap-1 w-full py-2.5 px-2 bg-white dark:bg-[#151515] border border-gray-200 dark:border-gray-800 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/80 transition-all active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none'}) || ''}`} leftIcon={<>      <div id="el_1784647380402_ugkvyow" size={20} color="#111827" strokeWidth={1.2} />
-</>} rightIcon={false} additionalAttributes={[]} onClick={(...eventArgs) => _callAction("RudraAuth.signIn", {"email": "", "password": "", "provider": "google"}, eventArgs)}>      <RudraCoreTypography id="el_1784647392306_nkqxhoc" as="h2" content={getResponsiveProp({"sm":"Google"})} />
+      <RudraLayoutBox id="el_1784647320002_5rofwo5" className={`grid flex ${getResponsiveProp({sm: 'grid grid-cols-2 gap-3 mb-6'}) || ''}`}>      <RudraCoreButton id="el_1784647347690_dv24ei4" className={`flex ${getResponsiveProp({sm: 'flex items-center justify-center gap-1 w-full py-2.5 px-2 bg-white dark:bg-[#151515] border border-gray-200 dark:border-gray-800 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/80 transition-all active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none'}) || ''}`} leftIcon={<>      <div id="el_1784647380402_ugkvyow" strokeWidth={1.2} size={20} color="#111827" />
+</>} additionalAttributes={[]} onClick={(...eventArgs) => _callAction("RudraAuth.signIn", {"email": "", "password": "", "provider": "google"}, eventArgs)} rightIcon={false}>      <RudraCoreTypography id="el_1784647392306_nkqxhoc" as="h2" content={getResponsiveProp({"sm":"Google"})} />
 </RudraCoreButton>
-      <RudraCoreButton id="el_1784647340113_83munsr" className={`flex ${getResponsiveProp({sm: 'flex items-center justify-center gap-2 w-full py-2.5 bg-white dark:bg-[#151515] border border-gray-200 dark:border-gray-800 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/80 transition-all active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none'}) || ''}`} leftIcon={<>      <div id="el_1784647382825_ovg66eb" size={20} color={getResponsiveProp({"lg":"#b94181","sm":"#111827"})} strokeWidth={1.2} />
-</>} rightIcon={false} additionalAttributes={[]} onClick={(...eventArgs) => _callAction("RudraAuth.signIn", {"email": "", "password": "", "provider": "github"}, eventArgs)}>      <RudraCoreTypography id="el_1784647394313_ucblp5p" as="h2" content={getResponsiveProp({"sm":"Github"})} />
+      <RudraCoreButton id="el_1784647340113_83munsr" className={`flex ${getResponsiveProp({sm: 'flex items-center justify-center gap-2 w-full py-2.5 bg-white dark:bg-[#151515] border border-gray-200 dark:border-gray-800 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/80 transition-all active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none'}) || ''}`} leftIcon={<>      <div id="el_1784647382825_ovg66eb" color={getResponsiveProp({"lg":"#b94181","sm":"#111827"})} strokeWidth={1.2} size={20} />
+</>} onClick={(...eventArgs) => _callAction("RudraAuth.signIn", {"email": "", "password": "", "provider": "github"}, eventArgs)} rightIcon={false} additionalAttributes={[]}>      <RudraCoreTypography id="el_1784647394313_ucblp5p" as="h2" content={getResponsiveProp({"sm":"Github"})} />
 </RudraCoreButton>
 </RudraLayoutBox>
       <RudraWidgetsSeparator id="el_1784881718225_8dil8m7" text={getResponsiveProp({"lg":"Or continue with","sm":"or continue with"})} />
       <RudraFormJSONForm id="el_1784896105217_0ix4495" 
-  classN={`${getResponsiveProp({sm: 'bg-transparent border-transparent'}) || ''}`} schema={((form === "login") ? signInForm : signUpForm)} onSubmit={(...eventArgs) => _callAction("login", {}, eventArgs)} buttonSize={getResponsiveProp({"lg":"md","sm":"sm"})} submitLabel={((form === "login") ? "Login" : "Sign Up")} buttonRadius={getResponsiveProp({"sm":"lg"})} buttonVariant={getResponsiveProp({"sm":"solid"})} validate={(...eventArgs) => _callAction("validate", {}, eventArgs)} />
-      <RudraLayoutBox id="el_1784899743809_h3gnwzz" className={`flex ${getResponsiveProp({sm: 'mt-6 text-center text-sm text-gray-600 dark:text-gray-400 gap-y-4 gap-x-4 gap-1'}) || ''} ${getResponsiveProp({sm: 'flex-wrap'}) || ''} ${getResponsiveProp({sm: 'justify-center'}) || ''}`}>      <RudraCoreTypography id="el_1784899807185_qdgfchp" as={getResponsiveProp({"sm":"p"})} content={((form === "login") ? "Don't have an account?" : "Already have an account?")} />
-      <RudraCoreButton id="el_1784900445842_35qrqg6" className={`${getResponsiveProp({sm: 'font-semibold text-black dark:text-white hover:underline underline-offset-4 disabled:opacity-50 transition-colors'}) || ''}`} leftIcon={false} rightIcon={false} additionalAttributes={[]} onClick={(...eventArgs) => _callAction("changeForm", {}, eventArgs)}>      <RudraCoreTypography id="el_1784900498465_8p13mqa" as={getResponsiveProp({"sm":"p"})} content={((form === "login") ? "Sign Up" : "Login")} />
+  classN={`${getResponsiveProp({sm: 'bg-transparent border-transparent'}) || ''}`} buttonRadius={getResponsiveProp({"sm":"lg"})} onSubmit={(...eventArgs) => _callAction("login", {}, eventArgs)} validate={(...eventArgs) => _callAction("validate", {}, eventArgs)} buttonSize={getResponsiveProp({"lg":"md","sm":"sm"})} submitLabel={((form === "login") ? "Login" : "Sign Up")} buttonVariant={getResponsiveProp({"sm":"solid"})} schema={((form === "login") ? signInForm : signUpForm)} />
+      <RudraLayoutBox id="el_1784899743809_h3gnwzz" className={`flex ${getResponsiveProp({sm: 'mt-6 text-center text-sm text-gray-600 dark:text-gray-400 gap-y-4 gap-x-4 gap-1'}) || ''} ${getResponsiveProp({sm: 'flex-wrap'}) || ''} ${getResponsiveProp({sm: 'justify-center'}) || ''}`}>      <RudraCoreTypography id="el_1784899807185_qdgfchp" content={((form === "login") ? "Don't have an account?" : "Already have an account?")} as={getResponsiveProp({"sm":"p"})} />
+      <RudraCoreButton id="el_1784900445842_35qrqg6" className={`${getResponsiveProp({sm: 'font-semibold text-black dark:text-white hover:underline underline-offset-4 disabled:opacity-50 transition-colors'}) || ''}`} rightIcon={false} additionalAttributes={[]} onClick={(...eventArgs) => _callAction("changeForm", {}, eventArgs)} leftIcon={false}>      <RudraCoreTypography id="el_1784900498465_8p13mqa" content={((form === "login") ? "Sign Up" : "Login")} as={getResponsiveProp({"sm":"p"})} />
 </RudraCoreButton>
 </RudraLayoutBox>
 </RudraLayoutBox>
