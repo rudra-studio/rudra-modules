@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+/* Tailwind v4 scans the generated module and installed Rudra component packages. */
+@source "./module.client.jsx";
+@source "../node_modules/@rudra-studio";
+
+.rudra-module-wrapper {
+  color-scheme: light;
+  width: 100%;
+  min-width: 0;
+  --rudra-color-bg: #f4f4f5;
+  --rudra-color-surface: #ffffff;
+  --rudra-color-text: #18181b;
+  --rudra-color-muted: #71717a;
+  --rudra-color-border: #e4e4e7;
+  --rudra-color-accent: #18181b;
+  background: var(--rudra-color-bg);
+}
+.rudra-module-wrapper .project-form-actions {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--rudra-color-border);
+  
+}
+.rudra-module-wrapper [data-theme="dark"],
+:root.dark .rudra-module-wrapper,
+:root[data-theme="dark"] .rudra-module-wrapper,
+.dark .rudra-module-wrapper,
+[data-theme="dark"] .rudra-module-wrapper {
+  color-scheme: dark;
+  --rudra-color-bg: #09090b;
+  --rudra-color-surface: #18181b;
+  --rudra-color-text: #fafafa;
+  --rudra-color-muted: #a1a1aa;
+  --rudra-color-border: #3f3f46;
+  --rudra-color-accent: #fafafa;
+}
+@media (max-width: 639px) {
+  .rudra-module-wrapper .project-form-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+  .rudra-module-wrapper .project-form-actions > * {
+    width: 100%;
+  }
+}
