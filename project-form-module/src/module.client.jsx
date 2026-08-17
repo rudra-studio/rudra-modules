@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './styles.css';
 
-import { ValidationSummary as RudraFormValidationSummary, FormSection as RudraFormFormSection, CurrencyInput as RudraFormCurrencyInput, DatePicker as RudraFormDatePicker, Input as RudraFormInput, Form as RudraFormForm, Select as RudraFormSelect, Textarea as RudraFormTextarea } from '@rudra-studio/rudra-form';
-import { Typography as RudraCoreTypography, Divider as RudraCoreDivider, Card as RudraCoreCard, Button as RudraCoreButton, Alert as RudraCoreAlert } from '@rudra-studio/rudra-core';
-import { Flex as RudraLayoutFlex, Container as RudraLayoutContainer, Grid as RudraLayoutGrid } from '@rudra-studio/rudra-layout';
+import { Container as RudraLayoutContainer, Grid as RudraLayoutGrid, Flex as RudraLayoutFlex } from '@rudra-studio/rudra-layout';
+import { ValidationSummary as RudraFormValidationSummary, DatePicker as RudraFormDatePicker, Input as RudraFormInput, Select as RudraFormSelect, FormSection as RudraFormFormSection, CurrencyInput as RudraFormCurrencyInput, Textarea as RudraFormTextarea, Form as RudraFormForm } from '@rudra-studio/rudra-form';
+import { Card as RudraCoreCard, Button as RudraCoreButton, Alert as RudraCoreAlert, Typography as RudraCoreTypography, Divider as RudraCoreDivider } from '@rudra-studio/rudra-core';
 
 export default function CompiledModule(props) {
   const _scope = {};
@@ -115,7 +115,7 @@ export default function CompiledModule(props) {
     return callable(args);
   }, []);
 
-  const _outputSchemas = {"output_fa2c663c-9862-47fd-ace8-c0b92be5d3e0":{"properties":{},"type":"object"}};
+  const _outputSchemas = {};
   const _validateOutputPayload = (value, schema, path) => {
     if (!schema || typeof schema !== 'object') return '';
     const allowedTypes = Array.isArray(schema.type) ? schema.type : schema.type ? [schema.type] : [];
@@ -178,33 +178,9 @@ export default function CompiledModule(props) {
     return !(value && typeof value === 'object' && !Array.isArray(value) && Object.keys(value).length === 0);
   };
 
-  async function handleCancel(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    void _emitOutput("output_fa2c663c-9862-47fd-ace8-c0b92be5d3e0", {  }, false).catch(error => console.error('Module output delivery failed', error));
-    return undefined;
-  }
-
-  async function handleSubmit(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    _setState("submitting", true);
-    throw new Error("API definition not found");
-    _setState("hasError", true);
-    _setState("submitting", false);
-    return undefined;
-    return undefined;
-  }
-
   const _localActions = {
-    "handleCancel": handleCancel,
-    "handleSubmit": handleSubmit,
   };
   const _localActionArguments = {
-    "handleCancel": ["event"],
-    "handleSubmit": ["formData"],
   };
   const _callAction = (name, configuredArgs = {}, eventArgs = []) => {
     const localAction = _localActions[name];
@@ -212,7 +188,7 @@ export default function CompiledModule(props) {
       const names = _localActionArguments[name] || [];
       return localAction(Object.fromEntries(names.map((argumentName, index) => {
         const configured = Object.prototype.hasOwnProperty.call(configuredArgs, argumentName) ? configuredArgs[argumentName] : undefined;
-        return [argumentName, argumentName === 'event' && (configured === '' || configured === undefined) ? eventArgs[0] : configured === undefined ? eventArgs[index] : configured];
+        return [argumentName, (configured === '' || configured === undefined) && eventArgs[index] !== undefined ? eventArgs[index] : argumentName === 'event' && (configured === '' || configured === undefined) ? eventArgs[0] : configured];
       })));
     }
     const externalAction = _externalActions?.[name];
@@ -229,33 +205,33 @@ export default function CompiledModule(props) {
 
   return (
     <div ref={wrapperRef} className="rudra-module-wrapper">
-      <RudraLayoutContainer id="project-form-container" className={`${getResponsiveProp({sm: 'w-full rudra-module-wrapper'}) || ''}`} as="section" centered={true} maxWidth="lg">      <RudraCoreCard id="project-form-card" className={`${getResponsiveProp({sm: 'w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900 p-2'}) || ''}`} as="section" theme="auto">      <RudraFormForm id="project-form" onSubmit={(...eventArgs) => _callAction("handleSubmit", {}, eventArgs)} initialValues={project}>      <RudraFormFormSection id="basic-section" title={<>      <RudraCoreTypography id="el_1786769426383_lulu4s9" className={`${getResponsiveProp({sm: 'text-sm'}) || ''} ${getResponsiveProp({sm: 'font-bold'}) || ''}`} content={getResponsiveProp({"lg":"Basic Information","sm":"Basic Information"})} />
-</>} description={<>      <RudraCoreTypography id="el_1786769428982_549w43s" className={`${getResponsiveProp({sm: 'text-black dark:text-white my-2 mb-6'}) || ''}`} customColor={false} content={getResponsiveProp({"sm":"Add the core information used to identify your project."})} />
-</>} actions={false} density="comfortable" variant={getResponsiveProp({"sm":"filled"})} collapsible={false} defaultCollapsed={false}>      <RudraFormInput id="project-name" className={`${getResponsiveProp({sm: 'mb-4 border-zinc-300'}) || ''} ${getResponsiveProp({sm: 'rounded-md'}) || ''}`} required={true} iconPosition="start" icon={false} name="name" label="Project name" placeholder="Website redesign" size="md" variant="default" />
-      <RudraFormTextarea id="project-description" label="Description · Optional" maxRows={8} minRows={5} variant="default" autoResize={true} placeholder="Describe what the team is building..." name="description" size="md" />
-      <RudraFormSelect id="project-client" className={`${getResponsiveProp({sm: 'mb-4'}) || ''}`} colorScheme="slate" name="clientId" size="md" label="Client · Optional" radius="lg" shadow="sm" options={clients} />
+      <RudraLayoutContainer id="project-form-container" className={`${getResponsiveProp({sm: 'w-full rudra-module-wrapper'}) || ''}`} as="section" centered={true} maxWidth="lg">      <RudraCoreCard id="project-form-card" className={`${getResponsiveProp({sm: 'w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900 p-2'}) || ''}`} theme="auto" as="section">      <RudraFormForm id="project-form" onSubmit={(...eventArgs) => _callAction("handleSubmit", {}, eventArgs)} initialValues={project}>      <RudraFormFormSection id="basic-section" description={<>      <RudraCoreTypography id="el_1786769428982_549w43s" className={`${getResponsiveProp({sm: 'text-black dark:text-white my-2 mb-6'}) || ''}`} content={getResponsiveProp({"sm":"Add the core information used to identify your project."})} customColor={false} />
+</>} title={<>      <RudraCoreTypography id="el_1786769426383_lulu4s9" className={`${getResponsiveProp({sm: 'text-sm'}) || ''} ${getResponsiveProp({sm: 'font-bold'}) || ''}`} content={getResponsiveProp({"lg":"Basic Information","sm":"Basic Information"})} />
+</>} density="comfortable" variant={getResponsiveProp({"sm":"filled"})} collapsible={false} defaultCollapsed={false} actions={false}>      <RudraFormInput id="project-name" className={`${getResponsiveProp({sm: 'mb-4 border-zinc-300'}) || ''} ${getResponsiveProp({sm: 'rounded-md'}) || ''}`} size="md" required={true} placeholder="Website redesign" iconPosition="start" name="name" label="Project name" variant="default" icon={false} />
+      <RudraFormTextarea id="project-description" size="md" label="Description · Optional" maxRows={8} minRows={5} variant="default" autoResize={true} placeholder="Describe what the team is building..." name="description" />
+      <RudraFormSelect id="project-client" className={`${getResponsiveProp({sm: 'mb-4'}) || ''}`} label="Client · Optional" radius="lg" shadow="sm" options={clients} colorScheme="slate" name="clientId" size="md" />
 </RudraFormFormSection>
       <RudraFormFormSection id="details-section" title={<>      <RudraCoreTypography id="el_1786772566754_3lmkf5c" className={`${getResponsiveProp({sm: 'mt-8'}) || ''} ${getResponsiveProp({sm: 'text-sm'}) || ''} ${getResponsiveProp({sm: 'font-semibold'}) || ''}`} content={getResponsiveProp({"sm":"Project details"})} />
 </>} description={<>      <RudraCoreTypography id="el_1786772568563_r4tc0cl" className={`${getResponsiveProp({sm: 'text-zinc-500 dark:text-white my-2 mb-6 mt-1'}) || ''}`} content={getResponsiveProp({"sm":"Define the current stage and priority of the project."})} />
-</>} actions={false} density="comfortable" variant="filled">      <RudraLayoutGrid id="details-grid" className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2" as="div">      <RudraFormSelect id="project-status" required={true} colorScheme="slate" name="status" size="md" label="Status" radius="lg" shadow="sm" options={[{"label":"Planning","value":"PLANNING"},{"label":"Active","value":"ACTIVE"},{"label":"On hold","value":"ON_HOLD"},{"label":"Completed","value":"COMPLETED"}]} />
-      <RudraFormSelect id="project-priority" shadow="sm" options={[{"label":"Low","value":"LOW"},{"label":"Medium","value":"MEDIUM"},{"label":"High","value":"HIGH"},{"label":"Critical","value":"CRITICAL"}]} required={true} colorScheme="slate" name="priority" size="md" label="Priority" radius="lg" />
+</>} actions={false} density="comfortable" variant="filled">      <RudraLayoutGrid id="details-grid" className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2" as="div">      <RudraFormSelect id="project-status" name="status" size="md" label="Status" radius="lg" shadow="sm" options={[{"label":"Planning","value":"PLANNING"},{"label":"Active","value":"ACTIVE"},{"label":"On hold","value":"ON_HOLD"},{"label":"Completed","value":"COMPLETED"}]} required={true} colorScheme="slate" />
+      <RudraFormSelect id="project-priority" colorScheme="slate" name="priority" size="md" label="Priority" radius="lg" shadow="sm" options={[{"label":"Low","value":"LOW"},{"label":"Medium","value":"MEDIUM"},{"label":"High","value":"HIGH"},{"label":"Critical","value":"CRITICAL"}]} required={true} />
 </RudraLayoutGrid>
 </RudraFormFormSection>
       <RudraFormFormSection id="schedule-section" title={<>      <RudraCoreTypography id="el_1786772409486_hvvpaoi" className={`${getResponsiveProp({sm: 'mt-8'}) || ''} ${getResponsiveProp({sm: 'text-sm'}) || ''} ${getResponsiveProp({sm: 'font-semibold'}) || ''}`} content={getResponsiveProp({"sm":"Schedule \u0026 budget"})} />
 </>} description={<>      <RudraCoreTypography id="el_1786772411699_xqtdsq2" className={`${getResponsiveProp({sm: 'text-zinc-500 dark:text-white my-2 mb-6 mt-1'}) || ''}`} content={getResponsiveProp({"sm":"Add project timing and budget information."})} />
-</>} actions={false} density="comfortable" variant="filled">      <RudraLayoutGrid id="date-grid" className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2" as="div">      <RudraFormDatePicker id="project-start-date" variant="default" clearable={true} name="startDate" size="md" label="Start date" />
+</>} actions={false} density="comfortable" variant="filled">      <RudraLayoutGrid id="date-grid" className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2" as="div">      <RudraFormDatePicker id="project-start-date" name="startDate" size="md" label="Start date" variant="default" clearable={true} />
       <RudraFormDatePicker id="project-due-date" label="Due date" variant="default" clearable={true} name="dueDate" size="md" />
 </RudraLayoutGrid>
-      <RudraFormCurrencyInput id="project-budget" maximumFractionDigits={2} minimumFractionDigits={0} size="md" label="Budget · Optional" locale={getResponsiveProp({"sm":"en-US"})} variant="default" currency="INR" clampOnBlur={true} name="budget" prefix={false} suffix={false} allowNegative={false} />
+      <RudraFormCurrencyInput id="project-budget" clampOnBlur={true} currency="INR" allowNegative={false} maximumFractionDigits={2} minimumFractionDigits={0} name="budget" size="md" label="Budget · Optional" locale={getResponsiveProp({"sm":"en-US"})} prefix={false} suffix={false} variant="default" />
 </RudraFormFormSection>
       <RudraFormValidationSummary id="validation-summary" className="mx-6 mb-6 sm:mx-8" fieldLabels={{"budget":"Budget","dueDate":"Due date","name":"Project name"}} focusFieldOnClick={true} live={getResponsiveProp({"sm":"polite"})} title="" errors={_scope?.errors} />
       <RudraCoreAlert id="success-alert" title={<>      <RudraCoreTypography id="el_1786794839774_y5jdu8g" className={`${getResponsiveProp({sm: 'dark:text-white '}) || ''} ${getResponsiveProp({sm: 'font-semibold'}) || ''}`} content={getResponsiveProp({"sm":"Validation Errors"})} />
-</>} variant={getResponsiveProp({"sm":"error"})} appearance="soft" theme="auto" action={false} dismissible={false} icon={false} live="polite">      <RudraCoreTypography id="el_1786794841585_yu8l08l" content="Hello Thereee" />
+</>} variant={getResponsiveProp({"sm":"error"})} dismissible={false} theme="auto" action={false} appearance="soft" icon={false} live="polite">      <RudraCoreTypography id="el_1786794841585_yu8l08l" content="Hello Thereee" />
 </RudraCoreAlert>
       <RudraCoreDivider id="el_1786789281745_tl38ipo" />
-      <RudraLayoutFlex id="form-actions" className={`${getResponsiveProp({sm: 'project-form-actions flex justify-end gap-2'}) || ''}`} direction="horizontal" as="div" gap="3" wrap={true} align="center" justify="end">      <RudraCoreButton id="cancel-button" className={`${getResponsiveProp({sm: 'h-10 rounded-lg border border-zinc-300 bg-white px-4 text-sm font-medium text-zinc-700 shadow-sm transition hover:bg-zinc-50 disabled:opacity-50'}) || ''}`} size="md" theme="auto" variant="outline" leftIcon={false} rightIcon={false} id="project-form-cancel" onAction={(...eventArgs) => _callAction("handleCancel", {}, eventArgs)}>      <RudraCoreTypography id="el_1786788080176_udtwdx4" className={`${getResponsiveProp({sm: 'text-black-500 dark:text-white-100'}) || ''} ${getResponsiveProp({sm: 'font-semibold'}) || ''}`} customColor={getResponsiveProp({"sm":"#2a2828"})} content={getResponsiveProp({"sm":"Cancel"})} />
+      <RudraLayoutFlex id="form-actions" className={`${getResponsiveProp({sm: 'project-form-actions flex justify-end gap-2'}) || ''}`} as="div" gap="3" wrap={true} align="center" justify="end" direction="horizontal">      <RudraCoreButton id="cancel-button" className={`${getResponsiveProp({sm: 'h-10 rounded-lg border border-zinc-300 bg-white px-4 text-sm font-medium text-zinc-700 shadow-sm transition hover:bg-zinc-50 disabled:opacity-50'}) || ''}`} leftIcon={false} size="md" theme="auto" onAction={(...eventArgs) => _callAction("handleCancel", {}, eventArgs)} rightIcon={false} id="project-form-cancel" variant="outline">      <RudraCoreTypography id="el_1786788080176_udtwdx4" className={`${getResponsiveProp({sm: 'text-black-500 dark:text-white-100'}) || ''} ${getResponsiveProp({sm: 'font-semibold'}) || ''}`} content={getResponsiveProp({"sm":"Cancel"})} customColor={getResponsiveProp({"sm":"#2a2828"})} />
 </RudraCoreButton>
-      <RudraCoreButton id="submit-button" className={`flex ${getResponsiveProp({sm: 'inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-zinc-950 px-5 text-sm font-medium text-white shadow-sm transition hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-60'}) || ''}`} loading={submitting} variant="primary" leftIcon={false} onAction={null} rightIcon={false} loadingText="Saving..." id="project-form-submit" size="md" type="submit" theme="auto">      <RudraCoreTypography id="el_1786788087800_8zuydoj" className={`${getResponsiveProp({sm: 'text-white '}) || ''} ${getResponsiveProp({sm: 'font-semibold'}) || ''}`} content={getResponsiveProp({"sm":"Create Project"})} />
+      <RudraCoreButton id="submit-button" className={`flex ${getResponsiveProp({sm: 'inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-zinc-950 px-5 text-sm font-medium text-white shadow-sm transition hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-60'}) || ''}`} leftIcon={false} loading={submitting} variant="primary" onAction={null} rightIcon={false} loadingText="Saving..." id="project-form-submit" size="md" type="submit" theme="auto">      <RudraCoreTypography id="el_1786788087800_8zuydoj" className={`${getResponsiveProp({sm: 'text-white '}) || ''} ${getResponsiveProp({sm: 'font-semibold'}) || ''}`} content={getResponsiveProp({"sm":"Create Project"})} />
 </RudraCoreButton>
 </RudraLayoutFlex>
 </RudraFormForm>
