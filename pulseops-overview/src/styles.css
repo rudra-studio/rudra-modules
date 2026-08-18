@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+/* Tailwind v4 scans the generated module and installed Rudra component packages. */
+@source "./module.client.jsx";
+@source "../node_modules/@rudra-studio";
+
+.rudra-module-wrapper{--rudra-color-bg:#f8fafc;--rudra-color-surface:#ffffff;--rudra-color-border:#e2e8f0;--rudra-color-text:#0f172a;--rudra-color-text-muted:#64748b;--rudra-color-accent:#6366f1;--rudra-color-accent-strong:#4f46e5}
+.dark .rudra-module-wrapper,.rudra-module-wrapper.dark{--rudra-color-bg:#020617;--rudra-color-surface:#0f172a;--rudra-color-border:#334155;--rudra-color-text:#e2e8f0;--rudra-color-text-muted:#94a3b8;--rudra-color-accent:#818cf8;--rudra-color-accent-strong:#a5b4fc}
+.light .rudra-module-wrapper,.rudra-module-wrapper.light{--rudra-color-bg:#f8fafc;--rudra-color-surface:#ffffff;--rudra-color-border:#e2e8f0;--rudra-color-text:#0f172a;--rudra-color-text-muted:#64748b;--rudra-color-accent:#6366f1;--rudra-color-accent-strong:#4f46e5}
+.rudra-module-wrapper{min-height:100%;padding:clamp(18px,3vw,40px);background:radial-gradient(circle at 12% 0%,rgba(6,182,212,.13),transparent 32%),radial-gradient(circle at 90% 10%,rgba(99,102,241,.12),transparent 28%),var(--rudra-color-bg);color:var(--rudra-color-text)}
+.rudra-module-wrapper>*{max-width:1440px;margin-inline:auto}
+.pulseops-metric{background:var(--rudra-color-surface,#fff)!important;border-color:var(--rudra-color-border,#e5e7eb)!important;transition:background-color .2s ease,border-color .2s ease,transform .2s ease}
+.pulseops-metric:hover{transform:translateY(-2px)}
+.pulseops-metric>div:first-of-type>div:first-child>div:first-child{color:var(--rudra-color-text-muted,#64748b)!important}
+.pulseops-metric>div:first-of-type>div:first-child>div:nth-child(2){color:var(--rudra-color-text,#111827)!important}
+.pulseops-metric svg polyline,.pulseops-chart path[fill="none"]{stroke-dasharray:1200;stroke-dashoffset:1200;animation:pulseops-line-grow .7s cubic-bezier(.22,1,.36,1) forwards}
+.pulseops-metric svg polygon{animation:pulseops-area-in .65s ease-out both}
+.pulseops-chart{background:transparent!important}
+@keyframes pulseops-line-grow{to{stroke-dashoffset:0}}
+@keyframes pulseops-area-in{from{opacity:0}to{opacity:.1}}
+@media(prefers-reduced-motion:reduce){.pulseops-metric,.pulseops-metric svg polyline,.pulseops-metric svg polygon,.pulseops-chart path[fill="none"]{animation:none!important;transition:none!important;stroke-dashoffset:0}}
+@media(max-width:720px){.rudra-module-wrapper{padding:14px}}
