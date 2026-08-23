@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './styles.css';
 
-import { Link as RudraCoreLink, Typography as RudraCoreTypography } from '@rudra-studio/rudra-core';
+import { Typography as RudraCoreTypography, Link as RudraCoreLink } from '@rudra-studio/rudra-core';
 import { Box as RudraLayoutBox } from '@rudra-studio/rudra-layout';
 
 export default function CompiledModule(props) {
@@ -66,8 +66,11 @@ export default function CompiledModule(props) {
     return val.lg !== undefined ? val.lg : (val.md !== undefined ? val.md : val.sm);
   }, [viewport]);
 
-  const visualTheme = props.visualTheme !== undefined ? props.visualTheme : (props.data?.visualTheme !== undefined ? props.data.visualTheme : "glass");
-  const inputs = { "visualTheme": visualTheme };
+  const isVisibleValue = (value) => Array.isArray(value) ? value.length > 0 : (typeof value === 'string' ? value.trim() !== '' && value.trim().toLowerCase() !== 'false' : Boolean(value));
+
+  const visualTheme = props.visualTheme !== undefined ? props.visualTheme : (props.data?.visualTheme !== undefined ? props.data.visualTheme : "light");
+  const visible = props.visible !== undefined ? props.visible : (props.data?.visible !== undefined ? props.data.visible : true);
+  const inputs = { "visualTheme": visualTheme, "visible": visible };
   const state = {  };
 
   const _setState = useCallback((name, value) => {
@@ -197,26 +200,46 @@ export default function CompiledModule(props) {
 
   return (
     <div ref={wrapperRef} className="rudra-module-wrapper">
-      <RudraCoreLink id="watermark_glass" aria-label="Built with Rudra — visit the Rudra home page" className={`${getResponsiveProp({sm: 'rudra-watermark inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/75 px-3 py-2 shadow-lg shadow-slate-900/10 backdrop-blur-xl transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 dark:border-slate-700/60 dark:bg-slate-950/75'}) || ''}`} rel={getResponsiveProp({"sm":"noopener noreferrer"})} href={getResponsiveProp({"sm":"https://www.rudraapp.in/"})} target={getResponsiveProp({"sm":"_blank"})}>      <RudraLayoutBox id="watermark_glass_mark" className={`flex ${getResponsiveProp({sm: 'grid size-5 shrink-0 place-items-center rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 shadow-sm'}) || ''}`}>      <RudraCoreTypography id="watermark_glass_letter" className={`${getResponsiveProp({sm: 'text-[10px] font-black leading-none text-white'}) || ''}`} as="span" content={getResponsiveProp({"sm":"R"})} />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(inputs?.visible)) && (<>      <RudraCoreLink id="watermark_root" aria-label="Built with Rudra — visit the Rudra home page" className={`${((_classValue) => _classValue == null || _classValue === false || typeof _classValue === 'object' ? '' : "" + String(_classValue))(((_bindingValue) => _bindingValue === undefined ? "glass" : _bindingValue)(inputs?.visualTheme))}`} rel={getResponsiveProp({"sm":"noopener noreferrer"})} href={getResponsiveProp({"sm":"https://www.rudraapp.in/"})} target={getResponsiveProp({"sm":"_blank"})}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="watermark_mark" className={`${getResponsiveProp({sm: 'rudra-watermark-mark'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="watermark_letter" className={`${getResponsiveProp({sm: 'rudra-watermark-letter'}) || ''}`} as="span" content={getResponsiveProp({"sm":"R"})} />
+</>)}
 </RudraLayoutBox>
-      <RudraCoreTypography id="watermark_glass_label" className={`${getResponsiveProp({sm: 'text-xs font-semibold tracking-tight text-slate-700 dark:text-slate-100'}) || ''}`} content={getResponsiveProp({"sm":"Built with Rudra"})} as="span" />
+</>)}
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="watermark_label" className={`${getResponsiveProp({sm: 'rudra-watermark-label'}) || ''}`} as="span" content={getResponsiveProp({"sm":"Built with Rudra"})} />
+</>)}
 </RudraCoreLink>
-      <RudraCoreLink id="watermark_root" aria-label="Built with Rudra — visit the Rudra home page" href={getResponsiveProp({"sm":"https://www.rudraapp.in/"})} target={getResponsiveProp({"sm":"_blank"})} rel={getResponsiveProp({"sm":"noopener noreferrer"})}>      <RudraLayoutBox id="watermark_mark" className={`${getResponsiveProp({sm: 'rudra-watermark-mark'}) || ''}`}>      <RudraCoreTypography id="watermark_letter" className={`${getResponsiveProp({sm: 'rudra-watermark-letter'}) || ''}`} as="span" content={getResponsiveProp({"sm":"R"})} />
+</>)}
+      {isVisibleValue(false) && (<>      <RudraCoreLink id="watermark_glass" aria-label="Built with Rudra — visit the Rudra home page" className={`${getResponsiveProp({sm: 'rudra-watermark inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/75 px-3 py-2 shadow-lg shadow-slate-900/10 backdrop-blur-xl transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 dark:border-slate-700/60 dark:bg-slate-950/75'}) || ''}`} target={getResponsiveProp({"sm":"_blank"})} rel={getResponsiveProp({"sm":"noopener noreferrer"})} href={getResponsiveProp({"sm":"https://www.rudraapp.in/"})}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="watermark_glass_mark" className={`flex ${getResponsiveProp({sm: 'grid size-5 shrink-0 place-items-center rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 shadow-sm'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="watermark_glass_letter" className={`${getResponsiveProp({sm: 'text-[10px] font-black leading-none text-white'}) || ''}`} as="span" content={getResponsiveProp({"sm":"R"})} />
+</>)}
 </RudraLayoutBox>
-      <RudraCoreTypography id="watermark_label" className={`${getResponsiveProp({sm: 'rudra-watermark-label'}) || ''}`} as="span" content={getResponsiveProp({"sm":"Built with Rudra"})} />
+</>)}
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="watermark_glass_label" className={`${getResponsiveProp({sm: 'text-xs font-semibold tracking-tight text-slate-700 dark:text-slate-100'}) || ''}`} as="span" content={getResponsiveProp({"sm":"Built with Rudra"})} />
+</>)}
 </RudraCoreLink>
-      <RudraCoreLink id="watermark_light" aria-label="Built with Rudra — visit the Rudra home page" className={`${getResponsiveProp({sm: 'rudra-watermark inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 shadow-md transition hover:-translate-y-0.5 hover:border-violet-300 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2'}) || ''}`} rel={getResponsiveProp({"sm":"noopener noreferrer"})} href={getResponsiveProp({"sm":"https://www.rudraapp.in/"})} target={getResponsiveProp({"sm":"_blank"})}>      <RudraLayoutBox id="watermark_light_mark" className={`flex ${getResponsiveProp({sm: 'grid size-5 shrink-0 place-items-center rounded-full bg-violet-600 shadow-sm'}) || ''}`}>      <RudraCoreTypography id="watermark_light_letter" className={`${getResponsiveProp({sm: 'text-[10px] font-black leading-none text-white'}) || ''}`} content={getResponsiveProp({"sm":"R"})} as="span" />
+</>)}
+      {isVisibleValue(false) && (<>      <RudraCoreLink id="watermark_light" aria-label="Built with Rudra — visit the Rudra home page" className={`${getResponsiveProp({sm: 'rudra-watermark inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 shadow-md transition hover:-translate-y-0.5 hover:border-violet-300 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2'}) || ''}`} rel={getResponsiveProp({"sm":"noopener noreferrer"})} href={getResponsiveProp({"sm":"https://www.rudraapp.in/"})} target={getResponsiveProp({"sm":"_blank"})}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="watermark_light_mark" className={`flex ${getResponsiveProp({sm: 'grid size-5 shrink-0 place-items-center rounded-full bg-violet-600 shadow-sm'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="watermark_light_letter" className={`${getResponsiveProp({sm: 'text-[10px] font-black leading-none text-white'}) || ''}`} as="span" content={getResponsiveProp({"sm":"R"})} />
+</>)}
 </RudraLayoutBox>
-      <RudraCoreTypography id="watermark_light_label" className={`${getResponsiveProp({sm: 'text-xs font-semibold tracking-tight text-slate-800'}) || ''}`} as="span" content={getResponsiveProp({"sm":"Built with Rudra"})} />
+</>)}
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="watermark_light_label" className={`${getResponsiveProp({sm: 'text-xs font-semibold tracking-tight text-slate-800'}) || ''}`} content={getResponsiveProp({"sm":"Built with Rudra"})} as="span" />
+</>)}
 </RudraCoreLink>
-      <RudraCoreLink id="watermark_dark" aria-label="Built with Rudra — visit the Rudra home page" className={`${getResponsiveProp({sm: 'rudra-watermark inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-950 px-3 py-2 shadow-xl shadow-black/25 transition hover:-translate-y-0.5 hover:border-violet-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950'}) || ''}`} rel={getResponsiveProp({"sm":"noopener noreferrer"})} href={getResponsiveProp({"sm":"https://www.rudraapp.in/"})} target={getResponsiveProp({"sm":"_blank"})}>      <RudraLayoutBox id="watermark_dark_mark" className={`flex ${getResponsiveProp({sm: 'grid size-5 shrink-0 place-items-center rounded-full bg-gradient-to-br from-fuchsia-500 to-violet-600 shadow-sm'}) || ''}`}>      <RudraCoreTypography id="watermark_dark_letter" className={`${getResponsiveProp({sm: 'text-[10px] font-black leading-none text-white'}) || ''}`} as="span" content={getResponsiveProp({"sm":"R"})} />
+</>)}
+      {isVisibleValue(false) && (<>      <RudraCoreLink id="watermark_dark" aria-label="Built with Rudra — visit the Rudra home page" className={`${getResponsiveProp({sm: 'rudra-watermark inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-950 px-3 py-2 shadow-xl shadow-black/25 transition hover:-translate-y-0.5 hover:border-violet-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950'}) || ''}`} rel={getResponsiveProp({"sm":"noopener noreferrer"})} href={getResponsiveProp({"sm":"https://www.rudraapp.in/"})} target={getResponsiveProp({"sm":"_blank"})}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="watermark_dark_mark" className={`flex ${getResponsiveProp({sm: 'grid size-5 shrink-0 place-items-center rounded-full bg-gradient-to-br from-fuchsia-500 to-violet-600 shadow-sm'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="watermark_dark_letter" className={`${getResponsiveProp({sm: 'text-[10px] font-black leading-none text-white'}) || ''}`} as="span" content={getResponsiveProp({"sm":"R"})} />
+</>)}
 </RudraLayoutBox>
-      <RudraCoreTypography id="watermark_dark_label" className={`${getResponsiveProp({sm: 'text-xs font-semibold tracking-tight text-slate-100'}) || ''}`} as="span" content={getResponsiveProp({"sm":"Built with Rudra"})} />
+</>)}
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="watermark_dark_label" className={`${getResponsiveProp({sm: 'text-xs font-semibold tracking-tight text-slate-100'}) || ''}`} as="span" content={getResponsiveProp({"sm":"Built with Rudra"})} />
+</>)}
 </RudraCoreLink>
-      <RudraCoreLink id="watermark_minimal" aria-label="Built with Rudra — visit the Rudra home page" className={`${getResponsiveProp({sm: 'rudra-watermark inline-flex items-center gap-1.5 rounded-md px-2 py-1.5 text-slate-500 transition hover:bg-slate-100 hover:text-violet-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-violet-300'}) || ''}`} rel={getResponsiveProp({"sm":"noopener noreferrer"})} href={getResponsiveProp({"sm":"https://www.rudraapp.in/"})} target={getResponsiveProp({"sm":"_blank"})}>      <RudraLayoutBox id="watermark_minimal_mark" className={`flex ${getResponsiveProp({sm: 'grid size-4 shrink-0 place-items-center rounded bg-violet-600'}) || ''}`}>      <RudraCoreTypography id="watermark_minimal_letter" className={`${getResponsiveProp({sm: 'text-[10px] font-black leading-none text-white'}) || ''}`} as="span" content={getResponsiveProp({"sm":"R"})} />
+</>)}
+      {isVisibleValue(false) && (<>      <RudraCoreLink id="watermark_minimal" aria-label="Built with Rudra — visit the Rudra home page" className={`${getResponsiveProp({sm: 'rudra-watermark inline-flex items-center gap-1.5 rounded-md px-2 py-1.5 text-slate-500 transition hover:bg-slate-100 hover:text-violet-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-violet-300'}) || ''}`} href={getResponsiveProp({"sm":"https://www.rudraapp.in/"})} target={getResponsiveProp({"sm":"_blank"})} rel={getResponsiveProp({"sm":"noopener noreferrer"})}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="watermark_minimal_mark" className={`flex ${getResponsiveProp({sm: 'grid size-4 shrink-0 place-items-center rounded bg-violet-600'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="watermark_minimal_letter" className={`${getResponsiveProp({sm: 'text-[10px] font-black leading-none text-white'}) || ''}`} as="span" content={getResponsiveProp({"sm":"R"})} />
+</>)}
 </RudraLayoutBox>
-      <RudraCoreTypography id="watermark_minimal_label" className={`${getResponsiveProp({sm: 'text-[11px] font-semibold tracking-tight'}) || ''}`} as="span" content={getResponsiveProp({"sm":"Built with Rudra"})} />
+</>)}
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="watermark_minimal_label" className={`${getResponsiveProp({sm: 'text-[11px] font-semibold tracking-tight'}) || ''}`} as="span" content={getResponsiveProp({"sm":"Built with Rudra"})} />
+</>)}
 </RudraCoreLink>
+</>)}
     </div>
   );
 }
