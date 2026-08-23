@@ -1,8 +1,8 @@
 import { jsx as o, jsxs as t } from "react/jsx-runtime";
 import { useState as H, useEffect as C, useRef as Z, useCallback as k } from "react";
 import { Box as n, Grid as be } from "@rudra-studio/rudra-layout";
-import { SpriteAnimator as u } from "@rudra-studio/rudra-three";
 import { Typography as v } from "@rudra-studio/rudra-core";
+import { SpriteAnimator as u } from "@rudra-studio/rudra-three";
 function Ce(g) {
   const U = g.serverData || g.serverState || {}, s = g.sharedState || {};
   g.applicationState || U.applicationState, g.pageState || U.pageState, g.pageData || U.pageData;
@@ -105,7 +105,7 @@ function Ce(g) {
         const a = String(i.roomId || "").trim();
         if (!/^[a-zA-Z0-9-_]{6,80}$/.test(a)) throw new Error("Invalid room ID.");
         const r = new URL(window.location.href), N = String(i.inviteBaseUrl || "").trim(), I = new URL(N || r.toString(), r.origin);
-        return I.searchParams.set("room", a), { roomId: a, inviteUrl: I.toString() };
+        return I.searchParams.set("roomId", a), { roomId: a, inviteUrl: I.toString() };
       })();
       c.inviteResult = l;
     }
@@ -161,7 +161,7 @@ function Ce(g) {
         let w = "";
         if (I && !N) {
           const y = new URL(window.location.href);
-          y.searchParams.set("room", I), w = y.toString();
+          y.searchParams.set("roomId", I), w = y.toString();
         }
         const _ = "__rudraConnectFourPlayers", Y = window[_] || (window[_] = {});
         let h = Y[f.roomId];
@@ -344,198 +344,198 @@ function Ce(g) {
       /* @__PURE__ */ o(v, { id: "c4_kicker", className: "connect-four-kicker", content: "RUDRA SHARED STATE · LIVE ROOM", as: "p" }),
       /* @__PURE__ */ o(v, { id: "c4_title", className: "connect-four-title", as: "h2", content: "CONNECT FOUR" }),
       /* @__PURE__ */ o(v, { id: "c4_intro", className: "connect-four-intro", as: "p", content: "This reusable module joins the roomId supplied by its application. Share the application URL configured for that room; Red moves first." }),
-      /* @__PURE__ */ t(n, { id: "c4_room", "aria-live": "polite", className: "connect-four-room", role: "status", children: [
-        "      ",
-        /* @__PURE__ */ o(v, { id: "c4_room_label", className: "connect-four-inline-label", as: "span", content: /* @__PURE__ */ ((e) => e === void 0 ? "Room ID required" : e)(R?.roomId) })
-      ] }),
       /* @__PURE__ */ t(n, { id: "c4_invite_row", className: "connect-four-invite", children: [
         "      ",
         /* @__PURE__ */ o(v, { id: "c4_invite_url", className: "connect-four-invite-url", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "Creating invite link…" : e)(ae) }),
-        /* @__PURE__ */ t(n, { id: "c4_copy_invite_button", "aria-label": "Copy invite URL", className: "connect-four-copy", tabIndex: 0, role: "button", onClick: (...e) => d("copyInviteUrl", {}, e), children: [
+        /* @__PURE__ */ t(n, { id: "c4_copy_invite_button", "aria-label": "Copy invite URL", className: "connect-four-copy", role: "button", onClick: (...e) => d("copyInviteUrl", {}, e), tabIndex: 0, children: [
           "      ",
           /* @__PURE__ */ o(v, { id: "c4_copy_invite_label", className: "connect-four-inline-label", as: "span", content: "Copy invite" })
         ] })
+      ] }),
+      /* @__PURE__ */ t(n, { id: "c4_room", "aria-live": "polite", className: "connect-four-room", role: "status", children: [
+        "      ",
+        /* @__PURE__ */ o(v, { id: "c4_room_label", className: "connect-four-inline-label", as: "span", content: /* @__PURE__ */ ((e) => e === void 0 ? "Room ID required" : e)(R?.roomId) })
       ] }),
       /* @__PURE__ */ t(n, { id: "c4_status_box", className: "connect-four-status", children: [
         "      ",
         /* @__PURE__ */ t(n, { id: "c4_status", className: "connect-four-status-text", children: [
           "      ",
-          /* @__PURE__ */ o(v, { id: "c4_status_label", className: "connect-four-inline-label", content: /* @__PURE__ */ ((e) => e === void 0 ? "Waiting for second player…" : e)(s?.game?.status), as: "span" })
+          /* @__PURE__ */ o(v, { id: "c4_status_label", className: "connect-four-inline-label", as: "span", content: /* @__PURE__ */ ((e) => e === void 0 ? "Waiting for second player…" : e)(s?.game?.status) })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_players", className: "connect-four-players", children: [
           "      ",
-          /* @__PURE__ */ o(v, { id: "c4_players_label", className: "connect-four-inline-label", content: /* @__PURE__ */ ((e) => e === void 0 ? "🔴 Red open · 🟡 Yellow open" : e)(s?.game?.playersLabel), as: "span" })
+          /* @__PURE__ */ o(v, { id: "c4_players_label", className: "connect-four-inline-label", as: "span", content: /* @__PURE__ */ ((e) => e === void 0 ? "🔴 Red open · 🟡 Yellow open" : e)(s?.game?.playersLabel) })
         ] })
       ] }),
-      /* @__PURE__ */ t(be, { id: "c4_board", className: "connect-four-board", as: "div", columns: 6, children: [
+      /* @__PURE__ */ t(be, { id: "c4_board", className: "connect-four-board", columns: 6, as: "div", children: [
         "      ",
-        /* @__PURE__ */ t(n, { id: "c4_cell_0", "aria-label": "Drop a disc in column 1", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 0 }, e), tabIndex: 0, children: [
+        /* @__PURE__ */ t(n, { id: "c4_cell_0", "aria-label": "Drop a disc in column 1", className: "connect-four-cell", tabIndex: 0, role: "button", onClick: (...e) => d("playColumn", { column: 0 }, e), children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_0", className: "connect-four-disc-anim", width: "82%", height: "82%", paused: !1, objectFit: "contain", speed: 1, preload: !0, autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[0]), animations: m, imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_0", className: "connect-four-disc-anim", objectFit: "contain", animations: m, imageClassName: "connect-four-disc-image", alt: "", speed: 1, height: "82%", animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[0]), imageRendering: "auto", width: "82%", paused: !1, preload: !0, autoPlay: !0 })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_1", "aria-label": "Drop a disc in column 2", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 1 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_1", className: "connect-four-disc-anim", alt: "", speed: 1, width: "82%", animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[1]), animations: m, height: "82%", paused: !1, preload: !0, autoPlay: !0, objectFit: "contain", imageClassName: "connect-four-disc-image", imageRendering: "auto" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_1", className: "connect-four-disc-anim", imageRendering: "auto", alt: "", speed: 1, width: "82%", paused: !1, preload: !0, objectFit: "contain", animations: m, imageClassName: "connect-four-disc-image", height: "82%", autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[1]) })
         ] }),
-        /* @__PURE__ */ t(n, { id: "c4_cell_2", "aria-label": "Drop a disc in column 3", className: "connect-four-cell", onClick: (...e) => d("playColumn", { column: 2 }, e), tabIndex: 0, role: "button", children: [
+        /* @__PURE__ */ t(n, { id: "c4_cell_2", "aria-label": "Drop a disc in column 3", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 2 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_2", className: "connect-four-disc-anim", imageClassName: "connect-four-disc-image", alt: "", paused: !1, preload: !0, animations: m, imageRendering: "auto", speed: 1, width: "82%", height: "82%", autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[2]), objectFit: "contain" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_2", className: "connect-four-disc-anim", speed: 1, paused: !1, preload: !0, autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[2]), imageRendering: "auto", width: "82%", height: "82%", objectFit: "contain", animations: m, imageClassName: "connect-four-disc-image", alt: "" })
         ] }),
-        /* @__PURE__ */ t(n, { id: "c4_cell_3", "aria-label": "Drop a disc in column 4", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 3 }, e), tabIndex: 0, children: [
+        /* @__PURE__ */ t(n, { id: "c4_cell_3", "aria-label": "Drop a disc in column 4", className: "connect-four-cell", tabIndex: 0, role: "button", onClick: (...e) => d("playColumn", { column: 3 }, e), children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_3", className: "connect-four-disc-anim", autoPlay: !0, objectFit: "contain", imageClassName: "connect-four-disc-image", imageRendering: "auto", height: "82%", preload: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[3]), animations: m, alt: "", speed: 1, width: "82%", paused: !1 })
+          /* @__PURE__ */ o(u, { id: "c4_disc_3", className: "connect-four-disc-anim", speed: 1, height: "82%", animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[3]), objectFit: "contain", width: "82%", paused: !1, preload: !0, autoPlay: !0, animations: m, imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "" })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_4", "aria-label": "Drop a disc in column 5", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 4 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_4", className: "connect-four-disc-anim", animations: m, alt: "", height: "82%", paused: !1, autoPlay: !0, objectFit: "contain", imageClassName: "connect-four-disc-image", imageRendering: "auto", speed: 1, width: "82%", preload: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[4]) })
+          /* @__PURE__ */ o(u, { id: "c4_disc_4", className: "connect-four-disc-anim", imageClassName: "connect-four-disc-image", imageRendering: "auto", speed: 1, width: "82%", height: "82%", paused: !1, preload: !0, autoPlay: !0, objectFit: "contain", alt: "", animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[4]), animations: m })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_5", "aria-label": "Drop a disc in column 6", className: "connect-four-cell", tabIndex: 0, role: "button", onClick: (...e) => d("playColumn", { column: 5 }, e), children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_5", className: "connect-four-disc-anim", animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[5]), animations: m, speed: 1, width: "82%", preload: !0, autoPlay: !0, objectFit: "contain", imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "", height: "82%", paused: !1 })
+          /* @__PURE__ */ o(u, { id: "c4_disc_5", className: "connect-four-disc-anim", speed: 1, width: "82%", paused: !1, preload: !0, autoPlay: !0, objectFit: "contain", imageClassName: "connect-four-disc-image", alt: "", height: "82%", animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[5]), animations: m, imageRendering: "auto" })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_6", "aria-label": "Drop a disc in column 7", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 6 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_6", className: "connect-four-disc-anim", paused: !1, preload: !0, autoPlay: !0, objectFit: "contain", alt: "", animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[6]), animations: m, imageClassName: "connect-four-disc-image", imageRendering: "auto", speed: 1, width: "82%", height: "82%" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_6", className: "connect-four-disc-anim", imageRendering: "auto", alt: "", speed: 1, width: "82%", preload: !0, autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[6]), objectFit: "contain", height: "82%", paused: !1, animations: m, imageClassName: "connect-four-disc-image" })
         ] }),
-        /* @__PURE__ */ t(n, { id: "c4_cell_7", "aria-label": "Drop a disc in column 1", className: "connect-four-cell", onClick: (...e) => d("playColumn", { column: 0 }, e), tabIndex: 0, role: "button", children: [
+        /* @__PURE__ */ t(n, { id: "c4_cell_7", "aria-label": "Drop a disc in column 1", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 0 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_7", className: "connect-four-disc-anim", animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[7]), imageClassName: "connect-four-disc-image", alt: "", width: "82%", paused: !1, preload: !0, autoPlay: !0, objectFit: "contain", animations: m, imageRendering: "auto", speed: 1, height: "82%" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_7", className: "connect-four-disc-anim", imageRendering: "auto", alt: "", speed: 1, paused: !1, preload: !0, objectFit: "contain", width: "82%", height: "82%", autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[7]), animations: m, imageClassName: "connect-four-disc-image" })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_8", "aria-label": "Drop a disc in column 2", className: "connect-four-cell", tabIndex: 0, role: "button", onClick: (...e) => d("playColumn", { column: 1 }, e), children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_8", className: "connect-four-disc-anim", speed: 1, height: "82%", preload: !0, autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[8]), objectFit: "contain", imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "", width: "82%", paused: !1, animations: m })
+          /* @__PURE__ */ o(u, { id: "c4_disc_8", className: "connect-four-disc-anim", objectFit: "contain", speed: 1, width: "82%", animations: m, imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "", height: "82%", paused: !1, preload: !0, autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[8]) })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_9", "aria-label": "Drop a disc in column 3", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 2 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_9", className: "connect-four-disc-anim", objectFit: "contain", imageClassName: "connect-four-disc-image", speed: 1, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[9]), animations: m, imageRendering: "auto", alt: "", width: "82%", height: "82%", paused: !1, preload: !0, autoPlay: !0 })
+          /* @__PURE__ */ o(u, { id: "c4_disc_9", className: "connect-four-disc-anim", autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[9]), imageClassName: "connect-four-disc-image", speed: 1, width: "82%", height: "82%", paused: !1, preload: !0, objectFit: "contain", animations: m, imageRendering: "auto", alt: "" })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_10", "aria-label": "Drop a disc in column 4", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 3 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_10", className: "connect-four-disc-anim", speed: 1, preload: !0, autoPlay: !0, objectFit: "contain", animations: m, imageClassName: "connect-four-disc-image", width: "82%", height: "82%", paused: !1, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[10]), imageRendering: "auto", alt: "" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_10", className: "connect-four-disc-anim", alt: "", speed: 1, autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[10]), objectFit: "contain", imageRendering: "auto", width: "82%", height: "82%", paused: !1, preload: !0, animations: m, imageClassName: "connect-four-disc-image" })
         ] }),
-        /* @__PURE__ */ t(n, { id: "c4_cell_11", "aria-label": "Drop a disc in column 5", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 4 }, e), tabIndex: 0, children: [
+        /* @__PURE__ */ t(n, { id: "c4_cell_11", "aria-label": "Drop a disc in column 5", className: "connect-four-cell", onClick: (...e) => d("playColumn", { column: 4 }, e), tabIndex: 0, role: "button", children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_11", className: "connect-four-disc-anim", objectFit: "contain", animations: m, speed: 1, width: "82%", imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "", height: "82%", paused: !1, preload: !0, autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[11]) })
+          /* @__PURE__ */ o(u, { id: "c4_disc_11", className: "connect-four-disc-anim", paused: !1, preload: !0, autoPlay: !0, imageRendering: "auto", alt: "", animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[11]), objectFit: "contain", animations: m, imageClassName: "connect-four-disc-image", speed: 1, width: "82%", height: "82%" })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_12", "aria-label": "Drop a disc in column 6", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 5 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_12", className: "connect-four-disc-anim", alt: "", speed: 1, autoPlay: !0, animations: m, imageClassName: "connect-four-disc-image", imageRendering: "auto", width: "82%", height: "82%", paused: !1, preload: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[12]), objectFit: "contain" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_12", className: "connect-four-disc-anim", speed: 1, preload: !0, autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[12]), animations: m, imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "", width: "82%", height: "82%", paused: !1, objectFit: "contain" })
         ] }),
-        /* @__PURE__ */ t(n, { id: "c4_cell_13", "aria-label": "Drop a disc in column 7", className: "connect-four-cell", onClick: (...e) => d("playColumn", { column: 6 }, e), tabIndex: 0, role: "button", children: [
+        /* @__PURE__ */ t(n, { id: "c4_cell_13", "aria-label": "Drop a disc in column 7", className: "connect-four-cell", tabIndex: 0, role: "button", onClick: (...e) => d("playColumn", { column: 6 }, e), children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_13", className: "connect-four-disc-anim", objectFit: "contain", imageRendering: "auto", alt: "", height: "82%", animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[13]), animations: m, imageClassName: "connect-four-disc-image", speed: 1, width: "82%", paused: !1, preload: !0, autoPlay: !0 })
+          /* @__PURE__ */ o(u, { id: "c4_disc_13", className: "connect-four-disc-anim", speed: 1, width: "82%", paused: !1, preload: !0, animations: m, imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "", height: "82%", autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[13]), objectFit: "contain" })
         ] }),
-        /* @__PURE__ */ t(n, { id: "c4_cell_14", "aria-label": "Drop a disc in column 1", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 0 }, e), tabIndex: 0, children: [
+        /* @__PURE__ */ t(n, { id: "c4_cell_14", "aria-label": "Drop a disc in column 1", className: "connect-four-cell", tabIndex: 0, role: "button", onClick: (...e) => d("playColumn", { column: 0 }, e), children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_14", className: "connect-four-disc-anim", alt: "", height: "82%", paused: !1, preload: !0, objectFit: "contain", animations: m, imageClassName: "connect-four-disc-image", speed: 1, width: "82%", autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[14]), imageRendering: "auto" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_14", className: "connect-four-disc-anim", speed: 1, height: "82%", paused: !1, preload: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[14]), objectFit: "contain", animations: m, alt: "", width: "82%", autoPlay: !0, imageClassName: "connect-four-disc-image", imageRendering: "auto" })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_15", "aria-label": "Drop a disc in column 2", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 1 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_15", className: "connect-four-disc-anim", alt: "", width: "82%", paused: !1, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[15]), animations: m, imageClassName: "connect-four-disc-image", speed: 1, height: "82%", preload: !0, autoPlay: !0, objectFit: "contain", imageRendering: "auto" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_15", className: "connect-four-disc-anim", imageClassName: "connect-four-disc-image", width: "82%", paused: !1, autoPlay: !0, objectFit: "contain", animations: m, imageRendering: "auto", alt: "", speed: 1, height: "82%", preload: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[15]) })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_16", "aria-label": "Drop a disc in column 3", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 2 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_16", className: "connect-four-disc-anim", imageClassName: "connect-four-disc-image", alt: "", height: "82%", preload: !0, autoPlay: !0, animations: m, imageRendering: "auto", speed: 1, width: "82%", paused: !1, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[16]), objectFit: "contain" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_16", className: "connect-four-disc-anim", speed: 1, width: "82%", paused: !1, preload: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[16]), objectFit: "contain", imageRendering: "auto", alt: "", height: "82%", autoPlay: !0, animations: m, imageClassName: "connect-four-disc-image" })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_17", "aria-label": "Drop a disc in column 4", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 3 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_17", className: "connect-four-disc-anim", imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "", speed: 1, width: "82%", height: "82%", preload: !0, autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[17]), paused: !1, objectFit: "contain", animations: m })
+          /* @__PURE__ */ o(u, { id: "c4_disc_17", className: "connect-four-disc-anim", objectFit: "contain", animations: m, imageRendering: "auto", speed: 1, width: "82%", height: "82%", preload: !0, imageClassName: "connect-four-disc-image", alt: "", paused: !1, autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[17]) })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_18", "aria-label": "Drop a disc in column 5", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 4 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_18", className: "connect-four-disc-anim", animations: m, imageClassName: "connect-four-disc-image", alt: "", width: "82%", autoPlay: !0, objectFit: "contain", imageRendering: "auto", speed: 1, height: "82%", paused: !1, preload: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[18]) })
+          /* @__PURE__ */ o(u, { id: "c4_disc_18", className: "connect-four-disc-anim", paused: !1, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[18]), imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "", speed: 1, height: "82%", preload: !0, autoPlay: !0, objectFit: "contain", animations: m, width: "82%" })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_19", "aria-label": "Drop a disc in column 6", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 5 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_19", className: "connect-four-disc-anim", imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "", paused: !1, autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[19]), animations: m, speed: 1, width: "82%", height: "82%", preload: !0, objectFit: "contain" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_19", className: "connect-four-disc-anim", imageClassName: "connect-four-disc-image", imageRendering: "auto", width: "82%", paused: !1, preload: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[19]), objectFit: "contain", alt: "", speed: 1, height: "82%", autoPlay: !0, animations: m })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_20", "aria-label": "Drop a disc in column 7", className: "connect-four-cell", tabIndex: 0, role: "button", onClick: (...e) => d("playColumn", { column: 6 }, e), children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_20", className: "connect-four-disc-anim", preload: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[20]), imageRendering: "auto", alt: "", paused: !1, autoPlay: !0, objectFit: "contain", animations: m, imageClassName: "connect-four-disc-image", speed: 1, width: "82%", height: "82%" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_20", className: "connect-four-disc-anim", alt: "", paused: !1, autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[20]), imageClassName: "connect-four-disc-image", imageRendering: "auto", speed: 1, width: "82%", height: "82%", preload: !0, objectFit: "contain", animations: m })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_21", "aria-label": "Drop a disc in column 1", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 0 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_21", className: "connect-four-disc-anim", animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[21]), imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "", speed: 1, height: "82%", preload: !0, objectFit: "contain", animations: m, width: "82%", paused: !1, autoPlay: !0 })
+          /* @__PURE__ */ o(u, { id: "c4_disc_21", className: "connect-four-disc-anim", alt: "", width: "82%", height: "82%", preload: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[21]), objectFit: "contain", animations: m, speed: 1, paused: !1, autoPlay: !0, imageClassName: "connect-four-disc-image", imageRendering: "auto" })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_22", "aria-label": "Drop a disc in column 2", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 1 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_22", className: "connect-four-disc-anim", alt: "", width: "82%", height: "82%", preload: !0, autoPlay: !0, imageClassName: "connect-four-disc-image", speed: 1, paused: !1, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[22]), objectFit: "contain", animations: m, imageRendering: "auto" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_22", className: "connect-four-disc-anim", animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[22]), animations: m, speed: 1, height: "82%", autoPlay: !0, objectFit: "contain", imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "", width: "82%", paused: !1, preload: !0 })
         ] }),
-        /* @__PURE__ */ t(n, { id: "c4_cell_23", "aria-label": "Drop a disc in column 3", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 2 }, e), tabIndex: 0, children: [
+        /* @__PURE__ */ t(n, { id: "c4_cell_23", "aria-label": "Drop a disc in column 3", className: "connect-four-cell", tabIndex: 0, role: "button", onClick: (...e) => d("playColumn", { column: 2 }, e), children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_23", className: "connect-four-disc-anim", imageRendering: "auto", speed: 1, width: "82%", paused: !1, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[23]), imageClassName: "connect-four-disc-image", alt: "", height: "82%", preload: !0, autoPlay: !0, objectFit: "contain", animations: m })
+          /* @__PURE__ */ o(u, { id: "c4_disc_23", className: "connect-four-disc-anim", paused: !1, animations: m, imageClassName: "connect-four-disc-image", alt: "", width: "82%", preload: !0, autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[23]), objectFit: "contain", imageRendering: "auto", speed: 1, height: "82%" })
         ] }),
-        /* @__PURE__ */ t(n, { id: "c4_cell_24", "aria-label": "Drop a disc in column 4", className: "connect-four-cell", onClick: (...e) => d("playColumn", { column: 3 }, e), tabIndex: 0, role: "button", children: [
+        /* @__PURE__ */ t(n, { id: "c4_cell_24", "aria-label": "Drop a disc in column 4", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 3 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_24", className: "connect-four-disc-anim", imageClassName: "connect-four-disc-image", imageRendering: "auto", speed: 1, height: "82%", paused: !1, preload: !0, autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[24]), animations: m, alt: "", width: "82%", objectFit: "contain" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_24", className: "connect-four-disc-anim", alt: "", paused: !1, preload: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[24]), objectFit: "contain", animations: m, imageClassName: "connect-four-disc-image", speed: 1, width: "82%", height: "82%", autoPlay: !0, imageRendering: "auto" })
         ] }),
-        /* @__PURE__ */ t(n, { id: "c4_cell_25", "aria-label": "Drop a disc in column 5", className: "connect-four-cell", onClick: (...e) => d("playColumn", { column: 4 }, e), tabIndex: 0, role: "button", children: [
+        /* @__PURE__ */ t(n, { id: "c4_cell_25", "aria-label": "Drop a disc in column 5", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 4 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_25", className: "connect-four-disc-anim", imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "", speed: 1, width: "82%", height: "82%", paused: !1, preload: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[25]), objectFit: "contain", autoPlay: !0, animations: m })
+          /* @__PURE__ */ o(u, { id: "c4_disc_25", className: "connect-four-disc-anim", objectFit: "contain", animations: m, imageClassName: "connect-four-disc-image", imageRendering: "auto", speed: 1, width: "82%", paused: !1, autoPlay: !0, alt: "", height: "82%", preload: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[25]) })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_26", "aria-label": "Drop a disc in column 6", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 5 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_26", className: "connect-four-disc-anim", imageRendering: "auto", alt: "", speed: 1, width: "82%", paused: !1, preload: !0, autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[26]), animations: m, height: "82%", objectFit: "contain", imageClassName: "connect-four-disc-image" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_26", className: "connect-four-disc-anim", paused: !1, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[26]), animations: m, alt: "", width: "82%", preload: !0, autoPlay: !0, objectFit: "contain", imageClassName: "connect-four-disc-image", imageRendering: "auto", speed: 1, height: "82%" })
         ] }),
-        /* @__PURE__ */ t(n, { id: "c4_cell_27", "aria-label": "Drop a disc in column 7", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 6 }, e), tabIndex: 0, children: [
+        /* @__PURE__ */ t(n, { id: "c4_cell_27", "aria-label": "Drop a disc in column 7", className: "connect-four-cell", onClick: (...e) => d("playColumn", { column: 6 }, e), tabIndex: 0, role: "button", children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_27", className: "connect-four-disc-anim", imageRendering: "auto", alt: "", speed: 1, width: "82%", height: "82%", paused: !1, preload: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[27]), objectFit: "contain", autoPlay: !0, animations: m, imageClassName: "connect-four-disc-image" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_27", className: "connect-four-disc-anim", autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[27]), objectFit: "contain", imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "", height: "82%", paused: !1, animations: m, speed: 1, width: "82%", preload: !0 })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_28", "aria-label": "Drop a disc in column 1", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 0 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_28", className: "connect-four-disc-anim", alt: "", speed: 1, height: "82%", paused: !1, preload: !0, autoPlay: !0, animations: m, width: "82%", animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[28]), objectFit: "contain", imageClassName: "connect-four-disc-image", imageRendering: "auto" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_28", className: "connect-four-disc-anim", imageClassName: "connect-four-disc-image", width: "82%", paused: !1, preload: !0, autoPlay: !0, animations: m, imageRendering: "auto", alt: "", speed: 1, height: "82%", animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[28]), objectFit: "contain" })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_29", "aria-label": "Drop a disc in column 2", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 1 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_29", className: "connect-four-disc-anim", preload: !0, autoPlay: !0, objectFit: "contain", animations: m, imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "", speed: 1, paused: !1, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[29]), width: "82%", height: "82%" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_29", className: "connect-four-disc-anim", width: "82%", objectFit: "contain", imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "", speed: 1, height: "82%", paused: !1, preload: !0, autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[29]), animations: m })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_30", "aria-label": "Drop a disc in column 3", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 2 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_30", className: "connect-four-disc-anim", animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[30]), animations: m, alt: "", paused: !1, objectFit: "contain", imageClassName: "connect-four-disc-image", imageRendering: "auto", speed: 1, width: "82%", height: "82%", preload: !0, autoPlay: !0 })
+          /* @__PURE__ */ o(u, { id: "c4_disc_30", className: "connect-four-disc-anim", imageRendering: "auto", speed: 1, paused: !1, preload: !0, autoPlay: !0, alt: "", width: "82%", height: "82%", animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[30]), objectFit: "contain", animations: m, imageClassName: "connect-four-disc-image" })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_31", "aria-label": "Drop a disc in column 4", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 3 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_31", className: "connect-four-disc-anim", alt: "", speed: 1, height: "82%", autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[31]), animations: m, imageClassName: "connect-four-disc-image", width: "82%", paused: !1, preload: !0, objectFit: "contain", imageRendering: "auto" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_31", className: "connect-four-disc-anim", preload: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[31]), objectFit: "contain", animations: m, width: "82%", height: "82%", autoPlay: !0, imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "", speed: 1, paused: !1 })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_32", "aria-label": "Drop a disc in column 5", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 4 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_32", className: "connect-four-disc-anim", imageClassName: "connect-four-disc-image", imageRendering: "auto", speed: 1, width: "82%", autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[32]), animations: m, alt: "", height: "82%", paused: !1, preload: !0, objectFit: "contain" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_32", className: "connect-four-disc-anim", animations: m, imageRendering: "auto", speed: 1, preload: !0, autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[32]), imageClassName: "connect-four-disc-image", alt: "", width: "82%", height: "82%", paused: !1, objectFit: "contain" })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_33", "aria-label": "Drop a disc in column 6", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 5 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_33", className: "connect-four-disc-anim", imageClassName: "connect-four-disc-image", imageRendering: "auto", speed: 1, preload: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[33]), animations: m, alt: "", width: "82%", height: "82%", paused: !1, autoPlay: !0, objectFit: "contain" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_33", className: "connect-four-disc-anim", width: "82%", paused: !1, autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[33]), objectFit: "contain", height: "82%", preload: !0, animations: m, imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "", speed: 1 })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_34", "aria-label": "Drop a disc in column 7", className: "connect-four-cell", onClick: (...e) => d("playColumn", { column: 6 }, e), tabIndex: 0, role: "button", children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_34", className: "connect-four-disc-anim", autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[34]), objectFit: "contain", imageClassName: "connect-four-disc-image", imageRendering: "auto", width: "82%", paused: !1, preload: !0, animations: m, alt: "", speed: 1, height: "82%" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_34", className: "connect-four-disc-anim", animations: m, width: "82%", height: "82%", animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[34]), objectFit: "contain", imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "", speed: 1, paused: !1, preload: !0, autoPlay: !0 })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_35", "aria-label": "Drop a disc in column 1", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 0 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_35", className: "connect-four-disc-anim", objectFit: "contain", imageClassName: "connect-four-disc-image", alt: "", speed: 1, width: "82%", preload: !0, autoPlay: !0, animations: m, imageRendering: "auto", height: "82%", paused: !1, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[35]) })
+          /* @__PURE__ */ o(u, { id: "c4_disc_35", className: "connect-four-disc-anim", alt: "", speed: 1, height: "82%", paused: !1, preload: !0, autoPlay: !0, animations: m, imageClassName: "connect-four-disc-image", width: "82%", animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[35]), objectFit: "contain", imageRendering: "auto" })
         ] }),
-        /* @__PURE__ */ t(n, { id: "c4_cell_36", "aria-label": "Drop a disc in column 2", className: "connect-four-cell", onClick: (...e) => d("playColumn", { column: 1 }, e), tabIndex: 0, role: "button", children: [
+        /* @__PURE__ */ t(n, { id: "c4_cell_36", "aria-label": "Drop a disc in column 2", className: "connect-four-cell", tabIndex: 0, role: "button", onClick: (...e) => d("playColumn", { column: 1 }, e), children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_36", className: "connect-four-disc-anim", paused: !1, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[36]), animations: m, imageClassName: "connect-four-disc-image", alt: "", height: "82%", preload: !0, autoPlay: !0, objectFit: "contain", imageRendering: "auto", speed: 1, width: "82%" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_36", className: "connect-four-disc-anim", height: "82%", preload: !0, objectFit: "contain", animations: m, imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "", speed: 1, width: "82%", paused: !1, autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[36]) })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_37", "aria-label": "Drop a disc in column 3", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 2 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_37", className: "connect-four-disc-anim", paused: !1, preload: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[37]), objectFit: "contain", imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "", speed: 1, width: "82%", autoPlay: !0, animations: m, height: "82%" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_37", className: "connect-four-disc-anim", alt: "", speed: 1, width: "82%", height: "82%", autoPlay: !0, animations: m, imageRendering: "auto", paused: !1, preload: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[37]), objectFit: "contain", imageClassName: "connect-four-disc-image" })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_38", "aria-label": "Drop a disc in column 4", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 3 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_38", className: "connect-four-disc-anim", preload: !0, animations: m, imageRendering: "auto", speed: 1, width: "82%", height: "82%", autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[38]), objectFit: "contain", imageClassName: "connect-four-disc-image", alt: "", paused: !1 })
+          /* @__PURE__ */ o(u, { id: "c4_disc_38", className: "connect-four-disc-anim", animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[38]), animations: m, alt: "", speed: 1, width: "82%", height: "82%", autoPlay: !0, objectFit: "contain", imageClassName: "connect-four-disc-image", imageRendering: "auto", paused: !1, preload: !0 })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_39", "aria-label": "Drop a disc in column 5", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 4 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_39", className: "connect-four-disc-anim", objectFit: "contain", imageClassName: "connect-four-disc-image", width: "82%", height: "82%", autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[39]), animations: m, imageRendering: "auto", alt: "", speed: 1, paused: !1, preload: !0 })
+          /* @__PURE__ */ o(u, { id: "c4_disc_39", className: "connect-four-disc-anim", objectFit: "contain", imageRendering: "auto", alt: "", paused: !1, preload: !0, animations: m, imageClassName: "connect-four-disc-image", speed: 1, width: "82%", height: "82%", autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[39]) })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_40", "aria-label": "Drop a disc in column 6", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 5 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_40", className: "connect-four-disc-anim", animations: m, speed: 1, paused: !1, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[40]), imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "", width: "82%", height: "82%", preload: !0, autoPlay: !0, objectFit: "contain" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_40", className: "connect-four-disc-anim", alt: "", width: "82%", height: "82%", paused: !1, preload: !0, objectFit: "contain", imageClassName: "connect-four-disc-image", imageRendering: "auto", speed: 1, autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[40]), animations: m })
         ] }),
         /* @__PURE__ */ t(n, { id: "c4_cell_41", "aria-label": "Drop a disc in column 7", className: "connect-four-cell", role: "button", onClick: (...e) => d("playColumn", { column: 6 }, e), tabIndex: 0, children: [
           "      ",
-          /* @__PURE__ */ o(u, { id: "c4_disc_41", className: "connect-four-disc-anim", paused: !1, preload: !0, autoPlay: !0, objectFit: "contain", imageRendering: "auto", alt: "", speed: 1, width: "82%", height: "82%", animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[41]), animations: m, imageClassName: "connect-four-disc-image" })
+          /* @__PURE__ */ o(u, { id: "c4_disc_41", className: "connect-four-disc-anim", objectFit: "contain", animations: m, imageClassName: "connect-four-disc-image", imageRendering: "auto", alt: "", speed: 1, paused: !1, preload: !0, autoPlay: !0, animation: /* @__PURE__ */ ((e) => e === void 0 ? "○" : e)(s?.game?.board?.[41]), width: "82%", height: "82%" })
         ] })
       ] }),
       /* @__PURE__ */ t(n, { id: "c4_footer", className: "connect-four-footer", children: [
