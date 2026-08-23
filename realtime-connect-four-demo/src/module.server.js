@@ -13,7 +13,6 @@ export async function execute_ensureRoom(inputs = {}) {
 
 
 
-
   returnState = resolveValue("{{ vars.roomRequest }}");
 
   const resultSchema = {"type":"object"};
