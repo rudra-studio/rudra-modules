@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './styles.css';
 
-import { SpriteAnimator as RudraThreeSpriteAnimator } from '@rudra-studio/rudra-three';
 import { Box as RudraLayoutBox, Grid as RudraLayoutGrid } from '@rudra-studio/rudra-layout';
+import { SpriteAnimator as RudraThreeSpriteAnimator } from '@rudra-studio/rudra-three';
 import { Typography as RudraCoreTypography } from '@rudra-studio/rudra-core';
 
 export default function CompiledModule(props) {
@@ -67,17 +67,17 @@ export default function CompiledModule(props) {
     return val.lg !== undefined ? val.lg : (val.md !== undefined ? val.md : val.sm);
   }, [viewport]);
 
-  const roomId = props.roomId !== undefined ? props.roomId : (props.data?.roomId !== undefined ? props.data.roomId : undefined);
   const inviteRoomId = props.inviteRoomId !== undefined ? props.inviteRoomId : (props.data?.inviteRoomId !== undefined ? props.data.inviteRoomId : undefined);
-  const inputs = { "roomId": roomId, "inviteRoomId": inviteRoomId };
-  const [spriteAnimations, set_spriteAnimations] = useState(() => structuredClone({"○":{"fps":1,"holdLastFrame":true,"loop":false,"sheet":{"columns":1,"endFrame":0,"rows":1,"src":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgMTI4IDEyOCI+PGNpcmNsZSBjeD0iNjQiIGN5PSI2NCIgcj0iNDYiIGZpbGw9IiMwNzBkMWQiLz48Y2lyY2xlIGN4PSI2NCIgY3k9IjY0IiByPSI0MyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzE1N2E4IiBzdHJva2Utb3BhY2l0eT0iLjQyIiBzdHJva2Utd2lkdGg9IjMiLz48Y2lyY2xlIGN4PSI1MSIgY3k9IjQ3IiByPSIxMiIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjAzNSIvPjwvc3ZnPg==","startFrame":0}},"🔴":{"fps":18,"holdLastFrame":true,"loop":false,"sheet":{"columns":6,"endFrame":5,"rows":1,"src":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgNzY4IDEyOCI+PGRlZnM+PGZpbHRlciBpZD0icyIgeD0iLTIwJSIgeT0iLTIwJSIgd2lkdGg9IjE0MCUiIGhlaWdodD0iMTYwJSI+PGZlRHJvcFNoYWRvdyBkeD0iMCIgZHk9IjciIHN0ZERldmlhdGlvbj0iNSIgZmxvb2QtY29sb3I9IiMwMDAiIGZsb29kLW9wYWNpdHk9Ii4zOCIvPjwvZmlsdGVyPjwvZGVmcz48ZyBmaWx0ZXI9InVybCgjcykiPjxnIG9wYWNpdHk9IjAuMiI+PGNpcmNsZSBjeD0iNjQiIGN5PSIxMCIgcj0iMzMiIGZpbGw9IiMwNzBiMTkiIG9wYWNpdHk9Ii41MiIvPjxjaXJjbGUgY3g9IjY0IiBjeT0iMTAiIHI9IjI4IiBmaWxsPSIjZWYzMzQwIi8+PGNpcmNsZSBjeD0iNTYuNDQiIGN5PSIxLjU5OTk5OTk5OTk5OTk5OTYiIHI9IjUuMDQiIGZpbGw9IiNmZmQ3ZGMiIG9wYWNpdHk9Ii43OCIvPjxjaXJjbGUgY3g9IjY0IiBjeT0iMTAiIHI9IjI2IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1vcGFjaXR5PSIuMTgiIHN0cm9rZS13aWR0aD0iMyIvPjwvZz48ZyBvcGFjaXR5PSIwLjQyIj48Y2lyY2xlIGN4PSIxOTIiIGN5PSIyNCIgcj0iMzgiIGZpbGw9IiMwNzBiMTkiIG9wYWNpdHk9Ii41MiIvPjxjaXJjbGUgY3g9IjE5MiIgY3k9IjI0IiByPSIzMyIgZmlsbD0iI2VmMzM0MCIvPjxjaXJjbGUgY3g9IjE4My4wOSIgY3k9IjE0LjEiIHI9IjUuOTM5OTk5OTk5OTk5OTk5NSIgZmlsbD0iI2ZmZDdkYyIgb3BhY2l0eT0iLjc4Ii8+PGNpcmNsZSBjeD0iMTkyIiBjeT0iMjQiIHI9IjMxIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1vcGFjaXR5PSIuMTgiIHN0cm9rZS13aWR0aD0iMyIvPjwvZz48ZyBvcGFjaXR5PSIwLjY4Ij48Y2lyY2xlIGN4PSIzMjAiIGN5PSI0NCIgcj0iNDMiIGZpbGw9IiMwNzBiMTkiIG9wYWNpdHk9Ii41MiIvPjxjaXJjbGUgY3g9IjMyMCIgY3k9IjQ0IiByPSIzOCIgZmlsbD0iI2VmMzM0MCIvPjxjaXJjbGUgY3g9IjMwOS43NCIgY3k9IjMyLjYiIHI9IjYuODQiIGZpbGw9IiNmZmQ3ZGMiIG9wYWNpdHk9Ii43OCIvPjxjaXJjbGUgY3g9IjMyMCIgY3k9IjQ0IiByPSIzNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utb3BhY2l0eT0iLjE4IiBzdHJva2Utd2lkdGg9IjMiLz48L2c+PGcgb3BhY2l0eT0iMC45NCI+PGNpcmNsZSBjeD0iNDQ4IiBjeT0iNzIiIHI9IjQ5IiBmaWxsPSIjMDcwYjE5IiBvcGFjaXR5PSIuNTIiLz48Y2lyY2xlIGN4PSI0NDgiIGN5PSI3MiIgcj0iNDQiIGZpbGw9IiNlZjMzNDAiLz48Y2lyY2xlIGN4PSI0MzYuMTIiIGN5PSI1OC44IiByPSI3LjkyIiBmaWxsPSIjZmZkN2RjIiBvcGFjaXR5PSIuNzgiLz48Y2lyY2xlIGN4PSI0NDgiIGN5PSI3MiIgcj0iNDIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii4xOCIgc3Ryb2tlLXdpZHRoPSIzIi8+PC9nPjxnIG9wYWNpdHk9IjEiPjxjaXJjbGUgY3g9IjU3NiIgY3k9IjYyIiByPSI0NSIgZmlsbD0iIzA3MGIxOSIgb3BhY2l0eT0iLjUyIi8+PGNpcmNsZSBjeD0iNTc2IiBjeT0iNjIiIHI9IjQwIiBmaWxsPSIjZWYzMzQwIi8+PGNpcmNsZSBjeD0iNTY1LjIiIGN5PSI1MCIgcj0iNy4xOTk5OTk5OTk5OTk5OTkiIGZpbGw9IiNmZmQ3ZGMiIG9wYWNpdHk9Ii43OCIvPjxjaXJjbGUgY3g9IjU3NiIgY3k9IjYyIiByPSIzOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utb3BhY2l0eT0iLjE4IiBzdHJva2Utd2lkdGg9IjMiLz48L2c+PGcgb3BhY2l0eT0iMSI+PGNpcmNsZSBjeD0iNzA0IiBjeT0iNjQiIHI9IjQ4IiBmaWxsPSIjMDcwYjE5IiBvcGFjaXR5PSIuNTIiLz48Y2lyY2xlIGN4PSI3MDQiIGN5PSI2NCIgcj0iNDMiIGZpbGw9IiNlZjMzNDAiLz48Y2lyY2xlIGN4PSI2OTIuMzkiIGN5PSI1MS4xIiByPSI3LjczOTk5OTk5OTk5OTk5OSIgZmlsbD0iI2ZmZDdkYyIgb3BhY2l0eT0iLjc4Ii8+PGNpcmNsZSBjeD0iNzA0IiBjeT0iNjQiIHI9IjQxIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1vcGFjaXR5PSIuMTgiIHN0cm9rZS13aWR0aD0iMyIvPjwvZz48L2c+PC9zdmc+","startFrame":0}},"🟡":{"fps":18,"holdLastFrame":true,"loop":false,"sheet":{"columns":6,"endFrame":5,"rows":1,"src":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgNzY4IDEyOCI+PGRlZnM+PGZpbHRlciBpZD0icyIgeD0iLTIwJSIgeT0iLTIwJSIgd2lkdGg9IjE0MCUiIGhlaWdodD0iMTYwJSI+PGZlRHJvcFNoYWRvdyBkeD0iMCIgZHk9IjciIHN0ZERldmlhdGlvbj0iNSIgZmxvb2QtY29sb3I9IiMwMDAiIGZsb29kLW9wYWNpdHk9Ii4zOCIvPjwvZmlsdGVyPjwvZGVmcz48ZyBmaWx0ZXI9InVybCgjcykiPjxnIG9wYWNpdHk9IjAuMiI+PGNpcmNsZSBjeD0iNjQiIGN5PSIxMCIgcj0iMzMiIGZpbGw9IiMwNzBiMTkiIG9wYWNpdHk9Ii41MiIvPjxjaXJjbGUgY3g9IjY0IiBjeT0iMTAiIHI9IjI4IiBmaWxsPSIjZmFjYzE1Ii8+PGNpcmNsZSBjeD0iNTYuNDQiIGN5PSIxLjU5OTk5OTk5OTk5OTk5OTYiIHI9IjUuMDQiIGZpbGw9IiNmZmY3YmYiIG9wYWNpdHk9Ii43OCIvPjxjaXJjbGUgY3g9IjY0IiBjeT0iMTAiIHI9IjI2IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1vcGFjaXR5PSIuMTgiIHN0cm9rZS13aWR0aD0iMyIvPjwvZz48ZyBvcGFjaXR5PSIwLjQyIj48Y2lyY2xlIGN4PSIxOTIiIGN5PSIyNCIgcj0iMzgiIGZpbGw9IiMwNzBiMTkiIG9wYWNpdHk9Ii41MiIvPjxjaXJjbGUgY3g9IjE5MiIgY3k9IjI0IiByPSIzMyIgZmlsbD0iI2ZhY2MxNSIvPjxjaXJjbGUgY3g9IjE4My4wOSIgY3k9IjE0LjEiIHI9IjUuOTM5OTk5OTk5OTk5OTk5NSIgZmlsbD0iI2ZmZjdiZiIgb3BhY2l0eT0iLjc4Ii8+PGNpcmNsZSBjeD0iMTkyIiBjeT0iMjQiIHI9IjMxIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1vcGFjaXR5PSIuMTgiIHN0cm9rZS13aWR0aD0iMyIvPjwvZz48ZyBvcGFjaXR5PSIwLjY4Ij48Y2lyY2xlIGN4PSIzMjAiIGN5PSI0NCIgcj0iNDMiIGZpbGw9IiMwNzBiMTkiIG9wYWNpdHk9Ii41MiIvPjxjaXJjbGUgY3g9IjMyMCIgY3k9IjQ0IiByPSIzOCIgZmlsbD0iI2ZhY2MxNSIvPjxjaXJjbGUgY3g9IjMwOS43NCIgY3k9IjMyLjYiIHI9IjYuODQiIGZpbGw9IiNmZmY3YmYiIG9wYWNpdHk9Ii43OCIvPjxjaXJjbGUgY3g9IjMyMCIgY3k9IjQ0IiByPSIzNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utb3BhY2l0eT0iLjE4IiBzdHJva2Utd2lkdGg9IjMiLz48L2c+PGcgb3BhY2l0eT0iMC45NCI+PGNpcmNsZSBjeD0iNDQ4IiBjeT0iNzIiIHI9IjQ5IiBmaWxsPSIjMDcwYjE5IiBvcGFjaXR5PSIuNTIiLz48Y2lyY2xlIGN4PSI0NDgiIGN5PSI3MiIgcj0iNDQiIGZpbGw9IiNmYWNjMTUiLz48Y2lyY2xlIGN4PSI0MzYuMTIiIGN5PSI1OC44IiByPSI3LjkyIiBmaWxsPSIjZmZmN2JmIiBvcGFjaXR5PSIuNzgiLz48Y2lyY2xlIGN4PSI0NDgiIGN5PSI3MiIgcj0iNDIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii4xOCIgc3Ryb2tlLXdpZHRoPSIzIi8+PC9nPjxnIG9wYWNpdHk9IjEiPjxjaXJjbGUgY3g9IjU3NiIgY3k9IjYyIiByPSI0NSIgZmlsbD0iIzA3MGIxOSIgb3BhY2l0eT0iLjUyIi8+PGNpcmNsZSBjeD0iNTc2IiBjeT0iNjIiIHI9IjQwIiBmaWxsPSIjZmFjYzE1Ii8+PGNpcmNsZSBjeD0iNTY1LjIiIGN5PSI1MCIgcj0iNy4xOTk5OTk5OTk5OTk5OTkiIGZpbGw9IiNmZmY3YmYiIG9wYWNpdHk9Ii43OCIvPjxjaXJjbGUgY3g9IjU3NiIgY3k9IjYyIiByPSIzOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utb3BhY2l0eT0iLjE4IiBzdHJva2Utd2lkdGg9IjMiLz48L2c+PGcgb3BhY2l0eT0iMSI+PGNpcmNsZSBjeD0iNzA0IiBjeT0iNjQiIHI9IjQ4IiBmaWxsPSIjMDcwYjE5IiBvcGFjaXR5PSIuNTIiLz48Y2lyY2xlIGN4PSI3MDQiIGN5PSI2NCIgcj0iNDMiIGZpbGw9IiNmYWNjMTUiLz48Y2lyY2xlIGN4PSI2OTIuMzkiIGN5PSI1MS4xIiByPSI3LjczOTk5OTk5OTk5OTk5OSIgZmlsbD0iI2ZmZjdiZiIgb3BhY2l0eT0iLjc4Ii8+PGNpcmNsZSBjeD0iNzA0IiBjeT0iNjQiIHI9IjQxIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1vcGFjaXR5PSIuMTgiIHN0cm9rZS13aWR0aD0iMyIvPjwvZz48L2c+PC9zdmc+","startFrame":0}}}));
+  const roomId = props.roomId !== undefined ? props.roomId : (props.data?.roomId !== undefined ? props.data.roomId : undefined);
+  const inputs = { "inviteRoomId": inviteRoomId, "roomId": roomId };
   const [inviteUrl, set_inviteUrl] = useState(() => structuredClone(""));
-  const state = { "spriteAnimations": spriteAnimations, "inviteUrl": inviteUrl };
+  const [spriteAnimations, set_spriteAnimations] = useState(() => structuredClone({"○":{"fps":1,"holdLastFrame":true,"loop":false,"sheet":{"columns":1,"endFrame":0,"rows":1,"src":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgMTI4IDEyOCI+PGNpcmNsZSBjeD0iNjQiIGN5PSI2NCIgcj0iNDYiIGZpbGw9IiMwNzBkMWQiLz48Y2lyY2xlIGN4PSI2NCIgY3k9IjY0IiByPSI0MyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzE1N2E4IiBzdHJva2Utb3BhY2l0eT0iLjQyIiBzdHJva2Utd2lkdGg9IjMiLz48Y2lyY2xlIGN4PSI1MSIgY3k9IjQ3IiByPSIxMiIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjAzNSIvPjwvc3ZnPg==","startFrame":0}},"🔴":{"fps":18,"holdLastFrame":true,"loop":false,"sheet":{"columns":6,"endFrame":5,"rows":1,"src":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgNzY4IDEyOCI+PGRlZnM+PGZpbHRlciBpZD0icyIgeD0iLTIwJSIgeT0iLTIwJSIgd2lkdGg9IjE0MCUiIGhlaWdodD0iMTYwJSI+PGZlRHJvcFNoYWRvdyBkeD0iMCIgZHk9IjciIHN0ZERldmlhdGlvbj0iNSIgZmxvb2QtY29sb3I9IiMwMDAiIGZsb29kLW9wYWNpdHk9Ii4zOCIvPjwvZmlsdGVyPjwvZGVmcz48ZyBmaWx0ZXI9InVybCgjcykiPjxnIG9wYWNpdHk9IjAuMiI+PGNpcmNsZSBjeD0iNjQiIGN5PSIxMCIgcj0iMzMiIGZpbGw9IiMwNzBiMTkiIG9wYWNpdHk9Ii41MiIvPjxjaXJjbGUgY3g9IjY0IiBjeT0iMTAiIHI9IjI4IiBmaWxsPSIjZWYzMzQwIi8+PGNpcmNsZSBjeD0iNTYuNDQiIGN5PSIxLjU5OTk5OTk5OTk5OTk5OTYiIHI9IjUuMDQiIGZpbGw9IiNmZmQ3ZGMiIG9wYWNpdHk9Ii43OCIvPjxjaXJjbGUgY3g9IjY0IiBjeT0iMTAiIHI9IjI2IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1vcGFjaXR5PSIuMTgiIHN0cm9rZS13aWR0aD0iMyIvPjwvZz48ZyBvcGFjaXR5PSIwLjQyIj48Y2lyY2xlIGN4PSIxOTIiIGN5PSIyNCIgcj0iMzgiIGZpbGw9IiMwNzBiMTkiIG9wYWNpdHk9Ii41MiIvPjxjaXJjbGUgY3g9IjE5MiIgY3k9IjI0IiByPSIzMyIgZmlsbD0iI2VmMzM0MCIvPjxjaXJjbGUgY3g9IjE4My4wOSIgY3k9IjE0LjEiIHI9IjUuOTM5OTk5OTk5OTk5OTk5NSIgZmlsbD0iI2ZmZDdkYyIgb3BhY2l0eT0iLjc4Ii8+PGNpcmNsZSBjeD0iMTkyIiBjeT0iMjQiIHI9IjMxIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1vcGFjaXR5PSIuMTgiIHN0cm9rZS13aWR0aD0iMyIvPjwvZz48ZyBvcGFjaXR5PSIwLjY4Ij48Y2lyY2xlIGN4PSIzMjAiIGN5PSI0NCIgcj0iNDMiIGZpbGw9IiMwNzBiMTkiIG9wYWNpdHk9Ii41MiIvPjxjaXJjbGUgY3g9IjMyMCIgY3k9IjQ0IiByPSIzOCIgZmlsbD0iI2VmMzM0MCIvPjxjaXJjbGUgY3g9IjMwOS43NCIgY3k9IjMyLjYiIHI9IjYuODQiIGZpbGw9IiNmZmQ3ZGMiIG9wYWNpdHk9Ii43OCIvPjxjaXJjbGUgY3g9IjMyMCIgY3k9IjQ0IiByPSIzNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utb3BhY2l0eT0iLjE4IiBzdHJva2Utd2lkdGg9IjMiLz48L2c+PGcgb3BhY2l0eT0iMC45NCI+PGNpcmNsZSBjeD0iNDQ4IiBjeT0iNzIiIHI9IjQ5IiBmaWxsPSIjMDcwYjE5IiBvcGFjaXR5PSIuNTIiLz48Y2lyY2xlIGN4PSI0NDgiIGN5PSI3MiIgcj0iNDQiIGZpbGw9IiNlZjMzNDAiLz48Y2lyY2xlIGN4PSI0MzYuMTIiIGN5PSI1OC44IiByPSI3LjkyIiBmaWxsPSIjZmZkN2RjIiBvcGFjaXR5PSIuNzgiLz48Y2lyY2xlIGN4PSI0NDgiIGN5PSI3MiIgcj0iNDIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii4xOCIgc3Ryb2tlLXdpZHRoPSIzIi8+PC9nPjxnIG9wYWNpdHk9IjEiPjxjaXJjbGUgY3g9IjU3NiIgY3k9IjYyIiByPSI0NSIgZmlsbD0iIzA3MGIxOSIgb3BhY2l0eT0iLjUyIi8+PGNpcmNsZSBjeD0iNTc2IiBjeT0iNjIiIHI9IjQwIiBmaWxsPSIjZWYzMzQwIi8+PGNpcmNsZSBjeD0iNTY1LjIiIGN5PSI1MCIgcj0iNy4xOTk5OTk5OTk5OTk5OTkiIGZpbGw9IiNmZmQ3ZGMiIG9wYWNpdHk9Ii43OCIvPjxjaXJjbGUgY3g9IjU3NiIgY3k9IjYyIiByPSIzOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utb3BhY2l0eT0iLjE4IiBzdHJva2Utd2lkdGg9IjMiLz48L2c+PGcgb3BhY2l0eT0iMSI+PGNpcmNsZSBjeD0iNzA0IiBjeT0iNjQiIHI9IjQ4IiBmaWxsPSIjMDcwYjE5IiBvcGFjaXR5PSIuNTIiLz48Y2lyY2xlIGN4PSI3MDQiIGN5PSI2NCIgcj0iNDMiIGZpbGw9IiNlZjMzNDAiLz48Y2lyY2xlIGN4PSI2OTIuMzkiIGN5PSI1MS4xIiByPSI3LjczOTk5OTk5OTk5OTk5OSIgZmlsbD0iI2ZmZDdkYyIgb3BhY2l0eT0iLjc4Ii8+PGNpcmNsZSBjeD0iNzA0IiBjeT0iNjQiIHI9IjQxIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1vcGFjaXR5PSIuMTgiIHN0cm9rZS13aWR0aD0iMyIvPjwvZz48L2c+PC9zdmc+","startFrame":0}},"🟡":{"fps":18,"holdLastFrame":true,"loop":false,"sheet":{"columns":6,"endFrame":5,"rows":1,"src":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgNzY4IDEyOCI+PGRlZnM+PGZpbHRlciBpZD0icyIgeD0iLTIwJSIgeT0iLTIwJSIgd2lkdGg9IjE0MCUiIGhlaWdodD0iMTYwJSI+PGZlRHJvcFNoYWRvdyBkeD0iMCIgZHk9IjciIHN0ZERldmlhdGlvbj0iNSIgZmxvb2QtY29sb3I9IiMwMDAiIGZsb29kLW9wYWNpdHk9Ii4zOCIvPjwvZmlsdGVyPjwvZGVmcz48ZyBmaWx0ZXI9InVybCgjcykiPjxnIG9wYWNpdHk9IjAuMiI+PGNpcmNsZSBjeD0iNjQiIGN5PSIxMCIgcj0iMzMiIGZpbGw9IiMwNzBiMTkiIG9wYWNpdHk9Ii41MiIvPjxjaXJjbGUgY3g9IjY0IiBjeT0iMTAiIHI9IjI4IiBmaWxsPSIjZmFjYzE1Ii8+PGNpcmNsZSBjeD0iNTYuNDQiIGN5PSIxLjU5OTk5OTk5OTk5OTk5OTYiIHI9IjUuMDQiIGZpbGw9IiNmZmY3YmYiIG9wYWNpdHk9Ii43OCIvPjxjaXJjbGUgY3g9IjY0IiBjeT0iMTAiIHI9IjI2IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1vcGFjaXR5PSIuMTgiIHN0cm9rZS13aWR0aD0iMyIvPjwvZz48ZyBvcGFjaXR5PSIwLjQyIj48Y2lyY2xlIGN4PSIxOTIiIGN5PSIyNCIgcj0iMzgiIGZpbGw9IiMwNzBiMTkiIG9wYWNpdHk9Ii41MiIvPjxjaXJjbGUgY3g9IjE5MiIgY3k9IjI0IiByPSIzMyIgZmlsbD0iI2ZhY2MxNSIvPjxjaXJjbGUgY3g9IjE4My4wOSIgY3k9IjE0LjEiIHI9IjUuOTM5OTk5OTk5OTk5OTk5NSIgZmlsbD0iI2ZmZjdiZiIgb3BhY2l0eT0iLjc4Ii8+PGNpcmNsZSBjeD0iMTkyIiBjeT0iMjQiIHI9IjMxIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1vcGFjaXR5PSIuMTgiIHN0cm9rZS13aWR0aD0iMyIvPjwvZz48ZyBvcGFjaXR5PSIwLjY4Ij48Y2lyY2xlIGN4PSIzMjAiIGN5PSI0NCIgcj0iNDMiIGZpbGw9IiMwNzBiMTkiIG9wYWNpdHk9Ii41MiIvPjxjaXJjbGUgY3g9IjMyMCIgY3k9IjQ0IiByPSIzOCIgZmlsbD0iI2ZhY2MxNSIvPjxjaXJjbGUgY3g9IjMwOS43NCIgY3k9IjMyLjYiIHI9IjYuODQiIGZpbGw9IiNmZmY3YmYiIG9wYWNpdHk9Ii43OCIvPjxjaXJjbGUgY3g9IjMyMCIgY3k9IjQ0IiByPSIzNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utb3BhY2l0eT0iLjE4IiBzdHJva2Utd2lkdGg9IjMiLz48L2c+PGcgb3BhY2l0eT0iMC45NCI+PGNpcmNsZSBjeD0iNDQ4IiBjeT0iNzIiIHI9IjQ5IiBmaWxsPSIjMDcwYjE5IiBvcGFjaXR5PSIuNTIiLz48Y2lyY2xlIGN4PSI0NDgiIGN5PSI3MiIgcj0iNDQiIGZpbGw9IiNmYWNjMTUiLz48Y2lyY2xlIGN4PSI0MzYuMTIiIGN5PSI1OC44IiByPSI3LjkyIiBmaWxsPSIjZmZmN2JmIiBvcGFjaXR5PSIuNzgiLz48Y2lyY2xlIGN4PSI0NDgiIGN5PSI3MiIgcj0iNDIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii4xOCIgc3Ryb2tlLXdpZHRoPSIzIi8+PC9nPjxnIG9wYWNpdHk9IjEiPjxjaXJjbGUgY3g9IjU3NiIgY3k9IjYyIiByPSI0NSIgZmlsbD0iIzA3MGIxOSIgb3BhY2l0eT0iLjUyIi8+PGNpcmNsZSBjeD0iNTc2IiBjeT0iNjIiIHI9IjQwIiBmaWxsPSIjZmFjYzE1Ii8+PGNpcmNsZSBjeD0iNTY1LjIiIGN5PSI1MCIgcj0iNy4xOTk5OTk5OTk5OTk5OTkiIGZpbGw9IiNmZmY3YmYiIG9wYWNpdHk9Ii43OCIvPjxjaXJjbGUgY3g9IjU3NiIgY3k9IjYyIiByPSIzOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utb3BhY2l0eT0iLjE4IiBzdHJva2Utd2lkdGg9IjMiLz48L2c+PGcgb3BhY2l0eT0iMSI+PGNpcmNsZSBjeD0iNzA0IiBjeT0iNjQiIHI9IjQ4IiBmaWxsPSIjMDcwYjE5IiBvcGFjaXR5PSIuNTIiLz48Y2lyY2xlIGN4PSI3MDQiIGN5PSI2NCIgcj0iNDMiIGZpbGw9IiNmYWNjMTUiLz48Y2lyY2xlIGN4PSI2OTIuMzkiIGN5PSI1MS4xIiByPSI3LjczOTk5OTk5OTk5OTk5OSIgZmlsbD0iI2ZmZjdiZiIgb3BhY2l0eT0iLjc4Ii8+PGNpcmNsZSBjeD0iNzA0IiBjeT0iNjQiIHI9IjQxIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1vcGFjaXR5PSIuMTgiIHN0cm9rZS13aWR0aD0iMyIvPjwvZz48L2c+PC9zdmc+","startFrame":0}}}));
+  const state = { "inviteUrl": inviteUrl, "spriteAnimations": spriteAnimations };
 
   const _setState = useCallback((name, value) => {
     switch (name) {
-      case "spriteAnimations": set_spriteAnimations(value); return value;
       case "inviteUrl": set_inviteUrl(value); return value;
+      case "spriteAnimations": set_spriteAnimations(value); return value;
       default: return value;
     }
   }, []);
@@ -99,8 +99,8 @@ export default function CompiledModule(props) {
       return next;
     };
     switch (root) {
-      case "spriteAnimations": set_spriteAnimations(updateNested); return value;
       case "inviteUrl": set_inviteUrl(updateNested); return value;
+      case "spriteAnimations": set_spriteAnimations(updateNested); return value;
       default: return value;
     }
   }, [_setState]);
@@ -132,6 +132,8 @@ export default function CompiledModule(props) {
     if (!schema) throw new Error("Module output '" + outputId + "' is not declared.");
     const payloadError = _validateOutputPayload(payload, schema, 'output.' + outputId);
     if (payloadError) throw new Error(payloadError);
+    if (outputId === "c4_room_created_output" && typeof payload === 'string' && /^[a-zA-Z0-9-_]{6,80}$/.test(payload)) _setGeneratedSharedStateRoomId(payload);
+
     const adapter = props.onOutput || props.onModuleOutput || props.runtime?.onOutput;
     if (typeof adapter !== 'function') return payload;
     const delivery = adapter(outputId, payload, { moduleId: props.moduleId, awaitHandlers });
@@ -176,6 +178,136 @@ export default function CompiledModule(props) {
     }
     return !(value && typeof value === 'object' && !Array.isArray(value) && Object.keys(value).length === 0);
   };
+
+  async function applyRoomToUrl(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    let inviteResult;
+    { const event = args.event; const data = pageData; const globalState = state;
+      const customResult = await (async () => {
+const roomId=String(args.roomId||"").trim();
+if(!/^[a-zA-Z0-9-_]{6,80}$/.test(roomId))throw new Error("Invalid room ID.");
+const current=new URL(window.location.href);
+const configuredBase=String(args.inviteBaseUrl||"").trim();
+const invite=new URL(configuredBase||current.toString(),current.origin);
+invite.searchParams.set("room",roomId);
+return {roomId,inviteUrl:invite.toString()};
+      })();
+      stepResults["c4_apply_room_url_code"] = customResult; vars["inviteResult"] = customResult; }
+    _setState("inviteUrl", vars.inviteResult.inviteUrl);
+    return vars.inviteResult;
+    return undefined;
+  }
+
+  async function copyInviteUrl(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    let copyResult;
+    { const event = args.event; const data = pageData; const globalState = state;
+      const customResult = await (async () => {
+const inviteUrl=String(state.inviteUrl||window.location.href||"").trim();
+if(!inviteUrl)return {copied:false};
+if(navigator.clipboard?.writeText){
+  await navigator.clipboard.writeText(inviteUrl);
+}else{
+  const field=document.createElement("textarea");
+  field.value=inviteUrl;
+  field.setAttribute("readonly","");
+  field.style.position="fixed";
+  field.style.opacity="0";
+  document.body.appendChild(field);
+  field.select();
+  document.execCommand("copy");
+  field.remove();
+}
+return {copied:true,inviteUrl};
+      })();
+      stepResults["c4_copy_invite_code"] = customResult; vars["copyResult"] = customResult; }
+    return vars.copyResult;
+    return undefined;
+  }
+
+  async function ensureRoom(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    let roomRequest;
+    { const event = args.event; const data = pageData; const globalState = state;
+      const customResult = await (async () => {
+const validRoom=value=>/^[a-zA-Z0-9-_]{6,80}$/.test(value);
+const suppliedRoomId=String(inputs?.roomId||"").trim();
+const createdRoomId=String(inputs?.inviteRoomId||"").trim();
+if(validRoom(suppliedRoomId))return {roomId:suppliedRoomId,created:false,source:"input"};
+if(validRoom(createdRoomId))return {roomId:createdRoomId,created:false,source:"created"};
+return {roomId:crypto.randomUUID().replace(/-/g,"").slice(0,16),created:true,source:"created"};
+      })();
+      stepResults["c4_generate_room"] = customResult; vars["roomRequest"] = customResult; }
+    if (vars.roomRequest.created) {
+      await _emitOutput("c4_room_created_output", vars.roomRequest.roomId, true);
+      return vars.roomRequest;
+    } else {
+      return vars.roomRequest;
+    }
+    return undefined;
+  }
+
+  async function initializeGame(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    let joinResult;
+    { const event = args.event; const data = pageData; const globalState = state;
+      const customResult = await (async () => {
+const roomId=String(inputs?.roomId||"").trim();
+const inviteRoomId=String(inputs?.inviteRoomId||"").trim();
+const joiningRoom=/^[a-zA-Z0-9-_]{6,80}$/.test(roomId)?roomId:"";
+const hostingRoom=/^[a-zA-Z0-9-_]{6,80}$/.test(inviteRoomId)?inviteRoomId:"";
+const requestedRoom=joiningRoom||hostingRoom;
+if(!requestedRoom)return {game:null,inviteUrl:""};
+let api;
+for(let attempt=0;attempt<50;attempt+=1){
+  const registry=window.RudraSharedState;
+  api=registry?.current||registry;
+  if(api?.get&&api?.set&&api.status==="connected")break;
+  await new Promise(resolve=>setTimeout(resolve,100));
+}
+if(!api?.get||!api?.set||api.status!=="connected")return {inviteUrl:""};
+await new Promise(resolve=>setTimeout(resolve,250));
+const effectiveRoom=requestedRoom||String(api.roomId||"default-room");
+let inviteUrl="";
+if(hostingRoom&&!joiningRoom){
+  const invite=new URL(window.location.href);
+  invite.searchParams.set("room",hostingRoom);
+  inviteUrl=invite.toString();
+}
+const runtimeKey="__rudraConnectFourPlayers";
+const runtimePlayers=window[runtimeKey]||(window[runtimeKey]={});
+let playerId=runtimePlayers[api.roomId];
+if(!playerId){
+  playerId=crypto.randomUUID();
+  runtimePlayers[api.roomId]=playerId;
+}
+let game=api.get("game");
+const validGame=game&&Array.isArray(game.board)&&game.board.length===42&&game.playerClaimVersion===6&&game.roomCode===effectiveRoom;
+if(!validGame){
+  game={board:Array(42).fill("○"),turn:"🔴",winner:null,moves:0,revision:0,playerClaimVersion:6,players:{red:playerId,yellow:null},roomCode:effectiveRoom,status:"Waiting for Yellow player…",playersLabel:"🔴 Red joined · 🟡 Yellow open"};
+}else{
+  const players={...(game.players||{})};
+  if(!players.red)players.red=playerId;
+  else if(players.red!==playerId&&!players.yellow)players.yellow=playerId;
+  const ready=Boolean(players.red&&players.yellow);
+  game={...game,players,status:game.winner?game.status:ready?"Turn: "+(game.turn||"🔴"):"Waiting for Yellow player…",playersLabel:"🔴 Red "+(players.red?"joined":"open")+" · 🟡 Yellow "+(players.yellow?"joined":"open")};
+}
+api.set("game",game);
+return {game,inviteUrl};
+      })();
+      stepResults["c4_initialize_code"] = customResult; vars["joinResult"] = customResult; }
+    _setState("inviteUrl", vars.joinResult.inviteUrl);
+    return vars.joinResult.game;
+    return undefined;
+  }
 
   async function playColumn(initialArgs = {}) {
     const args = initialArgs || {};
@@ -293,143 +425,13 @@ const registry=window.RudraSharedState;const api=registry?.current||registry;if(
     return undefined;
   }
 
-  async function applyRoomToUrl(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    let inviteResult;
-    { const event = args.event; const data = pageData; const globalState = state;
-      const customResult = await (async () => {
-const roomId=String(args.roomId||"").trim();
-if(!/^[a-zA-Z0-9-_]{6,80}$/.test(roomId))throw new Error("Invalid room ID.");
-const current=new URL(window.location.href);
-const configuredBase=String(args.inviteBaseUrl||"").trim();
-const invite=new URL(configuredBase||current.toString(),current.origin);
-invite.searchParams.set("room",roomId);
-return {roomId,inviteUrl:invite.toString()};
-      })();
-      stepResults["c4_apply_room_url_code"] = customResult; vars["inviteResult"] = customResult; }
-    _setState("inviteUrl", vars.inviteResult.inviteUrl);
-    return vars.inviteResult;
-    return undefined;
-  }
-
-  async function copyInviteUrl(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    let copyResult;
-    { const event = args.event; const data = pageData; const globalState = state;
-      const customResult = await (async () => {
-const inviteUrl=String(state.inviteUrl||window.location.href||"").trim();
-if(!inviteUrl)return {copied:false};
-if(navigator.clipboard?.writeText){
-  await navigator.clipboard.writeText(inviteUrl);
-}else{
-  const field=document.createElement("textarea");
-  field.value=inviteUrl;
-  field.setAttribute("readonly","");
-  field.style.position="fixed";
-  field.style.opacity="0";
-  document.body.appendChild(field);
-  field.select();
-  document.execCommand("copy");
-  field.remove();
-}
-return {copied:true,inviteUrl};
-      })();
-      stepResults["c4_copy_invite_code"] = customResult; vars["copyResult"] = customResult; }
-    return vars.copyResult;
-    return undefined;
-  }
-
-  async function ensureRoom(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    let roomRequest;
-    { const event = args.event; const data = pageData; const globalState = state;
-      const customResult = await (async () => {
-await new Promise(resolve=>setTimeout(resolve,300));
-const roomId=String(inputs?.roomId||"").trim();
-const inviteRoomId=String(inputs?.inviteRoomId||"").trim();
-if(/^[a-zA-Z0-9-_]{6,80}$/.test(roomId)||/^[a-zA-Z0-9-_]{6,80}$/.test(inviteRoomId))return {};
-return {roomId:crypto.randomUUID().replace(/-/g,"").slice(0,16)};
-      })();
-      stepResults["c4_generate_room"] = customResult; vars["roomRequest"] = customResult; }
-    if (vars.roomRequest.roomId) {
-      await _emitOutput("c4_room_created_output", vars.roomRequest.roomId, true);
-      await initializeGame({  });
-      return vars.roomRequest;
-    } else {
-      await initializeGame({  });
-      return vars.roomRequest;
-    }
-    return undefined;
-  }
-
-  async function initializeGame(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    let joinResult;
-    { const event = args.event; const data = pageData; const globalState = state;
-      const customResult = await (async () => {
-const roomId=String(inputs?.roomId||"").trim();
-const inviteRoomId=String(inputs?.inviteRoomId||"").trim();
-const joiningRoom=/^[a-zA-Z0-9-_]{6,80}$/.test(roomId)?roomId:"";
-const hostingRoom=/^[a-zA-Z0-9-_]{6,80}$/.test(inviteRoomId)?inviteRoomId:"";
-const requestedRoom=joiningRoom||hostingRoom;
-let api;
-for(let attempt=0;attempt<50;attempt+=1){
-  const registry=window.RudraSharedState;
-  api=registry?.current||registry;
-  if(api?.get&&api?.set&&api.status==="connected")break;
-  await new Promise(resolve=>setTimeout(resolve,100));
-}
-if(!api?.get||!api?.set||api.status!=="connected")return {inviteUrl:""};
-await new Promise(resolve=>setTimeout(resolve,250));
-const effectiveRoom=requestedRoom||String(api.roomId||"default-room");
-let inviteUrl="";
-if(hostingRoom&&!joiningRoom){
-  const invite=new URL(window.location.href);
-  invite.searchParams.set("room",hostingRoom);
-  inviteUrl=invite.toString();
-}
-const runtimeKey="__rudraConnectFourPlayers";
-const runtimePlayers=window[runtimeKey]||(window[runtimeKey]={});
-let playerId=runtimePlayers[api.roomId];
-if(!playerId){
-  playerId=crypto.randomUUID();
-  runtimePlayers[api.roomId]=playerId;
-}
-let game=api.get("game");
-const validGame=game&&Array.isArray(game.board)&&game.board.length===42&&game.playerClaimVersion===6&&game.roomCode===effectiveRoom;
-if(!validGame){
-  game={board:Array(42).fill("○"),turn:"🔴",winner:null,moves:0,revision:0,playerClaimVersion:6,players:{red:playerId,yellow:null},roomCode:effectiveRoom,status:"Waiting for Yellow player…",playersLabel:"🔴 Red joined · 🟡 Yellow open"};
-}else{
-  const players={...(game.players||{})};
-  if(!players.red)players.red=playerId;
-  else if(players.red!==playerId&&!players.yellow)players.yellow=playerId;
-  const ready=Boolean(players.red&&players.yellow);
-  game={...game,players,status:game.winner?game.status:ready?"Turn: "+(game.turn||"🔴"):"Waiting for Yellow player…",playersLabel:"🔴 Red "+(players.red?"joined":"open")+" · 🟡 Yellow "+(players.yellow?"joined":"open")};
-}
-api.set("game",game);
-return {game,inviteUrl};
-      })();
-      stepResults["c4_initialize_code"] = customResult; vars["joinResult"] = customResult; }
-    _setState("inviteUrl", vars.joinResult.inviteUrl);
-    return vars.joinResult.game;
-    return undefined;
-  }
-
   const _localActions = {
-    "playColumn": playColumn,
-    "resetGame": resetGame,
     "applyRoomToUrl": applyRoomToUrl,
     "copyInviteUrl": copyInviteUrl,
     "ensureRoom": ensureRoom,
     "initializeGame": initializeGame,
+    "playColumn": playColumn,
+    "resetGame": resetGame,
   };
   const _commandImplementations = useRef({});
   _commandImplementations.current = {
@@ -446,12 +448,12 @@ return {game,inviteUrl};
   }, [props.registerCommands, props.runtime?.registerCommands]);
 
   const _localActionArguments = {
-    "playColumn": ["column"],
-    "resetGame": [],
     "applyRoomToUrl": ["roomId", "inviteBaseUrl"],
     "copyInviteUrl": [],
     "ensureRoom": [],
     "initializeGame": [],
+    "playColumn": ["column"],
+    "resetGame": [],
   };
   const _callAction = (name, configuredArgs = {}, eventArgs = []) => {
     const localAction = _localActions[name];
@@ -495,6 +497,12 @@ return {game,inviteUrl};
   const _inputLifecycleMounted0 = useRef(false);
   useEffect(() => {
     if (!_inputLifecycleMounted0.current) { _inputLifecycleMounted0.current = true; return; }
+    const timer = setTimeout(() => { void _runLifecycle("c4_inputs_ensure_roomc4_ensure_room", "takeLatest", (signal) => ensureRoom({ signal }), 'Module input lifecycle failed:'); }, 100);
+    return () => clearTimeout(timer);
+  }, [roomId, inviteRoomId]);
+  const _inputLifecycleMounted1 = useRef(false);
+  useEffect(() => {
+    if (!_inputLifecycleMounted1.current) { _inputLifecycleMounted1.current = true; return; }
     set_inviteUrl(structuredClone(""));
     const timer = setTimeout(() => { void _runLifecycle("c4_inputs_initializec4_initialize", "takeLatest", (signal) => initializeGame({ signal }), 'Module input lifecycle failed:'); }, 100);
     return () => clearTimeout(timer);
@@ -505,101 +513,106 @@ return {game,inviteUrl};
       <RudraLayoutBox id="c4_root" className="connect-four-shell">      <RudraLayoutBox id="c4_panel" className="connect-four-panel">      <RudraCoreTypography id="c4_kicker" className="connect-four-kicker" as="p" content="RUDRA SHARED STATE · LIVE ROOM" />
       <RudraCoreTypography id="c4_title" className="connect-four-title" as="h2" content="CONNECT FOUR" />
       <RudraCoreTypography id="c4_intro" className="connect-four-intro" as="p" content="This reusable module joins the roomId supplied by its application. Share the application URL configured for that room; Red moves first." />
-      <RudraLayoutBox id="c4_room" className="connect-four-room" data-label={inputs?.roomId} role="status" aria-live="polite" />
-      <RudraLayoutBox id="c4_invite_row" className="connect-four-invite">      <RudraCoreTypography id="c4_invite_url" className="connect-four-invite-url" as="p" content={inviteUrl} />
-      <RudraLayoutBox id="c4_copy_invite_button" className="connect-four-copy" onClick={(...eventArgs) => _callAction("copyInviteUrl", {}, eventArgs)} tabIndex={0} aria-label="Copy invite URL" data-label="Copy invite" role="button" />
+      <RudraLayoutBox id="c4_room" aria-live="polite" className="connect-four-room" role="status">      <RudraCoreTypography id="c4_room_label" className="connect-four-inline-label" as="span" content={((_bindingValue) => _bindingValue === undefined ? "Room ID required" : _bindingValue)(inputs?.roomId)} />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_status_box" className="connect-four-status">      <RudraLayoutBox id="c4_status" className="connect-four-status-text" data-label={sharedState?.game?.status} />
-      <RudraLayoutBox id="c4_players" className="connect-four-players" data-label={sharedState?.game?.playersLabel} />
+      <RudraLayoutBox id="c4_invite_row" className="connect-four-invite">      <RudraCoreTypography id="c4_invite_url" className="connect-four-invite-url" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Creating invite link…" : _bindingValue)(inviteUrl)} />
+      <RudraLayoutBox id="c4_copy_invite_button" aria-label="Copy invite URL" className="connect-four-copy" role="button" onClick={(...eventArgs) => _callAction("copyInviteUrl", {}, eventArgs)} tabIndex={0}>      <RudraCoreTypography id="c4_copy_invite_label" className="connect-four-inline-label" as="span" content="Copy invite" />
 </RudraLayoutBox>
-      <RudraLayoutGrid id="c4_board" className="connect-four-board" as="div" columns={6}>      <RudraLayoutBox id="c4_cell_0" className="connect-four-cell" tabIndex={0} aria-label="Drop a disc in column 1" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 0}, eventArgs)}>      <RudraThreeSpriteAnimator id="c4_disc_0" className="connect-four-disc-anim" alt="" speed={1} paused={false} autoPlay={true} objectFit="contain" imageClassName="connect-four-disc-image" width="82%" height="82%" preload={true} animation={sharedState?.game?.board?.[0]} animations={spriteAnimations} imageRendering="auto" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_1" className="connect-four-cell" onClick={(...eventArgs) => _callAction("playColumn", {"column": 1}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 2" role="button">      <RudraThreeSpriteAnimator id="c4_disc_1" className="connect-four-disc-anim" alt="" width="82%" paused={false} autoPlay={true} animation={sharedState?.game?.board?.[1]} imageClassName="connect-four-disc-image" speed={1} height="82%" preload={true} objectFit="contain" animations={spriteAnimations} imageRendering="auto" />
+      <RudraLayoutBox id="c4_status_box" className="connect-four-status">      <RudraLayoutBox id="c4_status" className="connect-four-status-text">      <RudraCoreTypography id="c4_status_label" className="connect-four-inline-label" as="span" content={((_bindingValue) => _bindingValue === undefined ? "Waiting for second player…" : _bindingValue)(sharedState?.game?.status)} />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_2" className="connect-four-cell" tabIndex={0} aria-label="Drop a disc in column 3" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 2}, eventArgs)}>      <RudraThreeSpriteAnimator id="c4_disc_2" className="connect-four-disc-anim" width="82%" preload={true} autoPlay={true} animations={spriteAnimations} imageClassName="connect-four-disc-image" imageRendering="auto" alt="" speed={1} height="82%" paused={false} animation={sharedState?.game?.board?.[2]} objectFit="contain" />
+      <RudraLayoutBox id="c4_players" className="connect-four-players">      <RudraCoreTypography id="c4_players_label" className="connect-four-inline-label" as="span" content={((_bindingValue) => _bindingValue === undefined ? "🔴 Red open · 🟡 Yellow open" : _bindingValue)(sharedState?.game?.playersLabel)} />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_3" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 3}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 4">      <RudraThreeSpriteAnimator id="c4_disc_3" className="connect-four-disc-anim" speed={1} width="82%" height="82%" paused={false} preload={true} autoPlay={true} animation={sharedState?.game?.board?.[3]} alt="" objectFit="contain" animations={spriteAnimations} imageClassName="connect-four-disc-image" imageRendering="auto" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_4" className="connect-four-cell" tabIndex={0} aria-label="Drop a disc in column 5" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 4}, eventArgs)}>      <RudraThreeSpriteAnimator id="c4_disc_4" className="connect-four-disc-anim" autoPlay={true} animation={sharedState?.game?.board?.[4]} objectFit="contain" animations={spriteAnimations} imageRendering="auto" alt="" speed={1} width="82%" height="82%" paused={false} imageClassName="connect-four-disc-image" preload={true} />
+      <RudraLayoutGrid id="c4_board" className="connect-four-board" columns={6} as="div">      <RudraLayoutBox id="c4_cell_0" aria-label="Drop a disc in column 1" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 0}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_0" className="connect-four-disc-anim" autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[0])} imageClassName="connect-four-disc-image" speed={1} width="82%" height="82%" preload={true} objectFit="contain" animations={spriteAnimations} imageRendering="auto" alt="" paused={false} />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_5" className="connect-four-cell" onClick={(...eventArgs) => _callAction("playColumn", {"column": 5}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 6" role="button">      <RudraThreeSpriteAnimator id="c4_disc_5" className="connect-four-disc-anim" autoPlay={true} objectFit="contain" animations={spriteAnimations} imageRendering="auto" width="82%" paused={false} preload={true} animation={sharedState?.game?.board?.[5]} imageClassName="connect-four-disc-image" alt="" speed={1} height="82%" />
+      <RudraLayoutBox id="c4_cell_1" aria-label="Drop a disc in column 2" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 1}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_1" className="connect-four-disc-anim" speed={1} width="82%" autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[1])} objectFit="contain" imageClassName="connect-four-disc-image" alt="" height="82%" paused={false} preload={true} animations={spriteAnimations} imageRendering="auto" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_6" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 6}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 7">      <RudraThreeSpriteAnimator id="c4_disc_6" className="connect-four-disc-anim" speed={1} width="82%" height="82%" preload={true} animations={spriteAnimations} imageClassName="connect-four-disc-image" imageRendering="auto" alt="" paused={false} autoPlay={true} animation={sharedState?.game?.board?.[6]} objectFit="contain" />
+      <RudraLayoutBox id="c4_cell_2" aria-label="Drop a disc in column 3" className="connect-four-cell" tabIndex={0} role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 2}, eventArgs)}>      <RudraThreeSpriteAnimator id="c4_disc_2" className="connect-four-disc-anim" alt="" width="82%" paused={false} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[2])} objectFit="contain" imageRendering="auto" speed={1} height="82%" preload={true} autoPlay={true} animations={spriteAnimations} imageClassName="connect-four-disc-image" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_7" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 0}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 1">      <RudraThreeSpriteAnimator id="c4_disc_7" className="connect-four-disc-anim" autoPlay={true} imageClassName="connect-four-disc-image" imageRendering="auto" speed={1} width="82%" animation={sharedState?.game?.board?.[7]} objectFit="contain" animations={spriteAnimations} alt="" height="82%" paused={false} preload={true} />
+      <RudraLayoutBox id="c4_cell_3" aria-label="Drop a disc in column 4" className="connect-four-cell" tabIndex={0} role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 3}, eventArgs)}>      <RudraThreeSpriteAnimator id="c4_disc_3" className="connect-four-disc-anim" preload={true} autoPlay={true} imageClassName="connect-four-disc-image" imageRendering="auto" speed={1} width="82%" height="82%" paused={false} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[3])} objectFit="contain" animations={spriteAnimations} alt="" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_8" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 1}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 2">      <RudraThreeSpriteAnimator id="c4_disc_8" className="connect-four-disc-anim" width="82%" preload={true} autoPlay={true} animations={spriteAnimations} imageClassName="connect-four-disc-image" height="82%" paused={false} animation={sharedState?.game?.board?.[8]} objectFit="contain" imageRendering="auto" alt="" speed={1} />
+      <RudraLayoutBox id="c4_cell_4" aria-label="Drop a disc in column 5" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 4}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_4" className="connect-four-disc-anim" objectFit="contain" animations={spriteAnimations} width="82%" paused={false} preload={true} imageClassName="connect-four-disc-image" imageRendering="auto" alt="" speed={1} height="82%" autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[4])} />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_9" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 2}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 3">      <RudraThreeSpriteAnimator id="c4_disc_9" className="connect-four-disc-anim" alt="" height="82%" paused={false} animation={sharedState?.game?.board?.[9]} objectFit="contain" animations={spriteAnimations} imageRendering="auto" speed={1} width="82%" preload={true} autoPlay={true} imageClassName="connect-four-disc-image" />
+      <RudraLayoutBox id="c4_cell_5" aria-label="Drop a disc in column 6" className="connect-four-cell" tabIndex={0} role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 5}, eventArgs)}>      <RudraThreeSpriteAnimator id="c4_disc_5" className="connect-four-disc-anim" width="82%" height="82%" animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[5])} objectFit="contain" alt="" paused={false} preload={true} autoPlay={true} animations={spriteAnimations} imageClassName="connect-four-disc-image" imageRendering="auto" speed={1} />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_10" className="connect-four-cell" aria-label="Drop a disc in column 4" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 3}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_10" className="connect-four-disc-anim" width="82%" paused={false} animation={sharedState?.game?.board?.[10]} alt="" height="82%" preload={true} autoPlay={true} objectFit="contain" animations={spriteAnimations} imageClassName="connect-four-disc-image" imageRendering="auto" speed={1} />
+      <RudraLayoutBox id="c4_cell_6" aria-label="Drop a disc in column 7" className="connect-four-cell" onClick={(...eventArgs) => _callAction("playColumn", {"column": 6}, eventArgs)} tabIndex={0} role="button">      <RudraThreeSpriteAnimator id="c4_disc_6" className="connect-four-disc-anim" paused={false} preload={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[6])} objectFit="contain" animations={spriteAnimations} alt="" speed={1} width="82%" height="82%" autoPlay={true} imageClassName="connect-four-disc-image" imageRendering="auto" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_11" className="connect-four-cell" aria-label="Drop a disc in column 5" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 4}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_11" className="connect-four-disc-anim" preload={true} animation={sharedState?.game?.board?.[11]} objectFit="contain" animations={spriteAnimations} width="82%" autoPlay={true} imageClassName="connect-four-disc-image" imageRendering="auto" alt="" speed={1} height="82%" paused={false} />
+      <RudraLayoutBox id="c4_cell_7" aria-label="Drop a disc in column 1" className="connect-four-cell" tabIndex={0} role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 0}, eventArgs)}>      <RudraThreeSpriteAnimator id="c4_disc_7" className="connect-four-disc-anim" preload={true} objectFit="contain" animations={spriteAnimations} imageRendering="auto" speed={1} height="82%" autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[7])} imageClassName="connect-four-disc-image" alt="" width="82%" paused={false} />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_12" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 5}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 6">      <RudraThreeSpriteAnimator id="c4_disc_12" className="connect-four-disc-anim" autoPlay={true} objectFit="contain" animations={spriteAnimations} imageRendering="auto" alt="" speed={1} width="82%" height="82%" preload={true} animation={sharedState?.game?.board?.[12]} imageClassName="connect-four-disc-image" paused={false} />
+      <RudraLayoutBox id="c4_cell_8" aria-label="Drop a disc in column 2" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 1}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_8" className="connect-four-disc-anim" animations={spriteAnimations} imageRendering="auto" height="82%" autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[8])} objectFit="contain" imageClassName="connect-four-disc-image" alt="" speed={1} width="82%" paused={false} preload={true} />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_13" className="connect-four-cell" aria-label="Drop a disc in column 7" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 6}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_13" className="connect-four-disc-anim" objectFit="contain" imageRendering="auto" speed={1} width="82%" height="82%" paused={false} preload={true} animations={spriteAnimations} imageClassName="connect-four-disc-image" alt="" autoPlay={true} animation={sharedState?.game?.board?.[13]} />
+      <RudraLayoutBox id="c4_cell_9" aria-label="Drop a disc in column 3" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 2}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_9" className="connect-four-disc-anim" paused={false} preload={true} imageClassName="connect-four-disc-image" imageRendering="auto" speed={1} autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[9])} objectFit="contain" animations={spriteAnimations} alt="" width="82%" height="82%" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_14" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 0}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 1">      <RudraThreeSpriteAnimator id="c4_disc_14" className="connect-four-disc-anim" animation={sharedState?.game?.board?.[14]} objectFit="contain" imageClassName="connect-four-disc-image" imageRendering="auto" width="82%" height="82%" paused={false} autoPlay={true} animations={spriteAnimations} alt="" speed={1} preload={true} />
+      <RudraLayoutBox id="c4_cell_10" aria-label="Drop a disc in column 4" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 3}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_10" className="connect-four-disc-anim" objectFit="contain" animations={spriteAnimations} imageRendering="auto" alt="" width="82%" paused={false} autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[10])} imageClassName="connect-four-disc-image" speed={1} height="82%" preload={true} />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_15" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 1}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 2">      <RudraThreeSpriteAnimator id="c4_disc_15" className="connect-four-disc-anim" alt="" speed={1} width="82%" height="82%" preload={true} autoPlay={true} animations={spriteAnimations} paused={false} animation={sharedState?.game?.board?.[15]} objectFit="contain" imageClassName="connect-four-disc-image" imageRendering="auto" />
+      <RudraLayoutBox id="c4_cell_11" aria-label="Drop a disc in column 5" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 4}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_11" className="connect-four-disc-anim" animations={spriteAnimations} imageClassName="connect-four-disc-image" speed={1} preload={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[11])} objectFit="contain" imageRendering="auto" alt="" width="82%" height="82%" paused={false} autoPlay={true} />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_16" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 2}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 3">      <RudraThreeSpriteAnimator id="c4_disc_16" className="connect-four-disc-anim" width="82%" height="82%" paused={false} autoPlay={true} animations={spriteAnimations} imageClassName="connect-four-disc-image" alt="" speed={1} preload={true} animation={sharedState?.game?.board?.[16]} objectFit="contain" imageRendering="auto" />
+      <RudraLayoutBox id="c4_cell_12" aria-label="Drop a disc in column 6" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 5}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_12" className="connect-four-disc-anim" alt="" speed={1} width="82%" imageRendering="auto" height="82%" paused={false} preload={true} autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[12])} objectFit="contain" animations={spriteAnimations} imageClassName="connect-four-disc-image" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_17" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 3}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 4">      <RudraThreeSpriteAnimator id="c4_disc_17" className="connect-four-disc-anim" alt="" speed={1} width="82%" paused={false} autoPlay={true} objectFit="contain" imageRendering="auto" height="82%" preload={true} animation={sharedState?.game?.board?.[17]} animations={spriteAnimations} imageClassName="connect-four-disc-image" />
+      <RudraLayoutBox id="c4_cell_13" aria-label="Drop a disc in column 7" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 6}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_13" className="connect-four-disc-anim" preload={true} autoPlay={true} animations={spriteAnimations} imageClassName="connect-four-disc-image" imageRendering="auto" width="82%" height="82%" paused={false} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[13])} objectFit="contain" alt="" speed={1} />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_18" className="connect-four-cell" aria-label="Drop a disc in column 5" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 4}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_18" className="connect-four-disc-anim" height="82%" paused={false} imageClassName="connect-four-disc-image" alt="" speed={1} preload={true} autoPlay={true} animation={sharedState?.game?.board?.[18]} objectFit="contain" animations={spriteAnimations} imageRendering="auto" width="82%" />
+      <RudraLayoutBox id="c4_cell_14" aria-label="Drop a disc in column 1" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 0}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_14" className="connect-four-disc-anim" animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[14])} imageClassName="connect-four-disc-image" alt="" paused={false} preload={true} objectFit="contain" animations={spriteAnimations} imageRendering="auto" speed={1} width="82%" height="82%" autoPlay={true} />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_19" className="connect-four-cell" onClick={(...eventArgs) => _callAction("playColumn", {"column": 5}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 6" role="button">      <RudraThreeSpriteAnimator id="c4_disc_19" className="connect-four-disc-anim" alt="" speed={1} height="82%" autoPlay={true} animation={sharedState?.game?.board?.[19]} objectFit="contain" imageClassName="connect-four-disc-image" width="82%" paused={false} preload={true} animations={spriteAnimations} imageRendering="auto" />
+      <RudraLayoutBox id="c4_cell_15" aria-label="Drop a disc in column 2" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 1}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_15" className="connect-four-disc-anim" height="82%" animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[15])} imageClassName="connect-four-disc-image" imageRendering="auto" alt="" width="82%" paused={false} preload={true} autoPlay={true} objectFit="contain" animations={spriteAnimations} speed={1} />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_20" className="connect-four-cell" tabIndex={0} aria-label="Drop a disc in column 7" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 6}, eventArgs)}>      <RudraThreeSpriteAnimator id="c4_disc_20" className="connect-four-disc-anim" speed={1} width="82%" preload={true} imageClassName="connect-four-disc-image" imageRendering="auto" alt="" height="82%" paused={false} autoPlay={true} animation={sharedState?.game?.board?.[20]} objectFit="contain" animations={spriteAnimations} />
+      <RudraLayoutBox id="c4_cell_16" aria-label="Drop a disc in column 3" className="connect-four-cell" tabIndex={0} role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 2}, eventArgs)}>      <RudraThreeSpriteAnimator id="c4_disc_16" className="connect-four-disc-anim" width="82%" paused={false} autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[16])} objectFit="contain" height="82%" preload={true} animations={spriteAnimations} imageClassName="connect-four-disc-image" imageRendering="auto" alt="" speed={1} />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_21" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 0}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 1">      <RudraThreeSpriteAnimator id="c4_disc_21" className="connect-four-disc-anim" alt="" width="82%" height="82%" preload={true} objectFit="contain" animations={spriteAnimations} imageRendering="auto" speed={1} paused={false} autoPlay={true} animation={sharedState?.game?.board?.[21]} imageClassName="connect-four-disc-image" />
+      <RudraLayoutBox id="c4_cell_17" aria-label="Drop a disc in column 4" className="connect-four-cell" tabIndex={0} role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 3}, eventArgs)}>      <RudraThreeSpriteAnimator id="c4_disc_17" className="connect-four-disc-anim" alt="" speed={1} width="82%" height="82%" paused={false} autoPlay={true} animations={spriteAnimations} preload={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[17])} objectFit="contain" imageClassName="connect-four-disc-image" imageRendering="auto" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_22" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 1}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 2">      <RudraThreeSpriteAnimator id="c4_disc_22" className="connect-four-disc-anim" imageRendering="auto" alt="" width="82%" height="82%" paused={false} preload={true} autoPlay={true} animation={sharedState?.game?.board?.[22]} objectFit="contain" speed={1} animations={spriteAnimations} imageClassName="connect-four-disc-image" />
+      <RudraLayoutBox id="c4_cell_18" aria-label="Drop a disc in column 5" className="connect-four-cell" onClick={(...eventArgs) => _callAction("playColumn", {"column": 4}, eventArgs)} tabIndex={0} role="button">      <RudraThreeSpriteAnimator id="c4_disc_18" className="connect-four-disc-anim" height="82%" paused={false} preload={true} autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[18])} objectFit="contain" animations={spriteAnimations} imageClassName="connect-four-disc-image" imageRendering="auto" alt="" speed={1} width="82%" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_23" className="connect-four-cell" onClick={(...eventArgs) => _callAction("playColumn", {"column": 2}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 3" role="button">      <RudraThreeSpriteAnimator id="c4_disc_23" className="connect-four-disc-anim" alt="" speed={1} preload={true} animations={spriteAnimations} imageRendering="auto" width="82%" height="82%" paused={false} autoPlay={true} animation={sharedState?.game?.board?.[23]} objectFit="contain" imageClassName="connect-four-disc-image" />
+      <RudraLayoutBox id="c4_cell_19" aria-label="Drop a disc in column 6" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 5}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_19" className="connect-four-disc-anim" imageRendering="auto" height="82%" paused={false} preload={true} animations={spriteAnimations} alt="" speed={1} width="82%" autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[19])} objectFit="contain" imageClassName="connect-four-disc-image" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_24" className="connect-four-cell" tabIndex={0} aria-label="Drop a disc in column 4" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 3}, eventArgs)}>      <RudraThreeSpriteAnimator id="c4_disc_24" className="connect-four-disc-anim" preload={true} autoPlay={true} animation={sharedState?.game?.board?.[24]} imageClassName="connect-four-disc-image" speed={1} width="82%" objectFit="contain" animations={spriteAnimations} imageRendering="auto" alt="" height="82%" paused={false} />
+      <RudraLayoutBox id="c4_cell_20" aria-label="Drop a disc in column 7" className="connect-four-cell" onClick={(...eventArgs) => _callAction("playColumn", {"column": 6}, eventArgs)} tabIndex={0} role="button">      <RudraThreeSpriteAnimator id="c4_disc_20" className="connect-four-disc-anim" alt="" height="82%" preload={true} objectFit="contain" animations={spriteAnimations} imageClassName="connect-four-disc-image" speed={1} width="82%" paused={false} autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[20])} imageRendering="auto" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_25" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 4}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 5">      <RudraThreeSpriteAnimator id="c4_disc_25" className="connect-four-disc-anim" speed={1} width="82%" height="82%" paused={false} preload={true} objectFit="contain" animations={spriteAnimations} autoPlay={true} animation={sharedState?.game?.board?.[25]} imageClassName="connect-four-disc-image" imageRendering="auto" alt="" />
+      <RudraLayoutBox id="c4_cell_21" aria-label="Drop a disc in column 1" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 0}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_21" className="connect-four-disc-anim" height="82%" animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[21])} imageRendering="auto" alt="" paused={false} preload={true} autoPlay={true} objectFit="contain" animations={spriteAnimations} imageClassName="connect-four-disc-image" speed={1} width="82%" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_26" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 5}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 6">      <RudraThreeSpriteAnimator id="c4_disc_26" className="connect-four-disc-anim" imageClassName="connect-four-disc-image" imageRendering="auto" alt="" height="82%" preload={true} objectFit="contain" animations={spriteAnimations} speed={1} width="82%" paused={false} autoPlay={true} animation={sharedState?.game?.board?.[26]} />
+      <RudraLayoutBox id="c4_cell_22" aria-label="Drop a disc in column 2" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 1}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_22" className="connect-four-disc-anim" speed={1} width="82%" height="82%" paused={false} preload={true} objectFit="contain" autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[22])} animations={spriteAnimations} imageClassName="connect-four-disc-image" imageRendering="auto" alt="" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_27" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 6}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 7">      <RudraThreeSpriteAnimator id="c4_disc_27" className="connect-four-disc-anim" alt="" speed={1} paused={false} preload={true} autoPlay={true} animation={sharedState?.game?.board?.[27]} objectFit="contain" animations={spriteAnimations} width="82%" height="82%" imageClassName="connect-four-disc-image" imageRendering="auto" />
+      <RudraLayoutBox id="c4_cell_23" aria-label="Drop a disc in column 3" className="connect-four-cell" tabIndex={0} role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 2}, eventArgs)}>      <RudraThreeSpriteAnimator id="c4_disc_23" className="connect-four-disc-anim" objectFit="contain" animations={spriteAnimations} imageRendering="auto" speed={1} width="82%" paused={false} autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[23])} imageClassName="connect-four-disc-image" alt="" height="82%" preload={true} />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_28" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 0}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 1">      <RudraThreeSpriteAnimator id="c4_disc_28" className="connect-four-disc-anim" speed={1} height="82%" paused={false} preload={true} animation={sharedState?.game?.board?.[28]} animations={spriteAnimations} alt="" width="82%" autoPlay={true} objectFit="contain" imageClassName="connect-four-disc-image" imageRendering="auto" />
+      <RudraLayoutBox id="c4_cell_24" aria-label="Drop a disc in column 4" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 3}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_24" className="connect-four-disc-anim" height="82%" paused={false} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[24])} objectFit="contain" animations={spriteAnimations} imageClassName="connect-four-disc-image" alt="" width="82%" preload={true} autoPlay={true} imageRendering="auto" speed={1} />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_29" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 1}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 2">      <RudraThreeSpriteAnimator id="c4_disc_29" className="connect-four-disc-anim" speed={1} paused={false} preload={true} autoPlay={true} animation={sharedState?.game?.board?.[29]} objectFit="contain" animations={spriteAnimations} imageClassName="connect-four-disc-image" alt="" width="82%" height="82%" imageRendering="auto" />
+      <RudraLayoutBox id="c4_cell_25" aria-label="Drop a disc in column 5" className="connect-four-cell" onClick={(...eventArgs) => _callAction("playColumn", {"column": 4}, eventArgs)} tabIndex={0} role="button">      <RudraThreeSpriteAnimator id="c4_disc_25" className="connect-four-disc-anim" width="82%" height="82%" paused={false} preload={true} imageClassName="connect-four-disc-image" imageRendering="auto" alt="" speed={1} autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[25])} objectFit="contain" animations={spriteAnimations} />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_30" className="connect-four-cell" tabIndex={0} aria-label="Drop a disc in column 3" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 2}, eventArgs)}>      <RudraThreeSpriteAnimator id="c4_disc_30" className="connect-four-disc-anim" alt="" speed={1} animations={spriteAnimations} imageClassName="connect-four-disc-image" imageRendering="auto" width="82%" height="82%" paused={false} preload={true} autoPlay={true} animation={sharedState?.game?.board?.[30]} objectFit="contain" />
+      <RudraLayoutBox id="c4_cell_26" aria-label="Drop a disc in column 6" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 5}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_26" className="connect-four-disc-anim" speed={1} height="82%" paused={false} preload={true} autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[26])} animations={spriteAnimations} alt="" width="82%" objectFit="contain" imageClassName="connect-four-disc-image" imageRendering="auto" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_31" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 3}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 4">      <RudraThreeSpriteAnimator id="c4_disc_31" className="connect-four-disc-anim" objectFit="contain" animations={spriteAnimations} imageRendering="auto" speed={1} height="82%" paused={false} preload={true} autoPlay={true} imageClassName="connect-four-disc-image" alt="" width="82%" animation={sharedState?.game?.board?.[31]} />
+      <RudraLayoutBox id="c4_cell_27" aria-label="Drop a disc in column 7" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 6}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_27" className="connect-four-disc-anim" alt="" width="82%" height="82%" preload={true} autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[27])} animations={spriteAnimations} speed={1} paused={false} objectFit="contain" imageClassName="connect-four-disc-image" imageRendering="auto" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_32" className="connect-four-cell" onClick={(...eventArgs) => _callAction("playColumn", {"column": 4}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 5" role="button">      <RudraThreeSpriteAnimator id="c4_disc_32" className="connect-four-disc-anim" objectFit="contain" animations={spriteAnimations} speed={1} preload={true} imageClassName="connect-four-disc-image" imageRendering="auto" alt="" width="82%" height="82%" paused={false} autoPlay={true} animation={sharedState?.game?.board?.[32]} />
+      <RudraLayoutBox id="c4_cell_28" aria-label="Drop a disc in column 1" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 0}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_28" className="connect-four-disc-anim" speed={1} width="82%" height="82%" animations={spriteAnimations} imageRendering="auto" alt="" paused={false} preload={true} autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[28])} objectFit="contain" imageClassName="connect-four-disc-image" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_33" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 5}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 6">      <RudraThreeSpriteAnimator id="c4_disc_33" className="connect-four-disc-anim" paused={false} preload={true} autoPlay={true} animation={sharedState?.game?.board?.[33]} animations={spriteAnimations} height="82%" objectFit="contain" imageClassName="connect-four-disc-image" imageRendering="auto" alt="" speed={1} width="82%" />
+      <RudraLayoutBox id="c4_cell_29" aria-label="Drop a disc in column 2" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 1}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_29" className="connect-four-disc-anim" alt="" speed={1} height="82%" paused={false} preload={true} autoPlay={true} objectFit="contain" width="82%" animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[29])} animations={spriteAnimations} imageClassName="connect-four-disc-image" imageRendering="auto" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_34" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 6}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 7">      <RudraThreeSpriteAnimator id="c4_disc_34" className="connect-four-disc-anim" speed={1} width="82%" height="82%" paused={false} autoPlay={true} animation={sharedState?.game?.board?.[34]} objectFit="contain" preload={true} animations={spriteAnimations} imageClassName="connect-four-disc-image" imageRendering="auto" alt="" />
+      <RudraLayoutBox id="c4_cell_30" aria-label="Drop a disc in column 3" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 2}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_30" className="connect-four-disc-anim" autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[30])} objectFit="contain" animations={spriteAnimations} alt="" height="82%" paused={false} imageClassName="connect-four-disc-image" imageRendering="auto" speed={1} width="82%" preload={true} />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_35" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 0}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 1">      <RudraThreeSpriteAnimator id="c4_disc_35" className="connect-four-disc-anim" animation={sharedState?.game?.board?.[35]} animations={spriteAnimations} imageRendering="auto" speed={1} height="82%" paused={false} preload={true} autoPlay={true} objectFit="contain" imageClassName="connect-four-disc-image" alt="" width="82%" />
+      <RudraLayoutBox id="c4_cell_31" aria-label="Drop a disc in column 4" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 3}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_31" className="connect-four-disc-anim" alt="" width="82%" preload={true} autoPlay={true} objectFit="contain" speed={1} height="82%" paused={false} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[31])} animations={spriteAnimations} imageClassName="connect-four-disc-image" imageRendering="auto" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_36" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 1}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 2">      <RudraThreeSpriteAnimator id="c4_disc_36" className="connect-four-disc-anim" width="82%" paused={false} preload={true} animation={sharedState?.game?.board?.[36]} animations={spriteAnimations} imageRendering="auto" speed={1} height="82%" autoPlay={true} objectFit="contain" imageClassName="connect-four-disc-image" alt="" />
+      <RudraLayoutBox id="c4_cell_32" aria-label="Drop a disc in column 5" className="connect-four-cell" tabIndex={0} role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 4}, eventArgs)}>      <RudraThreeSpriteAnimator id="c4_disc_32" className="connect-four-disc-anim" animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[32])} objectFit="contain" animations={spriteAnimations} height="82%" preload={true} imageClassName="connect-four-disc-image" imageRendering="auto" alt="" speed={1} width="82%" paused={false} autoPlay={true} />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_37" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 2}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 3">      <RudraThreeSpriteAnimator id="c4_disc_37" className="connect-four-disc-anim" autoPlay={true} imageClassName="connect-four-disc-image" imageRendering="auto" alt="" paused={false} preload={true} animation={sharedState?.game?.board?.[37]} objectFit="contain" animations={spriteAnimations} speed={1} width="82%" height="82%" />
+      <RudraLayoutBox id="c4_cell_33" aria-label="Drop a disc in column 6" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 5}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_33" className="connect-four-disc-anim" paused={false} preload={true} autoPlay={true} animations={spriteAnimations} speed={1} width="82%" animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[33])} objectFit="contain" imageClassName="connect-four-disc-image" imageRendering="auto" alt="" height="82%" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_38" className="connect-four-cell" tabIndex={0} aria-label="Drop a disc in column 4" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 3}, eventArgs)}>      <RudraThreeSpriteAnimator id="c4_disc_38" className="connect-four-disc-anim" objectFit="contain" animations={spriteAnimations} imageRendering="auto" speed={1} width="82%" height="82%" paused={false} preload={true} autoPlay={true} imageClassName="connect-four-disc-image" alt="" animation={sharedState?.game?.board?.[38]} />
+      <RudraLayoutBox id="c4_cell_34" aria-label="Drop a disc in column 7" className="connect-four-cell" tabIndex={0} role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 6}, eventArgs)}>      <RudraThreeSpriteAnimator id="c4_disc_34" className="connect-four-disc-anim" animations={spriteAnimations} imageClassName="connect-four-disc-image" imageRendering="auto" speed={1} paused={false} preload={true} autoPlay={true} alt="" width="82%" height="82%" animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[34])} objectFit="contain" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_39" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 4}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 5">      <RudraThreeSpriteAnimator id="c4_disc_39" className="connect-four-disc-anim" objectFit="contain" imageClassName="connect-four-disc-image" height="82%" paused={false} animation={sharedState?.game?.board?.[39]} animations={spriteAnimations} imageRendering="auto" alt="" speed={1} width="82%" preload={true} autoPlay={true} />
+      <RudraLayoutBox id="c4_cell_35" aria-label="Drop a disc in column 1" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 0}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_35" className="connect-four-disc-anim" imageClassName="connect-four-disc-image" alt="" height="82%" preload={true} animations={spriteAnimations} imageRendering="auto" speed={1} width="82%" paused={false} autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[35])} objectFit="contain" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_40" className="connect-four-cell" aria-label="Drop a disc in column 6" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 5}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_40" className="connect-four-disc-anim" preload={true} animation={sharedState?.game?.board?.[40]} objectFit="contain" imageRendering="auto" alt="" speed={1} width="82%" height="82%" paused={false} autoPlay={true} animations={spriteAnimations} imageClassName="connect-four-disc-image" />
+      <RudraLayoutBox id="c4_cell_36" aria-label="Drop a disc in column 2" className="connect-four-cell" onClick={(...eventArgs) => _callAction("playColumn", {"column": 1}, eventArgs)} tabIndex={0} role="button">      <RudraThreeSpriteAnimator id="c4_disc_36" className="connect-four-disc-anim" preload={true} autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[36])} imageClassName="connect-four-disc-image" speed={1} paused={false} objectFit="contain" animations={spriteAnimations} imageRendering="auto" alt="" width="82%" height="82%" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_cell_41" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 6}, eventArgs)} tabIndex={0} aria-label="Drop a disc in column 7">      <RudraThreeSpriteAnimator id="c4_disc_41" className="connect-four-disc-anim" autoPlay={true} animation={sharedState?.game?.board?.[41]} objectFit="contain" animations={spriteAnimations} height="82%" preload={true} imageClassName="connect-four-disc-image" imageRendering="auto" alt="" speed={1} width="82%" paused={false} />
+      <RudraLayoutBox id="c4_cell_37" aria-label="Drop a disc in column 3" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 2}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_37" className="connect-four-disc-anim" speed={1} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[37])} objectFit="contain" animations={spriteAnimations} imageClassName="connect-four-disc-image" width="82%" height="82%" paused={false} preload={true} autoPlay={true} imageRendering="auto" alt="" />
+</RudraLayoutBox>
+      <RudraLayoutBox id="c4_cell_38" aria-label="Drop a disc in column 4" className="connect-four-cell" onClick={(...eventArgs) => _callAction("playColumn", {"column": 3}, eventArgs)} tabIndex={0} role="button">      <RudraThreeSpriteAnimator id="c4_disc_38" className="connect-four-disc-anim" preload={true} autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[38])} animations={spriteAnimations} imageClassName="connect-four-disc-image" alt="" width="82%" paused={false} objectFit="contain" imageRendering="auto" speed={1} height="82%" />
+</RudraLayoutBox>
+      <RudraLayoutBox id="c4_cell_39" aria-label="Drop a disc in column 5" className="connect-four-cell" onClick={(...eventArgs) => _callAction("playColumn", {"column": 4}, eventArgs)} tabIndex={0} role="button">      <RudraThreeSpriteAnimator id="c4_disc_39" className="connect-four-disc-anim" animations={spriteAnimations} imageRendering="auto" speed={1} width="82%" height="82%" paused={false} preload={true} objectFit="contain" imageClassName="connect-four-disc-image" alt="" autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[39])} />
+</RudraLayoutBox>
+      <RudraLayoutBox id="c4_cell_40" aria-label="Drop a disc in column 6" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 5}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_40" className="connect-four-disc-anim" animations={spriteAnimations} imageRendering="auto" alt="" speed={1} paused={false} preload={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[40])} imageClassName="connect-four-disc-image" width="82%" height="82%" autoPlay={true} objectFit="contain" />
+</RudraLayoutBox>
+      <RudraLayoutBox id="c4_cell_41" aria-label="Drop a disc in column 7" className="connect-four-cell" role="button" onClick={(...eventArgs) => _callAction("playColumn", {"column": 6}, eventArgs)} tabIndex={0}>      <RudraThreeSpriteAnimator id="c4_disc_41" className="connect-four-disc-anim" objectFit="contain" alt="" width="82%" autoPlay={true} animation={((_bindingValue) => _bindingValue === undefined ? "○" : _bindingValue)(sharedState?.game?.board?.[41])} animations={spriteAnimations} imageClassName="connect-four-disc-image" imageRendering="auto" speed={1} height="82%" paused={false} preload={true} />
 </RudraLayoutBox>
 </RudraLayoutGrid>
-      <RudraLayoutBox id="c4_footer" className="connect-four-footer">      <RudraLayoutBox id="c4_reset" className="connect-four-reset" role="button" onClick={(...eventArgs) => _callAction("resetGame", {}, eventArgs)} tabIndex={0} data-label="Reset shared game">      <RudraCoreTypography id="c4_reset_label" className="connect-four-reset-label" as="span" content="Reset shared game" />
+      <RudraLayoutBox id="c4_footer" className="connect-four-footer">      <RudraLayoutBox id="c4_reset" className="connect-four-reset" role="button" onClick={(...eventArgs) => _callAction("resetGame", {}, eventArgs)} tabIndex={0}>      <RudraCoreTypography id="c4_reset_label" className="connect-four-reset-label" as="span" content="Reset shared game" />
 </RudraLayoutBox>
-      <RudraLayoutBox id="c4_connection" className="connect-four-connection" data-label={sharedState?.status} />
+      <RudraLayoutBox id="c4_connection" className="connect-four-connection">      <RudraCoreTypography id="c4_connection_label" className="connect-four-inline-label" content={((_bindingValue) => _bindingValue === undefined ? "connecting" : _bindingValue)(sharedState?.status)} as="span" />
+</RudraLayoutBox>
 </RudraLayoutBox>
 </RudraLayoutBox>
 </RudraLayoutBox>
