@@ -1,7 +1,7 @@
 import { jsxs as o, jsx as l } from "react/jsx-runtime";
 import { useState as N, useEffect as y, useRef as S, useCallback as f } from "react";
-import { Link as h, Typography as d } from "@rudra-studio/rudra-core";
-import { Box as w } from "@rudra-studio/rudra-layout";
+import { Box as h } from "@rudra-studio/rudra-layout";
+import { Link as w, Typography as d } from "@rudra-studio/rudra-core";
 function z(i) {
   const g = i.serverData || i.serverState || {};
   i.sharedState, i.applicationState || g.applicationState, i.pageState || g.pageState, i.pageData || g.pageData, {
@@ -74,41 +74,41 @@ function z(i) {
     const c = s(e, r, { moduleId: i.moduleId, awaitHandlers: a });
     return a ? await c : r;
   }, [i.onOutput, i.onModuleOutput, i.runtime?.onOutput, i.moduleId]), /* @__PURE__ */ o("div", { ref: b, className: "rudra-module-wrapper", children: [
-    /* @__PURE__ */ o(h, { id: "watermark_glass", "aria-label": "Built with Rudra — visit the Rudra home page", className: `${t({ sm: "rudra-watermark inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/75 px-3 py-2 shadow-lg shadow-slate-900/10 backdrop-blur-xl transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 dark:border-slate-700/60 dark:bg-slate-950/75" }) || ""}`, rel: t({ sm: "noopener noreferrer" }), href: t({ sm: "https://www.rudraapp.in/" }), target: t({ sm: "_blank" }), children: [
+    /* @__PURE__ */ o(w, { id: "watermark_glass", "aria-label": "Built with Rudra — visit the Rudra home page", className: `${t({ sm: "rudra-watermark inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/75 px-3 py-2 shadow-lg shadow-slate-900/10 backdrop-blur-xl transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 dark:border-slate-700/60 dark:bg-slate-950/75" }) || ""}`, rel: t({ sm: "noopener noreferrer" }), href: t({ sm: "https://www.rudraapp.in/" }), target: t({ sm: "_blank" }), children: [
       "      ",
-      /* @__PURE__ */ o(w, { id: "watermark_glass_mark", className: `flex ${t({ sm: "grid size-5 shrink-0 place-items-center rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 shadow-sm" }) || ""}`, children: [
+      /* @__PURE__ */ o(h, { id: "watermark_glass_mark", className: `flex ${t({ sm: "grid size-5 shrink-0 place-items-center rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 shadow-sm" }) || ""}`, children: [
         "      ",
         /* @__PURE__ */ l(d, { id: "watermark_glass_letter", className: `${t({ sm: "text-[10px] font-black leading-none text-white" }) || ""}`, as: "span", content: t({ sm: "R" }) })
       ] }),
-      /* @__PURE__ */ l(d, { id: "watermark_glass_label", className: `${t({ sm: "text-xs font-semibold tracking-tight text-slate-700 dark:text-slate-100" }) || ""}`, content: t({ sm: "Built with Rudra" }), as: "span" })
+      /* @__PURE__ */ l(d, { id: "watermark_glass_label", className: `${t({ sm: "text-xs font-semibold tracking-tight text-slate-700 dark:text-slate-100" }) || ""}`, as: "span", content: t({ sm: "Built with Rudra" }) })
     ] }),
-    /* @__PURE__ */ o(h, { id: "watermark_root", "aria-label": "Built with Rudra — visit the Rudra home page", rel: t({ sm: "noopener noreferrer" }), href: t({ sm: "https://www.rudraapp.in/" }), target: t({ sm: "_blank" }), children: [
+    /* @__PURE__ */ o(w, { id: "watermark_root", "aria-label": "Built with Rudra — visit the Rudra home page", rel: t({ sm: "noopener noreferrer" }), href: t({ sm: "https://www.rudraapp.in/" }), target: t({ sm: "_blank" }), children: [
       "      ",
-      /* @__PURE__ */ o(w, { id: "watermark_mark", className: `${t({ sm: "rudra-watermark-mark" }) || ""}`, children: [
+      /* @__PURE__ */ o(h, { id: "watermark_mark", className: `${t({ sm: "rudra-watermark-mark" }) || ""}`, children: [
         "      ",
         /* @__PURE__ */ l(d, { id: "watermark_letter", className: `${t({ sm: "rudra-watermark-letter" }) || ""}`, as: "span", content: t({ sm: "R" }) })
       ] }),
       /* @__PURE__ */ l(d, { id: "watermark_label", className: `${t({ sm: "rudra-watermark-label" }) || ""}`, as: "span", content: t({ sm: "Built with Rudra" }) })
     ] }),
-    /* @__PURE__ */ o(h, { id: "watermark_light", "aria-label": "Built with Rudra — visit the Rudra home page", className: `${t({ sm: "rudra-watermark inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 shadow-md transition hover:-translate-y-0.5 hover:border-violet-300 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2" }) || ""}`, rel: t({ sm: "noopener noreferrer" }), href: t({ sm: "https://www.rudraapp.in/" }), target: t({ sm: "_blank" }), children: [
+    /* @__PURE__ */ o(w, { id: "watermark_light", "aria-label": "Built with Rudra — visit the Rudra home page", className: `${t({ sm: "rudra-watermark inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 shadow-md transition hover:-translate-y-0.5 hover:border-violet-300 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2" }) || ""}`, rel: t({ sm: "noopener noreferrer" }), href: t({ sm: "https://www.rudraapp.in/" }), target: t({ sm: "_blank" }), children: [
       "      ",
-      /* @__PURE__ */ o(w, { id: "watermark_light_mark", className: `flex ${t({ sm: "grid size-5 shrink-0 place-items-center rounded-full bg-violet-600 shadow-sm" }) || ""}`, children: [
+      /* @__PURE__ */ o(h, { id: "watermark_light_mark", className: `flex ${t({ sm: "grid size-5 shrink-0 place-items-center rounded-full bg-violet-600 shadow-sm" }) || ""}`, children: [
         "      ",
         /* @__PURE__ */ l(d, { id: "watermark_light_letter", className: `${t({ sm: "text-[10px] font-black leading-none text-white" }) || ""}`, as: "span", content: t({ sm: "R" }) })
       ] }),
       /* @__PURE__ */ l(d, { id: "watermark_light_label", className: `${t({ sm: "text-xs font-semibold tracking-tight text-slate-800" }) || ""}`, as: "span", content: t({ sm: "Built with Rudra" }) })
     ] }),
-    /* @__PURE__ */ o(h, { id: "watermark_dark", "aria-label": "Built with Rudra — visit the Rudra home page", className: `${t({ sm: "rudra-watermark inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-950 px-3 py-2 shadow-xl shadow-black/25 transition hover:-translate-y-0.5 hover:border-violet-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950" }) || ""}`, href: t({ sm: "https://www.rudraapp.in/" }), target: t({ sm: "_blank" }), rel: t({ sm: "noopener noreferrer" }), children: [
+    /* @__PURE__ */ o(w, { id: "watermark_dark", "aria-label": "Built with Rudra — visit the Rudra home page", className: `${t({ sm: "rudra-watermark inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-950 px-3 py-2 shadow-xl shadow-black/25 transition hover:-translate-y-0.5 hover:border-violet-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950" }) || ""}`, rel: t({ sm: "noopener noreferrer" }), href: t({ sm: "https://www.rudraapp.in/" }), target: t({ sm: "_blank" }), children: [
       "      ",
-      /* @__PURE__ */ o(w, { id: "watermark_dark_mark", className: `flex ${t({ sm: "grid size-5 shrink-0 place-items-center rounded-full bg-gradient-to-br from-fuchsia-500 to-violet-600 shadow-sm" }) || ""}`, children: [
+      /* @__PURE__ */ o(h, { id: "watermark_dark_mark", className: `flex ${t({ sm: "grid size-5 shrink-0 place-items-center rounded-full bg-gradient-to-br from-fuchsia-500 to-violet-600 shadow-sm" }) || ""}`, children: [
         "      ",
         /* @__PURE__ */ l(d, { id: "watermark_dark_letter", className: `${t({ sm: "text-[10px] font-black leading-none text-white" }) || ""}`, as: "span", content: t({ sm: "R" }) })
       ] }),
       /* @__PURE__ */ l(d, { id: "watermark_dark_label", className: `${t({ sm: "text-xs font-semibold tracking-tight text-slate-100" }) || ""}`, as: "span", content: t({ sm: "Built with Rudra" }) })
     ] }),
-    /* @__PURE__ */ o(h, { id: "watermark_minimal", "aria-label": "Built with Rudra — visit the Rudra home page", className: `${t({ sm: "rudra-watermark inline-flex items-center gap-1.5 rounded-md px-2 py-1.5 text-slate-500 transition hover:bg-slate-100 hover:text-violet-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-violet-300" }) || ""}`, href: t({ sm: "https://www.rudraapp.in/" }), target: t({ sm: "_blank" }), rel: t({ sm: "noopener noreferrer" }), children: [
+    /* @__PURE__ */ o(w, { id: "watermark_minimal", "aria-label": "Built with Rudra — visit the Rudra home page", className: `${t({ sm: "rudra-watermark inline-flex items-center gap-1.5 rounded-md px-2 py-1.5 text-slate-500 transition hover:bg-slate-100 hover:text-violet-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-violet-300" }) || ""}`, rel: t({ sm: "noopener noreferrer" }), href: t({ sm: "https://www.rudraapp.in/" }), target: t({ sm: "_blank" }), children: [
       "      ",
-      /* @__PURE__ */ o(w, { id: "watermark_minimal_mark", className: `flex ${t({ sm: "grid size-4 shrink-0 place-items-center rounded bg-violet-600" }) || ""}`, children: [
+      /* @__PURE__ */ o(h, { id: "watermark_minimal_mark", className: `flex ${t({ sm: "grid size-4 shrink-0 place-items-center rounded bg-violet-600" }) || ""}`, children: [
         "      ",
         /* @__PURE__ */ l(d, { id: "watermark_minimal_letter", className: `${t({ sm: "text-[10px] font-black leading-none text-white" }) || ""}`, as: "span", content: t({ sm: "R" }) })
       ] }),
