@@ -41,6 +41,7 @@ jobs:
           node-version: '20'
 
       - name: Install and Build (Vite)
+        id: build
         env:
           MODULE: ${{ steps.meta.outputs.module }}
         run: |
@@ -50,6 +51,7 @@ jobs:
           cp src/module.server.js dist/module.server.js
 
       - name: Commit 'dist' folder back to PR
+        id: commit_dist
         env:
           MODULE: ${{ steps.meta.outputs.module }}
         run: |
@@ -66,6 +68,7 @@ jobs:
           fi
 
       - name: Approve and Merge PR
+        id: merge
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -78,6 +81,7 @@ jobs:
           gh pr merge ${{ github.event.pull_request.number }} --squash --delete-branch
 
       - name: Tag the Release on Main
+        id: tag
         env:
           MODULE: ${{ steps.meta.outputs.module }}
           VERSION: ${{ steps.meta.outputs.version }}
@@ -93,15 +97,40 @@ jobs:
           git tag $TAG_NAME
           git push origin $TAG_NAME
 
-      - name: Invoke Go Webhook
+      - name: Notify Rudra Backend
+        if: ${{ always() }}
+        env:
+          WEBHOOK_URL: ${{ vars.RUDRA_WEBHOOK_URL }}
+          WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
+          JOB_ID: ${{ steps.meta.outputs.job_id }}
+          VERSION_ID: ${{ steps.meta.outputs.version_id }}
+          MODULE: ${{ steps.meta.outputs.module }}
+          VERSION: ${{ steps.meta.outputs.version }}
+          PIPELINE_STATUS: ${{ job.status }}
+          BUILD_OUTCOME: ${{ steps.build.outcome }}
+          COMMIT_OUTCOME: ${{ steps.commit_dist.outcome }}
+          MERGE_OUTCOME: ${{ steps.merge.outcome }}
+          TAG_OUTCOME: ${{ steps.tag.outcome }}
+          RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
-          curl --location '${{ vars.RUDRA_WEBHOOK_URL }}' \
-          --header 'x-auth-code: ${{ secrets.WEBHOOK_SECRET }}' \
-          -H "Content-Type: application/json" \
-          -d '{
-            "jobId": "${{ steps.meta.outputs.job_id }}",
-            "versionId": "${{ steps.meta.outputs.version_id }}",
-            "module": "${{ steps.meta.outputs.module }}",
-            "version": "${{ steps.meta.outputs.version }}",
-            "status": "success"
-          }'
+          STATUS="success"
+          ERROR_MESSAGE=""
+
+          if [ "$PIPELINE_STATUS" != "success" ]; then
+            STATUS="failed"
+            ERROR_MESSAGE="GitHub Actions module publish pipeline failed (build=$BUILD_OUTCOME, commit=$COMMIT_OUTCOME, merge=$MERGE_OUTCOME, tag=$TAG_OUTCOME). Run: $RUN_URL"
+          fi
+
+          PAYLOAD=$(jq -n \
+            --arg jobId "$JOB_ID" \
+            --arg versionId "$VERSION_ID" \
+            --arg module "$MODULE" \
+            --arg version "$VERSION" \
+            --arg status "$STATUS" \
+            --arg error "$ERROR_MESSAGE" \
+            '{jobId: $jobId, versionId: $versionId, module: $module, version: $version, status: $status} + (if $error == "" then {} else {error: $error} end)')
+
+          curl --fail-with-body --retry 3 --retry-all-errors --location "$WEBHOOK_URL" \
+            --header "x-auth-code: $WEBHOOK_SECRET" \
+            --header "Content-Type: application/json" \
+            --data "$PAYLOAD"
