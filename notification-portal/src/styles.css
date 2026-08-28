@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+/* Tailwind v4 scans the generated module and installed Rudra component packages. */
+@source "./module.client.jsx";
+@source "../node_modules/@rudra-studio";
+
+.rudra-notification-shell{position:relative;display:block!important;box-sizing:border-box;width:100%;min-width:0;min-height:1px;container-type:inline-size;container-name:notification-shell;overflow:visible}
+.rudra-notification-position{position:fixed!important;z-index:2147483000;inset-block-start:max(.75rem,env(safe-area-inset-top));inset-inline-end:max(.625rem,calc((100vw - 100cqw)/2 + .625rem));display:block!important;box-sizing:border-box;width:min(28rem,calc(100cqw - 1.25rem));max-width:calc(100cqw - 1.25rem);min-width:0;pointer-events:none}
+.rudra-notification-stack{box-sizing:border-box!important;display:flex!important;width:100%!important;max-width:100%!important;min-width:0!important;flex-direction:column!important;gap:.75rem!important}
+.rudra-notification-item{box-sizing:border-box;display:flex!important;width:100%;max-width:100%;min-width:0;align-items:flex-start;gap:.75rem;padding:1rem 1.1rem;overflow:hidden;border:1px solid rgba(167,139,250,.34);border-radius:1.15rem;color:#e2e8f0;background:linear-gradient(145deg,rgba(15,23,42,.97),rgba(17,24,39,.95));box-shadow:0 18px 48px rgba(2,6,23,.34),inset 0 1px 0 rgba(255,255,255,.06);font-family:inherit;pointer-events:auto;backdrop-filter:blur(20px);animation:rudra-notification-in .28s cubic-bezier(.16,1,.3,1)}
+.rudra-notification-copy{display:block;min-width:0;max-width:100%;flex:1;overflow:hidden}
+.rudra-notification-title{margin:0;overflow-wrap:anywhere;color:#f8fafc;font-size:.95rem;font-weight:700;line-height:1.4}
+.rudra-notification-message{margin:.25rem 0 0;overflow-wrap:anywhere;color:#cbd5e1;font-size:.875rem;line-height:1.55}
+.rudra-notification-dismiss{box-sizing:border-box!important;display:inline-flex!important;width:2rem!important;height:2rem!important;flex:0 0 2rem!important;align-items:center!important;justify-content:center!important;padding:0!important;border:0!important;border-radius:.55rem!important;color:#cbd5e1!important;background:transparent!important;font-size:1rem!important;line-height:1!important;cursor:pointer}
+.rudra-notification-dismiss:hover{color:#fff!important;background:rgba(148,163,184,.14)!important}
+.rudra-notification-dismiss:focus-visible{outline:2px solid #22d3ee;outline-offset:2px}
+.rudra-notification-legacy-alert{display:none!important}
+@keyframes rudra-notification-in{from{opacity:0;transform:translate3d(0,-10px,0) scale(.98)}to{opacity:1;transform:none}}
+@container notification-shell (max-width:390px){.rudra-notification-position{inset-block-start:max(.5rem,env(safe-area-inset-top));inset-inline-end:max(.375rem,calc((100vw - 100cqw)/2 + .375rem));width:calc(100cqw - .75rem);max-width:calc(100cqw - .75rem)}.rudra-notification-stack{gap:.55rem!important}.rudra-notification-item{gap:.55rem;padding:.78rem .82rem;border-radius:.95rem}.rudra-notification-title{font-size:.86rem}.rudra-notification-message{font-size:.78rem;line-height:1.45}.rudra-notification-dismiss{width:1.8rem!important;height:1.8rem!important;flex-basis:1.8rem!important}}
+@container notification-shell (max-width:330px){.rudra-notification-position{inset-inline-end:max(.25rem,calc((100vw - 100cqw)/2 + .25rem));width:calc(100cqw - .5rem);max-width:calc(100cqw - .5rem)}.rudra-notification-stack{gap:.45rem!important}.rudra-notification-item{gap:.45rem;padding:.68rem .7rem}.rudra-notification-title{font-size:.82rem}.rudra-notification-message{font-size:.74rem}}
+@media(prefers-reduced-motion:reduce){.rudra-notification-item{animation:none}}
+/* Runtime light/dark theme contract */
+.rudra-notification-shell{--notice-bg:linear-gradient(145deg,rgba(255,255,255,.98),rgba(248,250,252,.97));--notice-text:#0f172a;--notice-muted:#475569;--notice-border:rgba(109,40,217,.24);--notice-shadow:rgba(15,23,42,.18);color-scheme:light}
+.rudra-notification-shell[data-theme="dark"]{--notice-bg:linear-gradient(145deg,rgba(15,23,42,.97),rgba(17,24,39,.95));--notice-text:#f8fafc;--notice-muted:#cbd5e1;--notice-border:rgba(167,139,250,.34);--notice-shadow:rgba(2,6,23,.34);color-scheme:dark}
+.rudra-notification-shell .rudra-notification-item{color:var(--notice-text);border-color:var(--notice-border);background:var(--notice-bg);box-shadow:0 18px 48px var(--notice-shadow),inset 0 1px 0 rgba(255,255,255,.08)}
+.rudra-notification-shell .rudra-notification-title{color:var(--notice-text)}
+.rudra-notification-shell .rudra-notification-message{color:var(--notice-muted)}
+.rudra-notification-shell .rudra-notification-dismiss{color:var(--notice-text)!important}
+
