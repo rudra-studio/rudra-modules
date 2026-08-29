@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+/* Tailwind v4 scans the generated module and installed Rudra component packages. */
+@source "./module.client.jsx";
+@source "../node_modules/@rudra-studio";
+
+.rudra-module-wrapper {
+  color-scheme: light;
+  --rudra-color-bg: #f8fafc;
+  --rudra-color-surface: #ffffff;
+  --rudra-color-text: #0f172a;
+  --rudra-color-muted: #64748b;
+  --rudra-color-border: #dbe3ef;
+  --rudra-color-accent: #6366f1;
+}
+:root.dark .rudra-module-wrapper,
+:root[data-theme="dark"] .rudra-module-wrapper,
+.dark .rudra-module-wrapper,
+[data-theme="dark"] .rudra-module-wrapper {
+  color-scheme: dark;
+  --rudra-color-bg: #050816;
+  --rudra-color-surface: #0f172a;
+  --rudra-color-text: #f8fafc;
+  --rudra-color-muted: #94a3b8;
+  --rudra-color-border: #26334a;
+  --rudra-color-accent: #818cf8;
+}
+.lumora-ai-shell {
+  width: min(920px, calc(100% - 32px));
+  height: min(720px, calc(100vh - 48px));
+  min-height: 580px;
+  margin: 24px auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: var(--rudra-color-text);
+  background:
+    radial-gradient(circle at 15% 0%, color-mix(in srgb, var(--rudra-color-accent) 10%, transparent), transparent 34%),
+    var(--rudra-color-bg);
+  border-color: var(--rudra-color-border);
+  box-shadow: 0 24px 70px rgb(15 23 42 / 0.16);
+}
+.lumora-ai-header {
+  flex: 0 0 auto;
+  border-bottom: 1px solid var(--rudra-color-border);
+  background: color-mix(in srgb, var(--rudra-color-surface) 92%, transparent);
+  backdrop-filter: blur(16px);
+}
+.lumora-ai-transcript {
+  min-height: 0;
+  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--rudra-color-surface) 55%, transparent));
+}
+.lumora-ai-typing::after {
+  content: " is thinking";
+  animation: lumora-dots 1.4s infinite;
+}
+.lumora-ai-error {
+  flex: 0 0 auto;
+}
+.lumora-ai-composer {
+  flex: 0 0 auto;
+  border-top: 1px solid var(--rudra-color-border);
+  background: color-mix(in srgb, var(--rudra-color-surface) 94%, transparent);
+}
+.lumora-ai-shell button:focus-visible,
+.lumora-ai-shell textarea:focus-visible {
+  outline: 2px solid var(--rudra-color-accent);
+  outline-offset: 2px;
+}
+@keyframes lumora-dots {
+  0%, 25% { opacity: .45; }
+  50% { opacity: .75; }
+  75%, 100% { opacity: 1; }
+}
+@media (max-width: 640px) {
+  .lumora-ai-shell {
+    width: 100%;
+    height: 100vh;
+    min-height: 520px;
+    margin: 0;
+    border-radius: 0;
+  }
+}
