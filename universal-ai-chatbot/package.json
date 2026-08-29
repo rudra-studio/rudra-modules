@@ -3,7 +3,6 @@
     "@rudra-studio/rudra-core": "latest",
     "@rudra-studio/rudra-layout": "latest",
     "@rudra-studio/rudra-widgets": "latest",
-    "lucide-react": "^1.17.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
@@ -15,5 +14,5 @@
   },
   "name": "@rudra-studio/universal-ai-chatbot",
   "type": "module",
-  "version": "1.0.2"
+  "version": "1.0.3"
 }
