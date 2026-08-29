@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+/* Tailwind v4 scans the generated module and installed Rudra component packages. */
+@source "./module.client.jsx";
+@source "../node_modules/@rudra-studio";
+
+.leads-shell{
+  --leads-bg:#f8fafc;
+  --leads-panel:#ffffff;
+  --leads-text:#0f172a;
+  --leads-muted:#475569;
+  --leads-line:rgba(15,23,42,.12);
+  --leads-grid:rgba(3,105,161,.07);
+  --signal:#047857;
+  --cyan:#0369a1;
+  color-scheme:light;
+  color:var(--leads-text)!important;
+  font-family:"JetBrains Mono","SFMono-Regular",Consolas,monospace;
+  background-color:var(--leads-bg)!important;
+  background-image:linear-gradient(var(--leads-grid) 1px,transparent 1px),linear-gradient(90deg,var(--leads-grid) 1px,transparent 1px);
+  background-size:32px 32px
+}
+.leads-shell[data-theme="dark"],.dark .leads-shell,[data-theme="dark"] .leads-shell{
+  --leads-bg:#070a0e;
+  --leads-panel:#0d1319;
+  --leads-text:#dce9e4;
+  --leads-muted:#94a3b8;
+  --leads-line:rgba(255,255,255,.1);
+  --leads-grid:rgba(98,217,255,.045);
+  --signal:#6dffb8;
+  --cyan:#62d9ff;
+  color-scheme:dark
+}
+.leads-shell *,.leads-shell *::before,.leads-shell *::after{box-sizing:border-box}
+.leads-display{font-family:Inter,ui-sans-serif,system-ui,sans-serif;font-weight:800;letter-spacing:-.055em;text-wrap:balance}
+.leads-header{border-bottom:1px solid var(--leads-line)!important;backdrop-filter:blur(16px);background:color-mix(in srgb,var(--leads-bg) 88%,transparent)!important}
+.leads-signal{position:relative}
+.leads-signal::before{content:"";position:absolute;top:50%;left:-1.1rem;width:.5rem;height:.5rem;border-radius:999px;background:var(--signal);box-shadow:0 0 0 5px color-mix(in srgb,var(--signal) 8%,transparent),0 0 22px var(--signal);animation:signal-pulse 1.8s ease-in-out infinite}
+.leads-panel{box-shadow:0 24px 80px color-mix(in srgb,var(--leads-text) 18%,transparent)}
+.leads-table-glow{border:1px solid var(--leads-line)!important;background:var(--leads-panel)!important}
+.leads-shell table{color:var(--leads-text)!important}
+.leads-shell th{color:var(--cyan)!important;border-color:var(--leads-line)!important}
+.leads-shell td{border-color:var(--leads-line)!important}
+.leads-shell input{background:var(--leads-panel)!important;color:var(--leads-text)!important;border-color:var(--leads-line)!important}
+.leads-shell [class*="text-white"]{color:var(--leads-text)!important}
+.leads-shell a:focus-visible,.leads-shell button:focus-visible,.leads-shell input:focus{outline:2px solid var(--signal);outline-offset:3px}
+.leads-analytics{display:block;margin-top:4rem}
+.leads-metric{min-width:0;color:var(--leads-text)!important;background:var(--leads-panel)!important;border-color:var(--leads-line)!important;box-shadow:0 18px 55px color-mix(in srgb,var(--leads-text) 14%,transparent)}
+.leads-metric-label{color:var(--leads-muted)!important;font-weight:700!important;letter-spacing:.08em;text-transform:uppercase}
+.leads-metric-value{color:var(--leads-text)!important;font-family:Inter,ui-sans-serif,system-ui,sans-serif!important}
+.leads-metric-description{color:var(--leads-muted)!important}
+.leads-metric-trend{min-width:0}
+.leads-metric-trend span{overflow-wrap:anywhere}
+.leads-metric-chart{filter:drop-shadow(0 0 12px color-mix(in srgb,var(--cyan) 18%,transparent))}
+@keyframes signal-pulse{50%{opacity:.35;transform:scale(.7)}}
+@media(max-width:767px){.leads-header{backdrop-filter:blur(10px)}.leads-analytics{margin-top:3rem}.leads-metric{border-radius:1rem!important}}
+@media(prefers-reduced-motion:reduce){.leads-shell *{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
