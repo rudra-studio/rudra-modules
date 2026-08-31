@@ -1,349 +1,371 @@
-import { jsx as _, jsxs as p, Fragment as h } from "react/jsx-runtime";
-import { useState as v, useEffect as R, useRef as K, useCallback as E } from "react";
+import { jsx as _, jsxs as g, Fragment as h } from "react/jsx-runtime";
+import { useState as v, useEffect as I, useRef as F, useCallback as E } from "react";
 import { MessageBubble as ht, MessageComposer as ft, ToastStack as xt } from "@rudra-studio/rudra-widgets";
-import { Surface as _t, Typography as I, Button as Pe, IconButton as Me, Alert as bt } from "@rudra-studio/rudra-core";
-import { Box as $, Flex as ze, ScrollArea as vt, Repeater as At } from "@rudra-studio/rudra-layout";
-function It(s) {
-  const M = s.serverData || s.serverState || {}, k = s.sharedState || {}, L = s.applicationState || M.applicationState || {}, D = s.pageState || M.pageState || {}, q = s.pageData || M.pageData || {}, Re = {
-    ...s.runtime?.functions || {},
-    ...s.runtime?.actions || {},
-    ...s.functions || {},
-    ...s.actions || {}
-  }, C = s.$theme ?? s.theme ?? s.data?.$theme ?? s.runtime?.data?.$theme ?? s.runtime?.theme, Q = () => typeof document > "u" ? "light" : document.documentElement.dataset.theme || (document.documentElement.classList.contains("dark") ? "dark" : "light"), [wt, W] = v(() => C ?? Q());
-  R(() => {
+import { Surface as _t, Typography as R, Button as ye, IconButton as he, Alert as bt } from "@rudra-studio/rudra-core";
+import { Box as K, Flex as fe, ScrollArea as vt, Repeater as At } from "@rudra-studio/rudra-layout";
+function Rt(o) {
+  const z = o.serverData || o.serverState || {}, k = o.sharedState || {}, L = o.applicationState || z.applicationState || {}, D = o.pageState || z.pageState || {}, q = o.pageData || z.pageData || {}, xe = {
+    ...o.runtime?.functions || {},
+    ...o.runtime?.actions || {},
+    ...o.functions || {},
+    ...o.actions || {}
+  }, C = o.$theme ?? o.theme ?? o.data?.$theme ?? o.runtime?.data?.$theme ?? o.runtime?.theme, Q = () => typeof document > "u" ? "light" : document.documentElement.dataset.theme || (document.documentElement.classList.contains("dark") ? "dark" : "light"), [wt, W] = v(() => C ?? Q());
+  I(() => {
     C != null && W(C);
-  }, [C]), R(() => {
+  }, [C]), I(() => {
     if (C != null || typeof document > "u") return;
-    const e = document.documentElement, t = (o) => W(o?.detail?.theme ?? Q()), n = new MutationObserver(t);
-    return n.observe(e, { attributes: !0, attributeFilter: ["class", "data-theme"] }), window.addEventListener("rudra:theme-change", t), t(), () => {
-      n.disconnect(), window.removeEventListener("rudra:theme-change", t);
+    const e = document.documentElement, t = (n) => W(n?.detail?.theme ?? Q()), s = new MutationObserver(t);
+    return s.observe(e, { attributes: !0, attributeFilter: ["class", "data-theme"] }), window.addEventListener("rudra:theme-change", t), t(), () => {
+      s.disconnect(), window.removeEventListener("rudra:theme-change", t);
     };
   }, [C]);
-  const F = K(null), [J, H] = v("lg");
-  R(() => {
-    if (!F.current) return;
+  const $ = F(null), [J, H] = v("lg");
+  I(() => {
+    if (!$.current) return;
     const e = new ResizeObserver((t) => {
-      for (let n of t) {
-        const o = n.contentRect.width;
-        o < 768 ? H("sm") : o < 1024 ? H("md") : H("lg");
+      for (let s of t) {
+        const n = s.contentRect.width;
+        n < 768 ? H("sm") : n < 1024 ? H("md") : H("lg");
       }
     });
-    return e.observe(F.current), () => e.disconnect();
+    return e.observe($.current), () => e.disconnect();
   }, []);
-  const x = E((e) => typeof e != "object" || e === null ? e : J === "sm" ? e.sm !== void 0 ? e.sm : e.md !== void 0 ? e.md : e.lg : J === "md" ? e.md !== void 0 ? e.md : e.sm !== void 0 ? e.sm : e.lg : e.lg !== void 0 ? e.lg : e.md !== void 0 ? e.md : e.sm, [J]), f = (e) => Array.isArray(e) ? e.length > 0 : typeof e == "string" ? e.trim() !== "" && e.trim().toLowerCase() !== "false" : !!e, Ie = s.defaultOpen !== void 0 ? s.defaultOpen : s.data?.defaultOpen !== void 0 ? s.data.defaultOpen : !1, je = s.visible !== void 0 ? s.visible : s.data?.visible !== void 0 ? s.data.visible : !0, Oe = s.locale !== void 0 ? s.locale : s.data?.locale !== void 0 ? s.data.locale : "en", Te = s.contextEndpoint !== void 0 ? s.contextEndpoint : s.data?.contextEndpoint !== void 0 ? s.data.contextEndpoint : "/api/ai-context", Ne = s.aiProvider !== void 0 ? s.aiProvider : s.data?.aiProvider !== void 0 ? s.data.aiProvider : "anthropic", Ee = s.showToolActivity !== void 0 ? s.showToolActivity : s.data?.showToolActivity !== void 0 ? s.data.showToolActivity : !0, ke = s.visualTheme !== void 0 ? s.visualTheme : s.data?.visualTheme !== void 0 ? s.data.visualTheme : "aurora", Le = s.customClass !== void 0 ? s.customClass : s.data?.customClass !== void 0 ? s.data.customClass : "", De = s.disabled !== void 0 ? s.disabled : s.data?.disabled !== void 0 ? s.data.disabled : !1, qe = s.sessionId !== void 0 ? s.sessionId : s.data?.sessionId !== void 0 ? s.data.sessionId : "", Be = s.placeholder !== void 0 ? s.placeholder : s.data?.placeholder !== void 0 ? s.data.placeholder : "Ask Lumora anything…", Ke = s.systemPrompt !== void 0 ? s.systemPrompt : s.data?.systemPrompt !== void 0 ? s.data.systemPrompt : "You are Lumora, a concise and helpful AI assistant. Provide clear, accurate, and professional responses.", $e = s.maxMessages !== void 0 ? s.maxMessages : s.data?.maxMessages !== void 0 ? s.data.maxMessages : 100, Fe = s.anthropicModel !== void 0 ? s.anthropicModel : s.data?.anthropicModel !== void 0 ? s.data.anthropicModel : "claude-sonnet-4-5", Je = s.contextScopeKey !== void 0 ? s.contextScopeKey : s.data?.contextScopeKey !== void 0 ? s.data.contextScopeKey : "", He = s.assistantName !== void 0 ? s.assistantName : s.data?.assistantName !== void 0 ? s.data.assistantName : "Lumora", Ue = s.title !== void 0 ? s.title : s.data?.title !== void 0 ? s.data.title : "Lumora Assistant", Ye = s.toolManifest !== void 0 ? s.toolManifest : s.data?.toolManifest !== void 0 ? s.data.toolManifest : [], Ze = s.allowAttachments !== void 0 ? s.allowAttachments : s.data?.allowAttachments !== void 0 ? s.data.allowAttachments : !1, Ge = s.welcomeMessage !== void 0 ? s.welcomeMessage : s.data?.welcomeMessage !== void 0 ? s.data.welcomeMessage : "Hi — how can I help?", Qe = s.chatEndpoint !== void 0 ? s.chatEndpoint : s.data?.chatEndpoint !== void 0 ? s.data.chatEndpoint : "/api/ai/chat", We = s.contextNamespace !== void 0 ? s.contextNamespace : s.data?.contextNamespace !== void 0 ? s.data.contextNamespace : "universal-ai-chatbot", Xe = s.contextDatabaseEnabled !== void 0 ? s.contextDatabaseEnabled : s.data?.contextDatabaseEnabled !== void 0 ? s.data.contextDatabaseEnabled : !1, Ve = s.maxOutputTokens !== void 0 ? s.maxOutputTokens : s.data?.maxOutputTokens !== void 0 ? s.data.maxOutputTokens : 1024, et = s.geminiModel !== void 0 ? s.geminiModel : s.data?.geminiModel !== void 0 ? s.data.geminiModel : "gemini-2.5-flash", tt = s.presentationMode !== void 0 ? s.presentationMode : s.data?.presentationMode !== void 0 ? s.data.presentationMode : "floating", st = s.contextCacheTtlSeconds !== void 0 ? s.contextCacheTtlSeconds : s.data?.contextCacheTtlSeconds !== void 0 ? s.data.contextCacheTtlSeconds : 60, ot = s.permissions !== void 0 ? s.permissions : s.data?.permissions !== void 0 ? s.data.permissions : {}, at = s.context !== void 0 ? s.context : s.data?.context !== void 0 ? s.data.context : {}, nt = s.requestHeaders !== void 0 ? s.requestHeaders : s.data?.requestHeaders !== void 0 ? s.data.requestHeaders : {}, r = { defaultOpen: Ie, visible: je, locale: Oe, contextEndpoint: Te, aiProvider: Ne, showToolActivity: Ee, visualTheme: ke, customClass: Le, disabled: De, sessionId: qe, placeholder: Be, systemPrompt: Ke, maxMessages: $e, anthropicModel: Fe, contextScopeKey: Je, assistantName: He, title: Ue, toolManifest: Ye, allowAttachments: Ze, welcomeMessage: Ge, chatEndpoint: Qe, contextNamespace: We, contextDatabaseEnabled: Xe, maxOutputTokens: Ve, geminiModel: et, presentationMode: tt, contextCacheTtlSeconds: st, permissions: ot, context: at, requestHeaders: nt }, [X, V] = v(() => structuredClone([])), [rt, ee] = v(() => structuredClone({})), [it, te] = v(() => structuredClone({})), [se, oe] = v(() => structuredClone("lumora-ai-host lumora-ai-floating lumora-ai-theme-aurora")), [B, ae] = v(() => structuredClone("")), [U, ne] = v(() => structuredClone(!1)), [re, ie] = v(() => structuredClone([])), [ce, de] = v(() => structuredClone(!0)), [le, ue] = v(() => structuredClone(!0)), [ct, me] = v(() => structuredClone(!1)), [pe, ge] = v(() => structuredClone(!1)), y = { toasts: X, pendingAction: rt, runtimeContext: it, themeClass: se, errorMessage: B, isSending: U, messages: re, showLauncher: ce, isFloating: le, hasInitialized: ct, isOpen: pe }, m = E((e, t) => {
+  const x = E((e) => typeof e != "object" || e === null ? e : J === "sm" ? e.sm !== void 0 ? e.sm : e.md !== void 0 ? e.md : e.lg : J === "md" ? e.md !== void 0 ? e.md : e.sm !== void 0 ? e.sm : e.lg : e.lg !== void 0 ? e.lg : e.md !== void 0 ? e.md : e.sm, [J]), f = (e) => Array.isArray(e) ? e.length > 0 : typeof e == "string" ? e.trim() !== "" && e.trim().toLowerCase() !== "false" : !!e, _e = o.defaultOpen !== void 0 ? o.defaultOpen : o.data?.defaultOpen !== void 0 ? o.data.defaultOpen : !1, be = o.visible !== void 0 ? o.visible : o.data?.visible !== void 0 ? o.data.visible : !0, ve = o.locale !== void 0 ? o.locale : o.data?.locale !== void 0 ? o.data.locale : "en", Ae = o.contextEndpoint !== void 0 ? o.contextEndpoint : o.data?.contextEndpoint !== void 0 ? o.data.contextEndpoint : "/api/ai-context", we = o.aiProvider !== void 0 ? o.aiProvider : o.data?.aiProvider !== void 0 ? o.data.aiProvider : "anthropic", Ce = o.showToolActivity !== void 0 ? o.showToolActivity : o.data?.showToolActivity !== void 0 ? o.data.showToolActivity : !0, Se = o.visualTheme !== void 0 ? o.visualTheme : o.data?.visualTheme !== void 0 ? o.data.visualTheme : "aurora", Me = o.customClass !== void 0 ? o.customClass : o.data?.customClass !== void 0 ? o.data.customClass : "", ze = o.disabled !== void 0 ? o.disabled : o.data?.disabled !== void 0 ? o.data.disabled : !1, Pe = o.sessionId !== void 0 ? o.sessionId : o.data?.sessionId !== void 0 ? o.data.sessionId : "", Ie = o.placeholder !== void 0 ? o.placeholder : o.data?.placeholder !== void 0 ? o.data.placeholder : "Ask Lumora anything…", Re = o.systemPrompt !== void 0 ? o.systemPrompt : o.data?.systemPrompt !== void 0 ? o.data.systemPrompt : "You are Lumora, a concise and helpful AI assistant. Provide clear, accurate, and professional responses.", Oe = o.maxMessages !== void 0 ? o.maxMessages : o.data?.maxMessages !== void 0 ? o.data.maxMessages : 100, je = o.anthropicModel !== void 0 ? o.anthropicModel : o.data?.anthropicModel !== void 0 ? o.data.anthropicModel : "claude-sonnet-4-5", Te = o.contextScopeKey !== void 0 ? o.contextScopeKey : o.data?.contextScopeKey !== void 0 ? o.data.contextScopeKey : "", Ne = o.assistantName !== void 0 ? o.assistantName : o.data?.assistantName !== void 0 ? o.data.assistantName : "Lumora", Ee = o.title !== void 0 ? o.title : o.data?.title !== void 0 ? o.data.title : "Lumora Assistant", ke = o.toolManifest !== void 0 ? o.toolManifest : o.data?.toolManifest !== void 0 ? o.data.toolManifest : [], Le = o.allowAttachments !== void 0 ? o.allowAttachments : o.data?.allowAttachments !== void 0 ? o.data.allowAttachments : !1, De = o.welcomeMessage !== void 0 ? o.welcomeMessage : o.data?.welcomeMessage !== void 0 ? o.data.welcomeMessage : "Hi — how can I help?", qe = o.chatEndpoint !== void 0 ? o.chatEndpoint : o.data?.chatEndpoint !== void 0 ? o.data.chatEndpoint : "/api/ai/chat", Be = o.contextNamespace !== void 0 ? o.contextNamespace : o.data?.contextNamespace !== void 0 ? o.data.contextNamespace : "universal-ai-chatbot", Fe = o.contextDatabaseEnabled !== void 0 ? o.contextDatabaseEnabled : o.data?.contextDatabaseEnabled !== void 0 ? o.data.contextDatabaseEnabled : !1, Ke = o.maxOutputTokens !== void 0 ? o.maxOutputTokens : o.data?.maxOutputTokens !== void 0 ? o.data.maxOutputTokens : 1024, $e = o.geminiModel !== void 0 ? o.geminiModel : o.data?.geminiModel !== void 0 ? o.data.geminiModel : "gemini-2.5-flash", Je = o.presentationMode !== void 0 ? o.presentationMode : o.data?.presentationMode !== void 0 ? o.data.presentationMode : "floating", He = o.contextCacheTtlSeconds !== void 0 ? o.contextCacheTtlSeconds : o.data?.contextCacheTtlSeconds !== void 0 ? o.data.contextCacheTtlSeconds : 60, Ue = o.permissions !== void 0 ? o.permissions : o.data?.permissions !== void 0 ? o.data.permissions : {}, Ye = o.context !== void 0 ? o.context : o.data?.context !== void 0 ? o.data.context : {}, Ze = o.requestHeaders !== void 0 ? o.requestHeaders : o.data?.requestHeaders !== void 0 ? o.data.requestHeaders : {}, i = { defaultOpen: _e, visible: be, locale: ve, contextEndpoint: Ae, aiProvider: we, showToolActivity: Ce, visualTheme: Se, customClass: Me, disabled: ze, sessionId: Pe, placeholder: Ie, systemPrompt: Re, maxMessages: Oe, anthropicModel: je, contextScopeKey: Te, assistantName: Ne, title: Ee, toolManifest: ke, allowAttachments: Le, welcomeMessage: De, chatEndpoint: qe, contextNamespace: Be, contextDatabaseEnabled: Fe, maxOutputTokens: Ke, geminiModel: $e, presentationMode: Je, contextCacheTtlSeconds: He, permissions: Ue, context: Ye, requestHeaders: Ze }, [X, Ge] = v(() => structuredClone([])), [Qe, We] = v(() => structuredClone({})), [Xe, Ve] = v(() => structuredClone({})), [V, et] = v(() => structuredClone("lumora-ai-host lumora-ai-floating lumora-ai-theme-aurora")), [B, tt] = v(() => structuredClone("")), [U, st] = v(() => structuredClone(!1)), [ee, ot] = v(() => structuredClone([])), [te, nt] = v(() => structuredClone(!0)), [se, at] = v(() => structuredClone(!0)), [it, rt] = v(() => structuredClone(!1)), [oe, ct] = v(() => structuredClone(!1)), u = { toasts: X, pendingAction: Qe, runtimeContext: Xe, themeClass: V, errorMessage: B, isSending: U, messages: ee, showLauncher: te, isFloating: se, hasInitialized: it, isOpen: oe }, m = E((e, t) => {
     switch (e) {
-      case "toasts":
-        return V(t), t;
-      case "pendingAction":
-        return ee(t), t;
-      case "runtimeContext":
-        return te(t), t;
-      case "themeClass":
-        return oe(t), t;
-      case "errorMessage":
-        return ae(t), t;
-      case "isSending":
-        return ne(t), t;
-      case "messages":
-        return ie(t), t;
-      case "showLauncher":
-        return de(t), t;
-      case "isFloating":
-        return ue(t), t;
-      case "hasInitialized":
-        return me(t), t;
-      case "isOpen":
-        return ge(t), t;
+      case "toasts": {
+        const s = typeof t == "function" ? t(u.toasts) : t;
+        return u.toasts = s, Ge(s), s;
+      }
+      case "pendingAction": {
+        const s = typeof t == "function" ? t(u.pendingAction) : t;
+        return u.pendingAction = s, We(s), s;
+      }
+      case "runtimeContext": {
+        const s = typeof t == "function" ? t(u.runtimeContext) : t;
+        return u.runtimeContext = s, Ve(s), s;
+      }
+      case "themeClass": {
+        const s = typeof t == "function" ? t(u.themeClass) : t;
+        return u.themeClass = s, et(s), s;
+      }
+      case "errorMessage": {
+        const s = typeof t == "function" ? t(u.errorMessage) : t;
+        return u.errorMessage = s, tt(s), s;
+      }
+      case "isSending": {
+        const s = typeof t == "function" ? t(u.isSending) : t;
+        return u.isSending = s, st(s), s;
+      }
+      case "messages": {
+        const s = typeof t == "function" ? t(u.messages) : t;
+        return u.messages = s, ot(s), s;
+      }
+      case "showLauncher": {
+        const s = typeof t == "function" ? t(u.showLauncher) : t;
+        return u.showLauncher = s, nt(s), s;
+      }
+      case "isFloating": {
+        const s = typeof t == "function" ? t(u.isFloating) : t;
+        return u.isFloating = s, at(s), s;
+      }
+      case "hasInitialized": {
+        const s = typeof t == "function" ? t(u.hasInitialized) : t;
+        return u.hasInitialized = s, rt(s), s;
+      }
+      case "isOpen": {
+        const s = typeof t == "function" ? t(u.isOpen) : t;
+        return u.isOpen = s, ct(s), s;
+      }
       default:
         return t;
     }
   }, []);
   E((e, t) => {
-    const [n, ...o] = String(e || "").split(".");
-    if (!n) return t;
-    if (o.length === 0) return m(n, t);
-    const a = (i) => {
-      const c = Array.isArray(i) ? [...i] : { ...i || {} };
+    const [s, ...n] = String(e || "").split(".");
+    if (!s) return t;
+    if (n.length === 0) return m(s, t);
+    const a = (r) => {
+      const c = Array.isArray(r) ? [...r] : { ...r || {} };
       let l = c;
-      return o.forEach((u, d) => {
-        d === o.length - 1 ? l[u] = t : (l[u] = Array.isArray(l[u]) ? [...l[u]] : { ...l[u] || {} }, l = l[u]);
+      return n.forEach((p, d) => {
+        d === n.length - 1 ? l[p] = t : (l[p] = Array.isArray(l[p]) ? [...l[p]] : { ...l[p] || {} }, l = l[p]);
       }), c;
     };
-    switch (n) {
+    switch (s) {
       case "toasts":
-        return V(a), t;
+        return m("toasts", a), t;
       case "pendingAction":
-        return ee(a), t;
+        return m("pendingAction", a), t;
       case "runtimeContext":
-        return te(a), t;
+        return m("runtimeContext", a), t;
       case "themeClass":
-        return oe(a), t;
+        return m("themeClass", a), t;
       case "errorMessage":
-        return ae(a), t;
+        return m("errorMessage", a), t;
       case "isSending":
-        return ne(a), t;
+        return m("isSending", a), t;
       case "messages":
-        return ie(a), t;
+        return m("messages", a), t;
       case "showLauncher":
-        return de(a), t;
+        return m("showLauncher", a), t;
       case "isFloating":
-        return ue(a), t;
+        return m("isFloating", a), t;
       case "hasInitialized":
-        return me(a), t;
+        return m("hasInitialized", a), t;
       case "isOpen":
-        return ge(a), t;
+        return m("isOpen", a), t;
       default:
         return t;
     }
   }, [m]);
-  const dt = { actionCompleted: { properties: { actionId: { type: "string" }, result: { type: "object" } }, type: "object" }, actionRequested: { properties: { action: { type: "object" } }, type: "object" }, attachmentSelected: { additionalProperties: !0, properties: { files: { type: "array" } }, type: "object" }, contextChanged: { type: "object" }, contextResolved: { additionalProperties: !0, properties: { cache: { type: "object" }, context: { type: "object" }, revision: { type: "number" }, sessionId: { type: "string" }, systemPrompt: { type: "string" }, updatedAt: { type: "string" } }, required: ["context", "revision", "cache", "sessionId"], type: "object" }, contextUpdated: { additionalProperties: !0, properties: { cache: { type: "object" }, context: { type: "object" }, revision: { type: "number" }, sessionId: { type: "string" }, systemPrompt: { type: "string" }, updatedAt: { type: "string" } }, required: ["context", "revision", "cache", "sessionId"], type: "object" }, conversationCleared: { type: "object" }, error: { properties: { code: { type: "string" }, message: { type: "string" } }, type: "object" }, escalationRequested: { additionalProperties: !0, properties: { action: { type: "object" }, message: { type: "object" } }, type: "object" }, messageReceived: { properties: { message: { type: "object" } }, type: "object" }, responseCancelled: { additionalProperties: !0, properties: { reason: { type: "string" } }, type: "object" } }, Y = (e, t, n) => {
+  const dt = { actionCompleted: { properties: { actionId: { type: "string" }, result: { type: "object" } }, type: "object" }, actionRequested: { properties: { action: { type: "object" } }, type: "object" }, attachmentSelected: { additionalProperties: !0, properties: { files: { type: "array" } }, type: "object" }, contextChanged: { type: "object" }, contextResolved: { additionalProperties: !0, properties: { cache: { type: "object" }, context: { type: "object" }, revision: { type: "number" }, sessionId: { type: "string" }, systemPrompt: { type: "string" }, updatedAt: { type: "string" } }, required: ["context", "revision", "cache", "sessionId"], type: "object" }, contextUpdated: { additionalProperties: !0, properties: { cache: { type: "object" }, context: { type: "object" }, revision: { type: "number" }, sessionId: { type: "string" }, systemPrompt: { type: "string" }, updatedAt: { type: "string" } }, required: ["context", "revision", "cache", "sessionId"], type: "object" }, conversationCleared: { type: "object" }, error: { properties: { code: { type: "string" }, message: { type: "string" } }, type: "object" }, escalationRequested: { additionalProperties: !0, properties: { action: { type: "object" }, message: { type: "object" } }, type: "object" }, messageReceived: { properties: { message: { type: "object" } }, type: "object" }, responseCancelled: { additionalProperties: !0, properties: { reason: { type: "string" } }, type: "object" } }, Y = (e, t, s) => {
     if (!t || typeof t != "object") return "";
-    const o = Array.isArray(t.type) ? t.type : t.type ? [t.type] : [], a = e === null ? "null" : Array.isArray(e) ? "array" : Number.isInteger(e) ? "integer" : typeof e;
-    if (o.length && !o.includes(a) && !(a === "integer" && o.includes("number"))) return n + " must be " + o.join(" or ") + ".";
-    if (t.enum && !t.enum.some((i) => JSON.stringify(i) === JSON.stringify(e))) return n + " is not an allowed value.";
+    const n = Array.isArray(t.type) ? t.type : t.type ? [t.type] : [], a = e === null ? "null" : Array.isArray(e) ? "array" : Number.isInteger(e) ? "integer" : typeof e;
+    if (n.length && !n.includes(a) && !(a === "integer" && n.includes("number"))) return s + " must be " + n.join(" or ") + ".";
+    if (t.enum && !t.enum.some((r) => JSON.stringify(r) === JSON.stringify(e))) return s + " is not an allowed value.";
     if (e && typeof e == "object" && !Array.isArray(e)) {
-      for (const i of t.required || []) if (!Object.prototype.hasOwnProperty.call(e, i)) return n + "." + i + " is required.";
-      for (const [i, c] of Object.entries(t.properties || {})) if (Object.prototype.hasOwnProperty.call(e, i)) {
-        const l = Y(e[i], c, n + "." + i);
+      for (const r of t.required || []) if (!Object.prototype.hasOwnProperty.call(e, r)) return s + "." + r + " is required.";
+      for (const [r, c] of Object.entries(t.properties || {})) if (Object.prototype.hasOwnProperty.call(e, r)) {
+        const l = Y(e[r], c, s + "." + r);
         if (l) return l;
       }
     }
-    if (Array.isArray(e) && t.items) for (let i = 0; i < e.length; i++) {
-      const c = Y(e[i], t.items, n + "[" + i + "]");
+    if (Array.isArray(e) && t.items) for (let r = 0; r < e.length; r++) {
+      const c = Y(e[r], t.items, s + "[" + r + "]");
       if (c) return c;
     }
     return "";
-  }, b = E(async (e, t, n = !1) => {
-    const o = dt[e];
-    if (!o) throw new Error("Module output '" + e + "' is not declared.");
-    const a = Y(t, o, "output." + e);
+  }, b = E(async (e, t, s = !1) => {
+    const n = dt[e];
+    if (!n) throw new Error("Module output '" + e + "' is not declared.");
+    const a = Y(t, n, "output." + e);
     if (a) throw new Error(a);
-    const i = s.onOutput || s.onModuleOutput || s.runtime?.onOutput;
-    if (typeof i != "function") return t;
-    const c = i(e, t, { moduleId: s.moduleId, awaitHandlers: n });
-    return n ? await c : t;
-  }, [s.onOutput, s.onModuleOutput, s.runtime?.onOutput, s.moduleId]), ye = (e, t) => {
-    const n = String(t || "").split(".").filter(Boolean);
-    if (!(!n.length || n.some((o) => ["__proto__", "prototype", "constructor"].includes(o))))
-      return n.reduce((o, a) => {
-        if (!(!o || typeof o != "object"))
-          return typeof o.get == "function" && !(a in o) ? o.get(a) : o[a];
+    const r = o.onOutput || o.onModuleOutput || o.runtime?.onOutput;
+    if (typeof r != "function") return t;
+    const c = r(e, t, { moduleId: o.moduleId, awaitHandlers: s });
+    return s ? await c : t;
+  }, [o.onOutput, o.onModuleOutput, o.runtime?.onOutput, o.moduleId]), ne = (e, t) => {
+    const s = String(t || "").split(".").filter(Boolean);
+    if (!(!s.length || s.some((n) => ["__proto__", "prototype", "constructor"].includes(n))))
+      return s.reduce((n, a) => {
+        if (!(!n || typeof n != "object"))
+          return typeof n.get == "function" && !(a in n) ? n.get(a) : n[a];
       }, e);
-  }, z = (e, t) => {
-    if (Array.isArray(e)) return e.map((o) => z(o, t));
-    if (e && typeof e == "object") return Object.fromEntries(Object.entries(e).map(([o, a]) => [z(o, t), z(a, t)]));
+  }, P = (e, t) => {
+    if (Array.isArray(e)) return e.map((n) => P(n, t));
+    if (e && typeof e == "object") return Object.fromEntries(Object.entries(e).map(([n, a]) => [P(n, t), P(a, t)]));
     if (typeof e != "string") return e;
-    const n = e.match(/^\{\{\s*([A-Za-z_$][A-Za-z0-9_$.]*)\s*\}\}$/);
-    return n ? ye(t, n[1]) : e.replace(/\{\{\s*([A-Za-z_$][A-Za-z0-9_$.]*)\s*\}\}/g, (o, a) => {
-      const i = ye(t, a);
-      return i == null ? "" : typeof i == "object" ? JSON.stringify(i) : String(i);
+    const s = e.match(/^\{\{\s*([A-Za-z_$][A-Za-z0-9_$.]*)\s*\}\}$/);
+    return s ? ne(t, s[1]) : e.replace(/\{\{\s*([A-Za-z_$][A-Za-z0-9_$.]*)\s*\}\}/g, (n, a) => {
+      const r = ne(t, a);
+      return r == null ? "" : typeof r == "object" ? JSON.stringify(r) : String(r);
     });
   };
-  async function he(e = {}) {
-    return m("messages", r.welcomeMessage ? [{ id: "welcome-" + Date.now(), role: "assistant", sender: r.assistantName || "Assistant", variant: "incoming", content: r.welcomeMessage, timestamp: (/* @__PURE__ */ new Date()).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) }] : []), m("pendingAction", {}), m("errorMessage", ""), b("conversationCleared", { sessionId: r.sessionId }, !1).catch((t) => console.error("Module output delivery failed", t)), { cleared: !0 };
+  async function ae(e = {}) {
+    return m("messages", i.welcomeMessage ? [{ id: "welcome-" + Date.now(), role: "assistant", sender: i.assistantName || "Assistant", variant: "incoming", content: i.welcomeMessage, timestamp: (/* @__PURE__ */ new Date()).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) }] : []), m("pendingAction", {}), m("errorMessage", ""), b("conversationCleared", { sessionId: i.sessionId }, !1).catch((t) => console.error("Module output delivery failed", t)), { cleared: !0 };
   }
   async function Z(e = {}) {
-    const t = e || {}, n = {}, o = {};
+    const t = e || {}, s = {}, n = {};
     {
       t.event;
       const a = await (async () => {
-        const i = t.message && typeof t.message == "object" ? t.message.text ?? t.message.content ?? "" : t.message;
-        return { type: "text", text: String(i ?? "").trim() };
+        const r = t.message && typeof t.message == "object" ? t.message.text ?? t.message.content ?? "" : t.message;
+        return { type: "text", text: String(r ?? "").trim() };
       })();
-      o.normalize_user = a, n.customCodeResult = a;
+      n.normalize_user = a, s.customCodeResult = a;
     }
-    if (o.normalize_user.text)
-      if (m("isSending", !0), m("errorMessage", ""), m("messages", [...y.messages, { id: "user-" + Date.now(), role: "user", sender: "You", variant: "outgoing", content: o.normalize_user.text, timestamp: (/* @__PURE__ */ new Date()).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) }].slice(-r.maxMessages)), r.contextDatabaseEnabled === !0) {
+    if (n.normalize_user.text)
+      if (m("isSending", !0), m("errorMessage", ""), m("messages", [...u.messages, { id: "user-" + Date.now(), role: "user", sender: "You", variant: "outgoing", content: n.normalize_user.text, timestamp: (/* @__PURE__ */ new Date()).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) }].slice(-i.maxMessages)), i.contextDatabaseEnabled === !0) {
         {
           t.event;
           const a = await (async () => {
-            const i = o.read_context_db, c = Array.isArray(i) ? i : i && Array.isArray(i.data) ? i.data : [], l = c[0] && typeof c[0] == "object" ? c[0] : null, u = o.use_direct_context && typeof o.use_direct_context == "object" ? o.use_direct_context : {}, d = r.contextDatabaseEnabled === !0, g = d && l ? l : u, A = r.context && typeof r.context == "object" && !Array.isArray(r.context) ? r.context : {}, T = g.context && typeof g.context == "object" && !Array.isArray(g.context) ? g.context : A, N = typeof g.systemPrompt == "string" && g.systemPrompt.trim() ? g.systemPrompt : typeof r.systemPrompt == "string" && r.systemPrompt.trim() ? r.systemPrompt : "You are a concise and helpful AI assistant.";
-            return { context: T, systemPrompt: N, revision: Number(g.revision || 0), updatedAt: typeof g.updatedAt == "string" && g.updatedAt ? g.updatedAt : (/* @__PURE__ */ new Date()).toISOString(), cache: { enabled: !1, hit: !1, source: d ? "database" : "direct" }, source: d ? "database" : "direct", found: !!l };
+            const r = n.read_context_db, c = Array.isArray(r) ? r : r && Array.isArray(r.data) ? r.data : [], l = c[0] && typeof c[0] == "object" ? c[0] : null, p = n.use_direct_context && typeof n.use_direct_context == "object" ? n.use_direct_context : {}, d = i.contextDatabaseEnabled === !0, y = d && l ? l : p, A = i.context && typeof i.context == "object" && !Array.isArray(i.context) ? i.context : {}, T = y.context && typeof y.context == "object" && !Array.isArray(y.context) ? y.context : A, N = typeof y.systemPrompt == "string" && y.systemPrompt.trim() ? y.systemPrompt : typeof i.systemPrompt == "string" && i.systemPrompt.trim() ? i.systemPrompt : "You are a concise and helpful AI assistant.";
+            return { context: T, systemPrompt: N, revision: Number(y.revision || 0), updatedAt: typeof y.updatedAt == "string" && y.updatedAt ? y.updatedAt : (/* @__PURE__ */ new Date()).toISOString(), cache: { enabled: !1, hit: !1, source: d ? "database" : "direct" }, source: d ? "database" : "direct", found: !!l };
           })();
-          o.normalize_context = a, n.customCodeResult = a;
+          n.normalize_context = a, s.customCodeResult = a;
         }
-        m("runtimeContext", o.normalize_context.context), b("contextResolved", { cache: o.normalize_context.cache, context: o.normalize_context.context, revision: o.normalize_context.revision, sessionId: r.sessionId, systemPrompt: o.normalize_context.systemPrompt, updatedAt: o.normalize_context.updatedAt }, !1).catch((a) => console.error("Module output delivery failed", a));
+        m("runtimeContext", n.normalize_context.context), b("contextResolved", { cache: n.normalize_context.cache, context: n.normalize_context.context, revision: n.normalize_context.revision, sessionId: i.sessionId, systemPrompt: n.normalize_context.systemPrompt, updatedAt: n.normalize_context.updatedAt }, !1).catch((a) => console.error("Module output delivery failed", a));
         {
           t.event;
           const a = await (async () => {
-            const c = (Array.isArray(y.messages) ? y.messages : []).filter((d) => d && (d.role === "user" || d.role === "assistant")), l = c.findIndex((d) => d.role === "user"), u = l >= 0 ? c.slice(l) : [];
-            return { anthropicMessages: u.map((d) => ({ role: d.role === "assistant" ? "assistant" : "user", content: String(d.content || "") })), geminiContents: u.map((d) => ({ role: d.role === "assistant" ? "model" : "user", parts: [{ text: String(d.content || "") }] })) };
+            const c = (Array.isArray(u.messages) ? u.messages : []).filter((d) => d && (d.role === "user" || d.role === "assistant")), l = c.findIndex((d) => d.role === "user"), p = l >= 0 ? c.slice(l) : [];
+            return { anthropicMessages: p.map((d) => ({ role: d.role === "assistant" ? "assistant" : "user", content: String(d.content || "") })), geminiContents: p.map((d) => ({ role: d.role === "assistant" ? "model" : "user", parts: [{ text: String(d.content || "") }] })) };
           })();
-          o.build_provider_payloads = a, n.customCodeResult = a;
+          n.build_provider_payloads = a, s.customCodeResult = a;
         }
-        if (String(r.aiProvider || "anthropic").toLowerCase() === "anthropic") {
+        if (String(i.aiProvider || "anthropic").toLowerCase() === "anthropic") {
           {
-            const a = { args: t, inputs: r, state: y, sharedState: k, applicationState: L, pageState: D, pageData: q, serverData: M, vars: n, stepResults: o }, i = z({ context: "{{ stepResults.normalize_context.context }}", maxTokens: "{{ inputs.maxOutputTokens }}", messages: "{{ stepResults.build_provider_payloads.anthropicMessages }}", model: "{{ inputs.anthropicModel }}", systemPrompt: "{{ stepResults.normalize_context.systemPrompt }}" }, a) || {}, c = await fetch("/api/rudra/protected", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ moduleId: "cmtd4taga000204l2nchcixk4", apiId: "anthropicChatApi", argumentValues: i, context: a }), signal: t.signal || AbortSignal.timeout(3e4) }), l = await c.json().catch(() => ({}));
+            const a = { args: t, inputs: i, state: u, sharedState: k, applicationState: L, pageState: D, pageData: q, serverData: z, vars: s, stepResults: n }, r = P({ context: "{{ stepResults.normalize_context.context }}", maxTokens: "{{ inputs.maxOutputTokens }}", messages: "{{ stepResults.build_provider_payloads.anthropicMessages }}", model: "{{ inputs.anthropicModel }}", systemPrompt: "{{ stepResults.normalize_context.systemPrompt }}" }, a) || {}, c = await fetch("/api/rudra/protected", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ moduleId: "cmtd4taga000204l2nchcixk4", apiId: "anthropicChatApi", argumentValues: r, context: a }), signal: t.signal || AbortSignal.timeout(3e4) }), l = await c.json().catch(() => ({}));
             if (!c.ok) throw new Error(l.error || "Protected API request failed (" + c.status + ")");
-            const u = l.data;
-            o.call_anthropic = u, n.apiResult = u;
+            const p = l.data;
+            n.call_anthropic = p, s.apiResult = p;
           }
-          return await O({ messages: y.messages, response: o.call_anthropic || o.call_gemini }), m("isSending", !1), { accepted: !0, context: o.normalize_context, message: o.normalize_user, response: o.process_response };
+          return await j({ messages: u.messages, response: n.call_anthropic || n.call_gemini }), m("isSending", !1), { accepted: !0, context: n.normalize_context, message: n.normalize_user, response: n.process_response };
         } else {
           {
-            const a = { args: t, inputs: r, state: y, sharedState: k, applicationState: L, pageState: D, pageData: q, serverData: M, vars: n, stepResults: o }, i = z({ contents: "{{ stepResults.build_provider_payloads.geminiContents }}", context: "{{ stepResults.normalize_context.context }}", model: "{{ inputs.geminiModel }}", systemPrompt: "{{ stepResults.normalize_context.systemPrompt }}" }, a) || {}, c = await fetch("/api/rudra/protected", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ moduleId: "cmtd4taga000204l2nchcixk4", apiId: "geminiChatApi", argumentValues: i, context: a }), signal: t.signal || AbortSignal.timeout(3e4) }), l = await c.json().catch(() => ({}));
+            const a = { args: t, inputs: i, state: u, sharedState: k, applicationState: L, pageState: D, pageData: q, serverData: z, vars: s, stepResults: n }, r = P({ contents: "{{ stepResults.build_provider_payloads.geminiContents }}", context: "{{ stepResults.normalize_context.context }}", model: "{{ inputs.geminiModel }}", systemPrompt: "{{ stepResults.normalize_context.systemPrompt }}" }, a) || {}, c = await fetch("/api/rudra/protected", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ moduleId: "cmtd4taga000204l2nchcixk4", apiId: "geminiChatApi", argumentValues: r, context: a }), signal: t.signal || AbortSignal.timeout(3e4) }), l = await c.json().catch(() => ({}));
             if (!c.ok) throw new Error(l.error || "Protected API request failed (" + c.status + ")");
-            const u = l.data;
-            o.call_gemini = u, n.apiResult = u;
+            const p = l.data;
+            n.call_gemini = p, s.apiResult = p;
           }
-          return await O({ messages: y.messages, response: o.call_anthropic || o.call_gemini }), m("isSending", !1), { accepted: !0, context: o.normalize_context, message: o.normalize_user, response: o.process_response };
+          return await j({ messages: u.messages, response: n.call_anthropic || n.call_gemini }), m("isSending", !1), { accepted: !0, context: n.normalize_context, message: n.normalize_user, response: n.process_response };
         }
       } else {
         {
           t.event;
           const a = await (async () => {
-            const i = r.context && typeof r.context == "object" && !Array.isArray(r.context) ? r.context : {}, c = typeof r.systemPrompt == "string" && r.systemPrompt.trim() ? r.systemPrompt : "You are a concise and helpful AI assistant.";
-            return { context: i, systemPrompt: c, revision: 0, updatedAt: (/* @__PURE__ */ new Date()).toISOString(), cache: { enabled: !1, hit: !1, source: "direct" }, source: "direct" };
+            const r = i.context && typeof i.context == "object" && !Array.isArray(i.context) ? i.context : {}, c = typeof i.systemPrompt == "string" && i.systemPrompt.trim() ? i.systemPrompt : "You are a concise and helpful AI assistant.";
+            return { context: r, systemPrompt: c, revision: 0, updatedAt: (/* @__PURE__ */ new Date()).toISOString(), cache: { enabled: !1, hit: !1, source: "direct" }, source: "direct" };
           })();
-          o.use_direct_context = a, n.customCodeResult = a;
+          n.use_direct_context = a, s.customCodeResult = a;
         }
         {
           {
             t.event;
             const a = await (async () => {
-              const i = o.read_context_db, c = Array.isArray(i) ? i : i && Array.isArray(i.data) ? i.data : [], l = c[0] && typeof c[0] == "object" ? c[0] : null, u = o.use_direct_context && typeof o.use_direct_context == "object" ? o.use_direct_context : {}, d = r.contextDatabaseEnabled === !0, g = d && l ? l : u, A = r.context && typeof r.context == "object" && !Array.isArray(r.context) ? r.context : {}, T = g.context && typeof g.context == "object" && !Array.isArray(g.context) ? g.context : A, N = typeof g.systemPrompt == "string" && g.systemPrompt.trim() ? g.systemPrompt : typeof r.systemPrompt == "string" && r.systemPrompt.trim() ? r.systemPrompt : "You are a concise and helpful AI assistant.";
-              return { context: T, systemPrompt: N, revision: Number(g.revision || 0), updatedAt: typeof g.updatedAt == "string" && g.updatedAt ? g.updatedAt : (/* @__PURE__ */ new Date()).toISOString(), cache: { enabled: !1, hit: !1, source: d ? "database" : "direct" }, source: d ? "database" : "direct", found: !!l };
+              const r = n.read_context_db, c = Array.isArray(r) ? r : r && Array.isArray(r.data) ? r.data : [], l = c[0] && typeof c[0] == "object" ? c[0] : null, p = n.use_direct_context && typeof n.use_direct_context == "object" ? n.use_direct_context : {}, d = i.contextDatabaseEnabled === !0, y = d && l ? l : p, A = i.context && typeof i.context == "object" && !Array.isArray(i.context) ? i.context : {}, T = y.context && typeof y.context == "object" && !Array.isArray(y.context) ? y.context : A, N = typeof y.systemPrompt == "string" && y.systemPrompt.trim() ? y.systemPrompt : typeof i.systemPrompt == "string" && i.systemPrompt.trim() ? i.systemPrompt : "You are a concise and helpful AI assistant.";
+              return { context: T, systemPrompt: N, revision: Number(y.revision || 0), updatedAt: typeof y.updatedAt == "string" && y.updatedAt ? y.updatedAt : (/* @__PURE__ */ new Date()).toISOString(), cache: { enabled: !1, hit: !1, source: d ? "database" : "direct" }, source: d ? "database" : "direct", found: !!l };
             })();
-            o.normalize_context = a, n.customCodeResult = a;
+            n.normalize_context = a, s.customCodeResult = a;
           }
-          m("runtimeContext", o.normalize_context.context), b("contextResolved", { cache: o.normalize_context.cache, context: o.normalize_context.context, revision: o.normalize_context.revision, sessionId: r.sessionId, systemPrompt: o.normalize_context.systemPrompt, updatedAt: o.normalize_context.updatedAt }, !1).catch((a) => console.error("Module output delivery failed", a));
+          m("runtimeContext", n.normalize_context.context), b("contextResolved", { cache: n.normalize_context.cache, context: n.normalize_context.context, revision: n.normalize_context.revision, sessionId: i.sessionId, systemPrompt: n.normalize_context.systemPrompt, updatedAt: n.normalize_context.updatedAt }, !1).catch((a) => console.error("Module output delivery failed", a));
           {
             t.event;
             const a = await (async () => {
-              const c = (Array.isArray(y.messages) ? y.messages : []).filter((d) => d && (d.role === "user" || d.role === "assistant")), l = c.findIndex((d) => d.role === "user"), u = l >= 0 ? c.slice(l) : [];
-              return { anthropicMessages: u.map((d) => ({ role: d.role === "assistant" ? "assistant" : "user", content: String(d.content || "") })), geminiContents: u.map((d) => ({ role: d.role === "assistant" ? "model" : "user", parts: [{ text: String(d.content || "") }] })) };
+              const c = (Array.isArray(u.messages) ? u.messages : []).filter((d) => d && (d.role === "user" || d.role === "assistant")), l = c.findIndex((d) => d.role === "user"), p = l >= 0 ? c.slice(l) : [];
+              return { anthropicMessages: p.map((d) => ({ role: d.role === "assistant" ? "assistant" : "user", content: String(d.content || "") })), geminiContents: p.map((d) => ({ role: d.role === "assistant" ? "model" : "user", parts: [{ text: String(d.content || "") }] })) };
             })();
-            o.build_provider_payloads = a, n.customCodeResult = a;
+            n.build_provider_payloads = a, s.customCodeResult = a;
           }
-          if (String(r.aiProvider || "anthropic").toLowerCase() === "anthropic") {
+          if (String(i.aiProvider || "anthropic").toLowerCase() === "anthropic") {
             {
-              const a = { args: t, inputs: r, state: y, sharedState: k, applicationState: L, pageState: D, pageData: q, serverData: M, vars: n, stepResults: o }, i = z({ context: "{{ stepResults.normalize_context.context }}", maxTokens: "{{ inputs.maxOutputTokens }}", messages: "{{ stepResults.build_provider_payloads.anthropicMessages }}", model: "{{ inputs.anthropicModel }}", systemPrompt: "{{ stepResults.normalize_context.systemPrompt }}" }, a) || {}, c = await fetch("/api/rudra/protected", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ moduleId: "cmtd4taga000204l2nchcixk4", apiId: "anthropicChatApi", argumentValues: i, context: a }), signal: t.signal || AbortSignal.timeout(3e4) }), l = await c.json().catch(() => ({}));
+              const a = { args: t, inputs: i, state: u, sharedState: k, applicationState: L, pageState: D, pageData: q, serverData: z, vars: s, stepResults: n }, r = P({ context: "{{ stepResults.normalize_context.context }}", maxTokens: "{{ inputs.maxOutputTokens }}", messages: "{{ stepResults.build_provider_payloads.anthropicMessages }}", model: "{{ inputs.anthropicModel }}", systemPrompt: "{{ stepResults.normalize_context.systemPrompt }}" }, a) || {}, c = await fetch("/api/rudra/protected", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ moduleId: "cmtd4taga000204l2nchcixk4", apiId: "anthropicChatApi", argumentValues: r, context: a }), signal: t.signal || AbortSignal.timeout(3e4) }), l = await c.json().catch(() => ({}));
               if (!c.ok) throw new Error(l.error || "Protected API request failed (" + c.status + ")");
-              const u = l.data;
-              o.call_anthropic = u, n.apiResult = u;
+              const p = l.data;
+              n.call_anthropic = p, s.apiResult = p;
             }
-            return await O({ messages: y.messages, response: o.call_anthropic || o.call_gemini }), m("isSending", !1), { accepted: !0, context: o.normalize_context, message: o.normalize_user, response: o.process_response };
+            return await j({ messages: u.messages, response: n.call_anthropic || n.call_gemini }), m("isSending", !1), { accepted: !0, context: n.normalize_context, message: n.normalize_user, response: n.process_response };
           } else {
             {
-              const a = { args: t, inputs: r, state: y, sharedState: k, applicationState: L, pageState: D, pageData: q, serverData: M, vars: n, stepResults: o }, i = z({ contents: "{{ stepResults.build_provider_payloads.geminiContents }}", context: "{{ stepResults.normalize_context.context }}", model: "{{ inputs.geminiModel }}", systemPrompt: "{{ stepResults.normalize_context.systemPrompt }}" }, a) || {}, c = await fetch("/api/rudra/protected", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ moduleId: "cmtd4taga000204l2nchcixk4", apiId: "geminiChatApi", argumentValues: i, context: a }), signal: t.signal || AbortSignal.timeout(3e4) }), l = await c.json().catch(() => ({}));
+              const a = { args: t, inputs: i, state: u, sharedState: k, applicationState: L, pageState: D, pageData: q, serverData: z, vars: s, stepResults: n }, r = P({ contents: "{{ stepResults.build_provider_payloads.geminiContents }}", context: "{{ stepResults.normalize_context.context }}", model: "{{ inputs.geminiModel }}", systemPrompt: "{{ stepResults.normalize_context.systemPrompt }}" }, a) || {}, c = await fetch("/api/rudra/protected", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ moduleId: "cmtd4taga000204l2nchcixk4", apiId: "geminiChatApi", argumentValues: r, context: a }), signal: t.signal || AbortSignal.timeout(3e4) }), l = await c.json().catch(() => ({}));
               if (!c.ok) throw new Error(l.error || "Protected API request failed (" + c.status + ")");
-              const u = l.data;
-              o.call_gemini = u, n.apiResult = u;
+              const p = l.data;
+              n.call_gemini = p, s.apiResult = p;
             }
-            return await O({ messages: y.messages, response: o.call_anthropic || o.call_gemini }), m("isSending", !1), { accepted: !0, context: o.normalize_context, message: o.normalize_user, response: o.process_response };
+            return await j({ messages: u.messages, response: n.call_anthropic || n.call_gemini }), m("isSending", !1), { accepted: !0, context: n.normalize_context, message: n.normalize_user, response: n.process_response };
           }
         }
       }
     else
       return { accepted: !1, reason: "empty" };
   }
-  async function fe(e = {}) {
-    const t = e || {}, n = {};
+  async function ie(e = {}) {
+    const t = e || {}, s = {};
     {
       t.event;
-      const o = await (async () => {
-        const i = [...Array.isArray(y.messages) ? y.messages : []].reverse().find((c) => c && c.role === "user");
-        return { type: "text", text: i ? String(i.content || "") : "" };
+      const n = await (async () => {
+        const r = [...Array.isArray(u.messages) ? u.messages : []].reverse().find((c) => c && c.role === "user");
+        return { type: "text", text: r ? String(r.content || "") : "" };
       })();
-      n.find_retry_message = o;
+      s.find_retry_message = n;
     }
-    return n.find_retry_message.text ? (await Z({ message: n.find_retry_message }), n.run_retry) : { accepted: !1, reason: "no-user-message" };
+    return s.find_retry_message.text ? (await Z({ message: s.find_retry_message }), s.run_retry) : { accepted: !1, reason: "no-user-message" };
   }
-  async function xe(e = {}) {
+  async function re(e = {}) {
     const t = e || {};
-    return m("isSending", !1), b("responseCancelled", { reason: t.reason || "host-requested" }, !1).catch((n) => console.error("Module output delivery failed", n)), { cancelled: !0 };
+    return m("isSending", !1), b("responseCancelled", { reason: t.reason || "host-requested" }, !1).catch((s) => console.error("Module output delivery failed", s)), { cancelled: !0 };
   }
   async function lt(e = {}) {
     return m("hasInitialized", !0), m("isOpen", !1), m("showLauncher", !0), { open: !1 };
   }
-  async function _e(e = {}) {
-    return y.hasInitialized === !0 ? { initialized: !0, reused: !0 } : (m("isOpen", y.hasInitialized === !0 ? y.isOpen : r.visible !== !1 && (r.presentationMode !== "floating" || r.defaultOpen === !0)), m("isFloating", r.presentationMode === "floating"), m("showLauncher", y.hasInitialized === !0 ? y.showLauncher : r.visible !== !1 && r.presentationMode === "floating" && r.defaultOpen !== !0), m("themeClass", "lumora-ai-host lumora-ai-floating lumora-ai-theme-" + (r.visualTheme || "aurora")), m("messages", y.messages.length ? y.messages : r.welcomeMessage ? [{ id: "welcome", role: "assistant", sender: r.assistantName || "Assistant", variant: "incoming", content: r.welcomeMessage, timestamp: (/* @__PURE__ */ new Date()).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) }] : []), m("hasInitialized", !0), { initialized: !0 });
+  async function ce(e = {}) {
+    return u.hasInitialized === !0 ? { initialized: !0, reused: !0 } : (m("isOpen", u.hasInitialized === !0 ? u.isOpen : i.visible !== !1 && (i.presentationMode !== "floating" || i.defaultOpen === !0)), m("isFloating", i.presentationMode === "floating"), m("showLauncher", u.hasInitialized === !0 ? u.showLauncher : i.visible !== !1 && i.presentationMode === "floating" && i.defaultOpen !== !0), m("themeClass", "lumora-ai-host lumora-ai-floating lumora-ai-theme-" + (i.visualTheme || "aurora")), m("messages", u.messages.length ? u.messages : i.welcomeMessage ? [{ id: "welcome", role: "assistant", sender: i.assistantName || "Assistant", variant: "incoming", content: i.welcomeMessage, timestamp: (/* @__PURE__ */ new Date()).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) }] : []), m("hasInitialized", !0), { initialized: !0 });
   }
-  async function be(e = {}) {
-    return r.contextDatabaseEnabled === !0 ? { initialized: !0, table: "rudra_ai_context" } : { initialized: !1, reason: "database-context-disabled" };
+  async function de(e = {}) {
+    return i.contextDatabaseEnabled === !0 ? { initialized: !0, table: "rudra_ai_context" } : { initialized: !1, reason: "database-context-disabled" };
   }
   async function ut(e = {}) {
     return m("hasInitialized", !0), m("isOpen", !0), m("showLauncher", !1), { open: !0 };
   }
-  async function ve(e = {}) {
-    const t = e || {}, n = {};
-    if (r.contextDatabaseEnabled === !0) {
+  async function le(e = {}) {
+    const t = e || {}, s = {};
+    if (i.contextDatabaseEnabled === !0) {
       {
         t.event;
-        const o = await (async () => {
-          const a = n.upsert_context_db, i = Array.isArray(a) ? a : a && Array.isArray(a.data) ? a.data : [], c = i[0] && typeof i[0] == "object" ? i[0] : null, l = n.use_direct_context_update && typeof n.use_direct_context_update == "object" ? n.use_direct_context_update : {}, u = r.contextDatabaseEnabled === !0, d = u && c ? c : l;
-          return { context: d.context && typeof d.context == "object" ? d.context : t.context, systemPrompt: typeof d.systemPrompt == "string" ? d.systemPrompt : t.systemPrompt || r.systemPrompt || "", revision: Number(d.revision || 0), updatedAt: typeof d.updatedAt == "string" && d.updatedAt ? d.updatedAt : (/* @__PURE__ */ new Date()).toISOString(), cache: u ? { enabled: !1, invalidated: !!c, source: "database" } : d.cache || { enabled: !1, invalidated: !1, source: "direct" }, sessionId: t.scopeKey || r.contextScopeKey || r.sessionId || "default", persisted: u && !!c, updated: u ? !!c : !0 };
+        const n = await (async () => {
+          const a = s.upsert_context_db, r = Array.isArray(a) ? a : a && Array.isArray(a.data) ? a.data : [], c = r[0] && typeof r[0] == "object" ? r[0] : null, l = s.use_direct_context_update && typeof s.use_direct_context_update == "object" ? s.use_direct_context_update : {}, p = i.contextDatabaseEnabled === !0, d = p && c ? c : l;
+          return { context: d.context && typeof d.context == "object" ? d.context : t.context, systemPrompt: typeof d.systemPrompt == "string" ? d.systemPrompt : t.systemPrompt || i.systemPrompt || "", revision: Number(d.revision || 0), updatedAt: typeof d.updatedAt == "string" && d.updatedAt ? d.updatedAt : (/* @__PURE__ */ new Date()).toISOString(), cache: p ? { enabled: !1, invalidated: !!c, source: "database" } : d.cache || { enabled: !1, invalidated: !1, source: "direct" }, sessionId: t.scopeKey || i.contextScopeKey || i.sessionId || "default", persisted: p && !!c, updated: p ? !!c : !0 };
         })();
-        n.normalize_context_update = o;
+        s.normalize_context_update = n;
       }
-      return m("runtimeContext", n.normalize_context_update.context), b("contextUpdated", n.normalize_context_update, !1).catch((o) => console.error("Module output delivery failed", o)), b("contextChanged", { context: n.normalize_context_update.context, persisted: n.normalize_context_update.persisted, revision: n.normalize_context_update.revision }, !1).catch((o) => console.error("Module output delivery failed", o)), n.normalize_context_update;
+      return m("runtimeContext", s.normalize_context_update.context), b("contextUpdated", s.normalize_context_update, !1).catch((n) => console.error("Module output delivery failed", n)), b("contextChanged", { context: s.normalize_context_update.context, persisted: s.normalize_context_update.persisted, revision: s.normalize_context_update.revision }, !1).catch((n) => console.error("Module output delivery failed", n)), s.normalize_context_update;
     } else {
       {
         t.event;
-        const o = await (async () => ({ context: t.context && typeof t.context == "object" ? t.context : {}, systemPrompt: typeof t.systemPrompt == "string" ? t.systemPrompt : r.systemPrompt || "", revision: 0, updatedAt: (/* @__PURE__ */ new Date()).toISOString(), cache: { enabled: !1, invalidated: !1, source: "direct" }, sessionId: t.scopeKey || r.contextScopeKey || r.sessionId || "default", persisted: !1, updated: !0 }))();
-        n.use_direct_context_update = o;
+        const n = await (async () => ({ context: t.context && typeof t.context == "object" ? t.context : {}, systemPrompt: typeof t.systemPrompt == "string" ? t.systemPrompt : i.systemPrompt || "", revision: 0, updatedAt: (/* @__PURE__ */ new Date()).toISOString(), cache: { enabled: !1, invalidated: !1, source: "direct" }, sessionId: t.scopeKey || i.contextScopeKey || i.sessionId || "default", persisted: !1, updated: !0 }))();
+        s.use_direct_context_update = n;
       }
       {
         {
           t.event;
-          const o = await (async () => {
-            const a = n.upsert_context_db, i = Array.isArray(a) ? a : a && Array.isArray(a.data) ? a.data : [], c = i[0] && typeof i[0] == "object" ? i[0] : null, l = n.use_direct_context_update && typeof n.use_direct_context_update == "object" ? n.use_direct_context_update : {}, u = r.contextDatabaseEnabled === !0, d = u && c ? c : l;
-            return { context: d.context && typeof d.context == "object" ? d.context : t.context, systemPrompt: typeof d.systemPrompt == "string" ? d.systemPrompt : t.systemPrompt || r.systemPrompt || "", revision: Number(d.revision || 0), updatedAt: typeof d.updatedAt == "string" && d.updatedAt ? d.updatedAt : (/* @__PURE__ */ new Date()).toISOString(), cache: u ? { enabled: !1, invalidated: !!c, source: "database" } : d.cache || { enabled: !1, invalidated: !1, source: "direct" }, sessionId: t.scopeKey || r.contextScopeKey || r.sessionId || "default", persisted: u && !!c, updated: u ? !!c : !0 };
+          const n = await (async () => {
+            const a = s.upsert_context_db, r = Array.isArray(a) ? a : a && Array.isArray(a.data) ? a.data : [], c = r[0] && typeof r[0] == "object" ? r[0] : null, l = s.use_direct_context_update && typeof s.use_direct_context_update == "object" ? s.use_direct_context_update : {}, p = i.contextDatabaseEnabled === !0, d = p && c ? c : l;
+            return { context: d.context && typeof d.context == "object" ? d.context : t.context, systemPrompt: typeof d.systemPrompt == "string" ? d.systemPrompt : t.systemPrompt || i.systemPrompt || "", revision: Number(d.revision || 0), updatedAt: typeof d.updatedAt == "string" && d.updatedAt ? d.updatedAt : (/* @__PURE__ */ new Date()).toISOString(), cache: p ? { enabled: !1, invalidated: !!c, source: "database" } : d.cache || { enabled: !1, invalidated: !1, source: "direct" }, sessionId: t.scopeKey || i.contextScopeKey || i.sessionId || "default", persisted: p && !!c, updated: p ? !!c : !0 };
           })();
-          n.normalize_context_update = o;
+          s.normalize_context_update = n;
         }
-        return m("runtimeContext", n.normalize_context_update.context), b("contextUpdated", n.normalize_context_update, !1).catch((o) => console.error("Module output delivery failed", o)), b("contextChanged", { context: n.normalize_context_update.context, persisted: n.normalize_context_update.persisted, revision: n.normalize_context_update.revision }, !1).catch((o) => console.error("Module output delivery failed", o)), n.normalize_context_update;
+        return m("runtimeContext", s.normalize_context_update.context), b("contextUpdated", s.normalize_context_update, !1).catch((n) => console.error("Module output delivery failed", n)), b("contextChanged", { context: s.normalize_context_update.context, persisted: s.normalize_context_update.persisted, revision: s.normalize_context_update.revision }, !1).catch((n) => console.error("Module output delivery failed", n)), s.normalize_context_update;
       }
     }
   }
-  async function Ae(e = {}) {
+  async function ue(e = {}) {
     return m("errorMessage", ""), m("toasts", []), { dismissed: !0 };
   }
-  async function O(e = {}) {
-    const t = e || {}, n = {};
+  async function j(e = {}) {
+    const t = e || {}, s = {};
     {
       t.event;
-      const o = await (async () => {
-        const a = t.response && typeof t.response == "object" ? t.response : {}, i = Array.isArray(a.content) ? a.content.filter((w) => w && w.type === "text").map((w) => String(w.text || "")).join("") : "", l = (Array.isArray(a.candidates) && a.candidates[0] && a.candidates[0].content && Array.isArray(a.candidates[0].content.parts) ? a.candidates[0].content.parts : []).filter((w) => w && typeof w.text == "string").map((w) => w.text).join(""), u = a.message && typeof a.message == "object" ? a.message : {}, d = Array.isArray(a.choices) && a.choices[0] && a.choices[0].message ? a.choices[0].message : {}, g = i || l || u.content || a.text || a.response || d.content || "", A = typeof g == "string" ? g : JSON.stringify(g || ""), T = Array.isArray(a.toolCalls) ? a.toolCalls : Array.isArray(a.actions) ? a.actions : [], N = a.toolCall || T[0] || null, Se = Array.isArray(a.candidates) ? "gemini" : Array.isArray(a.content) ? "anthropic" : String(r.aiProvider || "unknown"), yt = Se === "anthropic" ? { mode: "prompt-cache", enabled: !0, readTokens: Number(a.usage && a.usage.cache_read_input_tokens || 0), writtenTokens: Number(a.usage && a.usage.cache_creation_input_tokens || 0) } : { mode: "implicit", enabled: !0, readTokens: Number(a.usageMetadata && a.usageMetadata.cachedContentTokenCount || 0) };
-        return { message: { id: String(a.id || "assistant-" + Date.now()), role: "assistant", sender: r.assistantName || "Assistant", variant: "incoming", content: A || "I could not read the assistant response.", timestamp: (/* @__PURE__ */ new Date()).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }), data: a.data || {} }, action: N, provider: Se, providerCache: yt };
+      const n = await (async () => {
+        const a = t.response && typeof t.response == "object" ? t.response : {}, r = Array.isArray(a.content) ? a.content.filter((w) => w && w.type === "text").map((w) => String(w.text || "")).join("") : "", l = (Array.isArray(a.candidates) && a.candidates[0] && a.candidates[0].content && Array.isArray(a.candidates[0].content.parts) ? a.candidates[0].content.parts : []).filter((w) => w && typeof w.text == "string").map((w) => w.text).join(""), p = a.message && typeof a.message == "object" ? a.message : {}, d = Array.isArray(a.choices) && a.choices[0] && a.choices[0].message ? a.choices[0].message : {}, y = r || l || p.content || a.text || a.response || d.content || "", A = typeof y == "string" ? y : JSON.stringify(y || ""), T = Array.isArray(a.toolCalls) ? a.toolCalls : Array.isArray(a.actions) ? a.actions : [], N = a.toolCall || T[0] || null, ge = Array.isArray(a.candidates) ? "gemini" : Array.isArray(a.content) ? "anthropic" : String(i.aiProvider || "unknown"), yt = ge === "anthropic" ? { mode: "prompt-cache", enabled: !0, readTokens: Number(a.usage && a.usage.cache_read_input_tokens || 0), writtenTokens: Number(a.usage && a.usage.cache_creation_input_tokens || 0) } : { mode: "implicit", enabled: !0, readTokens: Number(a.usageMetadata && a.usageMetadata.cachedContentTokenCount || 0) };
+        return { message: { id: String(a.id || "assistant-" + Date.now()), role: "assistant", sender: i.assistantName || "Assistant", variant: "incoming", content: A || "I could not read the assistant response.", timestamp: (/* @__PURE__ */ new Date()).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }), data: a.data || {} }, action: N, provider: ge, providerCache: yt };
       })();
-      n.normalize_response = o;
+      s.normalize_response = n;
     }
-    return m("messages", [...Array.isArray(t.messages) ? t.messages : y.messages, n.normalize_response.message].slice(-r.maxMessages)), b("messageReceived", { cache: n.normalize_response.providerCache, message: n.normalize_response.message, provider: n.normalize_response.provider, raw: t.response }, !1).catch((o) => console.error("Module output delivery failed", o)), n.normalize_response.action ? (m("pendingAction", n.normalize_response.action), b("actionRequested", { action: n.normalize_response.action, sessionId: r.sessionId }, !1).catch((o) => console.error("Module output delivery failed", o)), ["escalate", "escalation", "handoff"].includes(String(n.normalize_response.action.type || n.normalize_response.action.name || "").toLowerCase()) && b("escalationRequested", { action: n.normalize_response.action, message: n.normalize_response.message }, !1).catch((o) => console.error("Module output delivery failed", o)), n.normalize_response) : n.normalize_response;
+    return m("messages", [...Array.isArray(t.messages) ? t.messages : u.messages, s.normalize_response.message].slice(-i.maxMessages)), b("messageReceived", { cache: s.normalize_response.providerCache, message: s.normalize_response.message, provider: s.normalize_response.provider, raw: t.response }, !1).catch((n) => console.error("Module output delivery failed", n)), s.normalize_response.action ? (m("pendingAction", s.normalize_response.action), b("actionRequested", { action: s.normalize_response.action, sessionId: i.sessionId }, !1).catch((n) => console.error("Module output delivery failed", n)), ["escalate", "escalation", "handoff"].includes(String(s.normalize_response.action.type || s.normalize_response.action.name || "").toLowerCase()) && b("escalationRequested", { action: s.normalize_response.action, message: s.normalize_response.message }, !1).catch((n) => console.error("Module output delivery failed", n)), s.normalize_response) : s.normalize_response;
   }
   async function mt(e = {}) {
     const t = e || {};
-    return b("attachmentSelected", { files: t.files }, !1).catch((n) => console.error("Module output delivery failed", n)), { accepted: !0, count: t.files.length };
+    return b("attachmentSelected", { files: t.files }, !1).catch((s) => console.error("Module output delivery failed", s)), { accepted: !0, count: t.files.length };
   }
-  async function we(e = {}) {
+  async function me(e = {}) {
     const t = e || {};
-    return m("messages", r.showToolActivity ? [...y.messages, { id: "tool-" + Date.now(), role: "system", sender: "Tool activity", variant: "system", content: "Tool " + t.actionId + " " + (t.status || "completed"), timestamp: (/* @__PURE__ */ new Date()).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }), data: t.result || {} }].slice(-r.maxMessages) : y.messages), m("pendingAction", {}), b("actionCompleted", { actionId: t.actionId, result: t.result || {}, status: t.status || "completed" }, !1).catch((n) => console.error("Module output delivery failed", n)), { actionId: t.actionId, completed: !0 };
+    return m("messages", i.showToolActivity ? [...u.messages, { id: "tool-" + Date.now(), role: "system", sender: "Tool activity", variant: "system", content: "Tool " + t.actionId + " " + (t.status || "completed"), timestamp: (/* @__PURE__ */ new Date()).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }), data: t.result || {} }].slice(-i.maxMessages) : u.messages), m("pendingAction", {}), b("actionCompleted", { actionId: t.actionId, result: t.result || {}, status: t.status || "completed" }, !1).catch((s) => console.error("Module output delivery failed", s)), { actionId: t.actionId, completed: !0 };
   }
   const pt = {
-    clearConversation: he,
+    clearConversation: ae,
     sendMessage: Z,
-    retryLastMessage: fe,
-    cancelResponse: xe,
+    retryLastMessage: ie,
+    cancelResponse: re,
     closeChat: lt,
-    initializeConversation: _e,
-    initializeContextStore: be,
+    initializeConversation: ce,
+    initializeContextStore: de,
     openChat: ut,
-    loadContext: ve,
-    dismissError: Ae,
-    processApiResponse: O,
+    loadContext: le,
+    dismissError: ue,
+    processApiResponse: j,
     handleAttachments: mt,
-    provideToolResult: we
-  }, S = K({});
+    provideToolResult: me
+  }, S = F({});
   S.current = {
-    lumora_ai_retry: (e = {}, t = {}) => fe({ ...e, signal: t.signal }),
+    lumora_ai_retry: (e = {}, t = {}) => ie({ ...e, signal: t.signal }),
     lumora_ai_send: (e = {}, t = {}) => Z({ ...e, signal: t.signal }),
-    lumora_ai_clear: (e = {}, t = {}) => he({ ...e, signal: t.signal }),
-    lumora_ai_tool_result: (e = {}, t = {}) => we({ ...e, signal: t.signal }),
-    lumora_ai_load_context: (e = {}, t = {}) => ve({ ...e, signal: t.signal }),
-    lumora_ai_cancel: (e = {}, t = {}) => xe({ ...e, signal: t.signal }),
-    lumora_ai_dismiss_error: (e = {}, t = {}) => Ae({ ...e, signal: t.signal })
+    lumora_ai_clear: (e = {}, t = {}) => ae({ ...e, signal: t.signal }),
+    lumora_ai_tool_result: (e = {}, t = {}) => me({ ...e, signal: t.signal }),
+    lumora_ai_load_context: (e = {}, t = {}) => le({ ...e, signal: t.signal }),
+    lumora_ai_cancel: (e = {}, t = {}) => re({ ...e, signal: t.signal }),
+    lumora_ai_dismiss_error: (e = {}, t = {}) => ue({ ...e, signal: t.signal })
   };
-  const G = K(null);
+  const G = F(null);
   G.current || (G.current = {
     lumora_ai_retry: (e, t) => S.current.lumora_ai_retry(e, t),
     lumora_ai_send: (e, t) => S.current.lumora_ai_send(e, t),
@@ -352,11 +374,11 @@ function It(s) {
     lumora_ai_load_context: (e, t) => S.current.lumora_ai_load_context(e, t),
     lumora_ai_cancel: (e, t) => S.current.lumora_ai_cancel(e, t),
     lumora_ai_dismiss_error: (e, t) => S.current.lumora_ai_dismiss_error(e, t)
-  }), R(() => {
-    const e = s.registerCommands || s.runtime?.registerCommands;
+  }), I(() => {
+    const e = o.registerCommands || o.runtime?.registerCommands;
     if (typeof e == "function")
       return e(G.current);
-  }, [s.registerCommands, s.runtime?.registerCommands]);
+  }, [o.registerCommands, o.runtime?.registerCommands]);
   const gt = {
     clearConversation: [],
     sendMessage: ["message"],
@@ -371,161 +393,161 @@ function It(s) {
     processApiResponse: ["response", "messages"],
     handleAttachments: ["files"],
     provideToolResult: ["actionId", "result", "status"]
-  }, P = (e, t = {}, n = []) => {
-    const o = pt[e];
-    if (o) {
-      const u = gt[e] || [];
-      return o(Object.fromEntries(u.map((d, g) => {
+  }, M = (e, t = {}, s = []) => {
+    const n = pt[e];
+    if (n) {
+      const p = gt[e] || [];
+      return n(Object.fromEntries(p.map((d, y) => {
         const A = Object.prototype.hasOwnProperty.call(t, d) ? t[d] : void 0;
-        return [d, (A === "" || A === void 0) && n[g] !== void 0 ? n[g] : d === "event" && (A === "" || A === void 0) ? n[0] : A];
+        return [d, (A === "" || A === void 0) && s[y] !== void 0 ? s[y] : d === "event" && (A === "" || A === void 0) ? s[0] : A];
       })));
     }
-    const a = Re?.[e];
+    const a = xe?.[e];
     if (typeof a == "function")
-      return a(Object.keys(t).length > 0 ? t : n[0]);
-    const [i, c] = String(e).split("."), l = typeof globalThis < "u" ? globalThis[i]?.[c] : void 0;
+      return a(Object.keys(t).length > 0 ? t : s[0]);
+    const [r, c] = String(e).split("."), l = typeof globalThis < "u" ? globalThis[r]?.[c] : void 0;
     if (typeof l == "function") return l(...Object.values(t));
     console.warn("Rudra action '" + e + "' is not available in this runtime.");
-  }, j = K(/* @__PURE__ */ new Map()), Ce = E((e, t, n, o) => {
-    const a = j.current.get(e);
+  }, O = F(/* @__PURE__ */ new Map()), pe = E((e, t, s, n) => {
+    const a = O.current.get(e);
     if (t === "exhaust" && a?.promise) return a.promise;
     t === "takeLatest" && a?.controller?.abort();
-    const i = new AbortController(), c = () => Promise.resolve().then(() => n(i.signal)), l = t === "queue" && a?.promise ? a.promise.catch(() => {
+    const r = new AbortController(), c = () => Promise.resolve().then(() => s(r.signal)), l = t === "queue" && a?.promise ? a.promise.catch(() => {
     }).then(c) : c();
-    return j.current.set(e, { controller: i, promise: l }), l.catch((u) => {
-      u?.name !== "AbortError" && console.error(o, u);
+    return O.current.set(e, { controller: r, promise: l }), l.catch((p) => {
+      p?.name !== "AbortError" && console.error(n, p);
     }).finally(() => {
-      j.current.get(e)?.promise === l && j.current.delete(e);
+      O.current.get(e)?.promise === l && O.current.delete(e);
     }), l;
   }, []);
-  return R(() => () => {
-    for (const e of j.current.values()) e.controller?.abort();
-    j.current.clear();
-  }, []), R(() => {
-    Ce("initialize_context_store_mountinitializeContextStore", "takeLatest", (e) => be({}), "Module mount lifecycle failed:");
-  }, []), R(() => {
-    Ce("lumora_ai_mountinitializeConversation", "takeLatest", (e) => _e({}), "Module mount lifecycle failed:");
-  }, []), /* @__PURE__ */ _("div", { ref: F, className: "rudra-module-wrapper", children: /* @__PURE__ */ p($, { id: "ai_host", className: `${((e) => e == null || e === !1 || typeof e == "object" ? "" : "" + String(e))(/* @__PURE__ */ ((e) => e === void 0 ? "lumora-ai-host lumora-ai-floating lumora-ai-theme-aurora" : e)(se))}`, children: [
+  return I(() => () => {
+    for (const e of O.current.values()) e.controller?.abort();
+    O.current.clear();
+  }, []), I(() => {
+    pe("initialize_context_store_mountinitializeContextStore", "takeLatest", (e) => de({}), "Module mount lifecycle failed:");
+  }, []), I(() => {
+    pe("lumora_ai_mountinitializeConversation", "takeLatest", (e) => ce({}), "Module mount lifecycle failed:");
+  }, []), /* @__PURE__ */ _("div", { ref: $, className: "rudra-module-wrapper", children: /* @__PURE__ */ g(K, { id: "ai_host", className: `${((e) => e == null || e === !1 || typeof e == "object" ? "" : "" + String(e))(/* @__PURE__ */ ((e) => e === void 0 ? "lumora-ai-host lumora-ai-floating lumora-ai-theme-aurora" : e)(V))}`, children: [
     "      ",
-    f(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(pe)) && /* @__PURE__ */ p(h, { children: [
+    f(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(oe)) && /* @__PURE__ */ g(h, { children: [
       "      ",
-      /* @__PURE__ */ p(_t, { id: "root_container", className: "lumora-ai-shell", padding: "none", bordered: !0, responsivePadding: !1, as: "section", tone: "default", radius: "xl", children: [
+      /* @__PURE__ */ g(_t, { id: "root_container", className: "lumora-ai-shell", tone: "default", radius: "xl", padding: "none", bordered: !0, responsivePadding: !1, as: "section", children: [
         "      ",
-        f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ p(h, { children: [
+        f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
           "      ",
-          /* @__PURE__ */ p(ze, { id: "chat_header", className: "lumora-ai-header flex w-full items-start justify-between gap-3 px-5 py-4", as: "header", children: [
+          /* @__PURE__ */ g(fe, { id: "chat_header", className: "lumora-ai-header flex w-full items-start justify-between gap-3 px-5 py-4", as: "header", children: [
             "      ",
-            f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ p(h, { children: [
+            f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
               "      ",
-              /* @__PURE__ */ p($, { id: "header_identity", className: "lumora-ai-identity block min-w-0", children: [
+              /* @__PURE__ */ g(K, { id: "header_identity", className: "lumora-ai-identity block min-w-0", children: [
                 "      ",
-                f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ p(h, { children: [
+                f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
                   "      ",
-                  /* @__PURE__ */ _(I, { id: "header_title", className: "text-lg font-bold", as: "h2", content: /* @__PURE__ */ ((e) => e === void 0 ? "AI Assistant" : e)(r?.title) })
+                  /* @__PURE__ */ _(R, { id: "header_title", className: "text-lg font-bold", as: "h2", content: /* @__PURE__ */ ((e) => e === void 0 ? "AI Assistant" : e)(i?.title) })
                 ] }),
-                f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ p(h, { children: [
+                f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
                   "      ",
-                  /* @__PURE__ */ _(I, { id: "header_subtitle", className: "text-xs", content: "Context-aware assistant · tools enabled by your application", customColor: "var(--rudra-color-muted)", as: "p" })
+                  /* @__PURE__ */ _(R, { id: "header_subtitle", className: "text-xs", as: "p", content: "Context-aware assistant · tools enabled by your application", customColor: "var(--rudra-color-muted)" })
                 ] })
               ] })
             ] }),
-            f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ p(h, { children: [
+            f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
               "      ",
-              /* @__PURE__ */ p(ze, { id: "header_actions", className: "lumora-ai-header-actions flex shrink-0 items-center gap-2", children: [
+              /* @__PURE__ */ g(fe, { id: "header_actions", className: "lumora-ai-header-actions flex shrink-0 items-center gap-2", children: [
                 "      ",
-                f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ p(h, { children: [
+                f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
                   "      ",
-                  /* @__PURE__ */ _(I, { id: "status_badge", className: "lumora-ai-status", as: "span", content: "Online", customColor: "currentColor" })
+                  /* @__PURE__ */ _(R, { id: "status_badge", className: "lumora-ai-status", customColor: "currentColor", as: "span", content: "Online" })
                 ] }),
-                f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ p(h, { children: [
+                f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
                   "      ",
-                  /* @__PURE__ */ _(Pe, { id: "clear_btn", className: "lumora-ai-clear-button", ariaLabel: "Clear conversation", size: "sm", label: "Clear", theme: "auto", variant: "ghost", onAction: (...e) => P("clearConversation", {}, e) })
+                  /* @__PURE__ */ _(ye, { id: "clear_btn", className: "lumora-ai-clear-button", size: "sm", label: "Clear", theme: "auto", variant: "ghost", onAction: (...e) => M("clearConversation", {}, e), ariaLabel: "Clear conversation" })
                 ] }),
-                f(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(le)) && /* @__PURE__ */ p(h, { children: [
+                f(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(se)) && /* @__PURE__ */ g(h, { children: [
                   "      ",
-                  /* @__PURE__ */ _(Me, { id: "floating_close_button", className: "lumora-ai-close-button", theme: "auto", onClick: (...e) => P("closeChat", {}, e), variant: "ghost", ariaLabel: "Close Lumora AI assistant", icon: !1, additionalAttributes: { title: "Close AI assistant" }, size: "sm" })
+                  /* @__PURE__ */ _(he, { id: "floating_close_button", className: "lumora-ai-close-button", additionalAttributes: { title: "Close AI assistant" }, icon: !1, size: "sm", variant: "ghost", theme: "auto", onClick: (...e) => M("closeChat", {}, e), ariaLabel: "Close Lumora AI assistant" })
                 ] })
               ] })
             ] })
           ] })
         ] }),
-        f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ p(h, { children: [
+        f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
           "      ",
-          /* @__PURE__ */ p(vt, { id: "message_list", className: "lumora-ai-transcript w-full flex-1 overflow-y-auto px-6 py-6", as: "section", children: [
+          /* @__PURE__ */ g(vt, { id: "message_list", className: "lumora-ai-transcript w-full flex-1 overflow-y-auto px-6 py-6", as: "section", children: [
             "      ",
-            f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ p(h, { children: [
+            f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
               "      ",
-              /* @__PURE__ */ _(At, { id: "messages_repeater", className: "flex flex-col gap-4", items: /* @__PURE__ */ ((e) => e === void 0 ? [] : e)(re), children: (e) => (() => {
+              /* @__PURE__ */ _(At, { id: "messages_repeater", className: "flex flex-col gap-4", items: /* @__PURE__ */ ((e) => e === void 0 ? [] : e)(ee), children: (e) => (() => {
                 const t = { ...e || {}, item: e?.item ?? e, index: e?.index ?? e?.i ?? 0 };
-                return /* @__PURE__ */ p(h, { children: [
+                return /* @__PURE__ */ g(h, { children: [
                   "      ",
-                  f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ p(h, { children: [
+                  f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
                     "      ",
-                    /* @__PURE__ */ p(ht, { id: "message_bubble", className: "flex w-full gap-2", bubbleClassName: "max-w-2xl rounded-2xl px-4 py-3", sender: /* @__PURE__ */ ((n) => n === void 0 ? "Assistant" : n)(t?.item?.sender), status: /* @__PURE__ */ ((n) => n === void 0 ? "" : n)(t?.item?.status), variant: /* @__PURE__ */ ((n) => n === void 0 ? "incoming" : n)(t?.item?.variant), timestamp: /* @__PURE__ */ ((n) => n === void 0 ? "" : n)(t?.item?.timestamp), children: [
+                    /* @__PURE__ */ g(ht, { id: "message_bubble", className: "flex w-full gap-2", bubbleClassName: "max-w-2xl rounded-2xl px-4 py-3", sender: /* @__PURE__ */ ((s) => s === void 0 ? "Assistant" : s)(t?.item?.sender), status: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(t?.item?.status), variant: /* @__PURE__ */ ((s) => s === void 0 ? "incoming" : s)(t?.item?.variant), timestamp: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(t?.item?.timestamp), children: [
                       "      ",
-                      f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ p(h, { children: [
+                      f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
                         "      ",
-                        /* @__PURE__ */ _(I, { id: "bubble_content", className: "text-sm", content: /* @__PURE__ */ ((n) => n === void 0 ? "" : n)(t?.item?.content), as: "p" })
+                        /* @__PURE__ */ _(R, { id: "bubble_content", className: "text-sm", as: "p", content: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(t?.item?.content) })
                       ] })
                     ] })
                   ] })
                 ] });
               })() })
             ] }),
-            f(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(U)) && /* @__PURE__ */ p(h, { children: [
+            f(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(U)) && /* @__PURE__ */ g(h, { children: [
               "      ",
-              /* @__PURE__ */ _(I, { id: "typing_indicator", className: "lumora-ai-typing text-sm", customColor: "var(--rudra-color-muted)", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "Assistant" : e)(r?.assistantName) })
+              /* @__PURE__ */ _(R, { id: "typing_indicator", className: "lumora-ai-typing text-sm", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "Assistant" : e)(i?.assistantName), customColor: "var(--rudra-color-muted)" })
             ] })
           ] })
         ] }),
-        f(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(B)) && /* @__PURE__ */ p(h, { children: [
+        f(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(B)) && /* @__PURE__ */ g(h, { children: [
           "      ",
-          /* @__PURE__ */ p(bt, { id: "error_panel", className: "lumora-ai-error mx-6 mb-3", action: /* @__PURE__ */ p(h, { children: [
+          /* @__PURE__ */ g(bt, { id: "error_panel", className: "lumora-ai-error mx-6 mb-3", action: /* @__PURE__ */ g(h, { children: [
             "      ",
-            f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ p(h, { children: [
+            f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
               "      ",
-              /* @__PURE__ */ _(Pe, { id: "retry_button", size: "sm", label: "Retry", theme: "auto", variant: "outline", onAction: (...e) => P("retryLastMessage", {}, e), ariaLabel: "Retry last message" })
+              /* @__PURE__ */ _(ye, { id: "retry_button", size: "sm", label: "Retry", theme: "auto", variant: "outline", onAction: (...e) => M("retryLastMessage", {}, e), ariaLabel: "Retry last message" })
             ] })
-          ] }), live: "assertive", theme: "auto", title: "Assistant unavailable", onDismiss: (...e) => P("dismissError", {}, e), appearance: "soft", closeLabel: "Dismiss error", dismissible: !0, variant: "error", children: [
+          ] }), dismissible: !0, live: "assertive", theme: "auto", onDismiss: (...e) => M("dismissError", {}, e), appearance: "soft", closeLabel: "Dismiss error", title: "Assistant unavailable", variant: "error", children: [
             "      ",
-            f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ p(h, { children: [
+            f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
               "      ",
-              /* @__PURE__ */ _(I, { id: "error_text", className: "text-sm", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "Something went wrong." : e)(B) })
+              /* @__PURE__ */ _(R, { id: "error_text", className: "text-sm", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "Something went wrong." : e)(B) })
             ] })
           ] })
         ] }),
-        f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ p(h, { children: [
+        f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
           "      ",
-          /* @__PURE__ */ p($, { id: "composer_wrapper", className: "lumora-ai-composer block w-full px-5 pb-5 pt-4", children: [
+          /* @__PURE__ */ g(K, { id: "composer_wrapper", className: "lumora-ai-composer block w-full px-5 pb-5 pt-4", children: [
             "      ",
-            f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ p(h, { children: [
+            f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
               "      ",
-              /* @__PURE__ */ _(I, { id: "composer_hint", className: "mb-2 text-xs", customColor: "var(--rudra-color-muted)", as: "p", content: "Ask a question or request an available action." })
+              /* @__PURE__ */ _(R, { id: "composer_hint", className: "mb-2 text-xs", customColor: "var(--rudra-color-muted)", as: "p", content: "Ask a question or request an available action." })
             ] }),
-            f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ p(h, { children: [
+            f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
               "      ",
-              /* @__PURE__ */ _(ft, { id: "chat_composer", className: "w-full", composerClassName: "rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900", onSend: (...e) => P("sendMessage", {}, e), disabled: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(U), showVoice: !1, showPicker: !1, onAttachmentSelect: (...e) => P("handleAttachments", {}, e), autoFocus: !1, placeholder: /* @__PURE__ */ ((e) => e === void 0 ? "Ask anything…" : e)(r?.placeholder), showAttachment: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(r?.allowAttachments) })
+              /* @__PURE__ */ _(ft, { id: "chat_composer", className: "w-full", composerClassName: "rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900", onSend: (...e) => M("sendMessage", {}, e), showVoice: !1, showPicker: !1, placeholder: /* @__PURE__ */ ((e) => e === void 0 ? "Ask anything…" : e)(i?.placeholder), showAttachment: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(i?.allowAttachments), onAttachmentSelect: (...e) => M("handleAttachments", {}, e), disabled: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(U), autoFocus: !1 })
             ] })
           ] })
         ] }),
-        f(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(B)) && /* @__PURE__ */ p(h, { children: [
+        f(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(B)) && /* @__PURE__ */ g(h, { children: [
           "      ",
-          /* @__PURE__ */ _(xt, { id: "global_toasts", items: /* @__PURE__ */ ((e) => e === void 0 ? [] : e)(X), closable: !0, position: "top-right", showIcons: !0, maxVisible: 3, displayMode: "fixed", onDismiss: (...e) => P("dismissError", {}, e), newestOnTop: !0 })
+          /* @__PURE__ */ _(xt, { id: "global_toasts", maxVisible: 3, displayMode: "fixed", items: /* @__PURE__ */ ((e) => e === void 0 ? [] : e)(X), showIcons: !0, newestOnTop: !0, closable: !0, position: "top-right", onDismiss: (...e) => M("dismissError", {}, e) })
         ] })
       ] })
     ] }),
-    f(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(ce)) && /* @__PURE__ */ p(h, { children: [
+    f(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(te)) && /* @__PURE__ */ g(h, { children: [
       "      ",
-      /* @__PURE__ */ p($, { id: "floating_launcher", className: "lumora-ai-launcher", children: [
+      /* @__PURE__ */ g(K, { id: "floating_launcher", className: "lumora-ai-launcher", children: [
         "      ",
-        f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ p(h, { children: [
+        f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
           "      ",
-          /* @__PURE__ */ _(Me, { id: "floating_launcher_button", className: "lumora-ai-launcher-button", onClick: (...e) => P("openChat", {}, e), variant: "primary", ariaLabel: "Open Lumora AI assistant", additionalAttributes: { "aria-haspopup": "dialog", title: "Open AI assistant" }, icon: !1, size: "xl", theme: "auto" })
+          /* @__PURE__ */ _(he, { id: "floating_launcher_button", className: "lumora-ai-launcher-button", additionalAttributes: { "aria-haspopup": "dialog", title: "Open AI assistant" }, icon: !1, size: "xl", theme: "auto", onClick: (...e) => M("openChat", {}, e), variant: "primary", ariaLabel: "Open Lumora AI assistant" })
         ] })
       ] })
     ] })
   ] }) });
 }
 export {
-  It as default
+  Rt as default
 };
