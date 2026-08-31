@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './styles.css';
 
 import { ToastStack as RudraWidgetsToastStack, MessageComposer as RudraWidgetsMessageComposer, MessageBubble as RudraWidgetsMessageBubble } from '@rudra-studio/rudra-widgets';
-import { Button as RudraCoreButton, IconButton as RudraCoreIconButton, Alert as RudraCoreAlert, Surface as RudraCoreSurface, Typography as RudraCoreTypography } from '@rudra-studio/rudra-core';
-import { Box as RudraLayoutBox, Flex as RudraLayoutFlex, Repeater as RudraLayoutRepeater, ScrollArea as RudraLayoutScrollArea } from '@rudra-studio/rudra-layout';
+import { Typography as RudraCoreTypography, Button as RudraCoreButton, IconButton as RudraCoreIconButton, Alert as RudraCoreAlert, Surface as RudraCoreSurface } from '@rudra-studio/rudra-core';
+import { Repeater as RudraLayoutRepeater, ScrollArea as RudraLayoutScrollArea, Box as RudraLayoutBox, Flex as RudraLayoutFlex } from '@rudra-studio/rudra-layout';
 
 export default function CompiledModule(props) {
   const _scope = {};
@@ -115,17 +115,17 @@ export default function CompiledModule(props) {
 
   const _setState = useCallback((name, value) => {
     switch (name) {
-      case "toasts": set_toasts(value); return value;
-      case "pendingAction": set_pendingAction(value); return value;
-      case "runtimeContext": set_runtimeContext(value); return value;
-      case "themeClass": set_themeClass(value); return value;
-      case "errorMessage": set_errorMessage(value); return value;
-      case "isSending": set_isSending(value); return value;
-      case "messages": set_messages(value); return value;
-      case "showLauncher": set_showLauncher(value); return value;
-      case "isFloating": set_isFloating(value); return value;
-      case "hasInitialized": set_hasInitialized(value); return value;
-      case "isOpen": set_isOpen(value); return value;
+      case "toasts": { const next = typeof value === 'function' ? value(state.toasts) : value; state.toasts = next; set_toasts(next); return next; }
+      case "pendingAction": { const next = typeof value === 'function' ? value(state.pendingAction) : value; state.pendingAction = next; set_pendingAction(next); return next; }
+      case "runtimeContext": { const next = typeof value === 'function' ? value(state.runtimeContext) : value; state.runtimeContext = next; set_runtimeContext(next); return next; }
+      case "themeClass": { const next = typeof value === 'function' ? value(state.themeClass) : value; state.themeClass = next; set_themeClass(next); return next; }
+      case "errorMessage": { const next = typeof value === 'function' ? value(state.errorMessage) : value; state.errorMessage = next; set_errorMessage(next); return next; }
+      case "isSending": { const next = typeof value === 'function' ? value(state.isSending) : value; state.isSending = next; set_isSending(next); return next; }
+      case "messages": { const next = typeof value === 'function' ? value(state.messages) : value; state.messages = next; set_messages(next); return next; }
+      case "showLauncher": { const next = typeof value === 'function' ? value(state.showLauncher) : value; state.showLauncher = next; set_showLauncher(next); return next; }
+      case "isFloating": { const next = typeof value === 'function' ? value(state.isFloating) : value; state.isFloating = next; set_isFloating(next); return next; }
+      case "hasInitialized": { const next = typeof value === 'function' ? value(state.hasInitialized) : value; state.hasInitialized = next; set_hasInitialized(next); return next; }
+      case "isOpen": { const next = typeof value === 'function' ? value(state.isOpen) : value; state.isOpen = next; set_isOpen(next); return next; }
       default: return value;
     }
   }, []);
@@ -147,17 +147,17 @@ export default function CompiledModule(props) {
       return next;
     };
     switch (root) {
-      case "toasts": set_toasts(updateNested); return value;
-      case "pendingAction": set_pendingAction(updateNested); return value;
-      case "runtimeContext": set_runtimeContext(updateNested); return value;
-      case "themeClass": set_themeClass(updateNested); return value;
-      case "errorMessage": set_errorMessage(updateNested); return value;
-      case "isSending": set_isSending(updateNested); return value;
-      case "messages": set_messages(updateNested); return value;
-      case "showLauncher": set_showLauncher(updateNested); return value;
-      case "isFloating": set_isFloating(updateNested); return value;
-      case "hasInitialized": set_hasInitialized(updateNested); return value;
-      case "isOpen": set_isOpen(updateNested); return value;
+      case "toasts": _setState("toasts", updateNested); return value;
+      case "pendingAction": _setState("pendingAction", updateNested); return value;
+      case "runtimeContext": _setState("runtimeContext", updateNested); return value;
+      case "themeClass": _setState("themeClass", updateNested); return value;
+      case "errorMessage": _setState("errorMessage", updateNested); return value;
+      case "isSending": _setState("isSending", updateNested); return value;
+      case "messages": _setState("messages", updateNested); return value;
+      case "showLauncher": _setState("showLauncher", updateNested); return value;
+      case "isFloating": _setState("isFloating", updateNested); return value;
+      case "hasInitialized": _setState("hasInitialized", updateNested); return value;
+      case "isOpen": _setState("isOpen", updateNested); return value;
       default: return value;
     }
   }, [_setState]);
@@ -654,49 +654,49 @@ const raw = args.response && typeof args.response === 'object' ? args.response :
 
   return (
     <div ref={wrapperRef} className="rudra-module-wrapper">
-      <RudraLayoutBox id="ai_host" className={`${((_classValue) => _classValue == null || _classValue === false || typeof _classValue === 'object' ? '' : "" + String(_classValue))(((_bindingValue) => _bindingValue === undefined ? "lumora-ai-host lumora-ai-floating lumora-ai-theme-aurora" : _bindingValue)(themeClass))}`}>      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isOpen)) && (<>      <RudraCoreSurface id="root_container" className="lumora-ai-shell" padding="none" bordered={true} responsivePadding={false} as="section" tone="default" radius="xl">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutFlex id="chat_header" className="lumora-ai-header flex w-full items-start justify-between gap-3 px-5 py-4" as="header">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="header_identity" className="lumora-ai-identity block min-w-0">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="header_title" className="text-lg font-bold" as="h2" content={((_bindingValue) => _bindingValue === undefined ? "AI Assistant" : _bindingValue)(inputs?.title)} />
+      <RudraLayoutBox id="ai_host" className={`${((_classValue) => _classValue == null || _classValue === false || typeof _classValue === 'object' ? '' : "" + String(_classValue))(((_bindingValue) => _bindingValue === undefined ? "lumora-ai-host lumora-ai-floating lumora-ai-theme-aurora" : _bindingValue)(themeClass))}`}>      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isOpen)) && (<>      <RudraCoreSurface id="root_container" className="lumora-ai-shell" tone="default" radius="xl" padding="none" bordered={true} responsivePadding={false} as="section">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutFlex id="chat_header" className="lumora-ai-header flex w-full items-start justify-between gap-3 px-5 py-4" as="header">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="header_identity" className="lumora-ai-identity block min-w-0">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="header_title" className="text-lg font-bold" as="h2" content={((_bindingValue) => _bindingValue === undefined ? "AI Assistant" : _bindingValue)(inputs?.title)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="header_subtitle" className="text-xs" content="Context-aware assistant · tools enabled by your application" customColor="var(--rudra-color-muted)" as="p" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="header_subtitle" className="text-xs" as="p" content="Context-aware assistant · tools enabled by your application" customColor="var(--rudra-color-muted)" />
 </>)}
 </RudraLayoutBox>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutFlex id="header_actions" className="lumora-ai-header-actions flex shrink-0 items-center gap-2">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="status_badge" className="lumora-ai-status" as="span" content="Online" customColor="currentColor" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutFlex id="header_actions" className="lumora-ai-header-actions flex shrink-0 items-center gap-2">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="status_badge" className="lumora-ai-status" customColor="currentColor" as="span" content="Online" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="clear_btn" className="lumora-ai-clear-button" ariaLabel="Clear conversation" size="sm" label="Clear" theme="auto" variant="ghost" onAction={(...eventArgs) => _callAction("clearConversation", {}, eventArgs)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="clear_btn" className="lumora-ai-clear-button" size="sm" label="Clear" theme="auto" variant="ghost" onAction={(...eventArgs) => _callAction("clearConversation", {}, eventArgs)} ariaLabel="Clear conversation" />
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(isFloating)) && (<>      <RudraCoreIconButton id="floating_close_button" className="lumora-ai-close-button" theme="auto" onClick={(...eventArgs) => _callAction("closeChat", {}, eventArgs)} variant="ghost" ariaLabel="Close Lumora AI assistant" icon={false} additionalAttributes={{"title":"Close AI assistant"}} size="sm" />
-</>)}
-</RudraLayoutFlex>
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(isFloating)) && (<>      <RudraCoreIconButton id="floating_close_button" className="lumora-ai-close-button" additionalAttributes={{"title":"Close AI assistant"}} icon={false} size="sm" variant="ghost" theme="auto" onClick={(...eventArgs) => _callAction("closeChat", {}, eventArgs)} ariaLabel="Close Lumora AI assistant" />
 </>)}
 </RudraLayoutFlex>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutScrollArea id="message_list" className="lumora-ai-transcript w-full flex-1 overflow-y-auto px-6 py-6" as="section">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutRepeater id="messages_repeater" className="flex flex-col gap-4" items={((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(messages)}>{(_payload) => { const _parentScope = _scope || {}; return (() => { const _scope = { ..._parentScope, ...(_payload || {}), item: _payload?.item ?? _payload, index: _payload?.index ?? _payload?.i ?? 0, parent: _parentScope }; return (<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraWidgetsMessageBubble id="message_bubble" className="flex w-full gap-2" bubbleClassName="max-w-2xl rounded-2xl px-4 py-3" sender={((_bindingValue) => _bindingValue === undefined ? "Assistant" : _bindingValue)(_scope?.item?.sender)} status={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(_scope?.item?.status)} variant={((_bindingValue) => _bindingValue === undefined ? "incoming" : _bindingValue)(_scope?.item?.variant)} timestamp={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(_scope?.item?.timestamp)}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="bubble_content" className="text-sm" content={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(_scope?.item?.content)} as="p" />
+</RudraLayoutFlex>
+</>)}
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutScrollArea id="message_list" className="lumora-ai-transcript w-full flex-1 overflow-y-auto px-6 py-6" as="section">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutRepeater id="messages_repeater" className="flex flex-col gap-4" items={((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(messages)}>{(_payload) => { const _parentScope = _scope || {}; return (() => { const _scope = { ..._parentScope, ...(_payload || {}), item: _payload?.item ?? _payload, index: _payload?.index ?? _payload?.i ?? 0, parent: _parentScope }; return (<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraWidgetsMessageBubble id="message_bubble" className="flex w-full gap-2" bubbleClassName="max-w-2xl rounded-2xl px-4 py-3" sender={((_bindingValue) => _bindingValue === undefined ? "Assistant" : _bindingValue)(_scope?.item?.sender)} status={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(_scope?.item?.status)} variant={((_bindingValue) => _bindingValue === undefined ? "incoming" : _bindingValue)(_scope?.item?.variant)} timestamp={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(_scope?.item?.timestamp)}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="bubble_content" className="text-sm" as="p" content={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(_scope?.item?.content)} />
 </>)}
 </RudraWidgetsMessageBubble>
 </>)}
 </>); })(); }}</RudraLayoutRepeater>
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isSending)) && (<>      <RudraCoreTypography id="typing_indicator" className="lumora-ai-typing text-sm" customColor="var(--rudra-color-muted)" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Assistant" : _bindingValue)(inputs?.assistantName)} />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isSending)) && (<>      <RudraCoreTypography id="typing_indicator" className="lumora-ai-typing text-sm" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Assistant" : _bindingValue)(inputs?.assistantName)} customColor="var(--rudra-color-muted)" />
 </>)}
 </RudraLayoutScrollArea>
 </>)}
       {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(errorMessage)) && (<>      <RudraCoreAlert id="error_panel" className="lumora-ai-error mx-6 mb-3" action={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="retry_button" size="sm" label="Retry" theme="auto" variant="outline" onAction={(...eventArgs) => _callAction("retryLastMessage", {}, eventArgs)} ariaLabel="Retry last message" />
 </>)}
-</>} live="assertive" theme="auto" title="Assistant unavailable" onDismiss={(...eventArgs) => _callAction("dismissError", {}, eventArgs)} appearance="soft" closeLabel="Dismiss error" dismissible={true} variant="error">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="error_text" className="text-sm" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Something went wrong." : _bindingValue)(errorMessage)} />
+</>} dismissible={true} live="assertive" theme="auto" onDismiss={(...eventArgs) => _callAction("dismissError", {}, eventArgs)} appearance="soft" closeLabel="Dismiss error" title="Assistant unavailable" variant="error">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="error_text" className="text-sm" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Something went wrong." : _bindingValue)(errorMessage)} />
 </>)}
 </RudraCoreAlert>
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="composer_wrapper" className="lumora-ai-composer block w-full px-5 pb-5 pt-4">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="composer_hint" className="mb-2 text-xs" customColor="var(--rudra-color-muted)" as="p" content="Ask a question or request an available action." />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraWidgetsMessageComposer id="chat_composer" className="w-full" composerClassName="rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900" onSend={(...eventArgs) => _callAction("sendMessage", {}, eventArgs)} disabled={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isSending)} showVoice={false} showPicker={false} onAttachmentSelect={(...eventArgs) => _callAction("handleAttachments", {}, eventArgs)} autoFocus={false} placeholder={((_bindingValue) => _bindingValue === undefined ? "Ask anything…" : _bindingValue)(inputs?.placeholder)} showAttachment={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(inputs?.allowAttachments)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraWidgetsMessageComposer id="chat_composer" className="w-full" composerClassName="rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900" onSend={(...eventArgs) => _callAction("sendMessage", {}, eventArgs)} showVoice={false} showPicker={false} placeholder={((_bindingValue) => _bindingValue === undefined ? "Ask anything…" : _bindingValue)(inputs?.placeholder)} showAttachment={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(inputs?.allowAttachments)} onAttachmentSelect={(...eventArgs) => _callAction("handleAttachments", {}, eventArgs)} disabled={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isSending)} autoFocus={false} />
 </>)}
 </RudraLayoutBox>
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(errorMessage)) && (<>      <RudraWidgetsToastStack id="global_toasts" items={((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(toasts)} closable={true} position="top-right" showIcons={true} maxVisible={3} displayMode="fixed" onDismiss={(...eventArgs) => _callAction("dismissError", {}, eventArgs)} newestOnTop={true} />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(errorMessage)) && (<>      <RudraWidgetsToastStack id="global_toasts" maxVisible={3} displayMode="fixed" items={((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(toasts)} showIcons={true} newestOnTop={true} closable={true} position="top-right" onDismiss={(...eventArgs) => _callAction("dismissError", {}, eventArgs)} />
 </>)}
 </RudraCoreSurface>
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(showLauncher)) && (<>      <RudraLayoutBox id="floating_launcher" className="lumora-ai-launcher">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreIconButton id="floating_launcher_button" className="lumora-ai-launcher-button" onClick={(...eventArgs) => _callAction("openChat", {}, eventArgs)} variant="primary" ariaLabel="Open Lumora AI assistant" additionalAttributes={{"aria-haspopup":"dialog","title":"Open AI assistant"}} icon={false} size="xl" theme="auto" />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(showLauncher)) && (<>      <RudraLayoutBox id="floating_launcher" className="lumora-ai-launcher">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreIconButton id="floating_launcher_button" className="lumora-ai-launcher-button" additionalAttributes={{"aria-haspopup":"dialog","title":"Open AI assistant"}} icon={false} size="xl" theme="auto" onClick={(...eventArgs) => _callAction("openChat", {}, eventArgs)} variant="primary" ariaLabel="Open Lumora AI assistant" />
 </>)}
 </RudraLayoutBox>
 </>)}
