@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './styles.css';
 
-import { Alert as RudraCoreAlert, Button as RudraCoreButton, Typography as RudraCoreTypography } from '@rudra-studio/rudra-core';
-import { Input as RudraFormInput, Textarea as RudraFormTextarea, Checkbox as RudraFormCheckbox, Form as RudraFormForm } from '@rudra-studio/rudra-form';
+import { Checkbox as RudraFormCheckbox, Form as RudraFormForm, Input as RudraFormInput, Textarea as RudraFormTextarea } from '@rudra-studio/rudra-form';
 import { Box as RudraLayoutBox, Container as RudraLayoutContainer, Section as RudraLayoutSection } from '@rudra-studio/rudra-layout';
+import { Typography as RudraCoreTypography, Alert as RudraCoreAlert, Button as RudraCoreButton } from '@rudra-studio/rudra-core';
 
 export default function CompiledModule(props) {
   const _scope = {};
@@ -98,15 +98,15 @@ export default function CompiledModule(props) {
 
   const _setState = useCallback((name, value) => {
     switch (name) {
-      case "showError": set_showError(value); return value;
-      case "isSubmitting": set_isSubmitting(value); return value;
-      case "submissionStatus": set_submissionStatus(value); return value;
-      case "errorMessage": set_errorMessage(value); return value;
-      case "lastSubmissionId": set_lastSubmissionId(value); return value;
-      case "showSuccess": set_showSuccess(value); return value;
+      case "showError": { const next = typeof value === 'function' ? value(state.showError) : value; state.showError = next; set_showError(next); return next; }
+      case "isSubmitting": { const next = typeof value === 'function' ? value(state.isSubmitting) : value; state.isSubmitting = next; set_isSubmitting(next); return next; }
+      case "submissionStatus": { const next = typeof value === 'function' ? value(state.submissionStatus) : value; state.submissionStatus = next; set_submissionStatus(next); return next; }
+      case "errorMessage": { const next = typeof value === 'function' ? value(state.errorMessage) : value; state.errorMessage = next; set_errorMessage(next); return next; }
+      case "lastSubmissionId": { const next = typeof value === 'function' ? value(state.lastSubmissionId) : value; state.lastSubmissionId = next; set_lastSubmissionId(next); return next; }
+      case "showSuccess": { const next = typeof value === 'function' ? value(state.showSuccess) : value; state.showSuccess = next; set_showSuccess(next); return next; }
       default: return value;
     }
-  }, []);
+  }, [state]);
 
   const _setStatePath = useCallback((path, value) => {
     const [root, ...parts] = String(path || '').split('.');
@@ -125,12 +125,12 @@ export default function CompiledModule(props) {
       return next;
     };
     switch (root) {
-      case "showError": set_showError(updateNested); return value;
-      case "isSubmitting": set_isSubmitting(updateNested); return value;
-      case "submissionStatus": set_submissionStatus(updateNested); return value;
-      case "errorMessage": set_errorMessage(updateNested); return value;
-      case "lastSubmissionId": set_lastSubmissionId(updateNested); return value;
-      case "showSuccess": set_showSuccess(updateNested); return value;
+      case "showError": _setState("showError", updateNested); return value;
+      case "isSubmitting": _setState("isSubmitting", updateNested); return value;
+      case "submissionStatus": _setState("submissionStatus", updateNested); return value;
+      case "errorMessage": _setState("errorMessage", updateNested); return value;
+      case "lastSubmissionId": _setState("lastSubmissionId", updateNested); return value;
+      case "showSuccess": _setState("showSuccess", updateNested); return value;
       default: return value;
     }
   }, [_setState]);
@@ -208,10 +208,24 @@ export default function CompiledModule(props) {
     _setState("isSubmitting", true);
     _setState("showSuccess", false);
     _setState("showError", false);
+    { const roots = { args, inputs, state, sharedState, applicationState, pageState, pageData, serverData, vars, stepResults };
+      const namedParameters = _resolveRuntimeValue({"company":"{{ args.values.company }}","consentGranted":"{{ args.values.consent }}","consentPolicyVersion":"{{ inputs.consentPolicyVersion }}","email":"{{ args.values.email }}","fullName":"{{ args.values.name }}","locale":"{{ inputs.locale }}","message":"{{ args.values.message }}","source":"{{ inputs.routeAttribution }}"}, roots) || {};
+      const parameters = [namedParameters["fullName"], namedParameters["email"], namedParameters["company"], namedParameters["message"], namedParameters["source"], namedParameters["locale"], namedParameters["consentGranted"], namedParameters["consentPolicyVersion"]];
+      const queryExecutor = props.executeDatabaseQuery || props.runtime?.executeDatabaseQuery;
+      let result;
+      if (typeof queryExecutor === 'function') {
+        result = await queryExecutor({ moduleId: "cmt8v9xbl000005l86shrhssl", queryId: "lead_insert", parameters, namedParameters, signal: args.signal });
+      } else {
+        const queryResponse = await fetch("/api/modules/cmt8v9xbl000005l86shrhssl/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "lead_insert", parameters, namedParameters }), signal: args.signal });
+        const queryPayload = await queryResponse.json().catch(() => ({}));
+        if (!queryResponse.ok || queryPayload.success === false) throw new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')');
+        result = queryPayload.data;
+      }
+      stepResults["x4"] = result; vars["queryResult"] = result; }
     _setState("showSuccess", true);
-    _setState("lastSubmissionId", steps.x4[0].id);
+    _setState("lastSubmissionId", stepResults.x4[0].id);
     _setState("isSubmitting", false);
-    void _emitOutput("o_success", { "locale": inputs.locale, "routeAttribution": inputs.routeAttribution, "submissionId": steps.x4[0].id, "timestamp": steps.x4[0].created_at, "version": 1 }, false).catch(error => console.error('Module output delivery failed', error));
+    void _emitOutput("o_success", { "locale": inputs.locale, "routeAttribution": inputs.routeAttribution, "submissionId": stepResults.x4[0].id, "timestamp": stepResults.x4[0].created_at, "version": 1 }, false).catch(error => console.error('Module output delivery failed', error));
     return undefined;
     return undefined;
   }
@@ -251,9 +265,9 @@ export default function CompiledModule(props) {
 </>)}
 </RudraLayoutBox>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="card" className={`${getResponsiveProp({sm: 'block lead-card'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormForm id="form" className="lead-form" initialValues={{"company":"","consent":false,"email":"","message":"","name":""}} onSubmit={(...eventArgs) => _callAction("submitLeadForm", {}, eventArgs)}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="fields" className={`${getResponsiveProp({sm: 'grid fields'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormInput id="name" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="name_icon" aria-hidden="true" data-lumora-field-icon="name" className={`${getResponsiveProp({sm: 'block lead-input-icon lead-icon-user'}) || ''}`} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="card" className={`${getResponsiveProp({sm: 'block lead-card'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormForm id="form" className="lead-form" onSubmit={(...eventArgs) => _callAction("submitLeadForm", {}, eventArgs)} initialValues={{"company":"","consent":false,"email":"","message":"","name":""}}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="fields" className={`${getResponsiveProp({sm: 'grid fields'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormInput id="name" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="name_icon" aria-hidden="true" data-lumora-field-icon="name" className={`${getResponsiveProp({sm: 'block lead-input-icon lead-icon-user'}) || ''}`} />
 </>)}
-</>} label={inputs?.nameLabel} required={true} iconPosition="start" name="name" size="lg" type="text" />
+</>} required={true} iconPosition="start" name="name" size="lg" type="text" label={inputs?.nameLabel} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormInput id="email" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="email_icon" aria-hidden="true" data-lumora-field-icon="email" className={`${getResponsiveProp({sm: 'block lead-input-icon lead-icon-mail'}) || ''}`} />
 </>)}
@@ -267,13 +281,13 @@ export default function CompiledModule(props) {
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormTextarea id="message" minRows={5} required={true} autoResize={true} name="message" size="lg" label={inputs?.messageLabel} maxRows={9} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormCheckbox id="consent" colorScheme="purple" name="consent" label={inputs?.consentLabel} required={true} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormCheckbox id="consent" name="consent" label={inputs?.consentLabel} required={true} colorScheme="purple" />
 </>)}
       {isVisibleValue(showSuccess) && (<>      <RudraCoreAlert id="ok" live="polite" title="Inquiry received" variant="success" />
 </>)}
-      {isVisibleValue(showError) && (<>      <RudraCoreAlert id="err" title="Unable to send" variant="error" live="assertive" />
+      {isVisibleValue(showError) && (<>      <RudraCoreAlert id="err" live="assertive" title="Unable to send" variant="error" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="actions" className={`${getResponsiveProp({sm: 'flex actions'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="submit" className="lead-submit" label={inputs?.submitLabel} theme="auto" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isSubmitting)} variant="primary" loadingText={inputs?.submittingLabel} size="lg" type="submit" fullWidth={true} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="actions" className={`${getResponsiveProp({sm: 'flex actions'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="submit" className="lead-submit" size="lg" type="submit" label={inputs?.submitLabel} theme="auto" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isSubmitting)} variant="primary" loadingText={inputs?.submittingLabel} fullWidth={true} />
 </>)}
 </RudraLayoutBox>
 </>)}
