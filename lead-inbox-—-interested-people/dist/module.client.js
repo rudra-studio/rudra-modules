@@ -180,7 +180,7 @@ function xe(s) {
       "      ",
       i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
         "      ",
-        /* @__PURE__ */ c(ue, { id: "leads_header", className: `${t({ sm: "leads-header h-16 px-4 border-white/10", md: "leads-header h-18 px-8 border-white/10", lg: "leads-header h-20 px-12 border-white/10" }) || ""}`, navItemClassName: "text-xs font-black uppercase tracking-[0.12em]", theme: "auto", title: "SIGNAL/ROOM", sticky: !0, navItems: [{ href: "?status=", id: "all", label: "All leads" }, { href: "?status=new", id: "new", label: "New" }, { href: "?intent=job", id: "jobs", label: "Jobs" }, { href: "?intent=collaboration", id: "collabs", label: "Collaborations" }], mobileBreakpoint: "md" })
+        /* @__PURE__ */ c(ue, { id: "leads_header", className: `${t({ sm: "leads-header h-16 px-4 border-white/10", md: "leads-header h-18 px-8 border-white/10", lg: "leads-header h-20 px-12 border-white/10" }) || ""}`, navItemClassName: "text-xs font-black uppercase tracking-[0.12em]", mobileBreakpoint: "md", theme: "auto", title: "SIGNAL/ROOM", sticky: !0, navItems: [{ href: "?status=", id: "all", label: "All leads" }, { href: "?status=new", id: "new", label: "New" }, { href: "?intent=job", id: "jobs", label: "Jobs" }, { href: "?intent=collaboration", id: "collabs", label: "Collaborations" }] })
       ] }),
       i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
         "      ",
@@ -188,11 +188,11 @@ function xe(s) {
           "      ",
           i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
             "      ",
-            /* @__PURE__ */ a(ce, { id: "leads_container", className: "w-full max-w-[1500px]", centered: !0, maxWidth: "full", children: [
+            /* @__PURE__ */ a(ce, { id: "leads_container", className: "w-full max-w-[1500px]", maxWidth: "full", centered: !0, children: [
               "      ",
               i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
                 "      ",
-                /* @__PURE__ */ a(R, { id: "leads_meta", className: "border-t border-[#6dffb8]/25 pt-3", align: "center", justify: "between", direction: "horizontal", as: "div", gap: "4", wrap: !0, children: [
+                /* @__PURE__ */ a(R, { id: "leads_meta", className: "border-t border-[#6dffb8]/25 pt-3", gap: "4", wrap: !0, align: "center", justify: "between", direction: "horizontal", as: "div", children: [
                   "      ",
                   i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
                     "      ",
@@ -200,7 +200,7 @@ function xe(s) {
                   ] }),
                   i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
                     "      ",
-                    /* @__PURE__ */ c($, { id: "leads_badge", className: "rounded-full border border-[#6dffb8]/35 bg-[#6dffb8]/10 text-[#6dffb8]", variant: "solid", size: "sm", label: "SYSTEM ONLINE" })
+                    /* @__PURE__ */ c($, { id: "leads_badge", className: "rounded-full border border-[#6dffb8]/35 bg-[#6dffb8]/10 text-[#6dffb8]", size: "sm", label: "SYSTEM ONLINE", variant: "solid" })
                   ] })
                 ] })
               ] }),
@@ -218,7 +218,7 @@ function xe(s) {
                   ] }),
                   i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
                     "      ",
-                    /* @__PURE__ */ c(b, { id: "leads_sort_note", className: `grid ${t({ sm: "text-[10px] font-bold tracking-[.16em] text-[#62d9ff]", md: "text-right text-[10px] font-bold tracking-[.16em] text-[#62d9ff]", lg: "col-span-5 text-right text-[10px] font-bold tracking-[.16em] text-[#62d9ff]" }) || ""}`, as: "p", content: "SORTED · NEWEST FIRST" })
+                    /* @__PURE__ */ c(b, { id: "leads_sort_note", className: `grid ${t({ sm: "text-[10px] font-bold tracking-[.16em] text-[#62d9ff]", md: "text-right text-[10px] font-bold tracking-[.16em] text-[#62d9ff]", lg: "col-span-5 text-right text-[10px] font-bold tracking-[.16em] text-[#62d9ff]" }) || ""}`, content: "SORTED · NEWEST FIRST", as: "p" })
                   ] })
                 ] })
               ] }),
@@ -228,7 +228,7 @@ function xe(s) {
                   "      ",
                   i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
                     "      ",
-                    /* @__PURE__ */ a(R, { id: "leads_analytics_head", className: `${t({ sm: "mb-5" }) || ""}`, gap: "4", wrap: !0, align: "end", justify: "between", direction: "horizontal", as: "div", children: [
+                    /* @__PURE__ */ a(R, { id: "leads_analytics_head", className: `${t({ sm: "mb-5" }) || ""}`, direction: "horizontal", as: "div", gap: "4", wrap: !0, align: "end", justify: "between", children: [
                       "      ",
                       i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
                         "      ",
@@ -246,19 +246,19 @@ function xe(s) {
                       "      ",
                       i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
                         "      ",
-                        /* @__PURE__ */ c(N, { id: "leads_metric_total", labelClassName: `${t({ sm: "leads-metric-label" }) || ""}`, trendClassName: `${t({ sm: "leads-metric-trend" }) || ""}`, valueClassName: `${t({ sm: "leads-metric-value" }) || ""}`, className: `${t({ sm: "leads-metric" }) || ""}`, descriptionClassName: `${t({ sm: "leads-metric-description" }) || ""}`, chartClassName: `${t({ sm: "leads-metric-chart" }) || ""}`, negativeColor: "#fb7185", value: /* @__PURE__ */ ((e) => e === void 0 ? 0 : e)(g?.total_leads), description: "Records matching the active filter", showChart: !1, showTrend: !1, accentColor: "#62d9ff", neutralColor: "#62d9ff", positiveColor: "#6dffb8", label: "Total leads", style: { background: "#0d1319", border: "1px solid rgba(98,217,255,.18)", borderRadius: "20px", padding: "20px" } })
+                        /* @__PURE__ */ c(N, { id: "leads_metric_total", className: `${t({ sm: "leads-metric" }) || ""}`, chartClassName: `${t({ sm: "leads-metric-chart" }) || ""}`, trendClassName: `${t({ sm: "leads-metric-trend" }) || ""}`, descriptionClassName: `${t({ sm: "leads-metric-description" }) || ""}`, labelClassName: `${t({ sm: "leads-metric-label" }) || ""}`, valueClassName: `${t({ sm: "leads-metric-value" }) || ""}`, value: /* @__PURE__ */ ((e) => e === void 0 ? 0 : e)(g?.total_leads), showChart: !1, label: "Total leads", negativeColor: "#fb7185", showTrend: !1, neutralColor: "#62d9ff", positiveColor: "#6dffb8", accentColor: "#62d9ff", description: "Records matching the active filter", style: { background: "#0d1319", border: "1px solid rgba(98,217,255,.18)", borderRadius: "20px", padding: "20px" } })
                       ] }),
                       i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
                         "      ",
-                        /* @__PURE__ */ c(N, { id: "leads_metric_new", chartClassName: `${t({ sm: "leads-metric-chart" }) || ""}`, labelClassName: `${t({ sm: "leads-metric-label" }) || ""}`, trendClassName: `${t({ sm: "leads-metric-trend" }) || ""}`, valueClassName: `${t({ sm: "leads-metric-value" }) || ""}`, descriptionClassName: `${t({ sm: "leads-metric-description" }) || ""}`, className: `${t({ sm: "leads-metric" }) || ""}`, showChart: !1, showTrend: !0, trendLabel: "current queue", accentColor: "#6dffb8", neutralColor: "#62d9ff", positiveColor: "#6dffb8", label: "New leads", trend: "up", value: /* @__PURE__ */ ((e) => e === void 0 ? 0 : e)(g?.new_leads), negativeColor: "#fb7185", style: { background: "#0d1319", border: "1px solid rgba(98,217,255,.18)", borderRadius: "20px", padding: "20px" }, trendValue: "Live", description: "Awaiting first response" })
+                        /* @__PURE__ */ c(N, { id: "leads_metric_new", chartClassName: `${t({ sm: "leads-metric-chart" }) || ""}`, trendClassName: `${t({ sm: "leads-metric-trend" }) || ""}`, descriptionClassName: `${t({ sm: "leads-metric-description" }) || ""}`, labelClassName: `${t({ sm: "leads-metric-label" }) || ""}`, className: `${t({ sm: "leads-metric" }) || ""}`, valueClassName: `${t({ sm: "leads-metric-value" }) || ""}`, trendValue: "Live", positiveColor: "#6dffb8", trend: "up", showChart: !1, description: "Awaiting first response", negativeColor: "#fb7185", style: { background: "#0d1319", border: "1px solid rgba(98,217,255,.18)", borderRadius: "20px", padding: "20px" }, value: /* @__PURE__ */ ((e) => e === void 0 ? 0 : e)(g?.new_leads), neutralColor: "#62d9ff", label: "New leads", showTrend: !0, trendLabel: "current queue", accentColor: "#6dffb8" })
                       ] }),
                       i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
                         "      ",
-                        /* @__PURE__ */ c(N, { id: "leads_metric_jobs", className: `${t({ sm: "leads-metric" }) || ""}`, chartClassName: `${t({ sm: "leads-metric-chart" }) || ""}`, labelClassName: `${t({ sm: "leads-metric-label" }) || ""}`, trendClassName: `${t({ sm: "leads-metric-trend" }) || ""}`, valueClassName: `${t({ sm: "leads-metric-value" }) || ""}`, descriptionClassName: `${t({ sm: "leads-metric-description" }) || ""}`, style: { background: "#0d1319", border: "1px solid rgba(98,217,255,.18)", borderRadius: "20px", padding: "20px" }, showChart: !1, showTrend: !1, negativeColor: "#fb7185", positiveColor: "#6dffb8", value: /* @__PURE__ */ ((e) => e === void 0 ? 0 : e)(g?.job_leads), accentColor: "#a78bfa", neutralColor: "#62d9ff", label: "Job intent", description: "Career and hiring signals" })
+                        /* @__PURE__ */ c(N, { id: "leads_metric_jobs", className: `${t({ sm: "leads-metric" }) || ""}`, valueClassName: `${t({ sm: "leads-metric-value" }) || ""}`, chartClassName: `${t({ sm: "leads-metric-chart" }) || ""}`, trendClassName: `${t({ sm: "leads-metric-trend" }) || ""}`, descriptionClassName: `${t({ sm: "leads-metric-description" }) || ""}`, labelClassName: `${t({ sm: "leads-metric-label" }) || ""}`, showChart: !1, neutralColor: "#62d9ff", label: "Job intent", showTrend: !1, accentColor: "#a78bfa", description: "Career and hiring signals", value: /* @__PURE__ */ ((e) => e === void 0 ? 0 : e)(g?.job_leads), negativeColor: "#fb7185", positiveColor: "#6dffb8", style: { background: "#0d1319", border: "1px solid rgba(98,217,255,.18)", borderRadius: "20px", padding: "20px" } })
                       ] }),
                       i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
                         "      ",
-                        /* @__PURE__ */ c(N, { id: "leads_metric_sources", labelClassName: `${t({ sm: "leads-metric-label" }) || ""}`, trendClassName: `${t({ sm: "leads-metric-trend" }) || ""}`, valueClassName: `${t({ sm: "leads-metric-value" }) || ""}`, className: `${t({ sm: "leads-metric" }) || ""}`, descriptionClassName: `${t({ sm: "leads-metric-description" }) || ""}`, chartClassName: `${t({ sm: "leads-metric-chart" }) || ""}`, style: { background: "#0d1319", border: "1px solid rgba(98,217,255,.18)", borderRadius: "20px", padding: "20px" }, positiveColor: "#6dffb8", value: /* @__PURE__ */ ((e) => e === void 0 ? 0 : e)(g?.active_sources), label: "Active sources", showTrend: !1, neutralColor: "#62d9ff", negativeColor: "#fb7185", showChart: !1, accentColor: "#fbbf24", description: "Distinct acquisition channels" })
+                        /* @__PURE__ */ c(N, { id: "leads_metric_sources", descriptionClassName: `${t({ sm: "leads-metric-description" }) || ""}`, labelClassName: `${t({ sm: "leads-metric-label" }) || ""}`, valueClassName: `${t({ sm: "leads-metric-value" }) || ""}`, className: `${t({ sm: "leads-metric" }) || ""}`, chartClassName: `${t({ sm: "leads-metric-chart" }) || ""}`, trendClassName: `${t({ sm: "leads-metric-trend" }) || ""}`, label: "Active sources", value: /* @__PURE__ */ ((e) => e === void 0 ? 0 : e)(g?.active_sources), accentColor: "#fbbf24", description: "Distinct acquisition channels", showTrend: !1, negativeColor: "#fb7185", positiveColor: "#6dffb8", neutralColor: "#62d9ff", style: { background: "#0d1319", border: "1px solid rgba(98,217,255,.18)", borderRadius: "20px", padding: "20px" }, showChart: !1 })
                       ] })
                     ] })
                   ] }),
@@ -268,15 +268,15 @@ function xe(s) {
                       "      ",
                       i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
                         "      ",
-                        /* @__PURE__ */ c(N, { id: "leads_metric_volume", labelClassName: `${t({ sm: "leads-metric-label" }) || ""}`, trendClassName: `${t({ sm: "leads-metric-trend" }) || ""}`, valueClassName: `${t({ sm: "leads-metric-value" }) || ""}`, className: `${t({ sm: "leads-metric" }) || ""}`, descriptionClassName: `${t({ sm: "leads-metric-description" }) || ""}`, chartClassName: `${t({ sm: "leads-metric-chart" }) || ""}`, chartHeight: 82, neutralColor: "#62d9ff", value: /* @__PURE__ */ ((e) => e === void 0 ? 0 : e)(g?.total_leads), showTrend: !0, showChart: !0, trendLabel: "received in last 7 days", trendValue: /* @__PURE__ */ ((e) => e === void 0 ? 0 : e)(g?.leads_last_7_days), description: "Daily arrivals represented in the current result set", negativeColor: "#fb7185", trend: "neutral", chartData: /* @__PURE__ */ ((e) => e === void 0 ? [] : e)(g?.daily_lead_counts), chartType: "area", accentColor: "#62d9ff", positiveColor: "#6dffb8", label: "Lead volume", style: { background: "#0d1319", border: "1px solid rgba(98,217,255,.18)", borderRadius: "20px", padding: "20px" } })
+                        /* @__PURE__ */ c(N, { id: "leads_metric_volume", valueClassName: `${t({ sm: "leads-metric-value" }) || ""}`, chartClassName: `${t({ sm: "leads-metric-chart" }) || ""}`, trendClassName: `${t({ sm: "leads-metric-trend" }) || ""}`, descriptionClassName: `${t({ sm: "leads-metric-description" }) || ""}`, labelClassName: `${t({ sm: "leads-metric-label" }) || ""}`, className: `${t({ sm: "leads-metric" }) || ""}`, accentColor: "#62d9ff", description: "Daily arrivals represented in the current result set", style: { background: "#0d1319", border: "1px solid rgba(98,217,255,.18)", borderRadius: "20px", padding: "20px" }, chartHeight: 82, negativeColor: "#fb7185", chartType: "area", neutralColor: "#62d9ff", positiveColor: "#6dffb8", label: "Lead volume", trendLabel: "received in last 7 days", trendValue: /* @__PURE__ */ ((e) => e === void 0 ? 0 : e)(g?.leads_last_7_days), trend: "neutral", value: /* @__PURE__ */ ((e) => e === void 0 ? 0 : e)(g?.total_leads), chartData: /* @__PURE__ */ ((e) => e === void 0 ? [] : e)(g?.daily_lead_counts), showChart: !0, showTrend: !0 })
                       ] }),
                       i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
                         "      ",
-                        /* @__PURE__ */ c(N, { id: "leads_metric_intents", chartClassName: `${t({ sm: "leads-metric-chart" }) || ""}`, labelClassName: `${t({ sm: "leads-metric-label" }) || ""}`, trendClassName: `${t({ sm: "leads-metric-trend" }) || ""}`, valueClassName: `${t({ sm: "leads-metric-value" }) || ""}`, descriptionClassName: `${t({ sm: "leads-metric-description" }) || ""}`, className: `${t({ sm: "leads-metric" }) || ""}`, trendValue: /* @__PURE__ */ ((e) => e === void 0 ? 0 : e)(g?.job_leads), positiveColor: "#6dffb8", style: { background: "#0d1319", border: "1px solid rgba(98,217,255,.18)", borderRadius: "20px", padding: "20px" }, value: /* @__PURE__ */ ((e) => e === void 0 ? 0 : e)(g?.project_leads), chartData: /* @__PURE__ */ ((e) => e === void 0 ? [0, 0, 0] : e)(g?.intent_counts), chartHeight: 82, trend: "neutral", accentColor: "#a78bfa", description: "Project leads shown as the headline value", showTrend: !0, trendLabel: "job leads", neutralColor: "#62d9ff", negativeColor: "#fb7185", label: "Intent mix", chartType: "line", showChart: !0 })
+                        /* @__PURE__ */ c(N, { id: "leads_metric_intents", labelClassName: `${t({ sm: "leads-metric-label" }) || ""}`, valueClassName: `${t({ sm: "leads-metric-value" }) || ""}`, className: `${t({ sm: "leads-metric" }) || ""}`, chartClassName: `${t({ sm: "leads-metric-chart" }) || ""}`, trendClassName: `${t({ sm: "leads-metric-trend" }) || ""}`, descriptionClassName: `${t({ sm: "leads-metric-description" }) || ""}`, label: "Intent mix", chartType: "line", showChart: !0, showTrend: !0, positiveColor: "#6dffb8", chartData: /* @__PURE__ */ ((e) => e === void 0 ? [0, 0, 0] : e)(g?.intent_counts), trendLabel: "job leads", trendValue: /* @__PURE__ */ ((e) => e === void 0 ? 0 : e)(g?.job_leads), description: "Project leads shown as the headline value", negativeColor: "#fb7185", style: { background: "#0d1319", border: "1px solid rgba(98,217,255,.18)", borderRadius: "20px", padding: "20px" }, trend: "neutral", value: /* @__PURE__ */ ((e) => e === void 0 ? 0 : e)(g?.project_leads), accentColor: "#a78bfa", neutralColor: "#62d9ff", chartHeight: 82 })
                       ] }),
                       i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
                         "      ",
-                        /* @__PURE__ */ c(N, { id: "leads_metric_contact", chartClassName: `${t({ sm: "leads-metric-chart" }) || ""}`, labelClassName: `${t({ sm: "leads-metric-label" }) || ""}`, trendClassName: `${t({ sm: "leads-metric-trend" }) || ""}`, valueClassName: `${t({ sm: "leads-metric-value" }) || ""}`, className: `${t({ sm: "leads-metric" }) || ""}`, descriptionClassName: `${t({ sm: "leads-metric-description" }) || ""}`, accentColor: "#6dffb8", neutralColor: "#62d9ff", value: /* @__PURE__ */ ((e) => e === void 0 ? 0 : e)(g?.contact_progress), suffix: "%", showChart: !1, style: { background: "#0d1319", border: "1px solid rgba(98,217,255,.18)", borderRadius: "20px", padding: "20px" }, trendValue: /* @__PURE__ */ ((e) => e === void 0 ? 0 : e)(g?.progressed_leads), negativeColor: "#fb7185", positiveColor: "#6dffb8", trend: "up", showTrend: !0, trendLabel: "progressed leads", description: "Share moved beyond new status", label: "Contact progress" })
+                        /* @__PURE__ */ c(N, { id: "leads_metric_contact", valueClassName: `${t({ sm: "leads-metric-value" }) || ""}`, className: `${t({ sm: "leads-metric" }) || ""}`, chartClassName: `${t({ sm: "leads-metric-chart" }) || ""}`, trendClassName: `${t({ sm: "leads-metric-trend" }) || ""}`, descriptionClassName: `${t({ sm: "leads-metric-description" }) || ""}`, labelClassName: `${t({ sm: "leads-metric-label" }) || ""}`, description: "Share moved beyond new status", style: { background: "#0d1319", border: "1px solid rgba(98,217,255,.18)", borderRadius: "20px", padding: "20px" }, value: /* @__PURE__ */ ((e) => e === void 0 ? 0 : e)(g?.contact_progress), negativeColor: "#fb7185", trend: "up", showChart: !1, showTrend: !0, trendLabel: "progressed leads", positiveColor: "#6dffb8", label: "Contact progress", accentColor: "#6dffb8", neutralColor: "#62d9ff", suffix: "%", trendValue: /* @__PURE__ */ ((e) => e === void 0 ? 0 : e)(g?.progressed_leads) })
                       ] })
                     ] })
                   ] })
@@ -300,7 +300,7 @@ function xe(s) {
                       ] }),
                       i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
                         "      ",
-                        /* @__PURE__ */ c($, { id: "leads_filter_status", className: "rounded-full border border-white/10 bg-white/5 px-4 py-2 text-white", size: "md", label: I, variant: "outline" })
+                        /* @__PURE__ */ c($, { id: "leads_filter_status", className: "rounded-full border border-white/10 bg-white/5 px-4 py-2 text-white", label: I, variant: "outline", size: "md" })
                       ] }),
                       i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
                         "      ",
@@ -320,15 +320,15 @@ function xe(s) {
               ] }),
               i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
                 "      ",
-                /* @__PURE__ */ a(te, { id: "leads_table_surface", className: `${t({ sm: "leads-table-glow mt-6 overflow-hidden rounded-[1.25rem] p-4", md: "leads-table-glow rounded-[1.5rem] p-6", lg: "leads-table-glow rounded-[1.5rem] p-8" }) || ""}`, as: "section", theme: "auto", children: [
+                /* @__PURE__ */ a(te, { id: "leads_table_surface", className: `${t({ sm: "leads-table-glow mt-6 overflow-hidden rounded-[1.25rem] p-4", md: "leads-table-glow rounded-[1.5rem] p-6", lg: "leads-table-glow rounded-[1.5rem] p-8" }) || ""}`, theme: "auto", as: "section", children: [
                   "      ",
                   i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
                     "      ",
-                    /* @__PURE__ */ a(R, { id: "leads_table_head", className: "mb-6 border-b border-white/10 pb-5", direction: "horizontal", as: "div", gap: "4", wrap: !0, align: "end", justify: "between", children: [
+                    /* @__PURE__ */ a(R, { id: "leads_table_head", className: "mb-6 border-b border-white/10 pb-5", align: "end", justify: "between", direction: "horizontal", as: "div", gap: "4", wrap: !0, children: [
                       "      ",
                       i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
                         "      ",
-                        /* @__PURE__ */ c(b, { id: "leads_table_title", className: `${t({ sm: "leads-display text-3xl text-white", md: "leads-display text-4xl text-white", lg: "leads-display text-4xl text-white" }) || ""}`, content: "SIGNAL LOG", as: "h2" })
+                        /* @__PURE__ */ c(b, { id: "leads_table_title", className: `${t({ sm: "leads-display text-3xl text-white", md: "leads-display text-4xl text-white", lg: "leads-display text-4xl text-white" }) || ""}`, as: "h2", content: "SIGNAL LOG" })
                       ] }),
                       i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
                         "      ",
@@ -342,7 +342,7 @@ function xe(s) {
                       "      ",
                       i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
                         "      ",
-                        /* @__PURE__ */ c(fe, { id: "leads_table", className: "min-w-[880px]", data: H, mode: "pagination", columns: [{ accessorKey: "full_name", header: "Name" }, { accessorKey: "email", header: "Email" }, { accessorKey: "company", header: "Company" }, { accessorKey: "intent", header: "Intent" }, { accessorKey: "source", header: "Source" }, { accessorKey: "status", header: "Status" }, { accessorKey: "created_at", header: "Received" }], pageSize: 10, globalFilterPlaceholder: "Search leads" })
+                        /* @__PURE__ */ c(fe, { id: "leads_table", className: "min-w-[880px]", columns: [{ accessorKey: "full_name", header: "Name" }, { accessorKey: "email", header: "Email" }, { accessorKey: "company", header: "Company" }, { accessorKey: "intent", header: "Intent" }, { accessorKey: "source", header: "Source" }, { accessorKey: "status", header: "Status" }, { accessorKey: "created_at", header: "Received" }], pageSize: 10, globalFilterPlaceholder: "Search leads", data: H, mode: "pagination" })
                       ] })
                     ] })
                   ] }),
@@ -354,7 +354,7 @@ function xe(s) {
               ] }),
               i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
                 "      ",
-                /* @__PURE__ */ a(R, { id: "leads_footer", className: "mt-12 border-t border-white/10 pt-5", as: "footer", gap: "4", wrap: !0, justify: "between", direction: "horizontal", children: [
+                /* @__PURE__ */ a(R, { id: "leads_footer", className: "mt-12 border-t border-white/10 pt-5", gap: "4", wrap: !0, justify: "between", direction: "horizontal", as: "footer", children: [
                   "      ",
                   i(t({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(n, { children: [
                     "      ",
