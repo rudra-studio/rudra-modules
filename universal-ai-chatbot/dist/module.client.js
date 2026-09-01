@@ -1,8 +1,8 @@
 import { jsx as v, jsxs as y, Fragment as f } from "react/jsx-runtime";
 import { useState as w, useEffect as O, useRef as F, useCallback as E } from "react";
-import { Box as K, Flex as ye, ScrollArea as ht, Repeater as ft } from "@rudra-studio/rudra-layout";
-import { Surface as xt, Typography as j, Button as he, IconButton as fe, Alert as _t } from "@rudra-studio/rudra-core";
-import { MessageBubble as bt, MessageComposer as vt, ToastStack as At } from "@rudra-studio/rudra-widgets";
+import { MessageBubble as ht, MessageComposer as ft, ToastStack as xt } from "@rudra-studio/rudra-widgets";
+import { Surface as _t, Typography as j, Button as ye, IconButton as he, Alert as bt } from "@rudra-studio/rudra-core";
+import { Box as K, Flex as fe, ScrollArea as vt, Repeater as At } from "@rudra-studio/rudra-layout";
 function Rt(o) {
   const I = o.serverData || o.serverState || {}, k = o.sharedState || {}, L = o.applicationState || I.applicationState || {}, D = o.pageState || I.pageState || {}, q = o.pageData || I.pageData || {}, xe = {
     ...o.runtime?.functions || {},
@@ -30,51 +30,51 @@ function Rt(o) {
     });
     return e.observe($.current), () => e.disconnect();
   }, []);
-  const _ = E((e) => typeof e != "object" || e === null ? e : J === "sm" ? e.sm !== void 0 ? e.sm : e.md !== void 0 ? e.md : e.lg : J === "md" ? e.md !== void 0 ? e.md : e.sm !== void 0 ? e.sm : e.lg : e.lg !== void 0 ? e.lg : e.md !== void 0 ? e.md : e.sm, [J]), x = (e) => Array.isArray(e) ? e.length > 0 : typeof e == "string" ? e.trim() !== "" && e.trim().toLowerCase() !== "false" : !!e, _e = o.contextEndpoint !== void 0 ? o.contextEndpoint : o.data?.contextEndpoint !== void 0 ? o.data.contextEndpoint : "/api/ai-context", be = o.anthropicModel !== void 0 ? o.anthropicModel : o.data?.anthropicModel !== void 0 ? o.data.anthropicModel : "claude-sonnet-4-5", ve = o.assistantName !== void 0 ? o.assistantName : o.data?.assistantName !== void 0 ? o.data.assistantName : "Lumora", Ae = o.permissions !== void 0 ? o.permissions : o.data?.permissions !== void 0 ? o.data.permissions : {}, we = o.contextScopeKey !== void 0 ? o.contextScopeKey : o.data?.contextScopeKey !== void 0 ? o.data.contextScopeKey : "", Ce = o.customClass !== void 0 ? o.customClass : o.data?.customClass !== void 0 ? o.data.customClass : "", Se = o.allowAttachments !== void 0 ? o.allowAttachments : o.data?.allowAttachments !== void 0 ? o.data.allowAttachments : !1, ze = o.maxMessages !== void 0 ? o.maxMessages : o.data?.maxMessages !== void 0 ? o.data.maxMessages : 100, Me = o.aiProvider !== void 0 ? o.aiProvider : o.data?.aiProvider !== void 0 ? o.data.aiProvider : "anthropic", Pe = o.contextDatabaseEnabled !== void 0 ? o.contextDatabaseEnabled : o.data?.contextDatabaseEnabled !== void 0 ? o.data.contextDatabaseEnabled : !1, Ie = o.showToolActivity !== void 0 ? o.showToolActivity : o.data?.showToolActivity !== void 0 ? o.data.showToolActivity : !0, Re = o.locale !== void 0 ? o.locale : o.data?.locale !== void 0 ? o.data.locale : "en", Oe = o.systemPrompt !== void 0 ? o.systemPrompt : o.data?.systemPrompt !== void 0 ? o.data.systemPrompt : "You are Lumora, a concise and helpful AI assistant. Provide clear, accurate, and professional responses.", je = o.defaultOpen !== void 0 ? o.defaultOpen : o.data?.defaultOpen !== void 0 ? o.data.defaultOpen : !1, Te = o.context !== void 0 ? o.context : o.data?.context !== void 0 ? o.data.context : {}, Ne = o.contextCacheTtlSeconds !== void 0 ? o.contextCacheTtlSeconds : o.data?.contextCacheTtlSeconds !== void 0 ? o.data.contextCacheTtlSeconds : 60, Ee = o.title !== void 0 ? o.title : o.data?.title !== void 0 ? o.data.title : "Lumora Assistant", ke = o.disabled !== void 0 ? o.disabled : o.data?.disabled !== void 0 ? o.data.disabled : !1, Le = o.contextNamespace !== void 0 ? o.contextNamespace : o.data?.contextNamespace !== void 0 ? o.data.contextNamespace : "universal-ai-chatbot", De = o.maxOutputTokens !== void 0 ? o.maxOutputTokens : o.data?.maxOutputTokens !== void 0 ? o.data.maxOutputTokens : 1024, qe = o.visible !== void 0 ? o.visible : o.data?.visible !== void 0 ? o.data.visible : !0, Be = o.toolManifest !== void 0 ? o.toolManifest : o.data?.toolManifest !== void 0 ? o.data.toolManifest : [], Fe = o.chatEndpoint !== void 0 ? o.chatEndpoint : o.data?.chatEndpoint !== void 0 ? o.data.chatEndpoint : "/api/ai/chat", Ke = o.sessionId !== void 0 ? o.sessionId : o.data?.sessionId !== void 0 ? o.data.sessionId : "", $e = o.geminiModel !== void 0 ? o.geminiModel : o.data?.geminiModel !== void 0 ? o.data.geminiModel : "gemini-2.5-flash", Je = o.welcomeMessage !== void 0 ? o.welcomeMessage : o.data?.welcomeMessage !== void 0 ? o.data.welcomeMessage : "Hi — how can I help?", He = o.placeholder !== void 0 ? o.placeholder : o.data?.placeholder !== void 0 ? o.data.placeholder : "Ask Lumora anything…", Ue = o.requestHeaders !== void 0 ? o.requestHeaders : o.data?.requestHeaders !== void 0 ? o.data.requestHeaders : {}, Ye = o.presentationMode !== void 0 ? o.presentationMode : o.data?.presentationMode !== void 0 ? o.data.presentationMode : "floating", Ze = o.visualTheme !== void 0 ? o.visualTheme : o.data?.visualTheme !== void 0 ? o.data.visualTheme : "aurora", i = { contextEndpoint: _e, anthropicModel: be, assistantName: ve, permissions: Ae, contextScopeKey: we, customClass: Ce, allowAttachments: Se, maxMessages: ze, aiProvider: Me, contextDatabaseEnabled: Pe, showToolActivity: Ie, locale: Re, systemPrompt: Oe, defaultOpen: je, context: Te, contextCacheTtlSeconds: Ne, title: Ee, disabled: ke, contextNamespace: Le, maxOutputTokens: De, visible: qe, toolManifest: Be, chatEndpoint: Fe, sessionId: Ke, geminiModel: $e, welcomeMessage: Je, placeholder: He, requestHeaders: Ue, presentationMode: Ye, visualTheme: Ze }, [B, Ge] = w(() => structuredClone("")), [X, Qe] = w(() => structuredClone(!0)), [V, We] = w(() => structuredClone("lumora-ai-host lumora-ai-floating lumora-ai-theme-aurora")), [Xe, Ve] = w(() => structuredClone(!1)), [U, et] = w(() => structuredClone(!1)), [ee, tt] = w(() => structuredClone([])), [te, st] = w(() => structuredClone(!0)), [se, ot] = w(() => structuredClone(!1)), [oe, nt] = w(() => structuredClone([])), [at, rt] = w(() => structuredClone({})), [it, ct] = w(() => structuredClone({})), l = { errorMessage: B, showLauncher: X, themeClass: V, hasInitialized: Xe, isSending: U, messages: ee, isFloating: te, isOpen: se, toasts: oe, pendingAction: at, runtimeContext: it }, m = E((e, t) => {
+  const _ = E((e) => typeof e != "object" || e === null ? e : J === "sm" ? e.sm !== void 0 ? e.sm : e.md !== void 0 ? e.md : e.lg : J === "md" ? e.md !== void 0 ? e.md : e.sm !== void 0 ? e.sm : e.lg : e.lg !== void 0 ? e.lg : e.md !== void 0 ? e.md : e.sm, [J]), x = (e) => Array.isArray(e) ? e.length > 0 : typeof e == "string" ? e.trim() !== "" && e.trim().toLowerCase() !== "false" : !!e, _e = o.permissions !== void 0 ? o.permissions : o.data?.permissions !== void 0 ? o.data.permissions : {}, be = o.customClass !== void 0 ? o.customClass : o.data?.customClass !== void 0 ? o.data.customClass : "", ve = o.geminiModel !== void 0 ? o.geminiModel : o.data?.geminiModel !== void 0 ? o.data.geminiModel : "gemini-2.5-flash", Ae = o.presentationMode !== void 0 ? o.presentationMode : o.data?.presentationMode !== void 0 ? o.data.presentationMode : "floating", we = o.welcomeMessage !== void 0 ? o.welcomeMessage : o.data?.welcomeMessage !== void 0 ? o.data.welcomeMessage : "Hi — how can I help?", Ce = o.locale !== void 0 ? o.locale : o.data?.locale !== void 0 ? o.data.locale : "en", Se = o.showToolActivity !== void 0 ? o.showToolActivity : o.data?.showToolActivity !== void 0 ? o.data.showToolActivity : !0, ze = o.visualTheme !== void 0 ? o.visualTheme : o.data?.visualTheme !== void 0 ? o.data.visualTheme : "aurora", Me = o.title !== void 0 ? o.title : o.data?.title !== void 0 ? o.data.title : "Lumora Assistant", Pe = o.disabled !== void 0 ? o.disabled : o.data?.disabled !== void 0 ? o.data.disabled : !1, Ie = o.maxMessages !== void 0 ? o.maxMessages : o.data?.maxMessages !== void 0 ? o.data.maxMessages : 100, Re = o.sessionId !== void 0 ? o.sessionId : o.data?.sessionId !== void 0 ? o.data.sessionId : "", Oe = o.placeholder !== void 0 ? o.placeholder : o.data?.placeholder !== void 0 ? o.data.placeholder : "Ask Lumora anything…", je = o.maxOutputTokens !== void 0 ? o.maxOutputTokens : o.data?.maxOutputTokens !== void 0 ? o.data.maxOutputTokens : 1024, Te = o.allowAttachments !== void 0 ? o.allowAttachments : o.data?.allowAttachments !== void 0 ? o.data.allowAttachments : !1, Ne = o.defaultOpen !== void 0 ? o.defaultOpen : o.data?.defaultOpen !== void 0 ? o.data.defaultOpen : !1, Ee = o.systemPrompt !== void 0 ? o.systemPrompt : o.data?.systemPrompt !== void 0 ? o.data.systemPrompt : "You are Lumora, a concise and helpful AI assistant. Provide clear, accurate, and professional responses.", ke = o.visible !== void 0 ? o.visible : o.data?.visible !== void 0 ? o.data.visible : !0, Le = o.assistantName !== void 0 ? o.assistantName : o.data?.assistantName !== void 0 ? o.data.assistantName : "Lumora", De = o.toolManifest !== void 0 ? o.toolManifest : o.data?.toolManifest !== void 0 ? o.data.toolManifest : [], qe = o.aiProvider !== void 0 ? o.aiProvider : o.data?.aiProvider !== void 0 ? o.data.aiProvider : "anthropic", Be = o.contextNamespace !== void 0 ? o.contextNamespace : o.data?.contextNamespace !== void 0 ? o.data.contextNamespace : "universal-ai-chatbot", Fe = o.contextDatabaseEnabled !== void 0 ? o.contextDatabaseEnabled : o.data?.contextDatabaseEnabled !== void 0 ? o.data.contextDatabaseEnabled : !1, Ke = o.contextScopeKey !== void 0 ? o.contextScopeKey : o.data?.contextScopeKey !== void 0 ? o.data.contextScopeKey : "", $e = o.anthropicModel !== void 0 ? o.anthropicModel : o.data?.anthropicModel !== void 0 ? o.data.anthropicModel : "claude-sonnet-4-5", Je = o.context !== void 0 ? o.context : o.data?.context !== void 0 ? o.data.context : {}, He = o.contextEndpoint !== void 0 ? o.contextEndpoint : o.data?.contextEndpoint !== void 0 ? o.data.contextEndpoint : "/api/ai-context", Ue = o.chatEndpoint !== void 0 ? o.chatEndpoint : o.data?.chatEndpoint !== void 0 ? o.data.chatEndpoint : "/api/ai/chat", Ye = o.contextCacheTtlSeconds !== void 0 ? o.contextCacheTtlSeconds : o.data?.contextCacheTtlSeconds !== void 0 ? o.data.contextCacheTtlSeconds : 60, Ze = o.requestHeaders !== void 0 ? o.requestHeaders : o.data?.requestHeaders !== void 0 ? o.data.requestHeaders : {}, i = { permissions: _e, customClass: be, geminiModel: ve, presentationMode: Ae, welcomeMessage: we, locale: Ce, showToolActivity: Se, visualTheme: ze, title: Me, disabled: Pe, maxMessages: Ie, sessionId: Re, placeholder: Oe, maxOutputTokens: je, allowAttachments: Te, defaultOpen: Ne, systemPrompt: Ee, visible: ke, assistantName: Le, toolManifest: De, aiProvider: qe, contextNamespace: Be, contextDatabaseEnabled: Fe, contextScopeKey: Ke, anthropicModel: $e, context: Je, contextEndpoint: He, chatEndpoint: Ue, contextCacheTtlSeconds: Ye, requestHeaders: Ze }, [Ge, Qe] = w(() => structuredClone({})), [X, We] = w(() => structuredClone(!0)), [Xe, Ve] = w(() => structuredClone(!1)), [V, et] = w(() => structuredClone([])), [ee, tt] = w(() => structuredClone(!1)), [st, ot] = w(() => structuredClone({})), [B, nt] = w(() => structuredClone("")), [te, at] = w(() => structuredClone([])), [se, rt] = w(() => structuredClone(!0)), [oe, it] = w(() => structuredClone("lumora-ai-host lumora-ai-floating lumora-ai-theme-aurora")), [U, ct] = w(() => structuredClone(!1)), l = { runtimeContext: Ge, showLauncher: X, hasInitialized: Xe, toasts: V, isOpen: ee, pendingAction: st, errorMessage: B, messages: te, isFloating: se, themeClass: oe, isSending: U }, m = E((e, t) => {
     switch (e) {
-      case "errorMessage": {
-        const s = typeof t == "function" ? t(l.errorMessage) : t;
-        return l.errorMessage = s, Ge(s), s;
+      case "runtimeContext": {
+        const s = typeof t == "function" ? t(l.runtimeContext) : t;
+        return l.runtimeContext = s, Qe(s), s;
       }
       case "showLauncher": {
         const s = typeof t == "function" ? t(l.showLauncher) : t;
-        return l.showLauncher = s, Qe(s), s;
-      }
-      case "themeClass": {
-        const s = typeof t == "function" ? t(l.themeClass) : t;
-        return l.themeClass = s, We(s), s;
+        return l.showLauncher = s, We(s), s;
       }
       case "hasInitialized": {
         const s = typeof t == "function" ? t(l.hasInitialized) : t;
         return l.hasInitialized = s, Ve(s), s;
       }
-      case "isSending": {
-        const s = typeof t == "function" ? t(l.isSending) : t;
-        return l.isSending = s, et(s), s;
-      }
-      case "messages": {
-        const s = typeof t == "function" ? t(l.messages) : t;
-        return l.messages = s, tt(s), s;
-      }
-      case "isFloating": {
-        const s = typeof t == "function" ? t(l.isFloating) : t;
-        return l.isFloating = s, st(s), s;
+      case "toasts": {
+        const s = typeof t == "function" ? t(l.toasts) : t;
+        return l.toasts = s, et(s), s;
       }
       case "isOpen": {
         const s = typeof t == "function" ? t(l.isOpen) : t;
-        return l.isOpen = s, ot(s), s;
-      }
-      case "toasts": {
-        const s = typeof t == "function" ? t(l.toasts) : t;
-        return l.toasts = s, nt(s), s;
+        return l.isOpen = s, tt(s), s;
       }
       case "pendingAction": {
         const s = typeof t == "function" ? t(l.pendingAction) : t;
-        return l.pendingAction = s, rt(s), s;
+        return l.pendingAction = s, ot(s), s;
       }
-      case "runtimeContext": {
-        const s = typeof t == "function" ? t(l.runtimeContext) : t;
-        return l.runtimeContext = s, ct(s), s;
+      case "errorMessage": {
+        const s = typeof t == "function" ? t(l.errorMessage) : t;
+        return l.errorMessage = s, nt(s), s;
+      }
+      case "messages": {
+        const s = typeof t == "function" ? t(l.messages) : t;
+        return l.messages = s, at(s), s;
+      }
+      case "isFloating": {
+        const s = typeof t == "function" ? t(l.isFloating) : t;
+        return l.isFloating = s, rt(s), s;
+      }
+      case "themeClass": {
+        const s = typeof t == "function" ? t(l.themeClass) : t;
+        return l.themeClass = s, it(s), s;
+      }
+      case "isSending": {
+        const s = typeof t == "function" ? t(l.isSending) : t;
+        return l.isSending = s, ct(s), s;
       }
       default:
         return t;
@@ -92,28 +92,28 @@ function Rt(o) {
       }), c;
     };
     switch (s) {
-      case "errorMessage":
-        return m("errorMessage", a), t;
+      case "runtimeContext":
+        return m("runtimeContext", a), t;
       case "showLauncher":
         return m("showLauncher", a), t;
-      case "themeClass":
-        return m("themeClass", a), t;
       case "hasInitialized":
         return m("hasInitialized", a), t;
-      case "isSending":
-        return m("isSending", a), t;
+      case "toasts":
+        return m("toasts", a), t;
+      case "isOpen":
+        return m("isOpen", a), t;
+      case "pendingAction":
+        return m("pendingAction", a), t;
+      case "errorMessage":
+        return m("errorMessage", a), t;
       case "messages":
         return m("messages", a), t;
       case "isFloating":
         return m("isFloating", a), t;
-      case "isOpen":
-        return m("isOpen", a), t;
-      case "toasts":
-        return m("toasts", a), t;
-      case "pendingAction":
-        return m("pendingAction", a), t;
-      case "runtimeContext":
-        return m("runtimeContext", a), t;
+      case "themeClass":
+        return m("themeClass", a), t;
+      case "isSending":
+        return m("isSending", a), t;
       default:
         return t;
     }
@@ -162,13 +162,6 @@ function Rt(o) {
     });
   };
   async function ae(e = {}) {
-    const t = e || {};
-    return m("isSending", !1), A("responseCancelled", { reason: t.reason || "host-requested" }, !1).catch((s) => console.error("Module output delivery failed", s)), { cancelled: !0 };
-  }
-  async function re(e = {}) {
-    return i.contextDatabaseEnabled === !0 ? { initialized: !0, table: "rudra_ai_context" } : { initialized: !1, reason: "database-context-disabled" };
-  }
-  async function ie(e = {}) {
     const t = e || {}, s = {};
     if (i.contextDatabaseEnabled === !0) {
       {
@@ -199,21 +192,30 @@ function Rt(o) {
       }
     }
   }
-  async function lt(e = {}) {
-    const t = e || {};
-    return A("attachmentSelected", { files: t.files }, !1).catch((s) => console.error("Module output delivery failed", s)), { accepted: !0, count: t.files.length };
-  }
-  async function ce(e = {}) {
+  async function re(e = {}) {
     return m("messages", i.welcomeMessage ? [{ id: "welcome-" + Date.now(), role: "assistant", sender: i.assistantName || "Assistant", variant: "incoming", content: i.welcomeMessage, timestamp: (/* @__PURE__ */ new Date()).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) }] : []), m("pendingAction", {}), m("errorMessage", ""), A("conversationCleared", { sessionId: i.sessionId }, !1).catch((t) => console.error("Module output delivery failed", t)), { cleared: !0 };
   }
-  async function de(e = {}) {
-    return l.hasInitialized === !0 ? { initialized: !0, reused: !0 } : (m("isOpen", l.hasInitialized === !0 ? l.isOpen : i.visible !== !1 && (i.presentationMode !== "floating" || i.defaultOpen === !0)), m("isFloating", i.presentationMode === "floating"), m("showLauncher", l.hasInitialized === !0 ? l.showLauncher : i.visible !== !1 && i.presentationMode === "floating" && i.defaultOpen !== !0), m("themeClass", "lumora-ai-host lumora-ai-floating lumora-ai-theme-" + (i.visualTheme || "aurora")), m("messages", l.messages.length ? l.messages : i.welcomeMessage ? [{ id: "welcome", role: "assistant", sender: i.assistantName || "Assistant", variant: "incoming", content: i.welcomeMessage, timestamp: (/* @__PURE__ */ new Date()).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) }] : []), m("hasInitialized", !0), { initialized: !0 });
-  }
-  async function ut(e = {}) {
+  async function lt(e = {}) {
     return m("hasInitialized", !0), m("isOpen", !0), m("showLauncher", !1), { open: !0 };
   }
-  async function le(e = {}) {
-    return m("errorMessage", ""), m("toasts", []), { dismissed: !0 };
+  async function N(e = {}) {
+    const t = e || {}, s = {};
+    {
+      t.event;
+      const n = await (async () => {
+        const a = t.response && typeof t.response == "object" ? t.response : {}, r = Array.isArray(a.content) ? a.content.filter((S) => S && S.type === "text").map((S) => String(S.text || "")).join("") : "", d = (Array.isArray(a.candidates) && a.candidates[0] && a.candidates[0].content && Array.isArray(a.candidates[0].content.parts) ? a.candidates[0].content.parts : []).filter((S) => S && typeof S.text == "string").map((S) => S.text).join(""), u = a.message && typeof a.message == "object" ? a.message : {}, p = Array.isArray(a.choices) && a.choices[0] && a.choices[0].message ? a.choices[0].message : {}, g = r || d || u.content || a.text || a.response || p.content || "", b = typeof g == "string" ? g : JSON.stringify(g || ""), C = Array.isArray(a.toolCalls) ? a.toolCalls : Array.isArray(a.actions) ? a.actions : [], h = a.toolCall || C[0] || null, ge = Array.isArray(a.candidates) ? "gemini" : Array.isArray(a.content) ? "anthropic" : String(i.aiProvider || "unknown"), yt = ge === "anthropic" ? { mode: "prompt-cache", enabled: !0, readTokens: Number(a.usage && a.usage.cache_read_input_tokens || 0), writtenTokens: Number(a.usage && a.usage.cache_creation_input_tokens || 0) } : { mode: "implicit", enabled: !0, readTokens: Number(a.usageMetadata && a.usageMetadata.cachedContentTokenCount || 0) };
+        return { message: { id: String(a.id || "assistant-" + Date.now()), role: "assistant", sender: i.assistantName || "Assistant", variant: "incoming", content: b || "I could not read the assistant response.", timestamp: (/* @__PURE__ */ new Date()).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }), data: a.data || {} }, action: h, provider: ge, providerCache: yt };
+      })();
+      s.normalize_response = n;
+    }
+    return m("messages", [...Array.isArray(t.messages) ? t.messages : l.messages, s.normalize_response.message].slice(-i.maxMessages)), A("messageReceived", { cache: s.normalize_response.providerCache, message: s.normalize_response.message, provider: s.normalize_response.provider, raw: t.response }, !1).catch((n) => console.error("Module output delivery failed", n)), s.normalize_response.action ? (m("pendingAction", s.normalize_response.action), A("actionRequested", { action: s.normalize_response.action, sessionId: i.sessionId }, !1).catch((n) => console.error("Module output delivery failed", n)), ["escalate", "escalation", "handoff"].includes(String(s.normalize_response.action.type || s.normalize_response.action.name || "").toLowerCase()) && A("escalationRequested", { action: s.normalize_response.action, message: s.normalize_response.message }, !1).catch((n) => console.error("Module output delivery failed", n)), s.normalize_response) : s.normalize_response;
+  }
+  async function ie(e = {}) {
+    return i.contextDatabaseEnabled === !0 ? { initialized: !0, table: "rudra_ai_context" } : { initialized: !1, reason: "database-context-disabled" };
+  }
+  async function ut(e = {}) {
+    const t = e || {};
+    return A("attachmentSelected", { files: t.files }, !1).catch((s) => console.error("Module output delivery failed", s)), { accepted: !0, count: t.files.length };
   }
   async function Z(e = {}) {
     const t = e || {}, s = {}, n = {};
@@ -310,6 +312,19 @@ function Rt(o) {
     else
       return { accepted: !1, reason: "empty" };
   }
+  async function mt(e = {}) {
+    return m("hasInitialized", !0), m("isOpen", !1), m("showLauncher", !0), { open: !1 };
+  }
+  async function ce(e = {}) {
+    const t = e || {};
+    return m("isSending", !1), A("responseCancelled", { reason: t.reason || "host-requested" }, !1).catch((s) => console.error("Module output delivery failed", s)), { cancelled: !0 };
+  }
+  async function de(e = {}) {
+    return m("errorMessage", ""), m("toasts", []), { dismissed: !0 };
+  }
+  async function le(e = {}) {
+    return l.hasInitialized === !0 ? { initialized: !0, reused: !0 } : (m("isOpen", l.hasInitialized === !0 ? l.isOpen : i.visible !== !1 && (i.presentationMode !== "floating" || i.defaultOpen === !0)), m("isFloating", i.presentationMode === "floating"), m("showLauncher", l.hasInitialized === !0 ? l.showLauncher : i.visible !== !1 && i.presentationMode === "floating" && i.defaultOpen !== !0), m("themeClass", "lumora-ai-host lumora-ai-floating lumora-ai-theme-" + (i.visualTheme || "aurora")), m("messages", l.messages.length ? l.messages : i.welcomeMessage ? [{ id: "welcome", role: "assistant", sender: i.assistantName || "Assistant", variant: "incoming", content: i.welcomeMessage, timestamp: (/* @__PURE__ */ new Date()).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) }] : []), m("hasInitialized", !0), { initialized: !0 });
+  }
   async function ue(e = {}) {
     const t = e || {}, s = {};
     {
@@ -322,76 +337,61 @@ function Rt(o) {
     }
     return s.find_retry_message.text ? (await Z({ message: s.find_retry_message }), s.run_retry) : { accepted: !1, reason: "no-user-message" };
   }
-  async function mt(e = {}) {
-    return m("hasInitialized", !0), m("isOpen", !1), m("showLauncher", !0), { open: !1 };
-  }
-  async function N(e = {}) {
-    const t = e || {}, s = {};
-    {
-      t.event;
-      const n = await (async () => {
-        const a = t.response && typeof t.response == "object" ? t.response : {}, r = Array.isArray(a.content) ? a.content.filter((S) => S && S.type === "text").map((S) => String(S.text || "")).join("") : "", d = (Array.isArray(a.candidates) && a.candidates[0] && a.candidates[0].content && Array.isArray(a.candidates[0].content.parts) ? a.candidates[0].content.parts : []).filter((S) => S && typeof S.text == "string").map((S) => S.text).join(""), u = a.message && typeof a.message == "object" ? a.message : {}, p = Array.isArray(a.choices) && a.choices[0] && a.choices[0].message ? a.choices[0].message : {}, g = r || d || u.content || a.text || a.response || p.content || "", b = typeof g == "string" ? g : JSON.stringify(g || ""), C = Array.isArray(a.toolCalls) ? a.toolCalls : Array.isArray(a.actions) ? a.actions : [], h = a.toolCall || C[0] || null, ge = Array.isArray(a.candidates) ? "gemini" : Array.isArray(a.content) ? "anthropic" : String(i.aiProvider || "unknown"), yt = ge === "anthropic" ? { mode: "prompt-cache", enabled: !0, readTokens: Number(a.usage && a.usage.cache_read_input_tokens || 0), writtenTokens: Number(a.usage && a.usage.cache_creation_input_tokens || 0) } : { mode: "implicit", enabled: !0, readTokens: Number(a.usageMetadata && a.usageMetadata.cachedContentTokenCount || 0) };
-        return { message: { id: String(a.id || "assistant-" + Date.now()), role: "assistant", sender: i.assistantName || "Assistant", variant: "incoming", content: b || "I could not read the assistant response.", timestamp: (/* @__PURE__ */ new Date()).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }), data: a.data || {} }, action: h, provider: ge, providerCache: yt };
-      })();
-      s.normalize_response = n;
-    }
-    return m("messages", [...Array.isArray(t.messages) ? t.messages : l.messages, s.normalize_response.message].slice(-i.maxMessages)), A("messageReceived", { cache: s.normalize_response.providerCache, message: s.normalize_response.message, provider: s.normalize_response.provider, raw: t.response }, !1).catch((n) => console.error("Module output delivery failed", n)), s.normalize_response.action ? (m("pendingAction", s.normalize_response.action), A("actionRequested", { action: s.normalize_response.action, sessionId: i.sessionId }, !1).catch((n) => console.error("Module output delivery failed", n)), ["escalate", "escalation", "handoff"].includes(String(s.normalize_response.action.type || s.normalize_response.action.name || "").toLowerCase()) && A("escalationRequested", { action: s.normalize_response.action, message: s.normalize_response.message }, !1).catch((n) => console.error("Module output delivery failed", n)), s.normalize_response) : s.normalize_response;
-  }
   async function me(e = {}) {
     const t = e || {};
     return m("messages", i.showToolActivity ? [...l.messages, { id: "tool-" + Date.now(), role: "system", sender: "Tool activity", variant: "system", content: "Tool " + t.actionId + " " + (t.status || "completed"), timestamp: (/* @__PURE__ */ new Date()).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }), data: t.result || {} }].slice(-i.maxMessages) : l.messages), m("pendingAction", {}), A("actionCompleted", { actionId: t.actionId, result: t.result || {}, status: t.status || "completed" }, !1).catch((s) => console.error("Module output delivery failed", s)), { actionId: t.actionId, completed: !0 };
   }
   const pt = {
-    cancelResponse: ae,
-    initializeContextStore: re,
-    loadContext: ie,
-    handleAttachments: lt,
-    clearConversation: ce,
-    initializeConversation: de,
-    openChat: ut,
-    dismissError: le,
-    sendMessage: Z,
-    retryLastMessage: ue,
-    closeChat: mt,
+    loadContext: ae,
+    clearConversation: re,
+    openChat: lt,
     processApiResponse: N,
+    initializeContextStore: ie,
+    handleAttachments: ut,
+    sendMessage: Z,
+    closeChat: mt,
+    cancelResponse: ce,
+    dismissError: de,
+    initializeConversation: le,
+    retryLastMessage: ue,
     provideToolResult: me
   }, M = F({});
   M.current = {
-    lumora_ai_dismiss_error: (e = {}, t = {}) => le({ ...e, signal: t.signal }),
+    lumora_ai_cancel: (e = {}, t = {}) => ce({ ...e, signal: t.signal }),
+    lumora_ai_dismiss_error: (e = {}, t = {}) => de({ ...e, signal: t.signal }),
     lumora_ai_retry: (e = {}, t = {}) => ue({ ...e, signal: t.signal }),
     lumora_ai_send: (e = {}, t = {}) => Z({ ...e, signal: t.signal }),
-    lumora_ai_clear: (e = {}, t = {}) => ce({ ...e, signal: t.signal }),
+    lumora_ai_clear: (e = {}, t = {}) => re({ ...e, signal: t.signal }),
     lumora_ai_tool_result: (e = {}, t = {}) => me({ ...e, signal: t.signal }),
-    lumora_ai_load_context: (e = {}, t = {}) => ie({ ...e, signal: t.signal }),
-    lumora_ai_cancel: (e = {}, t = {}) => ae({ ...e, signal: t.signal })
+    lumora_ai_load_context: (e = {}, t = {}) => ae({ ...e, signal: t.signal })
   };
   const G = F(null);
   G.current || (G.current = {
+    lumora_ai_cancel: (e, t) => M.current.lumora_ai_cancel(e, t),
     lumora_ai_dismiss_error: (e, t) => M.current.lumora_ai_dismiss_error(e, t),
     lumora_ai_retry: (e, t) => M.current.lumora_ai_retry(e, t),
     lumora_ai_send: (e, t) => M.current.lumora_ai_send(e, t),
     lumora_ai_clear: (e, t) => M.current.lumora_ai_clear(e, t),
     lumora_ai_tool_result: (e, t) => M.current.lumora_ai_tool_result(e, t),
-    lumora_ai_load_context: (e, t) => M.current.lumora_ai_load_context(e, t),
-    lumora_ai_cancel: (e, t) => M.current.lumora_ai_cancel(e, t)
+    lumora_ai_load_context: (e, t) => M.current.lumora_ai_load_context(e, t)
   }), O(() => {
     const e = o.registerCommands || o.runtime?.registerCommands;
     if (typeof e == "function")
       return e(G.current);
   }, [o.registerCommands, o.runtime?.registerCommands]);
   const gt = {
-    cancelResponse: ["reason"],
-    initializeContextStore: [],
     loadContext: ["context", "replace", "scopeKey", "systemPrompt", "expectedRevision"],
-    handleAttachments: ["files"],
     clearConversation: [],
-    initializeConversation: [],
     openChat: [],
-    dismissError: [],
-    sendMessage: ["message"],
-    retryLastMessage: [],
-    closeChat: [],
     processApiResponse: ["response", "messages"],
+    initializeContextStore: [],
+    handleAttachments: ["files"],
+    sendMessage: ["message"],
+    closeChat: [],
+    cancelResponse: ["reason"],
+    dismissError: [],
+    initializeConversation: [],
+    retryLastMessage: [],
     provideToolResult: ["actionId", "result", "status"]
   }, P = (e, t = {}, s = []) => {
     const n = pt[e];
@@ -424,18 +424,18 @@ function Rt(o) {
     for (const e of T.current.values()) e.controller?.abort();
     T.current.clear();
   }, []), O(() => {
-    pe("initialize_context_store_mountinitializeContextStore", "takeLatest", (e) => re({}), "Module mount lifecycle failed:");
+    pe("initialize_context_store_mountinitializeContextStore", "takeLatest", (e) => ie({}), "Module mount lifecycle failed:");
   }, []), O(() => {
-    pe("lumora_ai_mountinitializeConversation", "takeLatest", (e) => de({}), "Module mount lifecycle failed:");
-  }, []), /* @__PURE__ */ v("div", { ref: $, className: "rudra-module-wrapper", children: /* @__PURE__ */ y(K, { id: "ai_host", className: `${((e) => e == null || e === !1 || typeof e == "object" ? "" : "" + String(e))(/* @__PURE__ */ ((e) => e === void 0 ? "lumora-ai-host lumora-ai-floating lumora-ai-theme-aurora" : e)(V))}`, children: [
+    pe("lumora_ai_mountinitializeConversation", "takeLatest", (e) => le({}), "Module mount lifecycle failed:");
+  }, []), /* @__PURE__ */ v("div", { ref: $, className: "rudra-module-wrapper", children: /* @__PURE__ */ y(K, { id: "ai_host", className: `${((e) => e == null || e === !1 || typeof e == "object" ? "" : "" + String(e))(/* @__PURE__ */ ((e) => e === void 0 ? "lumora-ai-host lumora-ai-floating lumora-ai-theme-aurora" : e)(oe))}`, children: [
     "      ",
-    x(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(se)) && /* @__PURE__ */ y(f, { children: [
+    x(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(ee)) && /* @__PURE__ */ y(f, { children: [
       "      ",
-      /* @__PURE__ */ y(xt, { id: "root_container", className: "lumora-ai-shell", responsivePadding: !1, as: "section", tone: "default", radius: "xl", padding: "none", bordered: !0, children: [
+      /* @__PURE__ */ y(_t, { id: "root_container", className: "lumora-ai-shell", responsivePadding: !1, as: "section", tone: "default", radius: "xl", padding: "none", bordered: !0, children: [
         "      ",
         x(_({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
           "      ",
-          /* @__PURE__ */ y(ye, { id: "chat_header", className: "lumora-ai-header flex w-full items-start justify-between gap-3 px-5 py-4", as: "header", children: [
+          /* @__PURE__ */ y(fe, { id: "chat_header", className: "lumora-ai-header flex w-full items-start justify-between gap-3 px-5 py-4", as: "header", children: [
             "      ",
             x(_({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
               "      ",
@@ -447,25 +447,25 @@ function Rt(o) {
                 ] }),
                 x(_({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                   "      ",
-                  /* @__PURE__ */ v(j, { id: "header_subtitle", className: "text-xs", as: "p", content: "Context-aware assistant · tools enabled by your application", customColor: "var(--rudra-color-muted)" })
+                  /* @__PURE__ */ v(j, { id: "header_subtitle", className: "text-xs", content: "Context-aware assistant · tools enabled by your application", customColor: "var(--rudra-color-muted)", as: "p" })
                 ] })
               ] })
             ] }),
             x(_({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
               "      ",
-              /* @__PURE__ */ y(ye, { id: "header_actions", className: "lumora-ai-header-actions flex shrink-0 items-center gap-2", children: [
+              /* @__PURE__ */ y(fe, { id: "header_actions", className: "lumora-ai-header-actions flex shrink-0 items-center gap-2", children: [
                 "      ",
                 x(_({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                   "      ",
-                  /* @__PURE__ */ v(j, { id: "status_badge", className: "lumora-ai-status", content: "Online", customColor: "currentColor", as: "span" })
+                  /* @__PURE__ */ v(j, { id: "status_badge", className: "lumora-ai-status", as: "span", content: "Online", customColor: "currentColor" })
                 ] }),
                 x(_({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                   "      ",
-                  /* @__PURE__ */ v(he, { id: "clear_btn", className: "lumora-ai-clear-button", onAction: (...e) => P("clearConversation", {}, e), ariaLabel: "Clear conversation", size: "sm", label: "Clear", theme: "auto", variant: "ghost" })
+                  /* @__PURE__ */ v(ye, { id: "clear_btn", className: "lumora-ai-clear-button", ariaLabel: "Clear conversation", size: "sm", label: "Clear", theme: "auto", variant: "ghost", onAction: (...e) => P("clearConversation", {}, e) })
                 ] }),
-                x(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(te)) && /* @__PURE__ */ y(f, { children: [
+                x(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(se)) && /* @__PURE__ */ y(f, { children: [
                   "      ",
-                  /* @__PURE__ */ v(fe, { id: "floating_close_button", className: "lumora-ai-close-button", ariaLabel: "Close Lumora AI assistant", size: "sm", theme: "auto", onClick: (...e) => P("closeChat", {}, e), additionalAttributes: { title: "Close AI assistant" }, icon: !1, variant: "ghost" })
+                  /* @__PURE__ */ v(he, { id: "floating_close_button", className: "lumora-ai-close-button", icon: !1, onClick: (...e) => P("closeChat", {}, e), variant: "ghost", ariaLabel: "Close Lumora AI assistant", additionalAttributes: { title: "Close AI assistant" }, size: "sm", theme: "auto" })
                 ] })
               ] })
             ] })
@@ -473,21 +473,21 @@ function Rt(o) {
         ] }),
         x(_({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
           "      ",
-          /* @__PURE__ */ y(ht, { id: "message_list", className: "lumora-ai-transcript w-full flex-1 overflow-y-auto px-6 py-6", as: "section", children: [
+          /* @__PURE__ */ y(vt, { id: "message_list", className: "lumora-ai-transcript w-full flex-1 overflow-y-auto px-6 py-6", as: "section", children: [
             "      ",
             x(_({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
               "      ",
-              /* @__PURE__ */ v(ft, { id: "messages_repeater", className: "flex flex-col gap-4", items: /* @__PURE__ */ ((e) => e === void 0 ? [] : e)(ee), children: (e) => (() => {
+              /* @__PURE__ */ v(At, { id: "messages_repeater", className: "flex flex-col gap-4", items: /* @__PURE__ */ ((e) => e === void 0 ? [] : e)(te), children: (e) => (() => {
                 const t = { ...e || {}, item: e?.item ?? e, index: e?.index ?? e?.i ?? 0 };
                 return /* @__PURE__ */ y(f, { children: [
                   "      ",
                   x(_({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                     "      ",
-                    /* @__PURE__ */ y(bt, { id: "message_bubble", className: "flex w-full gap-2", bubbleClassName: "max-w-2xl rounded-2xl px-4 py-3", status: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(t?.item?.status), variant: /* @__PURE__ */ ((s) => s === void 0 ? "incoming" : s)(t?.item?.variant), timestamp: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(t?.item?.timestamp), sender: /* @__PURE__ */ ((s) => s === void 0 ? "Assistant" : s)(t?.item?.sender), children: [
+                    /* @__PURE__ */ y(ht, { id: "message_bubble", className: "flex w-full gap-2", bubbleClassName: "max-w-2xl rounded-2xl px-4 py-3", variant: /* @__PURE__ */ ((s) => s === void 0 ? "incoming" : s)(t?.item?.variant), timestamp: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(t?.item?.timestamp), sender: /* @__PURE__ */ ((s) => s === void 0 ? "Assistant" : s)(t?.item?.sender), status: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(t?.item?.status), children: [
                       "      ",
                       x(_({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                         "      ",
-                        /* @__PURE__ */ v(j, { id: "bubble_content", className: "text-sm", as: "p", content: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(t?.item?.content) })
+                        /* @__PURE__ */ v(j, { id: "bubble_content", className: "lumora-ai-message-content text-sm", as: "p", content: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(t?.item?.content) })
                       ] })
                     ] })
                   ] })
@@ -496,19 +496,19 @@ function Rt(o) {
             ] }),
             x(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(U)) && /* @__PURE__ */ y(f, { children: [
               "      ",
-              /* @__PURE__ */ v(j, { id: "typing_indicator", className: "lumora-ai-typing text-sm", customColor: "var(--rudra-color-muted)", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "Assistant" : e)(i?.assistantName) })
+              /* @__PURE__ */ v(j, { id: "typing_indicator", className: "lumora-ai-typing text-sm", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "Assistant" : e)(i?.assistantName), customColor: "var(--rudra-color-muted)" })
             ] })
           ] })
         ] }),
         x(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(B)) && /* @__PURE__ */ y(f, { children: [
           "      ",
-          /* @__PURE__ */ y(_t, { id: "error_panel", className: "lumora-ai-error mx-6 mb-3", action: /* @__PURE__ */ y(f, { children: [
+          /* @__PURE__ */ y(bt, { id: "error_panel", className: "lumora-ai-error mx-6 mb-3", action: /* @__PURE__ */ y(f, { children: [
             "      ",
             x(_({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
               "      ",
-              /* @__PURE__ */ v(he, { id: "retry_button", label: "Retry", theme: "auto", variant: "outline", onAction: (...e) => P("retryLastMessage", {}, e), ariaLabel: "Retry last message", size: "sm" })
+              /* @__PURE__ */ v(ye, { id: "retry_button", theme: "auto", variant: "outline", onAction: (...e) => P("retryLastMessage", {}, e), ariaLabel: "Retry last message", size: "sm", label: "Retry" })
             ] })
-          ] }), title: "Assistant unavailable", variant: "error", onDismiss: (...e) => P("dismissError", {}, e), appearance: "soft", dismissible: !0, live: "assertive", theme: "auto", closeLabel: "Dismiss error", children: [
+          ] }), title: "Assistant unavailable", onDismiss: (...e) => P("dismissError", {}, e), appearance: "soft", closeLabel: "Dismiss error", dismissible: !0, live: "assertive", theme: "auto", variant: "error", children: [
             "      ",
             x(_({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
               "      ",
@@ -522,17 +522,17 @@ function Rt(o) {
             "      ",
             x(_({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
               "      ",
-              /* @__PURE__ */ v(j, { id: "composer_hint", className: "mb-2 text-xs", content: "Ask a question or request an available action.", customColor: "var(--rudra-color-muted)", as: "p" })
+              /* @__PURE__ */ v(j, { id: "composer_hint", className: "mb-2 text-xs", as: "p", content: "Ask a question or request an available action.", customColor: "var(--rudra-color-muted)" })
             ] }),
             x(_({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
               "      ",
-              /* @__PURE__ */ v(vt, { id: "chat_composer", className: "w-full", composerClassName: "rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900", showVoice: !1, showAttachment: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(i?.allowAttachments), disabled: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(U), showPicker: !1, placeholder: /* @__PURE__ */ ((e) => e === void 0 ? "Ask anything…" : e)(i?.placeholder), onAttachmentSelect: (...e) => P("handleAttachments", {}, e), onSend: (...e) => P("sendMessage", {}, e), autoFocus: !1 })
+              /* @__PURE__ */ v(ft, { id: "chat_composer", className: "w-full", composerClassName: "rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900", placeholder: /* @__PURE__ */ ((e) => e === void 0 ? "Ask anything…" : e)(i?.placeholder), onAttachmentSelect: (...e) => P("handleAttachments", {}, e), onSend: (...e) => P("sendMessage", {}, e), disabled: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(U), autoFocus: !1, showVoice: !1, showPicker: !1, showAttachment: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(i?.allowAttachments) })
             ] })
           ] })
         ] }),
         x(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(B)) && /* @__PURE__ */ y(f, { children: [
           "      ",
-          /* @__PURE__ */ v(At, { id: "global_toasts", closable: !0, onDismiss: (...e) => P("dismissError", {}, e), showIcons: !0, maxVisible: 3, items: /* @__PURE__ */ ((e) => e === void 0 ? [] : e)(oe), position: "top-right", displayMode: "fixed", newestOnTop: !0 })
+          /* @__PURE__ */ v(xt, { id: "global_toasts", onDismiss: (...e) => P("dismissError", {}, e), showIcons: !0, maxVisible: 3, displayMode: "fixed", closable: !0, position: "top-right", newestOnTop: !0, items: /* @__PURE__ */ ((e) => e === void 0 ? [] : e)(V) })
         ] })
       ] })
     ] }),
@@ -542,7 +542,7 @@ function Rt(o) {
         "      ",
         x(_({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
           "      ",
-          /* @__PURE__ */ v(fe, { id: "floating_launcher_button", className: "lumora-ai-launcher-button", additionalAttributes: { "aria-haspopup": "dialog", title: "Open AI assistant" }, icon: !1, size: "xl", theme: "auto", onClick: (...e) => P("openChat", {}, e), variant: "primary", ariaLabel: "Open Lumora AI assistant" })
+          /* @__PURE__ */ v(he, { id: "floating_launcher_button", className: "lumora-ai-launcher-button", onClick: (...e) => P("openChat", {}, e), variant: "primary", ariaLabel: "Open Lumora AI assistant", additionalAttributes: { "aria-haspopup": "dialog", title: "Open AI assistant" }, icon: !1, size: "xl", theme: "auto" })
         ] })
       ] })
     ] })

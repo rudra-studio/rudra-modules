@@ -285,3 +285,9 @@
     border-radius: 0;
   }
 }
+
+/* Keep nested typography readable on both incoming and outgoing message bubbles. */
+.lumora-ai-message-content {
+  color: inherit !important;
+}
+

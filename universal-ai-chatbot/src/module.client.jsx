@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './styles.css';
 
-import { Flex as RudraLayoutFlex, Repeater as RudraLayoutRepeater, Box as RudraLayoutBox, ScrollArea as RudraLayoutScrollArea } from '@rudra-studio/rudra-layout';
-import { IconButton as RudraCoreIconButton, Alert as RudraCoreAlert, Typography as RudraCoreTypography, Button as RudraCoreButton, Surface as RudraCoreSurface } from '@rudra-studio/rudra-core';
-import { ToastStack as RudraWidgetsToastStack, MessageComposer as RudraWidgetsMessageComposer, MessageBubble as RudraWidgetsMessageBubble } from '@rudra-studio/rudra-widgets';
+import { MessageComposer as RudraWidgetsMessageComposer, ToastStack as RudraWidgetsToastStack, MessageBubble as RudraWidgetsMessageBubble } from '@rudra-studio/rudra-widgets';
+import { Surface as RudraCoreSurface, Alert as RudraCoreAlert, Typography as RudraCoreTypography, Button as RudraCoreButton, IconButton as RudraCoreIconButton } from '@rudra-studio/rudra-core';
+import { Box as RudraLayoutBox, Repeater as RudraLayoutRepeater, Flex as RudraLayoutFlex, ScrollArea as RudraLayoutScrollArea } from '@rudra-studio/rudra-layout';
 
 export default function CompiledModule(props) {
   const _scope = {};
@@ -69,63 +69,63 @@ export default function CompiledModule(props) {
 
   const isVisibleValue = (value) => Array.isArray(value) ? value.length > 0 : (typeof value === 'string' ? value.trim() !== '' && value.trim().toLowerCase() !== 'false' : Boolean(value));
 
-  const contextEndpoint = props.contextEndpoint !== undefined ? props.contextEndpoint : (props.data?.contextEndpoint !== undefined ? props.data.contextEndpoint : "/api/ai-context");
-  const anthropicModel = props.anthropicModel !== undefined ? props.anthropicModel : (props.data?.anthropicModel !== undefined ? props.data.anthropicModel : "claude-sonnet-4-5");
-  const assistantName = props.assistantName !== undefined ? props.assistantName : (props.data?.assistantName !== undefined ? props.data.assistantName : "Lumora");
   const permissions = props.permissions !== undefined ? props.permissions : (props.data?.permissions !== undefined ? props.data.permissions : {});
-  const contextScopeKey = props.contextScopeKey !== undefined ? props.contextScopeKey : (props.data?.contextScopeKey !== undefined ? props.data.contextScopeKey : "");
   const customClass = props.customClass !== undefined ? props.customClass : (props.data?.customClass !== undefined ? props.data.customClass : "");
-  const allowAttachments = props.allowAttachments !== undefined ? props.allowAttachments : (props.data?.allowAttachments !== undefined ? props.data.allowAttachments : false);
-  const maxMessages = props.maxMessages !== undefined ? props.maxMessages : (props.data?.maxMessages !== undefined ? props.data.maxMessages : 100);
-  const aiProvider = props.aiProvider !== undefined ? props.aiProvider : (props.data?.aiProvider !== undefined ? props.data.aiProvider : "anthropic");
-  const contextDatabaseEnabled = props.contextDatabaseEnabled !== undefined ? props.contextDatabaseEnabled : (props.data?.contextDatabaseEnabled !== undefined ? props.data.contextDatabaseEnabled : false);
-  const showToolActivity = props.showToolActivity !== undefined ? props.showToolActivity : (props.data?.showToolActivity !== undefined ? props.data.showToolActivity : true);
+  const geminiModel = props.geminiModel !== undefined ? props.geminiModel : (props.data?.geminiModel !== undefined ? props.data.geminiModel : "gemini-2.5-flash");
+  const presentationMode = props.presentationMode !== undefined ? props.presentationMode : (props.data?.presentationMode !== undefined ? props.data.presentationMode : "floating");
+  const welcomeMessage = props.welcomeMessage !== undefined ? props.welcomeMessage : (props.data?.welcomeMessage !== undefined ? props.data.welcomeMessage : "Hi — how can I help?");
   const locale = props.locale !== undefined ? props.locale : (props.data?.locale !== undefined ? props.data.locale : "en");
-  const systemPrompt = props.systemPrompt !== undefined ? props.systemPrompt : (props.data?.systemPrompt !== undefined ? props.data.systemPrompt : "You are Lumora, a concise and helpful AI assistant. Provide clear, accurate, and professional responses.");
-  const defaultOpen = props.defaultOpen !== undefined ? props.defaultOpen : (props.data?.defaultOpen !== undefined ? props.data.defaultOpen : false);
-  const context = props.context !== undefined ? props.context : (props.data?.context !== undefined ? props.data.context : {});
-  const contextCacheTtlSeconds = props.contextCacheTtlSeconds !== undefined ? props.contextCacheTtlSeconds : (props.data?.contextCacheTtlSeconds !== undefined ? props.data.contextCacheTtlSeconds : 60);
+  const showToolActivity = props.showToolActivity !== undefined ? props.showToolActivity : (props.data?.showToolActivity !== undefined ? props.data.showToolActivity : true);
+  const visualTheme = props.visualTheme !== undefined ? props.visualTheme : (props.data?.visualTheme !== undefined ? props.data.visualTheme : "aurora");
   const title = props.title !== undefined ? props.title : (props.data?.title !== undefined ? props.data.title : "Lumora Assistant");
   const disabled = props.disabled !== undefined ? props.disabled : (props.data?.disabled !== undefined ? props.data.disabled : false);
-  const contextNamespace = props.contextNamespace !== undefined ? props.contextNamespace : (props.data?.contextNamespace !== undefined ? props.data.contextNamespace : "universal-ai-chatbot");
-  const maxOutputTokens = props.maxOutputTokens !== undefined ? props.maxOutputTokens : (props.data?.maxOutputTokens !== undefined ? props.data.maxOutputTokens : 1024);
-  const visible = props.visible !== undefined ? props.visible : (props.data?.visible !== undefined ? props.data.visible : true);
-  const toolManifest = props.toolManifest !== undefined ? props.toolManifest : (props.data?.toolManifest !== undefined ? props.data.toolManifest : []);
-  const chatEndpoint = props.chatEndpoint !== undefined ? props.chatEndpoint : (props.data?.chatEndpoint !== undefined ? props.data.chatEndpoint : "/api/ai/chat");
+  const maxMessages = props.maxMessages !== undefined ? props.maxMessages : (props.data?.maxMessages !== undefined ? props.data.maxMessages : 100);
   const sessionId = props.sessionId !== undefined ? props.sessionId : (props.data?.sessionId !== undefined ? props.data.sessionId : "");
-  const geminiModel = props.geminiModel !== undefined ? props.geminiModel : (props.data?.geminiModel !== undefined ? props.data.geminiModel : "gemini-2.5-flash");
-  const welcomeMessage = props.welcomeMessage !== undefined ? props.welcomeMessage : (props.data?.welcomeMessage !== undefined ? props.data.welcomeMessage : "Hi — how can I help?");
   const placeholder = props.placeholder !== undefined ? props.placeholder : (props.data?.placeholder !== undefined ? props.data.placeholder : "Ask Lumora anything…");
+  const maxOutputTokens = props.maxOutputTokens !== undefined ? props.maxOutputTokens : (props.data?.maxOutputTokens !== undefined ? props.data.maxOutputTokens : 1024);
+  const allowAttachments = props.allowAttachments !== undefined ? props.allowAttachments : (props.data?.allowAttachments !== undefined ? props.data.allowAttachments : false);
+  const defaultOpen = props.defaultOpen !== undefined ? props.defaultOpen : (props.data?.defaultOpen !== undefined ? props.data.defaultOpen : false);
+  const systemPrompt = props.systemPrompt !== undefined ? props.systemPrompt : (props.data?.systemPrompt !== undefined ? props.data.systemPrompt : "You are Lumora, a concise and helpful AI assistant. Provide clear, accurate, and professional responses.");
+  const visible = props.visible !== undefined ? props.visible : (props.data?.visible !== undefined ? props.data.visible : true);
+  const assistantName = props.assistantName !== undefined ? props.assistantName : (props.data?.assistantName !== undefined ? props.data.assistantName : "Lumora");
+  const toolManifest = props.toolManifest !== undefined ? props.toolManifest : (props.data?.toolManifest !== undefined ? props.data.toolManifest : []);
+  const aiProvider = props.aiProvider !== undefined ? props.aiProvider : (props.data?.aiProvider !== undefined ? props.data.aiProvider : "anthropic");
+  const contextNamespace = props.contextNamespace !== undefined ? props.contextNamespace : (props.data?.contextNamespace !== undefined ? props.data.contextNamespace : "universal-ai-chatbot");
+  const contextDatabaseEnabled = props.contextDatabaseEnabled !== undefined ? props.contextDatabaseEnabled : (props.data?.contextDatabaseEnabled !== undefined ? props.data.contextDatabaseEnabled : false);
+  const contextScopeKey = props.contextScopeKey !== undefined ? props.contextScopeKey : (props.data?.contextScopeKey !== undefined ? props.data.contextScopeKey : "");
+  const anthropicModel = props.anthropicModel !== undefined ? props.anthropicModel : (props.data?.anthropicModel !== undefined ? props.data.anthropicModel : "claude-sonnet-4-5");
+  const context = props.context !== undefined ? props.context : (props.data?.context !== undefined ? props.data.context : {});
+  const contextEndpoint = props.contextEndpoint !== undefined ? props.contextEndpoint : (props.data?.contextEndpoint !== undefined ? props.data.contextEndpoint : "/api/ai-context");
+  const chatEndpoint = props.chatEndpoint !== undefined ? props.chatEndpoint : (props.data?.chatEndpoint !== undefined ? props.data.chatEndpoint : "/api/ai/chat");
+  const contextCacheTtlSeconds = props.contextCacheTtlSeconds !== undefined ? props.contextCacheTtlSeconds : (props.data?.contextCacheTtlSeconds !== undefined ? props.data.contextCacheTtlSeconds : 60);
   const requestHeaders = props.requestHeaders !== undefined ? props.requestHeaders : (props.data?.requestHeaders !== undefined ? props.data.requestHeaders : {});
-  const presentationMode = props.presentationMode !== undefined ? props.presentationMode : (props.data?.presentationMode !== undefined ? props.data.presentationMode : "floating");
-  const visualTheme = props.visualTheme !== undefined ? props.visualTheme : (props.data?.visualTheme !== undefined ? props.data.visualTheme : "aurora");
-  const inputs = { "contextEndpoint": contextEndpoint, "anthropicModel": anthropicModel, "assistantName": assistantName, "permissions": permissions, "contextScopeKey": contextScopeKey, "customClass": customClass, "allowAttachments": allowAttachments, "maxMessages": maxMessages, "aiProvider": aiProvider, "contextDatabaseEnabled": contextDatabaseEnabled, "showToolActivity": showToolActivity, "locale": locale, "systemPrompt": systemPrompt, "defaultOpen": defaultOpen, "context": context, "contextCacheTtlSeconds": contextCacheTtlSeconds, "title": title, "disabled": disabled, "contextNamespace": contextNamespace, "maxOutputTokens": maxOutputTokens, "visible": visible, "toolManifest": toolManifest, "chatEndpoint": chatEndpoint, "sessionId": sessionId, "geminiModel": geminiModel, "welcomeMessage": welcomeMessage, "placeholder": placeholder, "requestHeaders": requestHeaders, "presentationMode": presentationMode, "visualTheme": visualTheme };
-  const [errorMessage, set_errorMessage] = useState(() => structuredClone(""));
+  const inputs = { "permissions": permissions, "customClass": customClass, "geminiModel": geminiModel, "presentationMode": presentationMode, "welcomeMessage": welcomeMessage, "locale": locale, "showToolActivity": showToolActivity, "visualTheme": visualTheme, "title": title, "disabled": disabled, "maxMessages": maxMessages, "sessionId": sessionId, "placeholder": placeholder, "maxOutputTokens": maxOutputTokens, "allowAttachments": allowAttachments, "defaultOpen": defaultOpen, "systemPrompt": systemPrompt, "visible": visible, "assistantName": assistantName, "toolManifest": toolManifest, "aiProvider": aiProvider, "contextNamespace": contextNamespace, "contextDatabaseEnabled": contextDatabaseEnabled, "contextScopeKey": contextScopeKey, "anthropicModel": anthropicModel, "context": context, "contextEndpoint": contextEndpoint, "chatEndpoint": chatEndpoint, "contextCacheTtlSeconds": contextCacheTtlSeconds, "requestHeaders": requestHeaders };
+  const [runtimeContext, set_runtimeContext] = useState(() => structuredClone({}));
   const [showLauncher, set_showLauncher] = useState(() => structuredClone(true));
-  const [themeClass, set_themeClass] = useState(() => structuredClone("lumora-ai-host lumora-ai-floating lumora-ai-theme-aurora"));
   const [hasInitialized, set_hasInitialized] = useState(() => structuredClone(false));
-  const [isSending, set_isSending] = useState(() => structuredClone(false));
+  const [toasts, set_toasts] = useState(() => structuredClone([]));
+  const [isOpen, set_isOpen] = useState(() => structuredClone(false));
+  const [pendingAction, set_pendingAction] = useState(() => structuredClone({}));
+  const [errorMessage, set_errorMessage] = useState(() => structuredClone(""));
   const [messages, set_messages] = useState(() => structuredClone([]));
   const [isFloating, set_isFloating] = useState(() => structuredClone(true));
-  const [isOpen, set_isOpen] = useState(() => structuredClone(false));
-  const [toasts, set_toasts] = useState(() => structuredClone([]));
-  const [pendingAction, set_pendingAction] = useState(() => structuredClone({}));
-  const [runtimeContext, set_runtimeContext] = useState(() => structuredClone({}));
-  const state = { "errorMessage": errorMessage, "showLauncher": showLauncher, "themeClass": themeClass, "hasInitialized": hasInitialized, "isSending": isSending, "messages": messages, "isFloating": isFloating, "isOpen": isOpen, "toasts": toasts, "pendingAction": pendingAction, "runtimeContext": runtimeContext };
+  const [themeClass, set_themeClass] = useState(() => structuredClone("lumora-ai-host lumora-ai-floating lumora-ai-theme-aurora"));
+  const [isSending, set_isSending] = useState(() => structuredClone(false));
+  const state = { "runtimeContext": runtimeContext, "showLauncher": showLauncher, "hasInitialized": hasInitialized, "toasts": toasts, "isOpen": isOpen, "pendingAction": pendingAction, "errorMessage": errorMessage, "messages": messages, "isFloating": isFloating, "themeClass": themeClass, "isSending": isSending };
 
   const _setState = useCallback((name, value) => {
     switch (name) {
-      case "errorMessage": { const next = typeof value === 'function' ? value(state.errorMessage) : value; state.errorMessage = next; set_errorMessage(next); return next; }
+      case "runtimeContext": { const next = typeof value === 'function' ? value(state.runtimeContext) : value; state.runtimeContext = next; set_runtimeContext(next); return next; }
       case "showLauncher": { const next = typeof value === 'function' ? value(state.showLauncher) : value; state.showLauncher = next; set_showLauncher(next); return next; }
-      case "themeClass": { const next = typeof value === 'function' ? value(state.themeClass) : value; state.themeClass = next; set_themeClass(next); return next; }
       case "hasInitialized": { const next = typeof value === 'function' ? value(state.hasInitialized) : value; state.hasInitialized = next; set_hasInitialized(next); return next; }
-      case "isSending": { const next = typeof value === 'function' ? value(state.isSending) : value; state.isSending = next; set_isSending(next); return next; }
+      case "toasts": { const next = typeof value === 'function' ? value(state.toasts) : value; state.toasts = next; set_toasts(next); return next; }
+      case "isOpen": { const next = typeof value === 'function' ? value(state.isOpen) : value; state.isOpen = next; set_isOpen(next); return next; }
+      case "pendingAction": { const next = typeof value === 'function' ? value(state.pendingAction) : value; state.pendingAction = next; set_pendingAction(next); return next; }
+      case "errorMessage": { const next = typeof value === 'function' ? value(state.errorMessage) : value; state.errorMessage = next; set_errorMessage(next); return next; }
       case "messages": { const next = typeof value === 'function' ? value(state.messages) : value; state.messages = next; set_messages(next); return next; }
       case "isFloating": { const next = typeof value === 'function' ? value(state.isFloating) : value; state.isFloating = next; set_isFloating(next); return next; }
-      case "isOpen": { const next = typeof value === 'function' ? value(state.isOpen) : value; state.isOpen = next; set_isOpen(next); return next; }
-      case "toasts": { const next = typeof value === 'function' ? value(state.toasts) : value; state.toasts = next; set_toasts(next); return next; }
-      case "pendingAction": { const next = typeof value === 'function' ? value(state.pendingAction) : value; state.pendingAction = next; set_pendingAction(next); return next; }
-      case "runtimeContext": { const next = typeof value === 'function' ? value(state.runtimeContext) : value; state.runtimeContext = next; set_runtimeContext(next); return next; }
+      case "themeClass": { const next = typeof value === 'function' ? value(state.themeClass) : value; state.themeClass = next; set_themeClass(next); return next; }
+      case "isSending": { const next = typeof value === 'function' ? value(state.isSending) : value; state.isSending = next; set_isSending(next); return next; }
       default: return value;
     }
   }, []);
@@ -147,17 +147,17 @@ export default function CompiledModule(props) {
       return next;
     };
     switch (root) {
-      case "errorMessage": _setState("errorMessage", updateNested); return value;
+      case "runtimeContext": _setState("runtimeContext", updateNested); return value;
       case "showLauncher": _setState("showLauncher", updateNested); return value;
-      case "themeClass": _setState("themeClass", updateNested); return value;
       case "hasInitialized": _setState("hasInitialized", updateNested); return value;
-      case "isSending": _setState("isSending", updateNested); return value;
+      case "toasts": _setState("toasts", updateNested); return value;
+      case "isOpen": _setState("isOpen", updateNested); return value;
+      case "pendingAction": _setState("pendingAction", updateNested); return value;
+      case "errorMessage": _setState("errorMessage", updateNested); return value;
       case "messages": _setState("messages", updateNested); return value;
       case "isFloating": _setState("isFloating", updateNested); return value;
-      case "isOpen": _setState("isOpen", updateNested); return value;
-      case "toasts": _setState("toasts", updateNested); return value;
-      case "pendingAction": _setState("pendingAction", updateNested); return value;
-      case "runtimeContext": _setState("runtimeContext", updateNested); return value;
+      case "themeClass": _setState("themeClass", updateNested); return value;
+      case "isSending": _setState("isSending", updateNested); return value;
       default: return value;
     }
   }, [_setState]);
@@ -228,28 +228,6 @@ export default function CompiledModule(props) {
     return !(value && typeof value === 'object' && !Array.isArray(value) && Object.keys(value).length === 0);
   };
 
-  async function cancelResponse(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    _setState("isSending", false);
-    void _emitOutput("responseCancelled", { "reason": args.reason || 'host-requested' }, false).catch(error => console.error('Module output delivery failed', error));
-    return { "cancelled": true };
-    return undefined;
-  }
-
-  async function initializeContextStore(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    if (inputs.contextDatabaseEnabled === true) {
-      return { "initialized": true, "table": "rudra_ai_context" };
-    } else {
-      return { "initialized": false, "reason": "database-context-disabled" };
-    }
-    return undefined;
-  }
-
   async function loadContext(initialArgs = {}) {
     const args = initialArgs || {};
     const vars = {};
@@ -295,15 +273,6 @@ const raw = stepResults.upsert_context_db; const rows = Array.isArray(raw) ? raw
     return undefined;
   }
 
-  async function handleAttachments(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    void _emitOutput("attachmentSelected", { "files": args.files }, false).catch(error => console.error('Module output delivery failed', error));
-    return { "accepted": true, "count": args.files.length };
-    return undefined;
-  }
-
   async function clearConversation(initialArgs = {}) {
     const args = initialArgs || {};
     const vars = {};
@@ -313,24 +282,6 @@ const raw = stepResults.upsert_context_db; const rows = Array.isArray(raw) ? raw
     _setState("errorMessage", "");
     void _emitOutput("conversationCleared", { "sessionId": inputs.sessionId }, false).catch(error => console.error('Module output delivery failed', error));
     return { "cleared": true };
-    return undefined;
-  }
-
-  async function initializeConversation(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    if (state.hasInitialized === true) {
-      return { "initialized": true, "reused": true };
-    } else {
-      _setState("isOpen", state.hasInitialized === true ? state.isOpen : (inputs.visible !== false && (inputs.presentationMode !== 'floating' || inputs.defaultOpen === true)));
-      _setState("isFloating", inputs.presentationMode === 'floating');
-      _setState("showLauncher", state.hasInitialized === true ? state.showLauncher : (inputs.visible !== false && inputs.presentationMode === 'floating' && inputs.defaultOpen !== true));
-      _setState("themeClass", 'lumora-ai-host lumora-ai-floating lumora-ai-theme-' + (inputs.visualTheme || 'aurora'));
-      _setState("messages", state.messages.length ? state.messages : (inputs.welcomeMessage ? [{ id: 'welcome', role: 'assistant', sender: inputs.assistantName || 'Assistant', variant: 'incoming', content: inputs.welcomeMessage, timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }] : []));
-      _setState("hasInitialized", true);
-      return { "initialized": true };
-    }
     return undefined;
   }
 
@@ -345,13 +296,50 @@ const raw = stepResults.upsert_context_db; const rows = Array.isArray(raw) ? raw
     return undefined;
   }
 
-  async function dismissError(initialArgs = {}) {
+  async function processApiResponse(initialArgs = {}) {
     const args = initialArgs || {};
     const vars = {};
     const stepResults = {};
-    _setState("errorMessage", "");
-    _setState("toasts", []);
-    return { "dismissed": true };
+    { const event = args.event; const data = pageData; const globalState = state;
+      const customResult = await (async () => {
+const raw = args.response && typeof args.response === 'object' ? args.response : {}; const anthropicText = Array.isArray(raw.content) ? raw.content.filter((part) => part && part.type === 'text').map((part) => String(part.text || '')).join('') : ''; const geminiParts = Array.isArray(raw.candidates) && raw.candidates[0] && raw.candidates[0].content && Array.isArray(raw.candidates[0].content.parts) ? raw.candidates[0].content.parts : []; const geminiText = geminiParts.filter((part) => part && typeof part.text === 'string').map((part) => part.text).join(''); const nested = raw.message && typeof raw.message === 'object' ? raw.message : {}; const choice = Array.isArray(raw.choices) && raw.choices[0] && raw.choices[0].message ? raw.choices[0].message : {}; const contentValue = anthropicText || geminiText || nested.content || raw.text || raw.response || choice.content || ''; const content = typeof contentValue === 'string' ? contentValue : JSON.stringify(contentValue || ''); const actionList = Array.isArray(raw.toolCalls) ? raw.toolCalls : (Array.isArray(raw.actions) ? raw.actions : []); const action = raw.toolCall || actionList[0] || null; const provider = Array.isArray(raw.candidates) ? 'gemini' : (Array.isArray(raw.content) ? 'anthropic' : String(inputs.aiProvider || 'unknown')); const providerCache = provider === 'anthropic' ? { mode: 'prompt-cache', enabled: true, readTokens: Number(raw.usage && raw.usage.cache_read_input_tokens || 0), writtenTokens: Number(raw.usage && raw.usage.cache_creation_input_tokens || 0) } : { mode: 'implicit', enabled: true, readTokens: Number(raw.usageMetadata && raw.usageMetadata.cachedContentTokenCount || 0) }; const message = { id: String(raw.id || ('assistant-' + Date.now())), role: 'assistant', sender: inputs.assistantName || 'Assistant', variant: 'incoming', content: content || 'I could not read the assistant response.', timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), data: raw.data || {} }; return { message, action, provider, providerCache };
+      })();
+      stepResults["normalize_response"] = customResult; vars["customCodeResult"] = customResult; }
+    _setState("messages", [...(Array.isArray(args.messages) ? args.messages : state.messages), stepResults.normalize_response.message].slice(-inputs.maxMessages));
+    void _emitOutput("messageReceived", { "cache": stepResults.normalize_response.providerCache, "message": stepResults.normalize_response.message, "provider": stepResults.normalize_response.provider, "raw": args.response }, false).catch(error => console.error('Module output delivery failed', error));
+    if (!!stepResults.normalize_response.action) {
+      _setState("pendingAction", stepResults.normalize_response.action);
+      void _emitOutput("actionRequested", { "action": stepResults.normalize_response.action, "sessionId": inputs.sessionId }, false).catch(error => console.error('Module output delivery failed', error));
+      if (['escalate','escalation','handoff'].includes(String(stepResults.normalize_response.action.type || stepResults.normalize_response.action.name || '').toLowerCase())) {
+        void _emitOutput("escalationRequested", { "action": stepResults.normalize_response.action, "message": stepResults.normalize_response.message }, false).catch(error => console.error('Module output delivery failed', error));
+        return stepResults.normalize_response;
+      } else {
+        return stepResults.normalize_response;
+      }
+    } else {
+      return stepResults.normalize_response;
+    }
+    return undefined;
+  }
+
+  async function initializeContextStore(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    if (inputs.contextDatabaseEnabled === true) {
+      return { "initialized": true, "table": "rudra_ai_context" };
+    } else {
+      return { "initialized": false, "reason": "database-context-disabled" };
+    }
+    return undefined;
+  }
+
+  async function handleAttachments(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    void _emitOutput("attachmentSelected", { "files": args.files }, false).catch(error => console.error('Module output delivery failed', error));
+    return { "accepted": true, "count": args.files.length };
     return undefined;
   }
 
@@ -490,6 +478,55 @@ const currentText = String(stepResults.normalize_user && stepResults.normalize_u
     return undefined;
   }
 
+  async function closeChat(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    _setState("hasInitialized", true);
+    _setState("isOpen", false);
+    _setState("showLauncher", true);
+    return { "open": false };
+    return undefined;
+  }
+
+  async function cancelResponse(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    _setState("isSending", false);
+    void _emitOutput("responseCancelled", { "reason": args.reason || 'host-requested' }, false).catch(error => console.error('Module output delivery failed', error));
+    return { "cancelled": true };
+    return undefined;
+  }
+
+  async function dismissError(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    _setState("errorMessage", "");
+    _setState("toasts", []);
+    return { "dismissed": true };
+    return undefined;
+  }
+
+  async function initializeConversation(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    if (state.hasInitialized === true) {
+      return { "initialized": true, "reused": true };
+    } else {
+      _setState("isOpen", state.hasInitialized === true ? state.isOpen : (inputs.visible !== false && (inputs.presentationMode !== 'floating' || inputs.defaultOpen === true)));
+      _setState("isFloating", inputs.presentationMode === 'floating');
+      _setState("showLauncher", state.hasInitialized === true ? state.showLauncher : (inputs.visible !== false && inputs.presentationMode === 'floating' && inputs.defaultOpen !== true));
+      _setState("themeClass", 'lumora-ai-host lumora-ai-floating lumora-ai-theme-' + (inputs.visualTheme || 'aurora'));
+      _setState("messages", state.messages.length ? state.messages : (inputs.welcomeMessage ? [{ id: 'welcome', role: 'assistant', sender: inputs.assistantName || 'Assistant', variant: 'incoming', content: inputs.welcomeMessage, timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }] : []));
+      _setState("hasInitialized", true);
+      return { "initialized": true };
+    }
+    return undefined;
+  }
+
   async function retryLastMessage(initialArgs = {}) {
     const args = initialArgs || {};
     const vars = {};
@@ -508,43 +545,6 @@ const items = Array.isArray(state.messages) ? state.messages : []; const last = 
     return undefined;
   }
 
-  async function closeChat(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    _setState("hasInitialized", true);
-    _setState("isOpen", false);
-    _setState("showLauncher", true);
-    return { "open": false };
-    return undefined;
-  }
-
-  async function processApiResponse(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    { const event = args.event; const data = pageData; const globalState = state;
-      const customResult = await (async () => {
-const raw = args.response && typeof args.response === 'object' ? args.response : {}; const anthropicText = Array.isArray(raw.content) ? raw.content.filter((part) => part && part.type === 'text').map((part) => String(part.text || '')).join('') : ''; const geminiParts = Array.isArray(raw.candidates) && raw.candidates[0] && raw.candidates[0].content && Array.isArray(raw.candidates[0].content.parts) ? raw.candidates[0].content.parts : []; const geminiText = geminiParts.filter((part) => part && typeof part.text === 'string').map((part) => part.text).join(''); const nested = raw.message && typeof raw.message === 'object' ? raw.message : {}; const choice = Array.isArray(raw.choices) && raw.choices[0] && raw.choices[0].message ? raw.choices[0].message : {}; const contentValue = anthropicText || geminiText || nested.content || raw.text || raw.response || choice.content || ''; const content = typeof contentValue === 'string' ? contentValue : JSON.stringify(contentValue || ''); const actionList = Array.isArray(raw.toolCalls) ? raw.toolCalls : (Array.isArray(raw.actions) ? raw.actions : []); const action = raw.toolCall || actionList[0] || null; const provider = Array.isArray(raw.candidates) ? 'gemini' : (Array.isArray(raw.content) ? 'anthropic' : String(inputs.aiProvider || 'unknown')); const providerCache = provider === 'anthropic' ? { mode: 'prompt-cache', enabled: true, readTokens: Number(raw.usage && raw.usage.cache_read_input_tokens || 0), writtenTokens: Number(raw.usage && raw.usage.cache_creation_input_tokens || 0) } : { mode: 'implicit', enabled: true, readTokens: Number(raw.usageMetadata && raw.usageMetadata.cachedContentTokenCount || 0) }; const message = { id: String(raw.id || ('assistant-' + Date.now())), role: 'assistant', sender: inputs.assistantName || 'Assistant', variant: 'incoming', content: content || 'I could not read the assistant response.', timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), data: raw.data || {} }; return { message, action, provider, providerCache };
-      })();
-      stepResults["normalize_response"] = customResult; vars["customCodeResult"] = customResult; }
-    _setState("messages", [...(Array.isArray(args.messages) ? args.messages : state.messages), stepResults.normalize_response.message].slice(-inputs.maxMessages));
-    void _emitOutput("messageReceived", { "cache": stepResults.normalize_response.providerCache, "message": stepResults.normalize_response.message, "provider": stepResults.normalize_response.provider, "raw": args.response }, false).catch(error => console.error('Module output delivery failed', error));
-    if (!!stepResults.normalize_response.action) {
-      _setState("pendingAction", stepResults.normalize_response.action);
-      void _emitOutput("actionRequested", { "action": stepResults.normalize_response.action, "sessionId": inputs.sessionId }, false).catch(error => console.error('Module output delivery failed', error));
-      if (['escalate','escalation','handoff'].includes(String(stepResults.normalize_response.action.type || stepResults.normalize_response.action.name || '').toLowerCase())) {
-        void _emitOutput("escalationRequested", { "action": stepResults.normalize_response.action, "message": stepResults.normalize_response.message }, false).catch(error => console.error('Module output delivery failed', error));
-        return stepResults.normalize_response;
-      } else {
-        return stepResults.normalize_response;
-      }
-    } else {
-      return stepResults.normalize_response;
-    }
-    return undefined;
-  }
-
   async function provideToolResult(initialArgs = {}) {
     const args = initialArgs || {};
     const vars = {};
@@ -557,39 +557,39 @@ const raw = args.response && typeof args.response === 'object' ? args.response :
   }
 
   const _localActions = {
-    "cancelResponse": cancelResponse,
-    "initializeContextStore": initializeContextStore,
     "loadContext": loadContext,
-    "handleAttachments": handleAttachments,
     "clearConversation": clearConversation,
-    "initializeConversation": initializeConversation,
     "openChat": openChat,
-    "dismissError": dismissError,
-    "sendMessage": sendMessage,
-    "retryLastMessage": retryLastMessage,
-    "closeChat": closeChat,
     "processApiResponse": processApiResponse,
+    "initializeContextStore": initializeContextStore,
+    "handleAttachments": handleAttachments,
+    "sendMessage": sendMessage,
+    "closeChat": closeChat,
+    "cancelResponse": cancelResponse,
+    "dismissError": dismissError,
+    "initializeConversation": initializeConversation,
+    "retryLastMessage": retryLastMessage,
     "provideToolResult": provideToolResult,
   };
   const _commandImplementations = useRef({});
   _commandImplementations.current = {
+    "lumora_ai_cancel": (commandArgs = {}, context = {}) => cancelResponse({ ...commandArgs, signal: context.signal }),
     "lumora_ai_dismiss_error": (commandArgs = {}, context = {}) => dismissError({ ...commandArgs, signal: context.signal }),
     "lumora_ai_retry": (commandArgs = {}, context = {}) => retryLastMessage({ ...commandArgs, signal: context.signal }),
     "lumora_ai_send": (commandArgs = {}, context = {}) => sendMessage({ ...commandArgs, signal: context.signal }),
     "lumora_ai_clear": (commandArgs = {}, context = {}) => clearConversation({ ...commandArgs, signal: context.signal }),
     "lumora_ai_tool_result": (commandArgs = {}, context = {}) => provideToolResult({ ...commandArgs, signal: context.signal }),
     "lumora_ai_load_context": (commandArgs = {}, context = {}) => loadContext({ ...commandArgs, signal: context.signal }),
-    "lumora_ai_cancel": (commandArgs = {}, context = {}) => cancelResponse({ ...commandArgs, signal: context.signal }),
   };
   const _commandAdapters = useRef(null);
   if (!_commandAdapters.current) _commandAdapters.current = {
+    "lumora_ai_cancel": (commandArgs, context) => _commandImplementations.current["lumora_ai_cancel"](commandArgs, context),
     "lumora_ai_dismiss_error": (commandArgs, context) => _commandImplementations.current["lumora_ai_dismiss_error"](commandArgs, context),
     "lumora_ai_retry": (commandArgs, context) => _commandImplementations.current["lumora_ai_retry"](commandArgs, context),
     "lumora_ai_send": (commandArgs, context) => _commandImplementations.current["lumora_ai_send"](commandArgs, context),
     "lumora_ai_clear": (commandArgs, context) => _commandImplementations.current["lumora_ai_clear"](commandArgs, context),
     "lumora_ai_tool_result": (commandArgs, context) => _commandImplementations.current["lumora_ai_tool_result"](commandArgs, context),
     "lumora_ai_load_context": (commandArgs, context) => _commandImplementations.current["lumora_ai_load_context"](commandArgs, context),
-    "lumora_ai_cancel": (commandArgs, context) => _commandImplementations.current["lumora_ai_cancel"](commandArgs, context),
   };
   useEffect(() => {
     const register = props.registerCommands || props.runtime?.registerCommands;
@@ -598,18 +598,18 @@ const raw = args.response && typeof args.response === 'object' ? args.response :
   }, [props.registerCommands, props.runtime?.registerCommands]);
 
   const _localActionArguments = {
-    "cancelResponse": ["reason"],
-    "initializeContextStore": [],
     "loadContext": ["context", "replace", "scopeKey", "systemPrompt", "expectedRevision"],
-    "handleAttachments": ["files"],
     "clearConversation": [],
-    "initializeConversation": [],
     "openChat": [],
-    "dismissError": [],
-    "sendMessage": ["message"],
-    "retryLastMessage": [],
-    "closeChat": [],
     "processApiResponse": ["response", "messages"],
+    "initializeContextStore": [],
+    "handleAttachments": ["files"],
+    "sendMessage": ["message"],
+    "closeChat": [],
+    "cancelResponse": ["reason"],
+    "dismissError": [],
+    "initializeConversation": [],
+    "retryLastMessage": [],
     "provideToolResult": ["actionId", "result", "status"],
   };
   const _callAction = (name, configuredArgs = {}, eventArgs = []) => {
@@ -656,47 +656,47 @@ const raw = args.response && typeof args.response === 'object' ? args.response :
     <div ref={wrapperRef} className="rudra-module-wrapper">
       <RudraLayoutBox id="ai_host" className={`${((_classValue) => _classValue == null || _classValue === false || typeof _classValue === 'object' ? '' : "" + String(_classValue))(((_bindingValue) => _bindingValue === undefined ? "lumora-ai-host lumora-ai-floating lumora-ai-theme-aurora" : _bindingValue)(themeClass))}`}>      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isOpen)) && (<>      <RudraCoreSurface id="root_container" className="lumora-ai-shell" responsivePadding={false} as="section" tone="default" radius="xl" padding="none" bordered={true}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutFlex id="chat_header" className="lumora-ai-header flex w-full items-start justify-between gap-3 px-5 py-4" as="header">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="header_identity" className="lumora-ai-identity block min-w-0">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="header_title" className="text-lg font-bold" as="h2" content={((_bindingValue) => _bindingValue === undefined ? "AI Assistant" : _bindingValue)(inputs?.title)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="header_subtitle" className="text-xs" as="p" content="Context-aware assistant · tools enabled by your application" customColor="var(--rudra-color-muted)" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="header_subtitle" className="text-xs" content="Context-aware assistant · tools enabled by your application" customColor="var(--rudra-color-muted)" as="p" />
 </>)}
 </RudraLayoutBox>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutFlex id="header_actions" className="lumora-ai-header-actions flex shrink-0 items-center gap-2">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="status_badge" className="lumora-ai-status" content="Online" customColor="currentColor" as="span" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutFlex id="header_actions" className="lumora-ai-header-actions flex shrink-0 items-center gap-2">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="status_badge" className="lumora-ai-status" as="span" content="Online" customColor="currentColor" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="clear_btn" className="lumora-ai-clear-button" onAction={(...eventArgs) => _callAction("clearConversation", {}, eventArgs)} ariaLabel="Clear conversation" size="sm" label="Clear" theme="auto" variant="ghost" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="clear_btn" className="lumora-ai-clear-button" ariaLabel="Clear conversation" size="sm" label="Clear" theme="auto" variant="ghost" onAction={(...eventArgs) => _callAction("clearConversation", {}, eventArgs)} />
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(isFloating)) && (<>      <RudraCoreIconButton id="floating_close_button" className="lumora-ai-close-button" ariaLabel="Close Lumora AI assistant" size="sm" theme="auto" onClick={(...eventArgs) => _callAction("closeChat", {}, eventArgs)} additionalAttributes={{"title":"Close AI assistant"}} icon={false} variant="ghost" />
-</>)}
-</RudraLayoutFlex>
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(isFloating)) && (<>      <RudraCoreIconButton id="floating_close_button" className="lumora-ai-close-button" icon={false} onClick={(...eventArgs) => _callAction("closeChat", {}, eventArgs)} variant="ghost" ariaLabel="Close Lumora AI assistant" additionalAttributes={{"title":"Close AI assistant"}} size="sm" theme="auto" />
 </>)}
 </RudraLayoutFlex>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutScrollArea id="message_list" className="lumora-ai-transcript w-full flex-1 overflow-y-auto px-6 py-6" as="section">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutRepeater id="messages_repeater" className="flex flex-col gap-4" items={((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(messages)}>{(_payload) => { const _parentScope = _scope || {}; return (() => { const _scope = { ..._parentScope, ...(_payload || {}), item: _payload?.item ?? _payload, index: _payload?.index ?? _payload?.i ?? 0, parent: _parentScope }; return (<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraWidgetsMessageBubble id="message_bubble" className="flex w-full gap-2" bubbleClassName="max-w-2xl rounded-2xl px-4 py-3" status={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(_scope?.item?.status)} variant={((_bindingValue) => _bindingValue === undefined ? "incoming" : _bindingValue)(_scope?.item?.variant)} timestamp={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(_scope?.item?.timestamp)} sender={((_bindingValue) => _bindingValue === undefined ? "Assistant" : _bindingValue)(_scope?.item?.sender)}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="bubble_content" className="text-sm" as="p" content={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(_scope?.item?.content)} />
+</RudraLayoutFlex>
+</>)}
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutScrollArea id="message_list" className="lumora-ai-transcript w-full flex-1 overflow-y-auto px-6 py-6" as="section">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutRepeater id="messages_repeater" className="flex flex-col gap-4" items={((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(messages)}>{(_payload) => { const _parentScope = _scope || {}; return (() => { const _scope = { ..._parentScope, ...(_payload || {}), item: _payload?.item ?? _payload, index: _payload?.index ?? _payload?.i ?? 0, parent: _parentScope }; return (<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraWidgetsMessageBubble id="message_bubble" className="flex w-full gap-2" bubbleClassName="max-w-2xl rounded-2xl px-4 py-3" variant={((_bindingValue) => _bindingValue === undefined ? "incoming" : _bindingValue)(_scope?.item?.variant)} timestamp={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(_scope?.item?.timestamp)} sender={((_bindingValue) => _bindingValue === undefined ? "Assistant" : _bindingValue)(_scope?.item?.sender)} status={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(_scope?.item?.status)}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="bubble_content" className="lumora-ai-message-content text-sm" as="p" content={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(_scope?.item?.content)} />
 </>)}
 </RudraWidgetsMessageBubble>
 </>)}
 </>); })(); }}</RudraLayoutRepeater>
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isSending)) && (<>      <RudraCoreTypography id="typing_indicator" className="lumora-ai-typing text-sm" customColor="var(--rudra-color-muted)" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Assistant" : _bindingValue)(inputs?.assistantName)} />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isSending)) && (<>      <RudraCoreTypography id="typing_indicator" className="lumora-ai-typing text-sm" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Assistant" : _bindingValue)(inputs?.assistantName)} customColor="var(--rudra-color-muted)" />
 </>)}
 </RudraLayoutScrollArea>
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(errorMessage)) && (<>      <RudraCoreAlert id="error_panel" className="lumora-ai-error mx-6 mb-3" action={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="retry_button" label="Retry" theme="auto" variant="outline" onAction={(...eventArgs) => _callAction("retryLastMessage", {}, eventArgs)} ariaLabel="Retry last message" size="sm" />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(errorMessage)) && (<>      <RudraCoreAlert id="error_panel" className="lumora-ai-error mx-6 mb-3" action={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="retry_button" theme="auto" variant="outline" onAction={(...eventArgs) => _callAction("retryLastMessage", {}, eventArgs)} ariaLabel="Retry last message" size="sm" label="Retry" />
 </>)}
-</>} title="Assistant unavailable" variant="error" onDismiss={(...eventArgs) => _callAction("dismissError", {}, eventArgs)} appearance="soft" dismissible={true} live="assertive" theme="auto" closeLabel="Dismiss error">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="error_text" className="text-sm" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Something went wrong." : _bindingValue)(errorMessage)} />
+</>} title="Assistant unavailable" onDismiss={(...eventArgs) => _callAction("dismissError", {}, eventArgs)} appearance="soft" closeLabel="Dismiss error" dismissible={true} live="assertive" theme="auto" variant="error">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="error_text" className="text-sm" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Something went wrong." : _bindingValue)(errorMessage)} />
 </>)}
 </RudraCoreAlert>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="composer_wrapper" className="lumora-ai-composer block w-full px-5 pb-5 pt-4">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="composer_hint" className="mb-2 text-xs" content="Ask a question or request an available action." customColor="var(--rudra-color-muted)" as="p" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="composer_wrapper" className="lumora-ai-composer block w-full px-5 pb-5 pt-4">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="composer_hint" className="mb-2 text-xs" as="p" content="Ask a question or request an available action." customColor="var(--rudra-color-muted)" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraWidgetsMessageComposer id="chat_composer" className="w-full" composerClassName="rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900" showVoice={false} showAttachment={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(inputs?.allowAttachments)} disabled={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isSending)} showPicker={false} placeholder={((_bindingValue) => _bindingValue === undefined ? "Ask anything…" : _bindingValue)(inputs?.placeholder)} onAttachmentSelect={(...eventArgs) => _callAction("handleAttachments", {}, eventArgs)} onSend={(...eventArgs) => _callAction("sendMessage", {}, eventArgs)} autoFocus={false} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraWidgetsMessageComposer id="chat_composer" className="w-full" composerClassName="rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900" placeholder={((_bindingValue) => _bindingValue === undefined ? "Ask anything…" : _bindingValue)(inputs?.placeholder)} onAttachmentSelect={(...eventArgs) => _callAction("handleAttachments", {}, eventArgs)} onSend={(...eventArgs) => _callAction("sendMessage", {}, eventArgs)} disabled={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isSending)} autoFocus={false} showVoice={false} showPicker={false} showAttachment={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(inputs?.allowAttachments)} />
 </>)}
 </RudraLayoutBox>
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(errorMessage)) && (<>      <RudraWidgetsToastStack id="global_toasts" closable={true} onDismiss={(...eventArgs) => _callAction("dismissError", {}, eventArgs)} showIcons={true} maxVisible={3} items={((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(toasts)} position="top-right" displayMode="fixed" newestOnTop={true} />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(errorMessage)) && (<>      <RudraWidgetsToastStack id="global_toasts" onDismiss={(...eventArgs) => _callAction("dismissError", {}, eventArgs)} showIcons={true} maxVisible={3} displayMode="fixed" closable={true} position="top-right" newestOnTop={true} items={((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(toasts)} />
 </>)}
 </RudraCoreSurface>
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(showLauncher)) && (<>      <RudraLayoutBox id="floating_launcher" className="lumora-ai-launcher">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreIconButton id="floating_launcher_button" className="lumora-ai-launcher-button" additionalAttributes={{"aria-haspopup":"dialog","title":"Open AI assistant"}} icon={false} size="xl" theme="auto" onClick={(...eventArgs) => _callAction("openChat", {}, eventArgs)} variant="primary" ariaLabel="Open Lumora AI assistant" />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(showLauncher)) && (<>      <RudraLayoutBox id="floating_launcher" className="lumora-ai-launcher">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreIconButton id="floating_launcher_button" className="lumora-ai-launcher-button" onClick={(...eventArgs) => _callAction("openChat", {}, eventArgs)} variant="primary" ariaLabel="Open Lumora AI assistant" additionalAttributes={{"aria-haspopup":"dialog","title":"Open AI assistant"}} icon={false} size="xl" theme="auto" />
 </>)}
 </RudraLayoutBox>
 </>)}
