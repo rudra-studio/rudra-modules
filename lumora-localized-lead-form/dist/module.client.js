@@ -1,8 +1,8 @@
 import { jsx as f, jsxs as a, Fragment as l } from "react/jsx-runtime";
 import { useState as v, useEffect as N, useRef as Ee, useCallback as O } from "react";
-import { Form as Oe, Input as T, Textarea as Me, Checkbox as je } from "@rudra-studio/rudra-form";
-import { Section as $e, Container as Pe, Box as L } from "@rudra-studio/rudra-layout";
-import { Typography as D, Alert as F, Button as Ne } from "@rudra-studio/rudra-core";
+import { Section as Oe, Container as Me, Box as L } from "@rudra-studio/rudra-layout";
+import { Typography as D, Alert as F, Button as je } from "@rudra-studio/rudra-core";
+import { Form as $e, Input as T, Textarea as Pe, Checkbox as Ne } from "@rudra-studio/rudra-form";
 function ze(e) {
   const _ = e.serverData || e.serverState || {}, V = e.sharedState || {}, W = e.applicationState || _.applicationState || {}, B = e.pageState || _.pageState || {}, J = e.pageData || _.pageData || {}, Z = {
     ...e.runtime?.functions || {},
@@ -170,11 +170,11 @@ function ze(e) {
   };
   return /* @__PURE__ */ f("div", { ref: M, className: "rudra-module-wrapper", children: u(/* @__PURE__ */ ((t) => t === void 0 ? !0 : t)(m?.visible)) && /* @__PURE__ */ a(l, { children: [
     "      ",
-    /* @__PURE__ */ a($e, { id: "root", id: "contact", "data-theme": /* @__PURE__ */ ((t) => t === void 0 ? "auto" : t)(m?.visualTheme), className: `${r({ sm: "lead-root" }) || ""}`, as: "section", children: [
+    /* @__PURE__ */ a(Oe, { id: "root", id: "contact", "data-theme": /* @__PURE__ */ ((t) => t === void 0 ? "auto" : t)(m?.visualTheme), className: `${r({ sm: "lead-root" }) || ""}`, as: "section", children: [
       "      ",
       u(r({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(l, { children: [
         "      ",
-        /* @__PURE__ */ a(Pe, { id: "container", className: `${r({ sm: "w-full px-6 py-20", md: "px-10" }) || ""}`, centered: !0, maxWidth: "2xl", children: [
+        /* @__PURE__ */ a(Me, { id: "container", className: `${r({ sm: "w-full px-6 py-20", md: "px-10" }) || ""}`, maxWidth: "2xl", centered: !0, children: [
           "      ",
           u(r({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(l, { children: [
             "      ",
@@ -204,7 +204,7 @@ function ze(e) {
                       "      ",
                       u(r({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(l, { children: [
                         "      ",
-                        /* @__PURE__ */ a(Oe, { id: "form", className: "lead-form", onSubmit: (...t) => _e("submitLeadForm", {}, t), initialValues: { company: "", consent: !1, email: "", message: "", name: "" }, children: [
+                        /* @__PURE__ */ a($e, { id: "form", className: "lead-form", initialValues: { company: "", consent: !1, email: "", message: "", name: "" }, onSubmit: (...t) => _e("submitLeadForm", {}, t), children: [
                           "      ",
                           u(r({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(l, { children: [
                             "      ",
@@ -218,7 +218,7 @@ function ze(e) {
                                     "      ",
                                     /* @__PURE__ */ f(L, { id: "name_icon", "aria-hidden": "true", "data-lumora-field-icon": "name", className: `${r({ sm: "block lead-input-icon lead-icon-user" }) || ""}` })
                                   ] })
-                                ] }), required: !0, iconPosition: "start", name: "name", size: "lg", type: "text", label: m?.nameLabel })
+                                ] }), label: m?.nameLabel, required: !0, iconPosition: "start", name: "name", size: "lg", type: "text" })
                               ] }),
                               u(r({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(l, { children: [
                                 "      ",
@@ -228,7 +228,7 @@ function ze(e) {
                                     "      ",
                                     /* @__PURE__ */ f(L, { id: "email_icon", "aria-hidden": "true", "data-lumora-field-icon": "email", className: `${r({ sm: "block lead-input-icon lead-icon-mail" }) || ""}` })
                                   ] })
-                                ] }), name: "email", size: "lg", type: "email", label: m?.emailLabel, required: !0, iconPosition: "start" })
+                                ] }), iconPosition: "start", name: "email", size: "lg", type: "email", label: m?.emailLabel, required: !0 })
                               ] })
                             ] })
                           ] }),
@@ -244,11 +244,11 @@ function ze(e) {
                           ] }),
                           u(r({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(l, { children: [
                             "      ",
-                            /* @__PURE__ */ f(Me, { id: "message", minRows: 5, required: !0, autoResize: !0, name: "message", size: "lg", label: m?.messageLabel, maxRows: 9 })
+                            /* @__PURE__ */ f(Pe, { id: "message", maxRows: 9, minRows: 5, required: !0, autoResize: !0, name: "message", size: "lg", label: m?.messageLabel })
                           ] }),
                           u(r({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(l, { children: [
                             "      ",
-                            /* @__PURE__ */ f(je, { id: "consent", name: "consent", label: m?.consentLabel, required: !0, colorScheme: "purple" })
+                            /* @__PURE__ */ f(Ne, { id: "consent", name: "consent", label: m?.consentLabel, required: !0, colorScheme: "purple" })
                           ] }),
                           u(R) && /* @__PURE__ */ a(l, { children: [
                             "      ",
@@ -264,7 +264,7 @@ function ze(e) {
                               "      ",
                               u(r({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ a(l, { children: [
                                 "      ",
-                                /* @__PURE__ */ f(Ne, { id: "submit", className: "lead-submit", size: "lg", type: "submit", label: m?.submitLabel, theme: "auto", loading: /* @__PURE__ */ ((t) => t === void 0 ? !1 : t)(q), variant: "primary", loadingText: m?.submittingLabel, fullWidth: !0 })
+                                /* @__PURE__ */ f(je, { id: "submit", className: "lead-submit", theme: "auto", loading: /* @__PURE__ */ ((t) => t === void 0 ? !1 : t)(q), fullWidth: !0, size: "lg", type: "submit", variant: "primary", loadingText: m?.submittingLabel, label: m?.submitLabel })
                               ] })
                             ] })
                           ] })

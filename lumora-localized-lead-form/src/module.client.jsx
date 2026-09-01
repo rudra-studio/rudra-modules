@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './styles.css';
 
-import { Checkbox as RudraFormCheckbox, Form as RudraFormForm, Input as RudraFormInput, Textarea as RudraFormTextarea } from '@rudra-studio/rudra-form';
 import { Box as RudraLayoutBox, Container as RudraLayoutContainer, Section as RudraLayoutSection } from '@rudra-studio/rudra-layout';
 import { Typography as RudraCoreTypography, Alert as RudraCoreAlert, Button as RudraCoreButton } from '@rudra-studio/rudra-core';
+import { Input as RudraFormInput, Textarea as RudraFormTextarea, Checkbox as RudraFormCheckbox, Form as RudraFormForm } from '@rudra-studio/rudra-form';
 
 export default function CompiledModule(props) {
   const _scope = {};
@@ -259,19 +259,19 @@ export default function CompiledModule(props) {
 
   return (
     <div ref={wrapperRef} className="rudra-module-wrapper">
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(inputs?.visible)) && (<>      <RudraLayoutSection id="root" id="contact" data-theme={((_bindingValue) => _bindingValue === undefined ? "auto" : _bindingValue)(inputs?.visualTheme)} className={`${getResponsiveProp({sm: 'lead-root'}) || ''}`} as="section">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutContainer id="container" className={`${getResponsiveProp({sm: 'w-full px-6 py-20', md: 'px-10'}) || ''}`} centered={true} maxWidth="2xl">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="shell" data-layout="block" className={`${((_classValue) => _classValue == null || _classValue === false || typeof _classValue === 'object' ? '' : "" + String(_classValue))(((_bindingValue) => _bindingValue === undefined ? "block lumora-lead-shell" : _bindingValue)(inputs?.customClass))}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="grid" className={`${getResponsiveProp({sm: 'grid lead-grid'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="copy" className={`${getResponsiveProp({sm: 'block lead-copy'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="title" className={`${getResponsiveProp({sm: 'lead-title'}) || ''}`} as="h2" content={inputs?.title} />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(inputs?.visible)) && (<>      <RudraLayoutSection id="root" id="contact" data-theme={((_bindingValue) => _bindingValue === undefined ? "auto" : _bindingValue)(inputs?.visualTheme)} className={`${getResponsiveProp({sm: 'lead-root'}) || ''}`} as="section">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutContainer id="container" className={`${getResponsiveProp({sm: 'w-full px-6 py-20', md: 'px-10'}) || ''}`} maxWidth="2xl" centered={true}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="shell" data-layout="block" className={`${((_classValue) => _classValue == null || _classValue === false || typeof _classValue === 'object' ? '' : "" + String(_classValue))(((_bindingValue) => _bindingValue === undefined ? "block lumora-lead-shell" : _bindingValue)(inputs?.customClass))}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="grid" className={`${getResponsiveProp({sm: 'grid lead-grid'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="copy" className={`${getResponsiveProp({sm: 'block lead-copy'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="title" className={`${getResponsiveProp({sm: 'lead-title'}) || ''}`} as="h2" content={inputs?.title} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="desc" className={`${getResponsiveProp({sm: 'lead-desc'}) || ''}`} as="p" content={inputs?.description} />
 </>)}
 </RudraLayoutBox>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="card" className={`${getResponsiveProp({sm: 'block lead-card'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormForm id="form" className="lead-form" onSubmit={(...eventArgs) => _callAction("submitLeadForm", {}, eventArgs)} initialValues={{"company":"","consent":false,"email":"","message":"","name":""}}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="fields" className={`${getResponsiveProp({sm: 'grid fields'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormInput id="name" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="name_icon" aria-hidden="true" data-lumora-field-icon="name" className={`${getResponsiveProp({sm: 'block lead-input-icon lead-icon-user'}) || ''}`} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="card" className={`${getResponsiveProp({sm: 'block lead-card'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormForm id="form" className="lead-form" initialValues={{"company":"","consent":false,"email":"","message":"","name":""}} onSubmit={(...eventArgs) => _callAction("submitLeadForm", {}, eventArgs)}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="fields" className={`${getResponsiveProp({sm: 'grid fields'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormInput id="name" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="name_icon" aria-hidden="true" data-lumora-field-icon="name" className={`${getResponsiveProp({sm: 'block lead-input-icon lead-icon-user'}) || ''}`} />
 </>)}
-</>} required={true} iconPosition="start" name="name" size="lg" type="text" label={inputs?.nameLabel} />
+</>} label={inputs?.nameLabel} required={true} iconPosition="start" name="name" size="lg" type="text" />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormInput id="email" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="email_icon" aria-hidden="true" data-lumora-field-icon="email" className={`${getResponsiveProp({sm: 'block lead-input-icon lead-icon-mail'}) || ''}`} />
 </>)}
-</>} name="email" size="lg" type="email" label={inputs?.emailLabel} required={true} iconPosition="start" />
+</>} iconPosition="start" name="email" size="lg" type="email" label={inputs?.emailLabel} required={true} />
 </>)}
 </RudraLayoutBox>
 </>)}
@@ -279,7 +279,7 @@ export default function CompiledModule(props) {
 </>)}
 </>} name="company" size="lg" label={inputs?.companyLabel} iconPosition="start" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormTextarea id="message" minRows={5} required={true} autoResize={true} name="message" size="lg" label={inputs?.messageLabel} maxRows={9} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormTextarea id="message" maxRows={9} minRows={5} required={true} autoResize={true} name="message" size="lg" label={inputs?.messageLabel} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormCheckbox id="consent" name="consent" label={inputs?.consentLabel} required={true} colorScheme="purple" />
 </>)}
@@ -287,7 +287,7 @@ export default function CompiledModule(props) {
 </>)}
       {isVisibleValue(showError) && (<>      <RudraCoreAlert id="err" live="assertive" title="Unable to send" variant="error" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="actions" className={`${getResponsiveProp({sm: 'flex actions'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="submit" className="lead-submit" size="lg" type="submit" label={inputs?.submitLabel} theme="auto" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isSubmitting)} variant="primary" loadingText={inputs?.submittingLabel} fullWidth={true} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="actions" className={`${getResponsiveProp({sm: 'flex actions'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="submit" className="lead-submit" theme="auto" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isSubmitting)} fullWidth={true} size="lg" type="submit" variant="primary" loadingText={inputs?.submittingLabel} label={inputs?.submitLabel} />
 </>)}
 </RudraLayoutBox>
 </>)}
