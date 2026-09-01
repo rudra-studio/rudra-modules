@@ -431,7 +431,7 @@ function Rt(o) {
     "      ",
     f(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(oe)) && /* @__PURE__ */ g(h, { children: [
       "      ",
-      /* @__PURE__ */ g(_t, { id: "root_container", className: "lumora-ai-shell", tone: "default", radius: "xl", padding: "none", bordered: !0, responsivePadding: !1, as: "section", children: [
+      /* @__PURE__ */ g(_t, { id: "root_container", className: "lumora-ai-shell", responsivePadding: !1, as: "section", tone: "default", radius: "xl", padding: "none", bordered: !0, children: [
         "      ",
         f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
           "      ",
@@ -447,7 +447,7 @@ function Rt(o) {
                 ] }),
                 f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
                   "      ",
-                  /* @__PURE__ */ _(R, { id: "header_subtitle", className: "text-xs", as: "p", content: "Context-aware assistant · tools enabled by your application", customColor: "var(--rudra-color-muted)" })
+                  /* @__PURE__ */ _(R, { id: "header_subtitle", className: "text-xs", customColor: "var(--rudra-color-muted)", as: "p", content: "Context-aware assistant · tools enabled by your application" })
                 ] })
               ] })
             ] }),
@@ -457,15 +457,15 @@ function Rt(o) {
                 "      ",
                 f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
                   "      ",
-                  /* @__PURE__ */ _(R, { id: "status_badge", className: "lumora-ai-status", customColor: "currentColor", as: "span", content: "Online" })
+                  /* @__PURE__ */ _(R, { id: "status_badge", className: "lumora-ai-status", as: "span", content: "Online", customColor: "currentColor" })
                 ] }),
                 f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
                   "      ",
-                  /* @__PURE__ */ _(ye, { id: "clear_btn", className: "lumora-ai-clear-button", size: "sm", label: "Clear", theme: "auto", variant: "ghost", onAction: (...e) => M("clearConversation", {}, e), ariaLabel: "Clear conversation" })
+                  /* @__PURE__ */ _(ye, { id: "clear_btn", className: "lumora-ai-clear-button", ariaLabel: "Clear conversation", size: "sm", label: "Clear", theme: "auto", variant: "ghost", onAction: (...e) => M("clearConversation", {}, e) })
                 ] }),
                 f(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(se)) && /* @__PURE__ */ g(h, { children: [
                   "      ",
-                  /* @__PURE__ */ _(he, { id: "floating_close_button", className: "lumora-ai-close-button", additionalAttributes: { title: "Close AI assistant" }, icon: !1, size: "sm", variant: "ghost", theme: "auto", onClick: (...e) => M("closeChat", {}, e), ariaLabel: "Close Lumora AI assistant" })
+                  /* @__PURE__ */ _(he, { id: "floating_close_button", className: "lumora-ai-close-button", icon: !1, theme: "auto", additionalAttributes: { title: "Close AI assistant" }, size: "sm", onClick: (...e) => M("closeChat", {}, e), variant: "ghost", ariaLabel: "Close Lumora AI assistant" })
                 ] })
               ] })
             ] })
@@ -496,7 +496,7 @@ function Rt(o) {
             ] }),
             f(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(U)) && /* @__PURE__ */ g(h, { children: [
               "      ",
-              /* @__PURE__ */ _(R, { id: "typing_indicator", className: "lumora-ai-typing text-sm", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "Assistant" : e)(i?.assistantName), customColor: "var(--rudra-color-muted)" })
+              /* @__PURE__ */ _(R, { id: "typing_indicator", className: "lumora-ai-typing text-sm", customColor: "var(--rudra-color-muted)", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "Assistant" : e)(i?.assistantName) })
             ] })
           ] })
         ] }),
@@ -508,7 +508,7 @@ function Rt(o) {
               "      ",
               /* @__PURE__ */ _(ye, { id: "retry_button", size: "sm", label: "Retry", theme: "auto", variant: "outline", onAction: (...e) => M("retryLastMessage", {}, e), ariaLabel: "Retry last message" })
             ] })
-          ] }), dismissible: !0, live: "assertive", theme: "auto", onDismiss: (...e) => M("dismissError", {}, e), appearance: "soft", closeLabel: "Dismiss error", title: "Assistant unavailable", variant: "error", children: [
+          ] }), variant: "error", appearance: "soft", closeLabel: "Dismiss error", live: "assertive", theme: "auto", title: "Assistant unavailable", onDismiss: (...e) => M("dismissError", {}, e), dismissible: !0, children: [
             "      ",
             f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
               "      ",
@@ -522,17 +522,17 @@ function Rt(o) {
             "      ",
             f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
               "      ",
-              /* @__PURE__ */ _(R, { id: "composer_hint", className: "mb-2 text-xs", customColor: "var(--rudra-color-muted)", as: "p", content: "Ask a question or request an available action." })
+              /* @__PURE__ */ _(R, { id: "composer_hint", className: "mb-2 text-xs", content: "Ask a question or request an available action.", customColor: "var(--rudra-color-muted)", as: "p" })
             ] }),
             f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
               "      ",
-              /* @__PURE__ */ _(ft, { id: "chat_composer", className: "w-full", composerClassName: "rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900", onSend: (...e) => M("sendMessage", {}, e), showVoice: !1, showPicker: !1, placeholder: /* @__PURE__ */ ((e) => e === void 0 ? "Ask anything…" : e)(i?.placeholder), showAttachment: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(i?.allowAttachments), onAttachmentSelect: (...e) => M("handleAttachments", {}, e), disabled: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(U), autoFocus: !1 })
+              /* @__PURE__ */ _(ft, { id: "chat_composer", className: "w-full", composerClassName: "rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900", onSend: (...e) => M("sendMessage", {}, e), disabled: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(U), autoFocus: !1, showVoice: !1, showAttachment: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(i?.allowAttachments), showPicker: !1, placeholder: /* @__PURE__ */ ((e) => e === void 0 ? "Ask anything…" : e)(i?.placeholder), onAttachmentSelect: (...e) => M("handleAttachments", {}, e) })
             ] })
           ] })
         ] }),
         f(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(B)) && /* @__PURE__ */ g(h, { children: [
           "      ",
-          /* @__PURE__ */ _(xt, { id: "global_toasts", maxVisible: 3, displayMode: "fixed", items: /* @__PURE__ */ ((e) => e === void 0 ? [] : e)(X), showIcons: !0, newestOnTop: !0, closable: !0, position: "top-right", onDismiss: (...e) => M("dismissError", {}, e) })
+          /* @__PURE__ */ _(xt, { id: "global_toasts", items: /* @__PURE__ */ ((e) => e === void 0 ? [] : e)(X), showIcons: !0, maxVisible: 3, displayMode: "fixed", closable: !0, position: "top-right", onDismiss: (...e) => M("dismissError", {}, e), newestOnTop: !0 })
         ] })
       ] })
     ] }),
@@ -542,7 +542,7 @@ function Rt(o) {
         "      ",
         f(x({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ g(h, { children: [
           "      ",
-          /* @__PURE__ */ _(he, { id: "floating_launcher_button", className: "lumora-ai-launcher-button", additionalAttributes: { "aria-haspopup": "dialog", title: "Open AI assistant" }, icon: !1, size: "xl", theme: "auto", onClick: (...e) => M("openChat", {}, e), variant: "primary", ariaLabel: "Open Lumora AI assistant" })
+          /* @__PURE__ */ _(he, { id: "floating_launcher_button", className: "lumora-ai-launcher-button", ariaLabel: "Open Lumora AI assistant", additionalAttributes: { "aria-haspopup": "dialog", title: "Open AI assistant" }, icon: !1, size: "xl", theme: "auto", onClick: (...e) => M("openChat", {}, e), variant: "primary" })
         ] })
       ] })
     ] })
