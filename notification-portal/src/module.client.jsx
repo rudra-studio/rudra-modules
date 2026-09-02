@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './styles.css';
 
-import { IconButton as RudraCoreIconButton, Typography as RudraCoreTypography, Alert as RudraCoreAlert } from '@rudra-studio/rudra-core';
+import { IconButton as RudraCoreIconButton, Alert as RudraCoreAlert, Typography as RudraCoreTypography } from '@rudra-studio/rudra-core';
 import { Box as RudraLayoutBox, Repeater as RudraLayoutRepeater } from '@rudra-studio/rudra-layout';
 
 export default function CompiledModule(props) {
@@ -68,25 +68,25 @@ export default function CompiledModule(props) {
 
   const isVisibleValue = (value) => Array.isArray(value) ? value.length > 0 : (typeof value === 'string' ? value.trim() !== '' && value.trim().toLowerCase() !== 'false' : Boolean(value));
 
-  const dismissible = props.dismissible !== undefined ? props.dismissible : (props.data?.dismissible !== undefined ? props.data.dismissible : true);
   const maxNotifications = props.maxNotifications !== undefined ? props.maxNotifications : (props.data?.maxNotifications !== undefined ? props.data.maxNotifications : 4);
-  const inputs = { "dismissible": dismissible, "maxNotifications": maxNotifications };
-  const [notifications, set_notifications] = useState(() => structuredClone([]));
+  const dismissible = props.dismissible !== undefined ? props.dismissible : (props.data?.dismissible !== undefined ? props.data.dismissible : true);
+  const inputs = { "maxNotifications": maxNotifications, "dismissible": dismissible };
   const [visible, set_visible] = useState(() => structuredClone(false));
   const [variant, set_variant] = useState(() => structuredClone("info"));
   const [title, set_title] = useState(() => structuredClone(""));
   const [message, set_message] = useState(() => structuredClone(""));
   const [closeLabel, set_closeLabel] = useState(() => structuredClone("Dismiss notification"));
-  const state = { "notifications": notifications, "visible": visible, "variant": variant, "title": title, "message": message, "closeLabel": closeLabel };
+  const [notifications, set_notifications] = useState(() => structuredClone([]));
+  const state = { "visible": visible, "variant": variant, "title": title, "message": message, "closeLabel": closeLabel, "notifications": notifications };
 
   const _setState = useCallback((name, value) => {
     switch (name) {
-      case "notifications": { const next = typeof value === 'function' ? value(state.notifications) : value; state.notifications = next; set_notifications(next); return next; }
       case "visible": { const next = typeof value === 'function' ? value(state.visible) : value; state.visible = next; set_visible(next); return next; }
       case "variant": { const next = typeof value === 'function' ? value(state.variant) : value; state.variant = next; set_variant(next); return next; }
       case "title": { const next = typeof value === 'function' ? value(state.title) : value; state.title = next; set_title(next); return next; }
       case "message": { const next = typeof value === 'function' ? value(state.message) : value; state.message = next; set_message(next); return next; }
       case "closeLabel": { const next = typeof value === 'function' ? value(state.closeLabel) : value; state.closeLabel = next; set_closeLabel(next); return next; }
+      case "notifications": { const next = typeof value === 'function' ? value(state.notifications) : value; state.notifications = next; set_notifications(next); return next; }
       default: return value;
     }
   }, [state]);
@@ -108,12 +108,12 @@ export default function CompiledModule(props) {
       return next;
     };
     switch (root) {
-      case "notifications": _setState("notifications", updateNested); return value;
       case "visible": _setState("visible", updateNested); return value;
       case "variant": _setState("variant", updateNested); return value;
       case "title": _setState("title", updateNested); return value;
       case "message": _setState("message", updateNested); return value;
       case "closeLabel": _setState("closeLabel", updateNested); return value;
+      case "notifications": _setState("notifications", updateNested); return value;
       default: return value;
     }
   }, [_setState]);
@@ -215,7 +215,27 @@ return [...current, notification].slice(-limit);
     { const event = args.event; const data = pageData; const globalState = state;
       const customResult = await (async () => {
 const current = Array.isArray(state.notifications) ? state.notifications : [];
-return current.filter((notification) => String(notification?.id) !== String(args.id));
+const primitiveId = (typeof args.id === "string" || typeof args.id === "number") ? args.id : undefined;
+const source = args.event?.currentTarget?.closest?.("[data-notification-id]");
+const attributeId = source?.getAttribute?.("data-notification-id");
+const id = String(primitiveId ?? attributeId ?? "");
+const notification = current.find((item) => String(item?.id ?? "") === id);
+const primitiveTitle = typeof args.title === "string" ? args.title : undefined;
+const primitiveVariant = typeof args.variant === "string" ? args.variant : undefined;
+return {
+  id,
+  title: String(primitiveTitle ?? source?.getAttribute?.("data-notification-title") ?? notification?.title ?? ""),
+  variant: String(primitiveVariant ?? source?.getAttribute?.("data-notification-variant") ?? notification?.variant ?? "info"),
+  reason: String(typeof args.reason === "string" && args.reason ? args.reason : "user")
+};
+      })();
+      stepResults["notification_step_normalize_dismiss"] = customResult; vars["customCodeResult"] = customResult; }
+    { const event = args.event; const data = pageData; const globalState = state;
+      const customResult = await (async () => {
+const current = Array.isArray(state.notifications) ? state.notifications : [];
+const id = stepResults.notification_step_normalize_dismiss?.id;
+if (!id) return current;
+return current.filter((notification) => String(notification?.id ?? "") !== String(id));
       })();
       stepResults["notification_step_filter"] = customResult; vars["customCodeResult"] = customResult; }
     _setState("notifications", stepResults.notification_step_filter);
@@ -226,7 +246,7 @@ return Array.isArray(remaining) && remaining.length > 0;
       })();
       stepResults["notification_step_has_remaining"] = customResult; vars["customCodeResult"] = customResult; }
     _setState("visible", stepResults.notification_step_has_remaining);
-    void _emitOutput("notification_dismissed", { "id": args.id, "reason": "user", "remaining": stepResults.notification_step_filter.length, "title": args.title, "variant": args.variant }, false).catch(error => console.error('Module output delivery failed', error));
+    void _emitOutput("notification_dismissed", { "id": stepResults.notification_step_normalize_dismiss.id, "reason": stepResults.notification_step_normalize_dismiss.reason, "remaining": stepResults.notification_step_filter.length, "title": stepResults.notification_step_normalize_dismiss.title, "variant": stepResults.notification_step_normalize_dismiss.variant }, false).catch(error => console.error('Module output delivery failed', error));
     return { "dismissed": true };
     return undefined;
   }
@@ -253,7 +273,7 @@ return Array.isArray(remaining) && remaining.length > 0;
 
   const _localActionArguments = {
     "showNotification": ["variant", "title", "message", "closeLabel"],
-    "dismissNotification": ["id", "title", "variant", "reason"],
+    "dismissNotification": ["id", "title", "variant", "reason", "event"],
   };
   const _callAction = (name, configuredArgs = {}, eventArgs = []) => {
     const localAction = _localActions[name];
@@ -278,7 +298,7 @@ return Array.isArray(remaining) && remaining.length > 0;
 
   return (
     <div ref={wrapperRef} className="rudra-module-wrapper">
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="notification_portal" data-theme={((_bindingValue) => _bindingValue === undefined ? "light" : _bindingValue)($theme)} data-notification-shell="" className={`${getResponsiveProp({sm: 'block rudra-notification-shell'}) || ''}`}>      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(visible)) && (<>      <RudraLayoutBox id="notification_position" data-rudra-notification="" data-rudra-notification-position="" className={`${getResponsiveProp({sm: 'block rudra-notification-position'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutRepeater id="notification_card" className="rudra-notification-stack" items={((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(notifications)}>{(_payload) => { const _parentScope = _scope || {}; return (() => { const _scope = { ..._parentScope, ...(_payload || {}), item: _payload?.item ?? _payload, index: _payload?.index ?? _payload?.i ?? 0, parent: _parentScope }; return (<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="notification_item" role="status" aria-live="polite" className={`${getResponsiveProp({sm: 'flex rudra-notification-item'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="notification_copy" className={`${getResponsiveProp({sm: 'block rudra-notification-copy'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="notification_title" className={`${getResponsiveProp({sm: 'rudra-notification-title'}) || ''}`} as="div" content={((_bindingValue) => _bindingValue === undefined ? "Notification" : _bindingValue)(_scope?.item?.title)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="notification_portal" data-theme={((_bindingValue) => _bindingValue === undefined ? "light" : _bindingValue)($theme)} data-notification-shell="" className={`${getResponsiveProp({sm: 'block rudra-notification-shell'}) || ''}`}>      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(visible)) && (<>      <RudraLayoutBox id="notification_position" data-rudra-notification="" data-rudra-notification-position="" className={`${getResponsiveProp({sm: 'block rudra-notification-position'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutRepeater id="notification_card" className="rudra-notification-stack" items={((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(notifications)}>{(_payload) => { const _parentScope = _scope || {}; return (() => { const _scope = { ..._parentScope, ...(_payload || {}), item: _payload?.item ?? _payload, index: _payload?.index ?? _payload?.i ?? 0, parent: _parentScope }; return (<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="notification_item" role="status" aria-live="polite" data-notification-id={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(_scope?.item?.id)} data-notification-title={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(_scope?.item?.title)} data-notification-variant={((_bindingValue) => _bindingValue === undefined ? "info" : _bindingValue)(_scope?.item?.variant)} className={`${getResponsiveProp({sm: 'flex rudra-notification-item'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="notification_copy" className={`${getResponsiveProp({sm: 'block rudra-notification-copy'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="notification_title" className={`${getResponsiveProp({sm: 'rudra-notification-title'}) || ''}`} as="div" content={((_bindingValue) => _bindingValue === undefined ? "Notification" : _bindingValue)(_scope?.item?.title)} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="notification_message" className={`${getResponsiveProp({sm: 'rudra-notification-message'}) || ''}`} as="div" content={((_bindingValue) => _bindingValue === undefined ? "Your notification is ready." : _bindingValue)(_scope?.item?.message)} />
 </>)}
@@ -290,7 +310,7 @@ return Array.isArray(remaining) && remaining.length > 0;
 </>)}
 </>); })(); }}</RudraLayoutRepeater>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreAlert id="notification_alert" className="rudra-notification-legacy-alert" live="polite" theme="auto" title={((_bindingValue) => _bindingValue === undefined ? "Notification" : _bindingValue)(title)} hidden={true} variant={((_bindingValue) => _bindingValue === undefined ? "info" : _bindingValue)(variant)} onDismiss={(...eventArgs) => _callAction("dismissNotification", {}, eventArgs)} appearance="soft" closeLabel={((_bindingValue) => _bindingValue === undefined ? "Dismiss notification" : _bindingValue)(closeLabel)} dismissible={true} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreAlert id="notification_alert" className="rudra-notification-legacy-alert" theme="auto" hidden={true} dismissible={true} live="polite" title={((_bindingValue) => _bindingValue === undefined ? "Notification" : _bindingValue)(title)} variant={((_bindingValue) => _bindingValue === undefined ? "info" : _bindingValue)(variant)} onDismiss={(...eventArgs) => _callAction("dismissNotification", {}, eventArgs)} appearance="soft" closeLabel={((_bindingValue) => _bindingValue === undefined ? "Dismiss notification" : _bindingValue)(closeLabel)} />
 </>)}
 </RudraLayoutBox>
 </>)}
