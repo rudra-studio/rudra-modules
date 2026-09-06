@@ -1,0 +1,96 @@
+@import url("https://cdn.jsdelivr.net/npm/@rudra-studio/rudra-widgets/index.css");
+@import url("https://cdn.jsdelivr.net/npm/@rudra-studio/rudra-layout/index.css");
+@import url("https://cdn.jsdelivr.net/npm/@rudra-studio/rudra-core/index.css");
+@import url("https://cdn.jsdelivr.net/npm/@rudra-studio/rudra-form/index.css");
+@import url("https://cdn.jsdelivr.net/npm/@rudra-studio/chalkmind-math/index.css");
+@import "tailwindcss";
+
+/* Tailwind v4 scans the generated module and installed Rudra component packages. */
+@source "./module.client.jsx";
+@source "../node_modules/@rudra-studio";
+
+.rs-studio{min-height:100%;background:var(--rudra-color-bg);color:var(--rudra-color-text);padding:clamp(1rem,4vw,3rem)}.rs-studio-inner{width:min(1300px,100%);margin:auto;display:flex;flex-direction:column;gap:1rem}.rs-studio-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap}.rs-title{font-size:clamp(2rem,5vw,4rem);font-weight:900;letter-spacing:-.055em;line-height:1}.rs-muted{color:var(--rudra-color-muted);line-height:1.65}.rs-grid{display:grid;grid-template-columns:minmax(280px,.72fr) minmax(0,1.28fr);gap:1rem;align-items:start}.rs-panel{padding:1.25rem;border:1px solid var(--rudra-color-border);border-radius:1rem;background:var(--rudra-color-surface);display:flex;flex-direction:column;gap:1rem}.rs-actions{display:flex;gap:.65rem;flex-wrap:wrap}.rs-tree{font-family:ui-monospace,monospace;white-space:pre-line;padding:1rem;border-radius:.75rem;background:color-mix(in srgb,var(--rudra-color-accent) 8%,var(--rudra-color-bg))}@media(max-width:900px){.rs-grid{grid-template-columns:1fr}}
+.rs-head-copy{display:flex;flex-direction:column;gap:.55rem;min-width:0}
+
+.rs-problems{white-space:pre-line;line-height:1.7;padding:1rem;border:1px solid var(--rudra-color-border);border-radius:.75rem;background:var(--rudra-color-bg)}
+
+.rs-tree-view{padding:.5rem;border:1px solid var(--rudra-color-border);border-radius:.8rem;background:var(--rudra-color-bg)}
+
+.rs-problem-list { border: 1px solid rgba(74, 96, 255, .18); border-radius: 16px; background: rgba(255,255,255,.74); padding: 10px; }
+.rs-problem-list button, .rs-problem-list [role='treeitem'] { cursor: pointer; }
+
+/* TreeView contrast fix */
+.rs-tree-view,
+.rs-problem-list {
+  color: #e8eefc !important;
+  --foreground: #e8eefc;
+  --muted-foreground: #aebbd0;
+}
+.rs-tree-view *,
+.rs-problem-list * {
+  color: inherit !important;
+}
+.rs-tree-view svg,
+.rs-problem-list svg {
+  color: #91a4c3 !important;
+  stroke: currentColor !important;
+}
+.rs-tree-view button:hover,
+.rs-tree-view [role='treeitem']:hover,
+.rs-problem-list button:hover,
+.rs-problem-list [role='treeitem']:hover {
+  color: #ffffff !important;
+  background: rgba(77, 124, 255, .14) !important;
+}
+.rs-tree-view [aria-selected='true'],
+.rs-problem-list [aria-selected='true'] {
+  color: #ffffff !important;
+  background: rgba(77, 124, 255, .22) !important;
+}
+.rs-problem-list {
+  background: rgba(3, 9, 26, .78);
+}
+
+/* TreeView explicit label renderer */
+.rs-tree-label-text { display: block; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: inherit !important; font: inherit; }
+
+/* Collapsible syllabus setup */
+.rs-syllabus-actions { align-items: center; gap: .65rem; margin-bottom: .25rem; }
+
+/* Context problem cache */
+.rs-new-problem-form,.rs-problem-solution{margin-top:.85rem;padding:1rem;border:1px solid rgba(103,128,255,.2);border-radius:1rem;background:rgba(8,17,38,.72)}
+.rs-new-problem-form{display:grid!important;gap:.8rem}
+.rs-new-problem-actions{gap:.65rem;align-items:center}
+.rs-problem-solution{display:grid!important;gap:.7rem}
+.rs-solution-source{font-size:.82rem;font-weight:700;color:#9fb3d9!important}
+.rs-problem-solution-text{white-space:pre-wrap;line-height:1.72;color:#edf3ff!important}
+
+/* Teaching strategy panel */
+.rs-strategy-panel{margin-top:1rem;padding:1rem;border:1px solid rgba(98,128,255,.22);border-radius:1rem;background:rgba(8,17,38,.66);display:grid!important;gap:.75rem}
+.rs-strategy-status{font-size:.82rem;color:#9fb3d9!important;line-height:1.5}
+.rs-strategy-text{white-space:pre-wrap;line-height:1.65;color:#edf3ff!important}
+
+.rs-teacher-question{margin-top:1rem;padding:1rem;border:1px solid rgba(243,201,105,.45);border-radius:.8rem;background:rgba(24,63,50,.06)}
+.rs-teacher-question-title{margin:0 0 .75rem;font-size:1rem;font-weight:750}
+.rs-teacher-question-feedback{margin:.75rem 0 0;line-height:1.5;color:#315f52}
+
+
+.rs-studio{padding-top:clamp(2rem,5vw,4rem)}
+.rs-title{line-height:1.08;padding-top:.06em}
+.rs-panel{min-width:0}
+.rs-syllabus-catalog{display:grid!important;gap:.75rem;margin-bottom:.25rem;padding:1rem;border:1px solid var(--rudra-color-border);border-radius:1rem;background:color-mix(in srgb,var(--rudra-color-accent) 7%,var(--rudra-color-surface));color:var(--rudra-color-text)}
+.rs-syllabus-catalog h4{margin:0;font-size:1.05rem}
+.rs-syllabus-catalog button{justify-self:start}
+.rs-syllabus-metadata{display:grid!important;gap:.85rem;margin:.25rem 0}
+.rs-syllabus-metadata textarea{min-height:6rem}
+.rs-syllabus-actions{padding-top:.2rem}
+@media(max-width:640px){.rs-studio{padding:1.25rem .75rem}.rs-panel{padding:1rem}.rs-title{font-size:clamp(2rem,12vw,3rem)}}
+
+.rs-board-loading{display:flex!important;align-items:center;gap:.75rem;padding:.85rem 1rem;border:1px solid rgba(243,201,105,.45);border-radius:.75rem;background:rgba(243,201,105,.08);color:var(--rudra-color-text)}
+.rs-board-loading p{margin:0;line-height:1.45}
+.rs-loading-orb{display:block;width:1rem;height:1rem;flex:0 0 1rem;border:2px solid rgba(243,201,105,.35);border-top-color:#f3c969;border-radius:50%;animation:rs-spin .75s linear infinite}
+@keyframes rs-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.rs-loading-orb{animation:none;border-top-color:#f3c969}}
+
+.rs-verification-icon{display:inline-flex;align-items:center;justify-content:center;width:1.75rem;height:1.75rem;border:1px solid currentColor;border-radius:9999px;font-size:1rem;font-weight:800;line-height:1;flex:0 0 auto;}
+
