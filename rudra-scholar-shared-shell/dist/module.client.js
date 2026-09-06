@@ -1,5 +1,5 @@
 import { jsx as l, jsxs as r, Fragment as s } from "react/jsx-runtime";
-import { useState as E, useEffect as I, useRef as te, useCallback as M } from "react";
+import { useState as I, useEffect as E, useRef as te, useCallback as M } from "react";
 import { Link as re, Button as h, Badge as ne, Typography as k } from "@rudra-studio/rudra-core";
 import { Box as u } from "@rudra-studio/rudra-layout";
 function le(n) {
@@ -10,18 +10,18 @@ function le(n) {
     ...n.runtime?.actions || {},
     ...n.functions || {},
     ...n.actions || {}
-  }, y = n.$theme ?? n.theme ?? n.data?.$theme ?? n.runtime?.data?.$theme ?? n.runtime?.theme, C = () => typeof document > "u" ? "light" : document.documentElement.dataset.theme || (document.documentElement.classList.contains("dark") ? "dark" : "light"), [D, T] = E(() => y ?? C());
-  I(() => {
+  }, y = n.$theme ?? n.theme ?? n.data?.$theme ?? n.runtime?.data?.$theme ?? n.runtime?.theme, C = () => typeof document > "u" ? "light" : document.documentElement.dataset.theme || (document.documentElement.classList.contains("dark") ? "dark" : "light"), [D, T] = I(() => y ?? C());
+  E(() => {
     y != null && T(y);
-  }, [y]), I(() => {
+  }, [y]), E(() => {
     if (y != null || typeof document > "u") return;
     const e = document.documentElement, t = (d) => T(d?.detail?.theme ?? C()), a = new MutationObserver(t);
     return a.observe(e, { attributes: !0, attributeFilter: ["class", "data-theme"] }), window.addEventListener("rudra:theme-change", t), t(), () => {
       a.disconnect(), window.removeEventListener("rudra:theme-change", t);
     };
   }, [y]);
-  const O = te(null), [R, _] = E("lg");
-  I(() => {
+  const O = te(null), [R, _] = I("lg");
+  E(() => {
     if (!O.current) return;
     const e = new ResizeObserver((t) => {
       for (let a of t) {
@@ -35,7 +35,7 @@ function le(n) {
   n.children !== void 0 ? n.children : n.data?.children !== void 0 && n.data.children;
   const $ = n.authenticated !== void 0 ? n.authenticated : n.data?.authenticated !== void 0 ? n.data.authenticated : !1;
   n.userRole !== void 0 ? n.userRole : n.data?.userRole !== void 0 && n.data.userRole, n.displayName !== void 0 ? n.displayName : n.data?.displayName !== void 0 && n.data.displayName, n.locale !== void 0 ? n.locale : n.data?.locale !== void 0 && n.data.locale, n.remainingSeconds !== void 0 ? n.remainingSeconds : n.data?.remainingSeconds !== void 0 && n.data.remainingSeconds;
-  const J = n.notice !== void 0 ? n.notice : n.data?.notice !== void 0 ? n.data.notice : "College mathematics pilot · For learners aged 18 and above.", x = { authenticated: $, notice: J }, [F, z] = E(() => structuredClone("")), L = { statusMessage: F }, v = M((e, t) => {
+  const J = n.notice !== void 0 ? n.notice : n.data?.notice !== void 0 ? n.data.notice : "College mathematics pilot · For learners aged 18 and above.", x = { authenticated: $, notice: J }, [F, z] = I(() => structuredClone("")), L = { statusMessage: F }, v = M((e, t) => {
     if (e === "statusMessage") {
       const a = typeof t == "function" ? t(L.statusMessage) : t;
       return L.statusMessage = a, z(a), a;
@@ -160,7 +160,7 @@ function le(n) {
               "      ",
               i(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(s, { children: [
                 "      ",
-                /* @__PURE__ */ l(h, { id: "brand", className: "rs-shell-brand", theme: "auto", onAction: (...e) => m("navigate", {}, e), id: "brand", label: "Rudra Scholar" })
+                /* @__PURE__ */ l(h, { id: "brand", className: "rs-shell-brand", label: "Rudra Scholar", theme: "auto", leftIcon: !1, onAction: (...e) => m("navigate", {}, e), rightIcon: !1, id: "brand" })
               ] }),
               i(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(s, { children: [
                 "      ",
@@ -168,15 +168,15 @@ function le(n) {
                   "      ",
                   i(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(s, { children: [
                     "      ",
-                    /* @__PURE__ */ l(h, { id: "explore", className: "rs-shell-button", onAction: (...e) => m("navigate", {}, e), id: "explore", label: "Explore", theme: "auto" })
+                    /* @__PURE__ */ l(h, { id: "explore", className: "rs-shell-button", id: "explore", label: "Explore", theme: "auto", onAction: (...e) => m("navigate", {}, e) })
                   ] }),
                   i(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(s, { children: [
                     "      ",
-                    /* @__PURE__ */ l(h, { id: "pricing", className: "rs-shell-button", onAction: (...e) => m("navigate", {}, e), id: "pricing", label: "Learning time", theme: "auto" })
+                    /* @__PURE__ */ l(h, { id: "pricing", className: "rs-shell-button", id: "pricing", label: "Learning time", theme: "auto", onAction: (...e) => m("navigate", {}, e) })
                   ] }),
                   i(void 0) && /* @__PURE__ */ r(s, { children: [
                     "      ",
-                    /* @__PURE__ */ l(h, { id: "educator", className: "rs-shell-button", onAction: (...e) => m("navigate", {}, e), id: "educator", label: "Educator studio", theme: "auto" })
+                    /* @__PURE__ */ l(h, { id: "educator", className: "rs-shell-button", label: "Educator studio", theme: "auto", onAction: (...e) => m("navigate", {}, e), id: "educator" })
                   ] })
                 ] })
               ] }),
@@ -186,15 +186,15 @@ function le(n) {
                   "      ",
                   i(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(s, { children: [
                     "      ",
-                    /* @__PURE__ */ l(h, { id: "usage", className: "rs-shell-button rs-shell-usage", label: void 0, theme: "auto", onAction: (...e) => m("navigate", {}, e), id: "usage" })
+                    /* @__PURE__ */ l(h, { id: "usage", className: "rs-shell-button rs-shell-usage", theme: "auto", onAction: (...e) => m("navigate", {}, e), id: "usage", label: void 0 })
                   ] }),
                   i(void 0) && /* @__PURE__ */ r(s, { children: [
                     "      ",
-                    /* @__PURE__ */ l(h, { id: "signin", className: "rs-shell-button rs-shell-primary", onAction: (...e) => m("signIn", {}, e), id: "signin", label: "Sign in", theme: "auto" })
+                    /* @__PURE__ */ l(h, { id: "signin", className: "rs-shell-button rs-shell-primary", id: "signin", label: "Sign in", theme: "auto", onAction: (...e) => m("signIn", {}, e) })
                   ] }),
                   i(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(x?.authenticated)) && /* @__PURE__ */ r(s, { children: [
                     "      ",
-                    /* @__PURE__ */ l(h, { id: "profile", className: "rs-shell-button", onAction: (...e) => m("navigate", {}, e), ariaLabel: "My account", id: "profile", label: void 0, theme: "auto" })
+                    /* @__PURE__ */ l(h, { id: "profile", className: "rs-shell-button", label: void 0, theme: "auto", onAction: (...e) => m("navigate", {}, e), ariaLabel: "My account", id: "profile" })
                   ] }),
                   i(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(x?.authenticated)) && /* @__PURE__ */ r(s, { children: [
                     "      ",
@@ -210,15 +210,15 @@ function le(n) {
               "      ",
               i(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(s, { children: [
                 "      ",
-                /* @__PURE__ */ l(h, { id: "home", variant: "ghost", onAction: (...e) => m("navigate", {}, e), label: /* @__PURE__ */ ((e) => e === void 0 ? "Home" : e)(S?.i18n?.home), theme: "auto" })
+                /* @__PURE__ */ l(h, { id: "home", label: /* @__PURE__ */ ((e) => e === void 0 ? "Home" : e)(S?.i18n?.home), theme: "auto", variant: "ghost", onAction: (...e) => m("navigate", {}, e) })
               ] }),
               i(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(s, { children: [
                 "      ",
-                /* @__PURE__ */ l(h, { id: "browse", label: /* @__PURE__ */ ((e) => e === void 0 ? "Browse problems" : e)(S?.i18n?.browse), theme: "auto", variant: "ghost", onAction: (...e) => m("navigate", {}, e) })
+                /* @__PURE__ */ l(h, { id: "browse", onAction: (...e) => m("navigate", {}, e), label: /* @__PURE__ */ ((e) => e === void 0 ? "Browse problems" : e)(S?.i18n?.browse), theme: "auto", variant: "ghost" })
               ] }),
               i(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(s, { children: [
                 "      ",
-                /* @__PURE__ */ l(h, { id: "professor", label: /* @__PURE__ */ ((e) => e === void 0 ? "Professor studio" : e)(S?.i18n?.professor), theme: "auto", variant: "ghost", onAction: (...e) => m("navigate", {}, e) })
+                /* @__PURE__ */ l(h, { id: "professor", theme: "auto", variant: "ghost", onAction: (...e) => m("navigate", {}, e), label: /* @__PURE__ */ ((e) => e === void 0 ? "Professor studio" : e)(S?.i18n?.professor) })
               ] })
             ] })
           ] }),
@@ -252,15 +252,15 @@ function le(n) {
               "      ",
               i(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(s, { children: [
                 "      ",
-                /* @__PURE__ */ l(h, { id: "locale_en", className: "rs-shell-button rs-shell-language", label: "English", theme: "auto", onAction: (...e) => m("changeLocale", {}, e), "aria-pressed": void 0, id: "locale_en", lang: "en" })
+                /* @__PURE__ */ l(h, { id: "locale_en", className: "rs-shell-button rs-shell-language", id: "locale_en", lang: "en", label: "English", theme: "auto", onAction: (...e) => m("changeLocale", {}, e), "aria-pressed": void 0 })
               ] }),
               i(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(s, { children: [
                 "      ",
-                /* @__PURE__ */ l(h, { id: "locale_hi", className: "rs-shell-button rs-shell-language", label: "हिन्दी", theme: "auto", onAction: (...e) => m("changeLocale", {}, e), "aria-pressed": void 0, id: "locale_hi", lang: "hi" })
+                /* @__PURE__ */ l(h, { id: "locale_hi", className: "rs-shell-button rs-shell-language", lang: "hi", label: "हिन्दी", theme: "auto", onAction: (...e) => m("changeLocale", {}, e), "aria-pressed": void 0, id: "locale_hi" })
               ] }),
               i(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(s, { children: [
                 "      ",
-                /* @__PURE__ */ l(h, { id: "locale_ta", className: "rs-shell-button rs-shell-language", "aria-pressed": void 0, id: "locale_ta", lang: "ta", label: "தமிழ்", theme: "auto", onAction: (...e) => m("changeLocale", {}, e) })
+                /* @__PURE__ */ l(h, { id: "locale_ta", className: "rs-shell-button rs-shell-language", label: "தமிழ்", theme: "auto", onAction: (...e) => m("changeLocale", {}, e), "aria-pressed": void 0, id: "locale_ta", lang: "ta" })
               ] })
             ] })
           ] })
@@ -276,7 +276,7 @@ function le(n) {
           "      ",
           i(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(s, { children: [
             "      ",
-            /* @__PURE__ */ l(k, { id: "status_text", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "" : e)(F) })
+            /* @__PURE__ */ l(k, { id: "status_text", content: /* @__PURE__ */ ((e) => e === void 0 ? "" : e)(F), as: "p" })
           ] })
         ] })
       ] }),
@@ -320,7 +320,7 @@ function le(n) {
           ] }),
           i(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(s, { children: [
             "      ",
-            /* @__PURE__ */ l(k, { id: "footer_copy", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "© 2026 Rudra Scholar." : e)(S?.i18n?.copyright) })
+            /* @__PURE__ */ l(k, { id: "footer_copy", content: /* @__PURE__ */ ((e) => e === void 0 ? "© 2026 Rudra Scholar." : e)(S?.i18n?.copyright), as: "p" })
           ] }),
           i(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(s, { children: [
             "      ",
