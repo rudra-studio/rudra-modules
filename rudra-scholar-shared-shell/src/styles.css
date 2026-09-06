@@ -1,0 +1,25 @@
+@import url("https://cdn.jsdelivr.net/npm/@rudra-studio/rudra-core/index.css");
+@import url("https://cdn.jsdelivr.net/npm/@rudra-studio/rudra-layout/index.css");
+@import "tailwindcss";
+
+/* Tailwind v4 scans the generated module and installed Rudra component packages. */
+@source "./module.client.jsx";
+@source "../node_modules/@rudra-studio";
+
+.rs-shell{--rs-bg:#fafbf8;--rs-surface:#fff;--rs-text:#192c29;--rs-muted:#53665f;--rs-border:#dce4de;--rs-accent:#185c49;--rs-soft:#edf4ee;background:var(--rs-bg);color:var(--rs-text);min-height:100vh;display:flex;flex-direction:column;font-family:Inter,system-ui,sans-serif;width:100%;isolation:isolate}
+.rs-shell[data-theme="dark"],.dark .rs-shell,[data-theme="dark"] .rs-shell{--rs-bg:#101b18;--rs-surface:#16241f;--rs-text:#edf4ef;--rs-muted:#afc2b6;--rs-border:#35463c;--rs-accent:#a8d7bc;--rs-soft:#21382b;color-scheme:dark}
+.rs-shell *{box-sizing:border-box}.rs-shell p{margin:0}.rs-shell-header{background:var(--rs-surface);border-bottom:1px solid var(--rs-border)}.rs-shell-header-inner{max-width:1440px;margin:auto;display:flex;align-items:center;flex-wrap:wrap;gap:1.5rem;padding:1.15rem clamp(1rem,3vw,3rem)}
+.rs-shell-brand{appearance:none;background:none;border:0;color:var(--rs-text);font-family:Georgia,serif;font-size:1.65rem;letter-spacing:-.06em;font-weight:700;cursor:pointer;min-height:44px;padding:0 .25rem}
+.rs-shell-nav,.rs-shell-account,.rs-shell-languages,.rs-shell-footer-actions{display:flex;align-items:center;flex-wrap:wrap;gap:.4rem}.rs-shell-account{margin-left:auto}
+.rs-shell-button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;max-width:100%;border:1px solid transparent;border-radius:8px;background:transparent;color:var(--rs-text);font:inherit;font-size:.875rem;font-weight:550;padding:.6rem .85rem;cursor:pointer;overflow-wrap:anywhere}
+.rs-shell-button:hover{background:var(--rs-soft)}.rs-shell-primary{background:var(--rs-accent);color:var(--rs-bg)}.rs-shell-primary:hover{filter:brightness(.9);background:var(--rs-accent)}.rs-shell-usage{background:var(--rs-soft);color:var(--rs-accent);font-variant-numeric:tabular-nums}
+.rs-shell :is(button,a):focus-visible{outline:3px solid var(--rs-accent);outline-offset:3px}
+.rs-shell-utility{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;padding:.45rem clamp(1rem,3vw,3rem);border-bottom:1px solid var(--rs-border);background:var(--rs-soft)}
+.rs-shell-notice{font-size:.8rem;color:var(--rs-muted);line-height:1.6}.rs-shell-language{font-size:.8rem;padding:.4rem .6rem}.rs-shell-language[aria-pressed="true"]{text-decoration:underline;text-underline-offset:5px;background:var(--rs-surface)}
+.rs-shell-content{flex:1;min-width:0;min-height:320px;width:100%;outline-offset:-3px}.rs-shell-status{padding:0 clamp(1rem,3vw,3rem);font-size:.8rem;color:var(--rs-muted)}.rs-shell-status p:empty{display:none}
+.rs-shell-footer{border-top:1px solid var(--rs-border);background:var(--rs-surface)}.rs-shell-footer-inner{max-width:1440px;margin:auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding:1.5rem clamp(1rem,3vw,3rem)}.rs-shell-footer-brand{display:grid;gap:.4rem}.rs-shell-footer-title{font-family:Georgia,serif;font-size:1.15rem;font-weight:700}.rs-shell-muted{font-size:.8rem;color:var(--rs-muted);line-height:1.6}
+.rs-shell .rs-shell-skip{position:absolute;left:1rem;top:1rem;transform:translateY(-200%);z-index:50;background:var(--rs-surface);color:var(--rs-text);padding:.8rem;border:2px solid var(--rs-accent);border-radius:8px}.rs-shell .rs-shell-skip:focus{transform:translateY(0)}
+@media(max-width:760px){.rs-shell-header-inner{gap:.6rem 1rem}.rs-shell-brand{font-size:1.4rem}.rs-shell-nav{order:3;flex-basis:100%;border-top:1px solid var(--rs-border);padding-top:.5rem}.rs-shell-account{gap:.25rem}.rs-shell-button{padding:.55rem .65rem}.rs-shell-utility{align-items:flex-start}.rs-shell-notice{flex-basis:100%}.rs-shell-footer-inner{align-items:flex-start;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){.rs-shell *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media(max-width:480px){.rs-shell-account{margin-left:0;flex-basis:100%;justify-content:flex-start;flex-wrap:wrap}.rs-shell-account>*{min-width:0}.rs-shell-account button span{overflow-wrap:anywhere;white-space:normal}}
+
