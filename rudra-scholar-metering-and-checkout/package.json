@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "@rudra-studio/rudra-core": "latest",
+    "@rudra-studio/rudra-layout": "latest",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "tailwindcss": "^4.0.0",
+    "vite": "^7.0.0"
+  },
+  "name": "@rudra-studio/rudra-scholar-metering-and-checkout",
+  "type": "module",
+  "version": "1.0.1"
+}
