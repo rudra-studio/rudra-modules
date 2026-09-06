@@ -1,5 +1,5 @@
 import { jsxs as r, jsx as l, Fragment as i } from "react/jsx-runtime";
-import { useState as I, useEffect as E, useRef as te, useCallback as M } from "react";
+import { useState as L, useEffect as E, useRef as te, useCallback as M } from "react";
 import { Link as re, Button as h, Badge as ne, Typography as k } from "@rudra-studio/rudra-core";
 import { Box as u } from "@rudra-studio/rudra-layout";
 function le(n) {
@@ -10,7 +10,7 @@ function le(n) {
     ...n.runtime?.actions || {},
     ...n.functions || {},
     ...n.actions || {}
-  }, y = n.$theme ?? n.theme ?? n.data?.$theme ?? n.runtime?.data?.$theme ?? n.runtime?.theme, C = () => typeof document > "u" ? "light" : document.documentElement.dataset.theme || (document.documentElement.classList.contains("dark") ? "dark" : "light"), [D, T] = I(() => y ?? C());
+  }, y = n.$theme ?? n.theme ?? n.data?.$theme ?? n.runtime?.data?.$theme ?? n.runtime?.theme, C = () => typeof document > "u" ? "light" : document.documentElement.dataset.theme || (document.documentElement.classList.contains("dark") ? "dark" : "light"), [D, T] = L(() => y ?? C());
   E(() => {
     y != null && T(y);
   }, [y]), E(() => {
@@ -20,7 +20,7 @@ function le(n) {
       a.disconnect(), window.removeEventListener("rudra:theme-change", t);
     };
   }, [y]);
-  const O = te(null), [R, _] = I("lg");
+  const O = te(null), [R, _] = L("lg");
   E(() => {
     if (!O.current) return;
     const e = new ResizeObserver((t) => {
@@ -35,7 +35,7 @@ function le(n) {
   n.children !== void 0 ? n.children : n.data?.children !== void 0 && n.data.children;
   const $ = n.authenticated !== void 0 ? n.authenticated : n.data?.authenticated !== void 0 ? n.data.authenticated : !1;
   n.userRole !== void 0 ? n.userRole : n.data?.userRole !== void 0 && n.data.userRole, n.displayName !== void 0 ? n.displayName : n.data?.displayName !== void 0 && n.data.displayName, n.locale !== void 0 ? n.locale : n.data?.locale !== void 0 && n.data.locale, n.remainingSeconds !== void 0 ? n.remainingSeconds : n.data?.remainingSeconds !== void 0 && n.data.remainingSeconds;
-  const J = n.notice !== void 0 ? n.notice : n.data?.notice !== void 0 ? n.data.notice : "College mathematics pilot · For learners aged 18 and above.", x = { authenticated: $, notice: J }, [F, z] = I(() => structuredClone("")), j = { statusMessage: F }, v = M((e, t) => {
+  const J = n.notice !== void 0 ? n.notice : n.data?.notice !== void 0 ? n.data.notice : "College mathematics pilot · For learners aged 18 and above.", x = { authenticated: $, notice: J }, [F, z] = L(() => structuredClone("")), j = { statusMessage: F }, v = M((e, t) => {
     if (e === "statusMessage") {
       const a = typeof t == "function" ? t(j.statusMessage) : t;
       return j.statusMessage = a, z(a), a;
@@ -55,7 +55,7 @@ function le(n) {
     };
     return a === "statusMessage" && v("statusMessage", b), t;
   }, [v]);
-  const U = { feedbackRequested: { properties: { source: { type: "string" } }, required: ["source"], type: "object" }, localeChanged: { properties: { locale: { type: "string" } }, required: ["locale"], type: "object" }, navigationRequested: { properties: { path: { type: "string" } }, required: ["path"], type: "object" }, signInRequested: { properties: { source: { type: "string" } }, required: ["source"], type: "object" }, signOutRequested: { properties: { source: { type: "string" } }, required: ["source"], type: "object" } }, L = (e, t, a) => {
+  const U = { feedbackRequested: { properties: { source: { type: "string" } }, required: ["source"], type: "object" }, localeChanged: { properties: { locale: { type: "string" } }, required: ["locale"], type: "object" }, navigationRequested: { properties: { path: { type: "string" } }, required: ["path"], type: "object" }, signInRequested: { properties: { source: { type: "string" } }, required: ["source"], type: "object" }, signOutRequested: { properties: { source: { type: "string" } }, required: ["source"], type: "object" } }, I = (e, t, a) => {
     if (!t || typeof t != "object") return "";
     const d = Array.isArray(t.type) ? t.type : t.type ? [t.type] : [], b = e === null ? "null" : Array.isArray(e) ? "array" : Number.isInteger(e) ? "integer" : typeof e;
     if (d.length && !d.includes(b) && !(b === "integer" && d.includes("number"))) return a + " must be " + d.join(" or ") + ".";
@@ -63,19 +63,19 @@ function le(n) {
     if (e && typeof e == "object" && !Array.isArray(e)) {
       for (const c of t.required || []) if (!Object.prototype.hasOwnProperty.call(e, c)) return a + "." + c + " is required.";
       for (const [c, f] of Object.entries(t.properties || {})) if (Object.prototype.hasOwnProperty.call(e, c)) {
-        const g = L(e[c], f, a + "." + c);
+        const g = I(e[c], f, a + "." + c);
         if (g) return g;
       }
     }
     if (Array.isArray(e) && t.items) for (let c = 0; c < e.length; c++) {
-      const f = L(e[c], t.items, a + "[" + c + "]");
+      const f = I(e[c], t.items, a + "[" + c + "]");
       if (f) return f;
     }
     return "";
   }, p = M(async (e, t, a = !1) => {
     const d = U[e];
     if (!d) throw new Error("Module output '" + e + "' is not declared.");
-    const b = L(t, d, "output." + e);
+    const b = I(t, d, "output." + e);
     if (b) throw new Error(b);
     const c = n.onOutput || n.onModuleOutput || n.runtime?.onOutput;
     if (typeof c != "function") return t;
@@ -162,7 +162,7 @@ function le(n) {
                 "      ",
                 s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                   "      ",
-                  /* @__PURE__ */ l(h, { id: "brand", className: "rs-shell-brand", id: "brand", label: "Rudra Scholar", theme: "auto", leftIcon: !1, onAction: (...e) => m("navigate", {}, e), rightIcon: !1 })
+                  /* @__PURE__ */ l(h, { id: "brand", className: "rs-shell-brand", theme: "auto", leftIcon: !1, onAction: (...e) => m("navigate", {}, e), rightIcon: !1, id: "brand", label: "Rudra Scholar" })
                 ] }),
                 s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                   "      ",
@@ -170,11 +170,11 @@ function le(n) {
                     "      ",
                     s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                       "      ",
-                      /* @__PURE__ */ l(h, { id: "explore", className: "rs-shell-button", id: "explore", label: "Explore", theme: "auto", leftIcon: !1, onAction: (...e) => m("navigate", {}, e), rightIcon: !1 })
+                      /* @__PURE__ */ l(h, { id: "explore", className: "rs-shell-button", rightIcon: !1, id: "explore", label: "Explore", theme: "auto", leftIcon: !1, onAction: (...e) => m("navigate", {}, e) })
                     ] }),
                     s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                       "      ",
-                      /* @__PURE__ */ l(h, { id: "pricing", className: "rs-shell-button", id: "pricing", label: "Learning time", theme: "auto", onAction: (...e) => m("navigate", {}, e) })
+                      /* @__PURE__ */ l(h, { id: "pricing", className: "rs-shell-button", onAction: (...e) => m("navigate", {}, e), rightIcon: !1, id: "pricing", label: "Learning time", theme: "auto", leftIcon: !1 })
                     ] }),
                     s(void 0) && /* @__PURE__ */ r(i, { children: [
                       "      ",
@@ -188,19 +188,19 @@ function le(n) {
                     "      ",
                     s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                       "      ",
-                      /* @__PURE__ */ l(h, { id: "usage", className: "rs-shell-button rs-shell-usage", id: "usage", label: void 0, theme: "auto", onAction: (...e) => m("navigate", {}, e) })
+                      /* @__PURE__ */ l(h, { id: "usage", className: "rs-shell-button rs-shell-usage", onAction: (...e) => m("navigate", {}, e), id: "usage", label: void 0, theme: "auto" })
                     ] }),
                     s(void 0) && /* @__PURE__ */ r(i, { children: [
                       "      ",
-                      /* @__PURE__ */ l(h, { id: "signin", className: "rs-shell-button rs-shell-primary", theme: "auto", onAction: (...e) => m("signIn", {}, e), id: "signin", label: "Sign in" })
+                      /* @__PURE__ */ l(h, { id: "signin", className: "rs-shell-button rs-shell-primary", id: "signin", label: "Sign in", theme: "auto", onAction: (...e) => m("signIn", {}, e) })
                     ] }),
                     s(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(x?.authenticated)) && /* @__PURE__ */ r(i, { children: [
                       "      ",
-                      /* @__PURE__ */ l(h, { id: "profile", className: "rs-shell-button", id: "profile", label: void 0, theme: "auto", onAction: (...e) => m("navigate", {}, e), ariaLabel: "My account" })
+                      /* @__PURE__ */ l(h, { id: "profile", className: "rs-shell-button", label: void 0, theme: "auto", onAction: (...e) => m("navigate", {}, e), ariaLabel: "My account", id: "profile" })
                     ] }),
                     s(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(x?.authenticated)) && /* @__PURE__ */ r(i, { children: [
                       "      ",
-                      /* @__PURE__ */ l(h, { id: "signout", className: "rs-shell-button", onAction: (...e) => m("signOut", {}, e), id: "signout", label: "Sign out", theme: "auto" })
+                      /* @__PURE__ */ l(h, { id: "signout", className: "rs-shell-button", id: "signout", label: "Sign out", theme: "auto", onAction: (...e) => m("signOut", {}, e) })
                     ] })
                   ] })
                 ] })
@@ -212,7 +212,7 @@ function le(n) {
                 "      ",
                 s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                   "      ",
-                  /* @__PURE__ */ l(h, { id: "home", theme: "auto", variant: "ghost", onAction: (...e) => m("navigate", {}, e), label: /* @__PURE__ */ ((e) => e === void 0 ? "Home" : e)(S?.i18n?.home) })
+                  /* @__PURE__ */ l(h, { id: "home", label: /* @__PURE__ */ ((e) => e === void 0 ? "Home" : e)(S?.i18n?.home), theme: "auto", variant: "ghost", onAction: (...e) => m("navigate", {}, e) })
                 ] }),
                 s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                   "      ",
@@ -230,7 +230,7 @@ function le(n) {
                 "      ",
                 s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                   "      ",
-                  /* @__PURE__ */ l(ne, { id: "meter", className: "inline-flex px-2.5 py-1 text-xs gap-1.5", label: "{{ Math.ceil((inputs.remainingSeconds || 0)/60) }} min", ariaLabel: "Remaining learning minutes" })
+                  /* @__PURE__ */ l(ne, { id: "meter", className: "inline-flex px-2.5 py-1 text-xs gap-1.5", ariaLabel: "Remaining learning minutes", label: "{{ Math.ceil((inputs.remainingSeconds || 0)/60) }} min" })
                 ] })
               ] })
             ] })
@@ -254,15 +254,15 @@ function le(n) {
                 "      ",
                 s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                   "      ",
-                  /* @__PURE__ */ l(h, { id: "locale_en", className: "rs-shell-button rs-shell-language", id: "locale_en", lang: "en", label: "English", theme: "auto", onAction: (...e) => m("changeLocale", {}, e), "aria-pressed": void 0 })
+                  /* @__PURE__ */ l(h, { id: "locale_en", className: "rs-shell-button rs-shell-language", lang: "en", label: "English", theme: "auto", onAction: (...e) => m("changeLocale", {}, e), "aria-pressed": void 0, id: "locale_en" })
                 ] }),
                 s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                   "      ",
-                  /* @__PURE__ */ l(h, { id: "locale_hi", className: "rs-shell-button rs-shell-language", "aria-pressed": void 0, id: "locale_hi", lang: "hi", label: "हिन्दी", theme: "auto", onAction: (...e) => m("changeLocale", {}, e) })
+                  /* @__PURE__ */ l(h, { id: "locale_hi", className: "rs-shell-button rs-shell-language", lang: "hi", label: "हिन्दी", theme: "auto", onAction: (...e) => m("changeLocale", {}, e), "aria-pressed": void 0, id: "locale_hi" })
                 ] }),
                 s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                   "      ",
-                  /* @__PURE__ */ l(h, { id: "locale_ta", className: "rs-shell-button rs-shell-language", "aria-pressed": void 0, id: "locale_ta", lang: "ta", label: "தமிழ்", theme: "auto", onAction: (...e) => m("changeLocale", {}, e) })
+                  /* @__PURE__ */ l(h, { id: "locale_ta", className: "rs-shell-button rs-shell-language", onAction: (...e) => m("changeLocale", {}, e), "aria-pressed": void 0, id: "locale_ta", lang: "ta", label: "தமிழ்", theme: "auto" })
                 ] })
               ] })
             ] })
@@ -274,7 +274,7 @@ function le(n) {
         ] }),
         s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
           "      ",
-          /* @__PURE__ */ r(u, { id: "action_status", "aria-atomic": "true", role: "status", "aria-live": "polite", className: "block rs-shell-status", children: [
+          /* @__PURE__ */ r(u, { id: "action_status", role: "status", "aria-live": "polite", "aria-atomic": "true", className: "block rs-shell-status", children: [
             "      ",
             s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
               "      ",
@@ -310,7 +310,7 @@ function le(n) {
                     "      ",
                     s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                       "      ",
-                      /* @__PURE__ */ l(h, { id: "feedback", className: "rs-shell-button", id: "feedback", label: "Send feedback", theme: "auto", onAction: (...e) => m("feedback", {}, e) })
+                      /* @__PURE__ */ l(h, { id: "feedback", className: "rs-shell-button", theme: "auto", onAction: (...e) => m("feedback", {}, e), id: "feedback", label: "Send feedback" })
                     ] })
                   ] })
                 ] }),
