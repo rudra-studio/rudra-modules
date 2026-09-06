@@ -1,5 +1,3 @@
-@import url("https://cdn.jsdelivr.net/npm/@rudra-studio/rudra-core/index.css");
-@import url("https://cdn.jsdelivr.net/npm/@rudra-studio/rudra-layout/index.css");
 @import "tailwindcss";
 
 /* Tailwind v4 scans the generated module and installed Rudra component packages. */
