@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './styles.css';
 
-import { Box as RudraLayoutBox } from '@rudra-studio/rudra-layout';
 import { UniversalIcon } from './universal-icon.jsx';
-import { Input as RudraFormInput, Select as RudraFormSelect, Textarea as RudraFormTextarea, Checkbox as RudraFormCheckbox, Form as RudraFormForm } from '@rudra-studio/rudra-form';
-import { Alert as RudraCoreAlert, Typography as RudraCoreTypography, Button as RudraCoreButton } from '@rudra-studio/rudra-core';
+import { Input as RudraFormInput, Checkbox as RudraFormCheckbox, Form as RudraFormForm, Select as RudraFormSelect, Textarea as RudraFormTextarea } from '@rudra-studio/rudra-form';
+import { Box as RudraLayoutBox } from '@rudra-studio/rudra-layout';
+import { Typography as RudraCoreTypography, Button as RudraCoreButton, Alert as RudraCoreAlert } from '@rudra-studio/rudra-core';
 
 export default function CompiledModule(props) {
   const _scope = {};
@@ -70,56 +70,56 @@ export default function CompiledModule(props) {
 
   const isVisibleValue = (value) => Array.isArray(value) ? value.length > 0 : (typeof value === 'string' ? value.trim() !== '' && value.trim().toLowerCase() !== 'false' : Boolean(value));
 
-  const returnPath = props.returnPath !== undefined ? props.returnPath : (props.data?.returnPath !== undefined ? props.data.returnPath : "/learn");
-  const profile = props.profile !== undefined ? props.profile : (props.data?.profile !== undefined ? props.data.profile : {});
   const profileServiceEnabled = props.profileServiceEnabled !== undefined ? props.profileServiceEnabled : (props.data?.profileServiceEnabled !== undefined ? props.data.profileServiceEnabled : false);
   const locale = props.locale !== undefined ? props.locale : (props.data?.locale !== undefined ? props.data.locale : "en");
   const authenticated = props.authenticated !== undefined ? props.authenticated : (props.data?.authenticated !== undefined ? props.data.authenticated : false);
   const mode = props.mode !== undefined ? props.mode : (props.data?.mode !== undefined ? props.data.mode : "login");
   const authProvider = props.authProvider !== undefined ? props.authProvider : (props.data?.authProvider !== undefined ? props.data.authProvider : "firebase-google");
-  const inputs = { "returnPath": returnPath, "profile": profile, "profileServiceEnabled": profileServiceEnabled, "locale": locale, "authenticated": authenticated, "mode": mode, "authProvider": authProvider };
+  const returnPath = props.returnPath !== undefined ? props.returnPath : (props.data?.returnPath !== undefined ? props.data.returnPath : "/learn");
+  const profile = props.profile !== undefined ? props.profile : (props.data?.profile !== undefined ? props.data.profile : {});
+  const inputs = { "profileServiceEnabled": profileServiceEnabled, "locale": locale, "authenticated": authenticated, "mode": mode, "authProvider": authProvider, "returnPath": returnPath, "profile": profile };
   const [showEducatorFields, set_showEducatorFields] = useState(() => structuredClone(false));
-  const [showInstitutionFields, set_showInstitutionFields] = useState(() => structuredClone(false));
   const [showRegistrationStep1, set_showRegistrationStep1] = useState(() => structuredClone(true));
-  const [authenticatedProfile, set_authenticatedProfile] = useState(() => structuredClone({}));
-  const [showPending, set_showPending] = useState(() => structuredClone(false));
-  const [showRegistrationStep3, set_showRegistrationStep3] = useState(() => structuredClone(false));
-  const [registrationStep, set_registrationStep] = useState(() => structuredClone(1));
-  const [showRegistrationBack, set_showRegistrationBack] = useState(() => structuredClone(false));
-  const [registrationProgress, set_registrationProgress] = useState(() => structuredClone("Step 1 of 3 · Profile"));
-  const [showRegistration, set_showRegistration] = useState(() => structuredClone(false));
-  const [requestedRole, set_requestedRole] = useState(() => structuredClone("student"));
-  const [showLogin, set_showLogin] = useState(() => structuredClone(true));
-  const [showVerifiedRoleFields, set_showVerifiedRoleFields] = useState(() => structuredClone(false));
-  const [registrationPrimaryLabel, set_registrationPrimaryLabel] = useState(() => structuredClone("Next"));
-  const [busy, set_busy] = useState(() => structuredClone(false));
-  const [message, set_message] = useState(() => structuredClone(""));
   const [accessMode, set_accessMode] = useState(() => structuredClone("login"));
+  const [registrationPrimaryLabel, set_registrationPrimaryLabel] = useState(() => structuredClone("Next"));
+  const [showVerifiedRoleFields, set_showVerifiedRoleFields] = useState(() => structuredClone(false));
+  const [message, set_message] = useState(() => structuredClone(""));
+  const [registrationProgress, set_registrationProgress] = useState(() => structuredClone("Step 1 of 3 · Profile"));
   const [registrationInitialValues, set_registrationInitialValues] = useState(() => structuredClone({"requestedRole":"student","verifiedEmail":""}));
+  const [registrationStep, set_registrationStep] = useState(() => structuredClone(1));
+  const [busy, set_busy] = useState(() => structuredClone(false));
+  const [showPending, set_showPending] = useState(() => structuredClone(false));
+  const [showLogin, set_showLogin] = useState(() => structuredClone(true));
   const [showStudentFields, set_showStudentFields] = useState(() => structuredClone(true));
-  const state = { "showEducatorFields": showEducatorFields, "showInstitutionFields": showInstitutionFields, "showRegistrationStep1": showRegistrationStep1, "authenticatedProfile": authenticatedProfile, "showPending": showPending, "showRegistrationStep3": showRegistrationStep3, "registrationStep": registrationStep, "showRegistrationBack": showRegistrationBack, "registrationProgress": registrationProgress, "showRegistration": showRegistration, "requestedRole": requestedRole, "showLogin": showLogin, "showVerifiedRoleFields": showVerifiedRoleFields, "registrationPrimaryLabel": registrationPrimaryLabel, "busy": busy, "message": message, "accessMode": accessMode, "registrationInitialValues": registrationInitialValues, "showStudentFields": showStudentFields };
+  const [showInstitutionFields, set_showInstitutionFields] = useState(() => structuredClone(false));
+  const [authenticatedProfile, set_authenticatedProfile] = useState(() => structuredClone({}));
+  const [requestedRole, set_requestedRole] = useState(() => structuredClone("student"));
+  const [showRegistrationBack, set_showRegistrationBack] = useState(() => structuredClone(false));
+  const [showRegistration, set_showRegistration] = useState(() => structuredClone(false));
+  const [showRegistrationStep3, set_showRegistrationStep3] = useState(() => structuredClone(false));
+  const state = { "showEducatorFields": showEducatorFields, "showRegistrationStep1": showRegistrationStep1, "accessMode": accessMode, "registrationPrimaryLabel": registrationPrimaryLabel, "showVerifiedRoleFields": showVerifiedRoleFields, "message": message, "registrationProgress": registrationProgress, "registrationInitialValues": registrationInitialValues, "registrationStep": registrationStep, "busy": busy, "showPending": showPending, "showLogin": showLogin, "showStudentFields": showStudentFields, "showInstitutionFields": showInstitutionFields, "authenticatedProfile": authenticatedProfile, "requestedRole": requestedRole, "showRegistrationBack": showRegistrationBack, "showRegistration": showRegistration, "showRegistrationStep3": showRegistrationStep3 };
 
   const _setState = useCallback((name, value) => {
     switch (name) {
       case "showEducatorFields": { const next = typeof value === 'function' ? value(state.showEducatorFields) : value; state.showEducatorFields = next; set_showEducatorFields(next); return next; }
-      case "showInstitutionFields": { const next = typeof value === 'function' ? value(state.showInstitutionFields) : value; state.showInstitutionFields = next; set_showInstitutionFields(next); return next; }
       case "showRegistrationStep1": { const next = typeof value === 'function' ? value(state.showRegistrationStep1) : value; state.showRegistrationStep1 = next; set_showRegistrationStep1(next); return next; }
-      case "authenticatedProfile": { const next = typeof value === 'function' ? value(state.authenticatedProfile) : value; state.authenticatedProfile = next; set_authenticatedProfile(next); return next; }
-      case "showPending": { const next = typeof value === 'function' ? value(state.showPending) : value; state.showPending = next; set_showPending(next); return next; }
-      case "showRegistrationStep3": { const next = typeof value === 'function' ? value(state.showRegistrationStep3) : value; state.showRegistrationStep3 = next; set_showRegistrationStep3(next); return next; }
-      case "registrationStep": { const next = typeof value === 'function' ? value(state.registrationStep) : value; state.registrationStep = next; set_registrationStep(next); return next; }
-      case "showRegistrationBack": { const next = typeof value === 'function' ? value(state.showRegistrationBack) : value; state.showRegistrationBack = next; set_showRegistrationBack(next); return next; }
-      case "registrationProgress": { const next = typeof value === 'function' ? value(state.registrationProgress) : value; state.registrationProgress = next; set_registrationProgress(next); return next; }
-      case "showRegistration": { const next = typeof value === 'function' ? value(state.showRegistration) : value; state.showRegistration = next; set_showRegistration(next); return next; }
-      case "requestedRole": { const next = typeof value === 'function' ? value(state.requestedRole) : value; state.requestedRole = next; set_requestedRole(next); return next; }
-      case "showLogin": { const next = typeof value === 'function' ? value(state.showLogin) : value; state.showLogin = next; set_showLogin(next); return next; }
-      case "showVerifiedRoleFields": { const next = typeof value === 'function' ? value(state.showVerifiedRoleFields) : value; state.showVerifiedRoleFields = next; set_showVerifiedRoleFields(next); return next; }
-      case "registrationPrimaryLabel": { const next = typeof value === 'function' ? value(state.registrationPrimaryLabel) : value; state.registrationPrimaryLabel = next; set_registrationPrimaryLabel(next); return next; }
-      case "busy": { const next = typeof value === 'function' ? value(state.busy) : value; state.busy = next; set_busy(next); return next; }
-      case "message": { const next = typeof value === 'function' ? value(state.message) : value; state.message = next; set_message(next); return next; }
       case "accessMode": { const next = typeof value === 'function' ? value(state.accessMode) : value; state.accessMode = next; set_accessMode(next); return next; }
+      case "registrationPrimaryLabel": { const next = typeof value === 'function' ? value(state.registrationPrimaryLabel) : value; state.registrationPrimaryLabel = next; set_registrationPrimaryLabel(next); return next; }
+      case "showVerifiedRoleFields": { const next = typeof value === 'function' ? value(state.showVerifiedRoleFields) : value; state.showVerifiedRoleFields = next; set_showVerifiedRoleFields(next); return next; }
+      case "message": { const next = typeof value === 'function' ? value(state.message) : value; state.message = next; set_message(next); return next; }
+      case "registrationProgress": { const next = typeof value === 'function' ? value(state.registrationProgress) : value; state.registrationProgress = next; set_registrationProgress(next); return next; }
       case "registrationInitialValues": { const next = typeof value === 'function' ? value(state.registrationInitialValues) : value; state.registrationInitialValues = next; set_registrationInitialValues(next); return next; }
+      case "registrationStep": { const next = typeof value === 'function' ? value(state.registrationStep) : value; state.registrationStep = next; set_registrationStep(next); return next; }
+      case "busy": { const next = typeof value === 'function' ? value(state.busy) : value; state.busy = next; set_busy(next); return next; }
+      case "showPending": { const next = typeof value === 'function' ? value(state.showPending) : value; state.showPending = next; set_showPending(next); return next; }
+      case "showLogin": { const next = typeof value === 'function' ? value(state.showLogin) : value; state.showLogin = next; set_showLogin(next); return next; }
       case "showStudentFields": { const next = typeof value === 'function' ? value(state.showStudentFields) : value; state.showStudentFields = next; set_showStudentFields(next); return next; }
+      case "showInstitutionFields": { const next = typeof value === 'function' ? value(state.showInstitutionFields) : value; state.showInstitutionFields = next; set_showInstitutionFields(next); return next; }
+      case "authenticatedProfile": { const next = typeof value === 'function' ? value(state.authenticatedProfile) : value; state.authenticatedProfile = next; set_authenticatedProfile(next); return next; }
+      case "requestedRole": { const next = typeof value === 'function' ? value(state.requestedRole) : value; state.requestedRole = next; set_requestedRole(next); return next; }
+      case "showRegistrationBack": { const next = typeof value === 'function' ? value(state.showRegistrationBack) : value; state.showRegistrationBack = next; set_showRegistrationBack(next); return next; }
+      case "showRegistration": { const next = typeof value === 'function' ? value(state.showRegistration) : value; state.showRegistration = next; set_showRegistration(next); return next; }
+      case "showRegistrationStep3": { const next = typeof value === 'function' ? value(state.showRegistrationStep3) : value; state.showRegistrationStep3 = next; set_showRegistrationStep3(next); return next; }
       default: return value;
     }
   }, [state]);
@@ -142,24 +142,24 @@ export default function CompiledModule(props) {
     };
     switch (root) {
       case "showEducatorFields": _setState("showEducatorFields", updateNested); return value;
-      case "showInstitutionFields": _setState("showInstitutionFields", updateNested); return value;
       case "showRegistrationStep1": _setState("showRegistrationStep1", updateNested); return value;
-      case "authenticatedProfile": _setState("authenticatedProfile", updateNested); return value;
-      case "showPending": _setState("showPending", updateNested); return value;
-      case "showRegistrationStep3": _setState("showRegistrationStep3", updateNested); return value;
-      case "registrationStep": _setState("registrationStep", updateNested); return value;
-      case "showRegistrationBack": _setState("showRegistrationBack", updateNested); return value;
-      case "registrationProgress": _setState("registrationProgress", updateNested); return value;
-      case "showRegistration": _setState("showRegistration", updateNested); return value;
-      case "requestedRole": _setState("requestedRole", updateNested); return value;
-      case "showLogin": _setState("showLogin", updateNested); return value;
-      case "showVerifiedRoleFields": _setState("showVerifiedRoleFields", updateNested); return value;
-      case "registrationPrimaryLabel": _setState("registrationPrimaryLabel", updateNested); return value;
-      case "busy": _setState("busy", updateNested); return value;
-      case "message": _setState("message", updateNested); return value;
       case "accessMode": _setState("accessMode", updateNested); return value;
+      case "registrationPrimaryLabel": _setState("registrationPrimaryLabel", updateNested); return value;
+      case "showVerifiedRoleFields": _setState("showVerifiedRoleFields", updateNested); return value;
+      case "message": _setState("message", updateNested); return value;
+      case "registrationProgress": _setState("registrationProgress", updateNested); return value;
       case "registrationInitialValues": _setState("registrationInitialValues", updateNested); return value;
+      case "registrationStep": _setState("registrationStep", updateNested); return value;
+      case "busy": _setState("busy", updateNested); return value;
+      case "showPending": _setState("showPending", updateNested); return value;
+      case "showLogin": _setState("showLogin", updateNested); return value;
       case "showStudentFields": _setState("showStudentFields", updateNested); return value;
+      case "showInstitutionFields": _setState("showInstitutionFields", updateNested); return value;
+      case "authenticatedProfile": _setState("authenticatedProfile", updateNested); return value;
+      case "requestedRole": _setState("requestedRole", updateNested); return value;
+      case "showRegistrationBack": _setState("showRegistrationBack", updateNested); return value;
+      case "showRegistration": _setState("showRegistration", updateNested); return value;
+      case "showRegistrationStep3": _setState("showRegistrationStep3", updateNested); return value;
       default: return value;
     }
   }, [_setState]);
@@ -230,6 +230,75 @@ export default function CompiledModule(props) {
     return !(value && typeof value === 'object' && !Array.isArray(value) && Object.keys(value).length === 0);
   };
 
+  async function requestGoogleSignIn(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    _setState("busy", true);
+    _setState("message", "");
+    await _callAction("RudraAuth.signIn", { "provider": inputs.authProvider, "returnPath": inputs.returnPath }, []);
+    void _emitOutput("googleSignInRequested", { "returnPath": inputs.returnPath }, false).catch(error => console.error('Module output delivery failed', error));
+    { const event = args.event; const data = pageData; const globalState = state;
+      const customResult = await (async () => {
+const response = stepResults.google_auth || {};
+const source = response.user || response.currentUser || response.profile || response;
+if (response.success === false || !source || !(source.uid || source.id || source.userId) || !source.email) {
+  throw new Error(response.error || 'Google sign-in did not return a verified user.');
+}
+return {
+  uid: source.uid || source.id || source.userId,
+  email: source.email,
+  displayName: source.displayName || source.name || '',
+  emailVerified: source.emailVerified === true,
+  providerId: source.providerId || response.providerId || 'google'
+};
+      })();
+      stepResults["normalize_auth"] = customResult; vars["customCodeResult"] = customResult; }
+    _setState("authenticatedProfile", stepResults.normalize_auth);
+    _setState("accessMode", "resolving");
+    { const roots = { args, inputs, state, sharedState, applicationState, pageState, pageData, serverData, vars, stepResults };
+      const namedParameters = _resolveRuntimeValue({}, roots) || {};
+      delete namedParameters["userIdentity"];
+      const parameters = [undefined];
+      const queryExecutor = props.executeDatabaseQuery || props.runtime?.executeDatabaseQuery;
+      let result;
+      if (typeof queryExecutor === 'function') {
+        result = await queryExecutor({ moduleId: "cmtma35av000204jocz6kqu0s", queryId: "scholarResolveCurrentAccess", parameters, namedParameters, signal: args.signal });
+      } else {
+        const queryResponse = await fetch("/api/modules/cmtma35av000204jocz6kqu0s/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "scholarResolveCurrentAccess", parameters, namedParameters }), signal: args.signal });
+        const queryPayload = await queryResponse.json().catch(() => ({}));
+        if (!queryResponse.ok || queryPayload.success === false) throw new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')');
+        result = queryPayload.data;
+      }
+      stepResults["resolve_access"] = result; vars["queryResult"] = result; }
+    { const event = args.event; const data = pageData; const globalState = state;
+      const customResult = await (async () => {
+const rows = stepResults.resolve_access;
+const row = Array.isArray(rows) ? rows[0] : rows;
+const resolved = row && row.result ? row.result : row;
+const isRegistered = Boolean(resolved && resolved.isRegistered === true);
+const profile = isRegistered ? resolved : { ...state.authenticatedProfile, isRegistered: false };
+return {
+  isRegistered,
+  profile,
+  redirectPath: (resolved && resolved.redirectPath) || inputs.returnPath || '/learn'
+};
+      })();
+      stepResults["normalize_access"] = customResult; vars["customCodeResult"] = customResult; }
+    if (stepResults.normalize_access.isRegistered) {
+      _setState("authenticatedProfile", stepResults.normalize_access.profile);
+      _setState("busy", false);
+      void _emitOutput("navigationRequested", { "path": stepResults.normalize_access.redirectPath }, false).catch(error => console.error('Module output delivery failed', error));
+      return stepResults.normalize_access;
+    } else {
+      _setState("authenticatedProfile", stepResults.normalize_access.profile);
+      _setState("accessMode", "registration");
+      _setState("busy", false);
+      return stepResults.normalize_access;
+    }
+    return undefined;
+  }
+
   async function initializeAccessFlow(initialArgs = {}) {
     const args = initialArgs || {};
     const vars = {};
@@ -239,11 +308,21 @@ export default function CompiledModule(props) {
 const profile = inputs.profile && typeof inputs.profile === 'object' ? inputs.profile : {};
 let mode = ['login', 'registration', 'resolving'].includes(inputs.mode) ? inputs.mode : 'login';
 if (inputs.authenticated === true && profile.isRegistered === false) mode = 'registration';
-return { mode, profile };
+const showPending = mode === 'resolving' && profile.verificationStatus === 'pending';
+return {
+  mode,
+  profile,
+  showLogin: mode === 'login',
+  showRegistration: mode === 'registration',
+  showPending
+};
       })();
       stepResults["init_context"] = customResult; vars["customCodeResult"] = customResult; }
     _setState("authenticatedProfile", stepResults.init_context.profile);
     _setState("accessMode", stepResults.init_context.mode);
+    _setState("showLogin", stepResults.init_context.showLogin);
+    _setState("showRegistration", stepResults.init_context.showRegistration);
+    _setState("showPending", stepResults.init_context.showPending);
     return stepResults.init_context;
     return undefined;
   }
@@ -386,90 +465,21 @@ return result;
     return undefined;
   }
 
-  async function requestGoogleSignIn(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    _setState("busy", true);
-    _setState("message", "");
-    await _callAction("RudraAuth.signIn", { "provider": inputs.authProvider, "returnPath": inputs.returnPath }, []);
-    void _emitOutput("googleSignInRequested", { "returnPath": inputs.returnPath }, false).catch(error => console.error('Module output delivery failed', error));
-    { const event = args.event; const data = pageData; const globalState = state;
-      const customResult = await (async () => {
-const response = stepResults.google_auth || {};
-const source = response.user || response.currentUser || response.profile || response;
-if (response.success === false || !source || !(source.uid || source.id || source.userId) || !source.email) {
-  throw new Error(response.error || 'Google sign-in did not return a verified user.');
-}
-return {
-  uid: source.uid || source.id || source.userId,
-  email: source.email,
-  displayName: source.displayName || source.name || '',
-  emailVerified: source.emailVerified === true,
-  providerId: source.providerId || response.providerId || 'google'
-};
-      })();
-      stepResults["normalize_auth"] = customResult; vars["customCodeResult"] = customResult; }
-    _setState("authenticatedProfile", stepResults.normalize_auth);
-    _setState("accessMode", "resolving");
-    { const roots = { args, inputs, state, sharedState, applicationState, pageState, pageData, serverData, vars, stepResults };
-      const namedParameters = _resolveRuntimeValue({}, roots) || {};
-      delete namedParameters["userIdentity"];
-      const parameters = [undefined];
-      const queryExecutor = props.executeDatabaseQuery || props.runtime?.executeDatabaseQuery;
-      let result;
-      if (typeof queryExecutor === 'function') {
-        result = await queryExecutor({ moduleId: "cmtma35av000204jocz6kqu0s", queryId: "scholarResolveCurrentAccess", parameters, namedParameters, signal: args.signal });
-      } else {
-        const queryResponse = await fetch("/api/modules/cmtma35av000204jocz6kqu0s/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "scholarResolveCurrentAccess", parameters, namedParameters }), signal: args.signal });
-        const queryPayload = await queryResponse.json().catch(() => ({}));
-        if (!queryResponse.ok || queryPayload.success === false) throw new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')');
-        result = queryPayload.data;
-      }
-      stepResults["resolve_access"] = result; vars["queryResult"] = result; }
-    { const event = args.event; const data = pageData; const globalState = state;
-      const customResult = await (async () => {
-const rows = stepResults.resolve_access;
-const row = Array.isArray(rows) ? rows[0] : rows;
-const resolved = row && row.result ? row.result : row;
-const isRegistered = Boolean(resolved && resolved.isRegistered === true);
-const profile = isRegistered ? resolved : { ...state.authenticatedProfile, isRegistered: false };
-return {
-  isRegistered,
-  profile,
-  redirectPath: (resolved && resolved.redirectPath) || inputs.returnPath || '/learn'
-};
-      })();
-      stepResults["normalize_access"] = customResult; vars["customCodeResult"] = customResult; }
-    if (stepResults.normalize_access.isRegistered) {
-      _setState("authenticatedProfile", stepResults.normalize_access.profile);
-      _setState("busy", false);
-      void _emitOutput("navigationRequested", { "path": stepResults.normalize_access.redirectPath }, false).catch(error => console.error('Module output delivery failed', error));
-      return stepResults.normalize_access;
-    } else {
-      _setState("authenticatedProfile", stepResults.normalize_access.profile);
-      _setState("accessMode", "registration");
-      _setState("busy", false);
-      return stepResults.normalize_access;
-    }
-    return undefined;
-  }
-
   const _localActions = {
+    "requestGoogleSignIn": requestGoogleSignIn,
     "initializeAccessFlow": initializeAccessFlow,
     "handleRegistrationSubmit": handleRegistrationSubmit,
     "goBackRegistrationStep": goBackRegistrationStep,
     "setRequestedRole": setRequestedRole,
     "submitRegistration": submitRegistration,
-    "requestGoogleSignIn": requestGoogleSignIn,
   };
   const _localActionArguments = {
+    "requestGoogleSignIn": [],
     "initializeAccessFlow": [],
     "handleRegistrationSubmit": ["values"],
     "goBackRegistrationStep": [],
     "setRequestedRole": ["value"],
     "submitRegistration": ["values"],
-    "requestGoogleSignIn": [],
   };
   const _callAction = (name, configuredArgs = {}, eventArgs = []) => {
     const localAction = _localActions[name];
@@ -512,39 +522,40 @@ return {
 
   return (
     <div ref={wrapperRef} className="rudra-module-wrapper">
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="root" className="rs-access">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="panel" className="rs-access-grid">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="story" className="rs-access-story">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="story_badge" aria-label="College mathematics proof of concept" className="rs-badge-row">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"GraduationCap"} id="story_badge_icon" strokeWidth={2} size={14} color="#b8f7e7" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@rudra-studio/rudra-layout@1.0.26/components/Box/styles.css" precedence="rudra-library" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="root" className="rs-access">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="panel" className="rs-access-grid">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="story" className="rs-access-story">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="story_badge" aria-label="College mathematics proof of concept" className="rs-badge-row">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"GraduationCap"} id="story_badge_icon" size={14} color="#b8f7e7" strokeWidth={2} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="story_badge_label" className="rs-badge-label" as="span" content="College mathematics · POC" customColor="#eafff8" />
-</>)}
-</RudraLayoutBox>
-</>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="title" className="rs-access-title" customColor="#eafff8" as="h2" content={((_bindingValue) => _bindingValue === undefined ? "Learn mathematics with context, not shortcuts." : _bindingValue)(_scope?.i18n?.title)} />
-</>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="subtitle" className="rs-muted" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Work through challenging problems step by step—with explanations that make the ideas stick." : _bindingValue)(_scope?.i18n?.subtitle)} />
-</>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreAlert id="trust" live="off" title="SQL is the authority" variant="neutral" appearance="outlined" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="story_badge_label" className="rs-badge-label" customColor="#eafff8" as="span" content="College mathematics · POC" />
 </>)}
 </RudraLayoutBox>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="form_area" className="rs-access-form">      {isVisibleValue({ "sourceProp": { "dataPath": "state.accessMode", "type": "binding" }, "transformFunction": "(value) =\u003e value === 'login'" }) && (<>      <RudraCoreTypography id="signin_eyebrow" className="rs-signin-eyebrow" as="p" content={((_bindingValue) => _bindingValue === undefined ? "WELCOME TO RUDRA SCHOLAR" : _bindingValue)(_scope?.i18n?.welcome)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="title" className="rs-access-title" as="h2" content={((_bindingValue) => _bindingValue === undefined ? "Learn mathematics with context, not shortcuts." : _bindingValue)(_scope?.i18n?.title)} customColor="#eafff8" />
 </>)}
-      {isVisibleValue({ "sourceProp": { "dataPath": "state.accessMode", "type": "binding" }, "transformFunction": "(value) =\u003e value === 'login'" }) && (<>      <RudraCoreTypography id="signin_title" className="rs-signin-title" as="h2" content={((_bindingValue) => _bindingValue === undefined ? "Ready to think through the next problem?" : _bindingValue)(_scope?.i18n?.signInTitle)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="subtitle" className="rs-muted" content={((_bindingValue) => _bindingValue === undefined ? "Work through challenging problems step by step—with explanations that make the ideas stick." : _bindingValue)(_scope?.i18n?.subtitle)} as="p" />
 </>)}
-      {isVisibleValue({ "sourceProp": { "dataPath": "state.accessMode", "type": "binding" }, "transformFunction": "(value) =\u003e value === 'login'" }) && (<>      <RudraCoreTypography id="signin_intro" className="rs-signin-intro" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Sign in to continue your lessons, saved work, and learning progress." : _bindingValue)(_scope?.i18n?.signInIntro)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreAlert id="trust" appearance="outlined" live="off" title="SQL is the authority" variant="neutral" />
 </>)}
-      {isVisibleValue({ "sourceProp": { "dataPath": "state.accessMode", "type": "binding" }, "transformFunction": "(value) =\u003e value === 'login'" }) && (<>      <RudraCoreButton id="google" leftIcon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={{ "iconType": "url", "url": "https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" }} id="google_logo" size={20} strokeWidth={1.2} />
+</RudraLayoutBox>
 </>)}
-</>} id="scholar-google-signin" size="lg" label={((_bindingValue) => _bindingValue === undefined ? "Sign in with Google" : _bindingValue)(_scope?.i18n?.google)} loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(busy)} onAction={(...eventArgs) => _callAction("requestGoogleSignIn", {}, eventArgs)} ariaLabel="Sign in with Google" rightIcon={false} theme="auto" variant="outline" fullWidth={true} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="form_area" className="rs-access-form">      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(showLogin)) && (<>      <RudraCoreTypography id="signin_eyebrow" className="rs-signin-eyebrow" as="p" content={((_bindingValue) => _bindingValue === undefined ? "WELCOME TO RUDRA SCHOLAR" : _bindingValue)(_scope?.i18n?.welcome)} />
 </>)}
-      {isVisibleValue({ "sourceProp": { "dataPath": "state.accessMode", "type": "binding" }, "transformFunction": "(value) =\u003e value === 'login'" }) && (<>      <RudraCoreTypography id="notice" className="rs-signin-note" as="p" content={((_bindingValue) => _bindingValue === undefined ? "First time here? After Google confirms your email, choose Student, Professor, or Institution administrator. Account setup takes about a minute." : _bindingValue)(_scope?.i18n?.signInHelp)} />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(showLogin)) && (<>      <RudraCoreTypography id="signin_title" className="rs-signin-title" as="h2" content={((_bindingValue) => _bindingValue === undefined ? "Ready to think through the next problem?" : _bindingValue)(_scope?.i18n?.signInTitle)} />
 </>)}
-      {isVisibleValue(undefined) && (<>      <RudraCoreTypography id="heading" content={((_bindingValue) => _bindingValue === undefined ? "Create your Scholar account" : _bindingValue)(_scope?.i18n?.profile)} as="h3" />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(showLogin)) && (<>      <RudraCoreTypography id="signin_intro" className="rs-signin-intro" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Sign in to continue your lessons, saved work, and learning progress." : _bindingValue)(_scope?.i18n?.signInIntro)} />
 </>)}
-      {isVisibleValue(undefined) && (<>      <RudraFormForm id="profile_form" className="rs-form" onSubmit={(...eventArgs) => _callAction("submitRegistration", {}, eventArgs)} initialValues={{"requestedRole":"student"}}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="registration_progress" className="rs-registration-progress" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Step 1 of 3 · Profile" : _bindingValue)(registrationProgress)} />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(showLogin)) && (<>      <RudraCoreButton id="google" leftIcon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={{ "iconType": "url", "url": "https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" }} id="google_logo" strokeWidth={1.2} size={20} />
+</>)}
+</>} label={((_bindingValue) => _bindingValue === undefined ? "Sign in with Google" : _bindingValue)(_scope?.i18n?.google)} onAction={(...eventArgs) => _callAction("requestGoogleSignIn", {}, eventArgs)} id="scholar-google-signin" theme="auto" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(busy)} variant="outline" ariaLabel="Sign in with Google" fullWidth={true} rightIcon={false} size="lg" />
+</>)}
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(showLogin)) && (<>      <RudraCoreTypography id="notice" className="rs-signin-note" content={((_bindingValue) => _bindingValue === undefined ? "First time here? After Google confirms your email, choose Student, Professor, or Institution administrator. Account setup takes about a minute." : _bindingValue)(_scope?.i18n?.signInHelp)} as="p" />
+</>)}
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showRegistration)) && (<>      <RudraCoreTypography id="heading" as="h3" content={((_bindingValue) => _bindingValue === undefined ? "Create your Scholar account" : _bindingValue)(_scope?.i18n?.profile)} />
+</>)}
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showRegistration)) && (<>      <RudraFormForm id="profile_form" className="rs-form" onSubmit={(...eventArgs) => _callAction("submitRegistration", {}, eventArgs)} initialValues={{"requestedRole":"student"}}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="registration_progress" className="rs-registration-progress" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Step 1 of 3 · Profile" : _bindingValue)(registrationProgress)} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormInput id="email" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"Mail"} id="email_field_icon" size={18} strokeWidth={1.8} />
 </>)}
-</>} disabled={true} name="verifiedEmail" size="md" type="email" label="Verified Google email" value={((_bindingValue) => _bindingValue === undefined ? "Signed-in Google account" : _bindingValue)(authenticatedProfile?.email)} />
+</>} name="verifiedEmail" size="md" type="email" label="Verified Google email" value={((_bindingValue) => _bindingValue === undefined ? "Signed-in Google account" : _bindingValue)(authenticatedProfile?.email)} disabled={true} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormInput id="first_name" name="firstName" size="md" type="text" label="First name" required={true} />
 </>)}
@@ -552,45 +563,45 @@ return {
 </>)}
 </>} name="lastName" size="md" type="text" label="Last name" required={true} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormSelect id="role" onChangeValue={(...eventArgs) => _callAction("setRequestedRole", {}, eventArgs)} name="requestedRole" label="Create account as" value="student" radius="md" options={[{"label":"Student","value":"student"},{"label":"Professor / teacher","value":"educator"},{"label":"Institution administrator","value":"institution_admin"}]} required={true} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormSelect id="role" name="requestedRole" label="Create account as" value="student" radius="md" options={[{"label":"Student","value":"student"},{"label":"Professor / teacher","value":"educator"},{"label":"Institution administrator","value":"institution_admin"}]} required={true} onChangeValue={(...eventArgs) => _callAction("setRequestedRole", {}, eventArgs)} />
+</>)}
+      {isVisibleValue(undefined) && (<>      <RudraFormInput id="qualification" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"GraduationCap"} id="qualification_field_icon" size={18} strokeWidth={1.8} />
+</>)}
+</>} required={true} placeholder="For example, M.Sc. Mathematics" name="qualification" size="md" type="text" label="Highest relevant qualification" />
 </>)}
       {isVisibleValue(undefined) && (<>      <RudraCoreAlert id="kyc_intro" live="off" title="Role verification required" variant="neutral" appearance="outlined" />
 </>)}
       {isVisibleValue(undefined) && (<>      <RudraFormInput id="institution" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"TicketCheck"} id="institution_field_icon" size={18} strokeWidth={1.8} />
 </>)}
-</>} name="institutionInvite" size="md" type="text" label="Institution invite code (optional)" required={false} placeholder="Enter a verified college invite code" />
+</>} type="text" label="Institution invite code (optional)" required={false} placeholder="Enter a verified college invite code" name="institutionInvite" size="md" />
 </>)}
-      {isVisibleValue(undefined) && (<>      <RudraFormInput id="qualification" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"GraduationCap"} id="qualification_field_icon" size={18} strokeWidth={1.8} />
+      {isVisibleValue(getResponsiveProp({ "lg": false, "md": false, "sm": false })) && (<>      <RudraFormInput id="kyc" required={false} placeholder="Secure upload reference — do not paste document data" name="kycReference" size="md" type="text" label="Legacy verification field disabled" />
 </>)}
-</>} size="md" type="text" label="Highest relevant qualification" required={true} placeholder="For example, M.Sc. Mathematics" name="qualification" />
+      {isVisibleValue(undefined) && (<>      <RudraFormInput id="expertise" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"Sigma"} id="expertise_field_icon" size={18} strokeWidth={1.8} />
 </>)}
-      {isVisibleValue(undefined) && (<>      <RudraFormInput id="expertise" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"Sigma"} id="expertise_field_icon" strokeWidth={1.8} size={18} />
+</>} placeholder="For example, Linear Algebra, Calculus" name="subjectExpertise" size="md" type="text" label="Mathematics expertise" required={true} />
 </>)}
-</>} name="subjectExpertise" size="md" type="text" label="Mathematics expertise" required={true} placeholder="For example, Linear Algebra, Calculus" />
+      {isVisibleValue(undefined) && (<>      <RudraFormTextarea id="professional_statement" label="Short professional statement" maxRows={6} minRows={3} required={true} autoResize={true} placeholder="Briefly describe your teaching experience." name="professionalStatement" size="md" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": false, "md": false, "sm": false })) && (<>      <RudraFormInput id="kyc" size="md" type="text" label="Legacy verification field disabled" required={false} placeholder="Secure upload reference — do not paste document data" name="kycReference" />
+      {isVisibleValue(undefined) && (<>      <RudraFormInput id="educator_institution" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"School"} id="educator_institution_field_icon" strokeWidth={1.8} size={18} />
 </>)}
-      {isVisibleValue(undefined) && (<>      <RudraFormTextarea id="professional_statement" maxRows={6} minRows={3} required={true} autoResize={true} placeholder="Briefly describe your teaching experience." name="professionalStatement" size="md" label="Short professional statement" />
-</>)}
-      {isVisibleValue(undefined) && (<>      <RudraFormInput id="educator_institution" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"School"} id="educator_institution_field_icon" size={18} strokeWidth={1.8} />
-</>)}
-</>} required={true} name="institutionName" size="md" type="text" label="College or university" />
+</>} type="text" label="College or university" required={true} name="institutionName" size="md" />
 </>)}
       {isVisibleValue(undefined) && (<>      <RudraFormInput id="evidence" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"BadgeCheck"} id="evidence_field_icon" size={18} strokeWidth={1.8} />
 </>)}
-</>} placeholder="Use an institution email or public staff-profile URL" name="kycEvidence" size="md" type="text" label="KYC verification evidence" required={true} />
+</>} label="KYC verification evidence" required={true} placeholder="Use an institution email or public staff-profile URL" name="kycEvidence" size="md" type="text" />
 </>)}
-      {isVisibleValue(undefined) && (<>      <RudraFormInput id="institution_legal_name" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"Landmark"} id="institution_legal_name_field_icon" size={18} strokeWidth={1.8} />
+      {isVisibleValue(undefined) && (<>      <RudraFormInput id="institution_legal_name" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"Landmark"} id="institution_legal_name_field_icon" strokeWidth={1.8} size={18} />
 </>)}
-</>} required={true} name="institutionLegalName" size="md" type="text" label="Institution legal name" />
+</>} type="text" label="Institution legal name" required={true} name="institutionLegalName" size="md" />
 </>)}
-      {isVisibleValue(undefined) && (<>      <RudraFormInput id="institution_display_name" name="institutionDisplayName" size="md" type="text" label="Display name" required={true} />
+      {isVisibleValue(undefined) && (<>      <RudraFormInput id="institution_display_name" required={true} name="institutionDisplayName" size="md" type="text" label="Display name" />
 </>)}
-      {isVisibleValue(undefined) && (<>      <RudraFormSelect id="institution_type" name="institutionType" label="Institution type" value="college" options={[{"label":"College","value":"college"},{"label":"University","value":"university"}]} required={true} />
+      {isVisibleValue(undefined) && (<>      <RudraFormSelect id="institution_type" label="Institution type" value="college" options={[{"label":"College","value":"college"},{"label":"University","value":"university"}]} required={true} name="institutionType" />
 </>)}
       {isVisibleValue(undefined) && (<>      <RudraFormInput id="institution_website" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"Globe"} id="institution_website_field_icon" size={18} strokeWidth={1.8} />
 </>)}
-</>} placeholder="https://example.edu" name="institutionWebsite" size="md" type="url" label="Official website" required={true} />
+</>} label="Official website" required={true} placeholder="https://example.edu" name="institutionWebsite" size="md" type="url" />
 </>)}
       {isVisibleValue(undefined) && (<>      <RudraFormInput id="institution_domain" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"AtSign"} id="institution_domain_field_icon" size={18} strokeWidth={1.8} />
 </>)}
@@ -598,31 +609,31 @@ return {
 </>)}
       {isVisibleValue(undefined) && (<>      <RudraFormInput id="institution_contact" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"Contact"} id="institution_contact_field_icon" size={18} strokeWidth={1.8} />
 </>)}
-</>} type="text" label="Administrative contact" required={true} name="institutionContact" size="md" />
+</>} label="Administrative contact" required={true} name="institutionContact" size="md" type="text" />
 </>)}
       {isVisibleValue(undefined) && (<>      <RudraFormInput id="country" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"MapPin"} id="country_field_icon" size={18} strokeWidth={1.8} />
 </>)}
-</>} required={true} name="country" size="md" type="text" label="Country" />
+</>} name="country" size="md" type="text" label="Country" required={true} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": false, "md": false, "sm": false })) && (<>      <RudraFormCheckbox id="age_confirmed" name="ageConfirmed" label="I confirm I am 18 or older." required={false} colorScheme="emerald" description="The initial proof of concept is limited to college learners and adult educators." />
 </>)}
-      {isVisibleValue(undefined) && (<>      <RudraFormCheckbox id="terms" description="Required before an account can be created." name="termsAccepted" label="I accept the Terms of Service." required={true} colorScheme="emerald" />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showRegistration)) && (<>      <RudraFormCheckbox id="terms" name="termsAccepted" label="I accept the Terms of Service." required={true} colorScheme="emerald" description="Required before an account can be created." />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="submit" fullWidth={true} size="lg" label="Continue" theme="auto" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(busy)} variant="primary" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="submit" label="Continue" theme="auto" leftIcon={false} fullWidth={true} rightIcon={false} size="lg" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(busy)} variant="primary" />
 </>)}
-      {isVisibleValue(undefined) && (<>      <RudraFormCheckbox id="privacy" name="privacyAccepted" label="I have read and accept the Privacy Notice." required={true} colorScheme="emerald" description="Required before an account can be created." />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showRegistration)) && (<>      <RudraFormCheckbox id="privacy" description="Required before an account can be created." name="privacyAccepted" label="I have read and accept the Privacy Notice." required={true} colorScheme="emerald" />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="registration_actions" className="rs-registration-actions">      {isVisibleValue(showRegistrationBack) && (<>      <RudraCoreButton id="registration_back" leftIcon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"ArrowLeft"} id="registration_back_icon" size={18} strokeWidth={2} />
 </>)}
-</>} label="Back" variant="secondary" additionalAttributes={{}} theme="auto" onAction={(...eventArgs) => _callAction("goBackRegistrationStep", {}, eventArgs)} fullWidth={true} id="scholar-registration-back" size="lg" type="button" />
+</>} id="scholar-registration-back" type="button" theme="auto" variant="secondary" onAction={(...eventArgs) => _callAction("goBackRegistrationStep", {}, eventArgs)} rightIcon={false} additionalAttributes={{}} size="lg" label="Back" fullWidth={true} />
 </>)}
 </RudraLayoutBox>
 </>)}
 </RudraFormForm>
 </>)}
-      {isVisibleValue(message) && (<>      <RudraCoreAlert id="message" live="polite" title="Scholar access" variant="neutral" appearance="outlined" />
+      {isVisibleValue(message) && (<>      <RudraCoreAlert id="message" variant="neutral" appearance="outlined" live="polite" title="Scholar access" />
 </>)}
-      {isVisibleValue(undefined) && (<>      <RudraCoreAlert id="pending_notice" appearance="outlined" live="polite" title="Professor verification pending" variant="warning" />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showPending)) && (<>      <RudraCoreAlert id="pending_notice" live="polite" title="Professor verification pending" variant="warning" appearance="outlined" />
 </>)}
 </RudraLayoutBox>
 </>)}
