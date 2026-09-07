@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './styles.css';
 
-import { Link as RudraCoreLink, Badge as RudraCoreBadge, Button as RudraCoreButton, Typography as RudraCoreTypography } from '@rudra-studio/rudra-core';
-import { Box as RudraLayoutBox } from '@rudra-studio/rudra-layout';
+import { Box as RudraLayoutBox, Repeater as RudraLayoutRepeater } from '@rudra-studio/rudra-layout';
+import { Button as RudraCoreButton, Typography as RudraCoreTypography, Link as RudraCoreLink, Avatar as RudraCoreAvatar } from '@rudra-studio/rudra-core';
 
 export default function CompiledModule(props) {
   const _scope = {};
@@ -68,20 +68,25 @@ export default function CompiledModule(props) {
 
   const isVisibleValue = (value) => Array.isArray(value) ? value.length > 0 : (typeof value === 'string' ? value.trim() !== '' && value.trim().toLowerCase() !== 'false' : Boolean(value));
 
-  const children = props.children !== undefined ? props.children : (props.data?.children !== undefined ? props.data.children : undefined);
-  const authenticated = props.authenticated !== undefined ? props.authenticated : (props.data?.authenticated !== undefined ? props.data.authenticated : false);
-  const userRole = props.userRole !== undefined ? props.userRole : (props.data?.userRole !== undefined ? props.data.userRole : "guest");
-  const displayName = props.displayName !== undefined ? props.displayName : (props.data?.displayName !== undefined ? props.data.displayName : "");
+  const linkedinUrl = props.linkedinUrl !== undefined ? props.linkedinUrl : (props.data?.linkedinUrl !== undefined ? props.data.linkedinUrl : "https://www.linkedin.com");
+  const xUrl = props.xUrl !== undefined ? props.xUrl : (props.data?.xUrl !== undefined ? props.data.xUrl : "https://x.com");
+  const displayName = props.displayName !== undefined ? props.displayName : (props.data?.displayName !== undefined ? props.data.displayName : "My account");
   const locale = props.locale !== undefined ? props.locale : (props.data?.locale !== undefined ? props.data.locale : "en");
-  const remainingSeconds = props.remainingSeconds !== undefined ? props.remainingSeconds : (props.data?.remainingSeconds !== undefined ? props.data.remainingSeconds : -1);
-  const notice = props.notice !== undefined ? props.notice : (props.data?.notice !== undefined ? props.data.notice : "College mathematics pilot · For learners aged 18 and above.");
-  const inputs = { "children": children, "authenticated": authenticated, "userRole": userRole, "displayName": displayName, "locale": locale, "remainingSeconds": remainingSeconds, "notice": notice };
-  const [statusMessage, set_statusMessage] = useState(() => structuredClone(""));
-  const state = { "statusMessage": statusMessage };
+  const children = props.children !== undefined ? props.children : (props.data?.children !== undefined ? props.data.children : undefined);
+  const navOptions = props.navOptions !== undefined ? props.navOptions : (props.data?.navOptions !== undefined ? props.data.navOptions : [{"href":"/","label":"Explore"},{"href":"/browse","label":"Browse"},{"href":"/professor/context","label":"Professor"}]);
+  const avatarUrl = props.avatarUrl !== undefined ? props.avatarUrl : (props.data?.avatarUrl !== undefined ? props.data.avatarUrl : "");
+  const authenticated = props.authenticated !== undefined ? props.authenticated : (props.data?.authenticated !== undefined ? props.data.authenticated : false);
+  const title = props.title !== undefined ? props.title : (props.data?.title !== undefined ? props.data.title : "Rudra Scholar");
+  const copyrightText = props.copyrightText !== undefined ? props.copyrightText : (props.data?.copyrightText !== undefined ? props.data.copyrightText : "© 2026 Rudra Scholar");
+  const inputs = { "linkedinUrl": linkedinUrl, "xUrl": xUrl, "displayName": displayName, "locale": locale, "children": children, "navOptions": navOptions, "avatarUrl": avatarUrl, "authenticated": authenticated, "title": title, "copyrightText": copyrightText };
+  const [accountMenuOpen, set_accountMenuOpen] = useState(() => structuredClone(false));
+  const [languageMenuOpen, set_languageMenuOpen] = useState(() => structuredClone(false));
+  const state = { "accountMenuOpen": accountMenuOpen, "languageMenuOpen": languageMenuOpen };
 
   const _setState = useCallback((name, value) => {
     switch (name) {
-      case "statusMessage": { const next = typeof value === 'function' ? value(state.statusMessage) : value; state.statusMessage = next; set_statusMessage(next); return next; }
+      case "accountMenuOpen": { const next = typeof value === 'function' ? value(state.accountMenuOpen) : value; state.accountMenuOpen = next; set_accountMenuOpen(next); return next; }
+      case "languageMenuOpen": { const next = typeof value === 'function' ? value(state.languageMenuOpen) : value; state.languageMenuOpen = next; set_languageMenuOpen(next); return next; }
       default: return value;
     }
   }, [state]);
@@ -103,12 +108,13 @@ export default function CompiledModule(props) {
       return next;
     };
     switch (root) {
-      case "statusMessage": _setState("statusMessage", updateNested); return value;
+      case "accountMenuOpen": _setState("accountMenuOpen", updateNested); return value;
+      case "languageMenuOpen": _setState("languageMenuOpen", updateNested); return value;
       default: return value;
     }
   }, [_setState]);
 
-  const _outputSchemas = {"feedbackRequested":{"properties":{"source":{"type":"string"}},"required":["source"],"type":"object"},"localeChanged":{"properties":{"locale":{"type":"string"}},"required":["locale"],"type":"object"},"navigationRequested":{"properties":{"path":{"type":"string"}},"required":["path"],"type":"object"},"signInRequested":{"properties":{"source":{"type":"string"}},"required":["source"],"type":"object"},"signOutRequested":{"properties":{"source":{"type":"string"}},"required":["source"],"type":"object"}};
+  const _outputSchemas = {"localeChanged":{"properties":{"locale":{"type":"string"}},"required":["locale"],"type":"object"},"navigationRequested":{"properties":{"path":{"type":"string"}},"required":["path"],"type":"object"},"signOutRequested":{"properties":{"source":{"type":"string"}},"required":["source"],"type":"object"}};
   const _validateOutputPayload = (value, schema, path) => {
     if (!schema || typeof schema !== 'object') return '';
     const allowedTypes = Array.isArray(schema.type) ? schema.type : schema.type ? [schema.type] : [];
@@ -174,39 +180,40 @@ export default function CompiledModule(props) {
     return !(value && typeof value === 'object' && !Array.isArray(value) && Object.keys(value).length === 0);
   };
 
+  async function toggleLanguageMenu(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    { const event = args.event; const data = pageData; const globalState = state;
+      const customResult = await (async () => {
+return !Boolean(state.languageMenuOpen);
+      })();
+      stepResults["language_next"] = customResult; vars["customCodeResult"] = customResult; }
+    _setState("languageMenuOpen", stepResults.language_next);
+    _setState("accountMenuOpen", false);
+    return undefined;
+  }
+
+  async function toggleAccountMenu(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    { const event = args.event; const data = pageData; const globalState = state;
+      const customResult = await (async () => {
+return !Boolean(state.accountMenuOpen);
+      })();
+      stepResults["account_next"] = customResult; vars["customCodeResult"] = customResult; }
+    _setState("accountMenuOpen", stepResults.account_next);
+    _setState("languageMenuOpen", false);
+    return undefined;
+  }
+
   async function navigate(initialArgs = {}) {
     const args = initialArgs || {};
     const vars = {};
     const stepResults = {};
+    _setState("accountMenuOpen", false);
     void _emitOutput("navigationRequested", { "path": args.path }, false).catch(error => console.error('Module output delivery failed', error));
-    _setState("statusMessage", 'Navigation requested: ' + args.path);
-    return undefined;
-  }
-
-  async function feedback(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    void _emitOutput("feedbackRequested", { "source": "shared-shell" }, false).catch(error => console.error('Module output delivery failed', error));
-    _setState("statusMessage", "Feedback requested.");
-    return undefined;
-  }
-
-  async function signIn(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    void _emitOutput("signInRequested", { "source": "shared-shell" }, false).catch(error => console.error('Module output delivery failed', error));
-    _setState("statusMessage", "Sign-in requested.");
-    return undefined;
-  }
-
-  async function changeLocale(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    void _emitOutput("localeChanged", { "locale": args.locale }, false).catch(error => console.error('Module output delivery failed', error));
-    _setState("statusMessage", 'Language requested: ' + args.locale);
     return undefined;
   }
 
@@ -214,54 +221,33 @@ export default function CompiledModule(props) {
     const args = initialArgs || {};
     const vars = {};
     const stepResults = {};
+    _setState("accountMenuOpen", false);
     void _emitOutput("signOutRequested", { "source": "shared-shell" }, false).catch(error => console.error('Module output delivery failed', error));
-    _setState("statusMessage", "Sign-out requested.");
     return undefined;
   }
 
-  async function setLocale(initialArgs = {}) {
+  async function selectLanguage(initialArgs = {}) {
     const args = initialArgs || {};
     const vars = {};
     const stepResults = {};
+    _setState("languageMenuOpen", false);
     void _emitOutput("localeChanged", { "locale": args.locale }, false).catch(error => console.error('Module output delivery failed', error));
     return undefined;
   }
 
-  async function requestSignIn(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    void _emitOutput("signInRequested", { "source": "shared-header" }, false).catch(error => console.error('Module output delivery failed', error));
-    return undefined;
-  }
-
-  async function requestFeedback(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    void _emitOutput("feedbackRequested", { "source": "shared-footer" }, false).catch(error => console.error('Module output delivery failed', error));
-    return undefined;
-  }
-
   const _localActions = {
+    "toggleLanguageMenu": toggleLanguageMenu,
+    "toggleAccountMenu": toggleAccountMenu,
     "navigate": navigate,
-    "feedback": feedback,
-    "signIn": signIn,
-    "changeLocale": changeLocale,
     "signOut": signOut,
-    "setLocale": setLocale,
-    "requestSignIn": requestSignIn,
-    "requestFeedback": requestFeedback,
+    "selectLanguage": selectLanguage,
   };
   const _localActionArguments = {
+    "toggleLanguageMenu": [],
+    "toggleAccountMenu": [],
     "navigate": ["path"],
-    "feedback": [],
-    "signIn": [],
-    "changeLocale": ["locale"],
     "signOut": [],
-    "setLocale": ["locale"],
-    "requestSignIn": [],
-    "requestFeedback": [],
+    "selectLanguage": ["locale"],
   };
   const _callAction = (name, configuredArgs = {}, eventArgs = []) => {
     const localAction = _localActions[name];
@@ -287,87 +273,68 @@ export default function CompiledModule(props) {
   return (
     <div ref={wrapperRef} className="rudra-module-wrapper">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@rudra-studio/rudra-layout@1.0.26/components/Box/styles.css" precedence="rudra-library" />
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="shell" data-theme={((_bindingValue) => _bindingValue === undefined ? "light" : _bindingValue)($theme)} className="block rs-shell">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreLink id="skip" className="rs-shell-skip" href="#rs-page-content" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@rudra-studio/rudra-layout@1.0.26/components/Repeater/styles.css" precedence="rudra-library" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="shell" data-theme={((_bindingValue) => _bindingValue === undefined ? "light" : _bindingValue)($theme)} className="block rs-shell">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="header" role="banner" className="block rs-header">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="header_inner" className="grid rs-header-inner">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="brand" className="rs-brand" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Rudra Scholar" : _bindingValue)(inputs?.title)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="header" role="banner" className="block rs-shell-header">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="header_inner" className="block rs-shell-header-inner">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="brand" className="rs-shell-brand" rightIcon={false} id="brand" label="Rudra Scholar" theme="auto" leftIcon={false} onAction={(...eventArgs) => _callAction("navigate", {}, eventArgs)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutRepeater id="nav" aria-label="Primary navigation" className="flex flex-wrap items-center gap-2 rs-nav" items={((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(inputs?.navOptions)}>{(_payload) => { const _parentScope = _scope || {}; return (() => { const _scope = { ..._parentScope, ...(_payload || {}), item: _payload?.item ?? _payload, index: _payload?.index ?? _payload?.i ?? 0, parent: _parentScope }; return (<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="nav_item" className="rs-nav-button" rightIcon={false} size="sm" label={((_bindingValue) => _bindingValue === undefined ? "Link" : _bindingValue)(_scope?.item?.label)} theme="auto" variant="ghost" leftIcon={false} onAction={(...eventArgs) => _callAction("navigate", {}, eventArgs)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="navigation" role="navigation" aria-label="Main navigation" className="block rs-shell-nav">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="explore" className="rs-shell-button" leftIcon={false} onAction={(...eventArgs) => _callAction("navigate", {}, eventArgs)} rightIcon={false} id="explore" label="Explore" theme="auto" />
+</>); })(); }}</RudraLayoutRepeater>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="pricing" className="rs-shell-button" rightIcon={false} id="pricing" label="Learning time" theme="auto" leftIcon={false} onAction={(...eventArgs) => _callAction("navigate", {}, eventArgs)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="header_actions" className="flex items-center rs-header-actions">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="language_control" className="block rs-dropdown">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="language_trigger" className="rs-control-button" size="sm" label={undefined} onAction={(...eventArgs) => _callAction("toggleLanguageMenu", {}, eventArgs)} ariaLabel="Choose language" rightIcon={false} theme="auto" variant="ghost" leftIcon={false} />
 </>)}
-      {isVisibleValue(undefined) && (<>      <RudraCoreButton id="educator" className="rs-shell-button" theme="auto" onAction={(...eventArgs) => _callAction("navigate", {}, eventArgs)} id="educator" label="Educator studio" />
+      {isVisibleValue(languageMenuOpen) && (<>      <RudraLayoutBox id="language_menu" role="menu" aria-label="Language" className="block rs-menu rs-language-menu">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="lang_en" className="rs-menu-button" size="sm" theme="auto" variant="ghost" onAction={(...eventArgs) => _callAction("selectLanguage", {}, eventArgs)} fullWidth={true} rightIcon={false} label="English" leftIcon={false} />
 </>)}
-</RudraLayoutBox>
-</>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="account" className="block rs-shell-account">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="usage" className="rs-shell-button rs-shell-usage" id="usage" label={undefined} theme="auto" onAction={(...eventArgs) => _callAction("navigate", {}, eventArgs)} />
-</>)}
-      {isVisibleValue(undefined) && (<>      <RudraCoreButton id="signin" className="rs-shell-button rs-shell-primary" id="signin" label="Sign in" theme="auto" onAction={(...eventArgs) => _callAction("signIn", {}, eventArgs)} />
-</>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(inputs?.authenticated)) && (<>      <RudraCoreButton id="profile" className="rs-shell-button" id="profile" label={undefined} theme="auto" onAction={(...eventArgs) => _callAction("navigate", {}, eventArgs)} ariaLabel="My account" />
-</>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(inputs?.authenticated)) && (<>      <RudraCoreButton id="signout" className="rs-shell-button" onAction={(...eventArgs) => _callAction("signOut", {}, eventArgs)} id="signout" label="Sign out" theme="auto" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="lang_hi" className="rs-menu-button" size="sm" label="हिन्दी" theme="auto" variant="ghost" fullWidth={true} rightIcon={false} leftIcon={false} onAction={(...eventArgs) => _callAction("selectLanguage", {}, eventArgs)} />
 </>)}
 </RudraLayoutBox>
 </>)}
 </RudraLayoutBox>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="nav" className="rs-nav">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="home" onAction={(...eventArgs) => _callAction("navigate", {}, eventArgs)} rightIcon={false} label={((_bindingValue) => _bindingValue === undefined ? "Home" : _bindingValue)(_scope?.i18n?.home)} theme="auto" variant="ghost" leftIcon={false} />
+      {isVisibleValue(undefined) && (<>      <RudraCoreButton id="sign_in" className="rs-nav-button rs-sign-in" onAction={(...eventArgs) => _callAction("navigate", {}, eventArgs)} rightIcon={false} size="sm" label="Sign in" theme="auto" variant="outline" leftIcon={false} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="browse" label={((_bindingValue) => _bindingValue === undefined ? "Browse problems" : _bindingValue)(_scope?.i18n?.browse)} theme="auto" variant="ghost" onAction={(...eventArgs) => _callAction("navigate", {}, eventArgs)} />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(_scope?.$auth?.isAuthenticated)) && (<>      <RudraLayoutBox id="account_control" className="block rs-dropdown">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="account_trigger" className="rs-avatar-button" size="sm" theme="auto" variant="ghost" leftIcon={false} onAction={(...eventArgs) => _callAction("toggleAccountMenu", {}, eventArgs)} ariaLabel="Open account menu" rightIcon={false}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreAvatar id="avatar" name={((_bindingValue) => _bindingValue === undefined ? "My account" : _bindingValue)(_scope?.$auth?.user?.profile?.name)} size="md" shape="circle" theme="auto" status="none" loading="lazy" alt={((_bindingValue) => _bindingValue === undefined ? "My account" : _bindingValue)(_scope?.$auth?.user?.profile?.name)} src={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(_scope?.$auth?.user?.profile?.avatar)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="professor" label={((_bindingValue) => _bindingValue === undefined ? "Professor studio" : _bindingValue)(_scope?.i18n?.professor)} theme="auto" variant="ghost" onAction={(...eventArgs) => _callAction("navigate", {}, eventArgs)} />
+</RudraCoreButton>
 </>)}
-</RudraLayoutBox>
+      {isVisibleValue(accountMenuOpen) && (<>      <RudraLayoutBox id="account_menu" role="menu" aria-label="Account" className="block rs-menu rs-account-menu">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="metrics" className="rs-menu-button" variant="ghost" onAction={(...eventArgs) => _callAction("navigate", {}, eventArgs)} rightIcon={false} size="sm" label="Usage \u0026 metrics" theme="auto" leftIcon={false} fullWidth={true} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="tools" className="rs-tools">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreBadge id="meter" className="inline-flex px-2.5 py-1 text-xs gap-1.5" label="{{ Math.ceil((inputs.remainingSeconds || 0)/60) }} min" ariaLabel="Remaining learning minutes" />
-</>)}
-</RudraLayoutBox>
-</>)}
-</RudraLayoutBox>
-</>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="page" className="rs-page" />
-</>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="utility" className="block rs-shell-utility">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="notice" className="rs-shell-notice" as="p" content={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(inputs?.notice)} />
-</>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="languages" aria-label="Language" role="group" className="block rs-shell-languages">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="locale_en" className="rs-shell-button rs-shell-language" aria-pressed={undefined} id="locale_en" lang="en" label="English" theme="auto" onAction={(...eventArgs) => _callAction("changeLocale", {}, eventArgs)} />
-</>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="locale_hi" className="rs-shell-button rs-shell-language" theme="auto" onAction={(...eventArgs) => _callAction("changeLocale", {}, eventArgs)} aria-pressed={undefined} id="locale_hi" lang="hi" label="हिन्दी" />
-</>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="locale_ta" className="rs-shell-button rs-shell-language" lang="ta" label="தமிழ்" theme="auto" onAction={(...eventArgs) => _callAction("changeLocale", {}, eventArgs)} aria-pressed={undefined} id="locale_ta" />
-</>)}
-</RudraLayoutBox>
-</>)}
-</RudraLayoutBox>
-</>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="page_content" id="rs-page-content" role="main" tabIndex={-1} className="block rs-shell-content" />
-</>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="action_status" aria-live="polite" aria-atomic="true" role="status" className="block rs-shell-status">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="status_text" as="p" content={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(statusMessage)} />
-</>)}
-</RudraLayoutBox>
-</>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="footer" role="contentinfo" className="block rs-shell-footer">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="footer_inner" className="block rs-shell-footer-inner">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="footer_brand" className="block rs-shell-footer-brand">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="footer_title" className="rs-shell-footer-title" as="p" content="Rudra Scholar" />
-</>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="footer_promise" className="rs-shell-muted" content="Understand the reasoning, not only the answer." as="p" />
-</>)}
-</RudraLayoutBox>
-</>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="footer_actions" className="block rs-shell-footer-actions">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="feedback" className="rs-shell-button" theme="auto" onAction={(...eventArgs) => _callAction("feedback", {}, eventArgs)} id="feedback" label="Send feedback" />
-</>)}
-</RudraLayoutBox>
-</>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="copyright" className="rs-shell-muted" as="p" content="© 2026 Rudra Scholar" />
-</>)}
-</RudraLayoutBox>
-</>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="footer_copy" content={((_bindingValue) => _bindingValue === undefined ? "© 2026 Rudra Scholar." : _bindingValue)(_scope?.i18n?.copyright)} as="p" />
-</>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="footer_row" className="rs-foot-row">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="footer_note" as="p" content="AI work should be reviewed. Private lessons and account pages are not indexed." customColor="var(--rudra-color-muted)" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="logout" className="rs-menu-button rs-danger" size="sm" label="Sign out" onAction={(...eventArgs) => _callAction("signOut", {}, eventArgs)} theme="auto" variant="ghost" leftIcon={false} fullWidth={true} rightIcon={false} />
 </>)}
 </RudraLayoutBox>
 </>)}
 </RudraLayoutBox>
 </>)}
 </RudraLayoutBox>
+</>)}
+</RudraLayoutBox>
+</>)}
+</RudraLayoutBox>
+</>)}
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="page_content" id="rs-page-content" role="main" tabIndex={-1} className="block rs-main">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="el_1788753560389_x3pqf9a">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="el_1788753588621_u0zi0vw" />
+</>)}
+</RudraLayoutBox>
+</>)}
+</RudraLayoutBox>
+</>)}
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="footer" role="contentinfo" className="block rs-footer">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="footer_inner" className="flex items-center rs-footer-inner">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="copyright" className="rs-copyright" as="p" content={((_bindingValue) => _bindingValue === undefined ? "© 2026 Rudra Scholar" : _bindingValue)(inputs?.copyrightText)} />
+</>)}
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="socials" aria-label="Social links" className="flex items-center rs-socials">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreLink id="linkedin" className="rs-social-link" rel="noopener noreferrer" href={((_bindingValue) => _bindingValue === undefined ? "https://www.linkedin.com" : _bindingValue)(inputs?.linkedinUrl)} target="_blank">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="linkedin_text" className="rs-social-mark" as="span" content="in" />
+</>)}
+</RudraCoreLink>
+</>)}
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreLink id="x" className="rs-social-link" rel="noopener noreferrer" href={((_bindingValue) => _bindingValue === undefined ? "https://x.com" : _bindingValue)(inputs?.xUrl)} target="_blank">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="x_text" className="rs-social-mark" as="span" content="X" />
+</>)}
+</RudraCoreLink>
+</>)}
+</RudraLayoutBox>
+</>)}
+</RudraLayoutBox>
+</>)}
+</RudraLayoutBox>
+</>)}
+</RudraLayoutBox>
+</>)}
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="el_1788753553389_7ev6zjd" />
 </>)}
     </div>
   );
