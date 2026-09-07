@@ -162,7 +162,7 @@ function le(n) {
                 "      ",
                 s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                   "      ",
-                  /* @__PURE__ */ l(h, { id: "brand", className: "rs-shell-brand", leftIcon: !1, onAction: (...e) => m("navigate", {}, e), rightIcon: !1, id: "brand", label: "Rudra Scholar", theme: "auto" })
+                  /* @__PURE__ */ l(h, { id: "brand", className: "rs-shell-brand", id: "brand", label: "Rudra Scholar", theme: "auto", leftIcon: !1, onAction: (...e) => m("navigate", {}, e), rightIcon: !1 })
                 ] }),
                 s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                   "      ",
@@ -170,11 +170,11 @@ function le(n) {
                     "      ",
                     s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                       "      ",
-                      /* @__PURE__ */ l(h, { id: "explore", className: "rs-shell-button", rightIcon: !1, id: "explore", label: "Explore", theme: "auto", leftIcon: !1, onAction: (...e) => m("navigate", {}, e) })
+                      /* @__PURE__ */ l(h, { id: "explore", className: "rs-shell-button", onAction: (...e) => m("navigate", {}, e), rightIcon: !1, id: "explore", label: "Explore", theme: "auto", leftIcon: !1 })
                     ] }),
                     s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                       "      ",
-                      /* @__PURE__ */ l(h, { id: "pricing", className: "rs-shell-button", theme: "auto", leftIcon: !1, onAction: (...e) => m("navigate", {}, e), rightIcon: !1, id: "pricing", label: "Learning time" })
+                      /* @__PURE__ */ l(h, { id: "pricing", className: "rs-shell-button", label: "Learning time", theme: "auto", leftIcon: !1, onAction: (...e) => m("navigate", {}, e), rightIcon: !1, id: "pricing" })
                     ] }),
                     s(void 0) && /* @__PURE__ */ r(i, { children: [
                       "      ",
@@ -196,7 +196,7 @@ function le(n) {
                     ] }),
                     s(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(x?.authenticated)) && /* @__PURE__ */ r(i, { children: [
                       "      ",
-                      /* @__PURE__ */ l(h, { id: "profile", className: "rs-shell-button", onAction: (...e) => m("navigate", {}, e), ariaLabel: "My account", id: "profile", label: void 0, theme: "auto" })
+                      /* @__PURE__ */ l(h, { id: "profile", className: "rs-shell-button", theme: "auto", onAction: (...e) => m("navigate", {}, e), ariaLabel: "My account", id: "profile", label: void 0 })
                     ] }),
                     s(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(x?.authenticated)) && /* @__PURE__ */ r(i, { children: [
                       "      ",
@@ -212,7 +212,7 @@ function le(n) {
                 "      ",
                 s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                   "      ",
-                  /* @__PURE__ */ l(h, { id: "home", label: /* @__PURE__ */ ((e) => e === void 0 ? "Home" : e)(S?.i18n?.home), theme: "auto", variant: "ghost", onAction: (...e) => m("navigate", {}, e) })
+                  /* @__PURE__ */ l(h, { id: "home", theme: "auto", variant: "ghost", onAction: (...e) => m("navigate", {}, e), label: /* @__PURE__ */ ((e) => e === void 0 ? "Home" : e)(S?.i18n?.home) })
                 ] }),
                 s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                   "      ",
@@ -246,7 +246,7 @@ function le(n) {
             "      ",
             s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
               "      ",
-              /* @__PURE__ */ l(k, { id: "notice", className: "rs-shell-notice", content: /* @__PURE__ */ ((e) => e === void 0 ? "" : e)(x?.notice), as: "p" })
+              /* @__PURE__ */ l(k, { id: "notice", className: "rs-shell-notice", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "" : e)(x?.notice) })
             ] }),
             s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
               "      ",
@@ -254,15 +254,15 @@ function le(n) {
                 "      ",
                 s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                   "      ",
-                  /* @__PURE__ */ l(h, { id: "locale_en", className: "rs-shell-button rs-shell-language", label: "English", theme: "auto", onAction: (...e) => m("changeLocale", {}, e), "aria-pressed": void 0, id: "locale_en", lang: "en" })
+                  /* @__PURE__ */ l(h, { id: "locale_en", className: "rs-shell-button rs-shell-language", "aria-pressed": void 0, id: "locale_en", lang: "en", label: "English", theme: "auto", onAction: (...e) => m("changeLocale", {}, e) })
                 ] }),
                 s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                   "      ",
-                  /* @__PURE__ */ l(h, { id: "locale_hi", className: "rs-shell-button rs-shell-language", onAction: (...e) => m("changeLocale", {}, e), "aria-pressed": void 0, id: "locale_hi", lang: "hi", label: "हिन्दी", theme: "auto" })
+                  /* @__PURE__ */ l(h, { id: "locale_hi", className: "rs-shell-button rs-shell-language", theme: "auto", onAction: (...e) => m("changeLocale", {}, e), "aria-pressed": void 0, id: "locale_hi", lang: "hi", label: "हिन्दी" })
                 ] }),
                 s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                   "      ",
-                  /* @__PURE__ */ l(h, { id: "locale_ta", className: "rs-shell-button rs-shell-language", "aria-pressed": void 0, id: "locale_ta", lang: "ta", label: "தமிழ்", theme: "auto", onAction: (...e) => m("changeLocale", {}, e) })
+                  /* @__PURE__ */ l(h, { id: "locale_ta", className: "rs-shell-button rs-shell-language", onAction: (...e) => m("changeLocale", {}, e), "aria-pressed": void 0, id: "locale_ta", lang: "ta", label: "தமிழ்", theme: "auto" })
                 ] })
               ] })
             ] })
@@ -270,7 +270,7 @@ function le(n) {
         ] }),
         s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
           "      ",
-          /* @__PURE__ */ l(u, { id: "page_content", role: "main", tabIndex: -1, id: "rs-page-content", className: "block rs-shell-content" })
+          /* @__PURE__ */ l(u, { id: "page_content", id: "rs-page-content", role: "main", tabIndex: -1, className: "block rs-shell-content" })
         ] }),
         s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
           "      ",
@@ -310,13 +310,13 @@ function le(n) {
                     "      ",
                     s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                       "      ",
-                      /* @__PURE__ */ l(h, { id: "feedback", className: "rs-shell-button", theme: "auto", onAction: (...e) => m("feedback", {}, e), id: "feedback", label: "Send feedback" })
+                      /* @__PURE__ */ l(h, { id: "feedback", className: "rs-shell-button", id: "feedback", label: "Send feedback", theme: "auto", onAction: (...e) => m("feedback", {}, e) })
                     ] })
                   ] })
                 ] }),
                 s(o({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                   "      ",
-                  /* @__PURE__ */ l(k, { id: "copyright", className: "rs-shell-muted", content: "© 2026 Rudra Scholar", as: "p" })
+                  /* @__PURE__ */ l(k, { id: "copyright", className: "rs-shell-muted", as: "p", content: "© 2026 Rudra Scholar" })
                 ] })
               ] })
             ] }),
