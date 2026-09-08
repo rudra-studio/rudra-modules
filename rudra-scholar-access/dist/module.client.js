@@ -1,775 +1,644 @@
-import { jsx as h, jsxs as o, Fragment as a } from "react/jsx-runtime";
-import ie, { useState as w, useEffect as G, useRef as re, useCallback as Q } from "react";
-import { Typography as q, Alert as K, Button as oe } from "@rudra-studio/rudra-core";
-import * as Y from "lucide-react";
-import { Form as ot, Input as S, Select as ye, Textarea as st, Checkbox as se } from "@rudra-studio/rudra-form";
-import { Box as D } from "@rudra-studio/rudra-layout";
-const we = (u) => String(u || "").replace(/<script[\s\S]*?<\/script>/gi, "").replace(/<foreignObject[\s\S]*?<\/foreignObject>/gi, "").replace(/\son\w+\s*=\s*(?:"[^"]*"|'[^']*')/gi, "").replace(/\s(?:href|xlink:href)\s*=\s*(?:"javascript:[^"]*"|'javascript:[^']*')/gi, ""), nt = (u) => {
-  let _ = u;
-  for (; _ && typeof _ == "object" && "type" in _ && "value" in _; )
-    _ = _.value;
-  return _;
+import { jsx as u, jsxs as i, Fragment as s } from "react/jsx-runtime";
+import X, { useState as ie, useEffect as B, useRef as V, useCallback as U } from "react";
+import { Box as F } from "@rudra-studio/rudra-layout";
+import * as Z from "lucide-react";
+import { Form as be, Input as w, Select as le, Textarea as _e, Checkbox as ee } from "@rudra-studio/rudra-form";
+import { Typography as x, Alert as H, Button as te } from "@rudra-studio/rudra-core";
+const de = (l) => String(l || "").replace(/<script[\s\S]*?<\/script>/gi, "").replace(/<foreignObject[\s\S]*?<\/foreignObject>/gi, "").replace(/\son\w+\s*=\s*(?:"[^"]*"|'[^']*')/gi, "").replace(/\s(?:href|xlink:href)\s*=\s*(?:"javascript:[^"]*"|'javascript:[^']*')/gi, ""), Se = (l) => {
+  let g = l;
+  for (; g && typeof g == "object" && "type" in g && "value" in g; )
+    g = g.value;
+  return g;
 };
-function v({ icon: u, size: _, color: F, strokeWidth: Z, className: M = "", style: O, ...N }) {
-  const p = nt(u), [P, W] = w(null), ne = p && typeof p == "object" ? JSON.stringify(p) : String(p || "");
-  G(() => {
-    const C = new AbortController();
-    let L = "", j = "";
-    if (W(null), typeof p == "string") {
-      const b = p.trim();
-      if (Y[b]) return () => C.abort();
-      b.startsWith("<svg") ? j = b : (/^https?:\/\//.test(b) || b.startsWith("/") || b.startsWith("data:image/svg")) && (L = b);
-    } else p && typeof p == "object" && (p.iconType === "svg" && p.svgContent ? j = p.svgContent : p.iconType === "url" && p.url && (L = p.url));
-    return j ? W(we(j)) : L && fetch(L, { signal: C.signal }).then((b) => {
-      if (!b.ok) throw new Error("Icon request failed (" + b.status + ")");
-      return b.text();
-    }).then((b) => {
-      b.trim().startsWith("<svg") && W(we(b));
-    }).catch((b) => {
-      b.name !== "AbortError" && console.warn("Failed to load custom SVG icon:", b);
-    }), () => C.abort();
-  }, [ne]);
-  const E = p && typeof p == "object" ? p.props || {} : {}, k = { ...E };
-  delete k.size, delete k.color, delete k.strokeWidth;
-  const I = _ ?? E.size ?? 24, A = F ?? E.color ?? "currentColor", g = Z ?? E.strokeWidth ?? 1.5;
-  let l = "";
-  if (typeof p == "string" && Y[p] ? l = p : p && typeof p == "object" && p.name && (!p.iconType || p.iconType === "lucide") && (l = p.name), l) {
-    const C = Y[l];
-    if (C)
-      return ie.createElement(C, {
+function b({ icon: l, size: g, color: A, strokeWidth: J, className: j = "", style: O, ...L }) {
+  const f = Se(l), [R, N] = ie(null), re = f && typeof f == "object" ? JSON.stringify(f) : String(f || "");
+  B(() => {
+    const q = new AbortController();
+    let M = "", W = "";
+    if (N(null), typeof f == "string") {
+      const y = f.trim();
+      if (Z[y]) return () => q.abort();
+      y.startsWith("<svg") ? W = y : (/^https?:\/\//.test(y) || y.startsWith("/") || y.startsWith("data:image/svg")) && (M = y);
+    } else f && typeof f == "object" && (f.iconType === "svg" && f.svgContent ? W = f.svgContent : f.iconType === "url" && f.url && (M = f.url));
+    return W ? N(de(W)) : M && fetch(M, { signal: q.signal }).then((y) => {
+      if (!y.ok) throw new Error("Icon request failed (" + y.status + ")");
+      return y.text();
+    }).then((y) => {
+      y.trim().startsWith("<svg") && N(de(y));
+    }).catch((y) => {
+      y.name !== "AbortError" && console.warn("Failed to load custom SVG icon:", y);
+    }), () => q.abort();
+  }, [re]);
+  const C = f && typeof f == "object" ? f.props || {} : {}, z = { ...C };
+  delete z.size, delete z.color, delete z.strokeWidth;
+  const I = g ?? C.size ?? 24, E = A ?? C.color ?? "currentColor", h = J ?? C.strokeWidth ?? 1.5;
+  let c = "";
+  if (typeof f == "string" && Z[f] ? c = f : f && typeof f == "object" && f.name && (!f.iconType || f.iconType === "lucide") && (c = f.name), c) {
+    const q = Z[c];
+    if (q)
+      return X.createElement(q, {
         size: I,
-        color: A,
-        strokeWidth: g,
-        className: M,
+        color: E,
+        strokeWidth: h,
+        className: j,
         style: O,
-        ...k,
-        ...N
+        ...z,
+        ...L
       });
   }
-  if (P)
-    return ie.createElement("span", {
-      ...k,
-      ...N,
-      className: ("rudra-universal-icon " + M).trim(),
+  if (R)
+    return X.createElement("span", {
+      ...z,
+      ...L,
+      className: ("rudra-universal-icon " + j).trim(),
       style: {
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
         width: I,
         height: I,
-        color: A,
+        color: E,
         ...O
       },
       dangerouslySetInnerHTML: {
-        __html: P.replace(/<svg([^>]*)>/i, '<svg$1 style="width:100%;height:100%;" stroke-width="' + g + '">')
+        __html: R.replace(/<svg([^>]*)>/i, '<svg$1 style="width:100%;height:100%;" stroke-width="' + h + '">')
       }
     });
-  const X = Y.LayoutGrid;
-  return ie.createElement(X, {
+  const K = Z.LayoutGrid;
+  return X.createElement(K, {
     size: I,
-    color: A,
-    strokeWidth: g,
-    className: M,
+    color: E,
+    strokeWidth: h,
+    className: j,
     style: O,
-    ...k,
-    ...N
+    ...z,
+    ...L
   });
 }
-function ht(u) {
-  const _ = {}, F = u.serverData || u.serverState || {}, Z = u.sharedState || {}, M = u.applicationState || F.applicationState || {}, O = u.pageState || F.pageState || {}, N = u.pageData || F.pageData || {}, p = {
-    ...u.runtime?.functions || {},
-    ...u.runtime?.actions || {},
-    ...u.functions || {},
-    ...u.actions || {}
-  }, P = u.$theme ?? u.theme ?? u.data?.$theme ?? u.runtime?.data?.$theme ?? u.runtime?.theme, W = () => typeof document > "u" ? "light" : document.documentElement.dataset.theme || (document.documentElement.classList.contains("dark") ? "dark" : "light"), [ne, E] = w(() => P ?? W());
-  G(() => {
-    P != null && E(P);
-  }, [P]), G(() => {
-    if (P != null || typeof document > "u") return;
-    const e = document.documentElement, i = (s) => E(s?.detail?.theme ?? W()), t = new MutationObserver(i);
-    return t.observe(e, { attributes: !0, attributeFilter: ["class", "data-theme"] }), window.addEventListener("rudra:theme-change", i), i(), () => {
-      t.disconnect(), window.removeEventListener("rudra:theme-change", i);
+function xe(l) {
+  const g = {}, A = l.serverData || l.serverState || {}, J = l.sharedState || {}, j = l.applicationState || A.applicationState || {}, O = l.pageState || A.pageState || {}, L = l.pageData || A.pageData || {}, f = {
+    ...l.runtime?.functions || {},
+    ...l.runtime?.actions || {},
+    ...l.functions || {},
+    ...l.actions || {}
+  }, R = l.$theme ?? l.theme ?? l.data?.$theme ?? l.runtime?.data?.$theme ?? l.runtime?.theme, N = () => typeof document > "u" ? "light" : document.documentElement.dataset.theme || (document.documentElement.classList.contains("dark") ? "dark" : "light"), [re, C] = ie(() => R ?? N());
+  B(() => {
+    R != null && C(R);
+  }, [R]), B(() => {
+    if (R != null || typeof document > "u") return;
+    const e = document.documentElement, n = (o) => C(o?.detail?.theme ?? N()), t = new MutationObserver(n);
+    return t.observe(e, { attributes: !0, attributeFilter: ["class", "data-theme"] }), window.addEventListener("rudra:theme-change", n), n(), () => {
+      t.disconnect(), window.removeEventListener("rudra:theme-change", n);
     };
-  }, [P]);
-  const k = re(null), [I, A] = w("lg");
-  G(() => {
-    if (!k.current) return;
-    const e = new ResizeObserver((i) => {
-      for (let t of i) {
-        const s = t.contentRect.width;
-        s < 768 ? A("sm") : s < 1024 ? A("md") : A("lg");
+  }, [R]);
+  const z = V(null), [I, E] = ie("lg");
+  B(() => {
+    if (!z.current) return;
+    const e = new ResizeObserver((n) => {
+      for (let t of n) {
+        const o = t.contentRect.width;
+        o < 768 ? E("sm") : o < 1024 ? E("md") : E("lg");
       }
     });
-    return e.observe(k.current), () => e.disconnect();
+    return e.observe(z.current), () => e.disconnect();
   }, []);
-  const g = Q((e) => typeof e != "object" || e === null ? e : I === "sm" ? e.sm !== void 0 ? e.sm : e.md !== void 0 ? e.md : e.lg : I === "md" ? e.md !== void 0 ? e.md : e.sm !== void 0 ? e.sm : e.lg : e.lg !== void 0 ? e.lg : e.md !== void 0 ? e.md : e.sm, [I]), l = (e) => Array.isArray(e) ? e.length > 0 : typeof e == "string" ? e.trim() !== "" && e.trim().toLowerCase() !== "false" : !!e, X = u.profileServiceEnabled !== void 0 ? u.profileServiceEnabled : u.data?.profileServiceEnabled !== void 0 ? u.data.profileServiceEnabled : !1, C = u.locale !== void 0 ? u.locale : u.data?.locale !== void 0 ? u.data.locale : "en", L = u.authenticated !== void 0 ? u.authenticated : u.data?.authenticated !== void 0 ? u.data.authenticated : !1, j = u.mode !== void 0 ? u.mode : u.data?.mode !== void 0 ? u.data.mode : "login", b = u.authProvider !== void 0 ? u.authProvider : u.data?.authProvider !== void 0 ? u.data.authProvider : "firebase-google", be = u.returnPath !== void 0 ? u.returnPath : u.data?.returnPath !== void 0 ? u.data.returnPath : "/learn", ae = u.profile !== void 0 ? u.profile : u.data?.profile !== void 0 ? u.data.profile : {}, z = { profileServiceEnabled: X, locale: C, authenticated: L, mode: j, authProvider: b, returnPath: be, profile: ae }, [_e, Re] = w(() => structuredClone(!1)), [Se, ve] = w(() => structuredClone(!0)), [ze, Pe] = w(() => structuredClone("login")), [ke, xe] = w(() => structuredClone("Next")), [qe, Ie] = w(() => structuredClone(!1)), [ce, Ce] = w(() => structuredClone("")), [de, Fe] = w(() => structuredClone("Step 1 of 3 · Profile")), [Ee, Ae] = w(() => structuredClone({ requestedRole: "student", verifiedEmail: "" })), [Le, je] = w(() => structuredClone(1)), [ee, Me] = w(() => structuredClone(!1)), [le, Oe] = w(() => structuredClone(!1)), [B, Ne] = w(() => structuredClone(!0)), [We, Be] = w(() => structuredClone(!0)), [Te, De] = w(() => structuredClone(!1)), [ue, Ge] = w(() => structuredClone({})), [Ve, $e] = w(() => structuredClone("student")), [he, Ue] = w(() => structuredClone(!1)), [V, Je] = w(() => structuredClone(!1)), [Qe, Ze] = w(() => structuredClone(!1)), m = { showEducatorFields: _e, showRegistrationStep1: Se, accessMode: ze, registrationPrimaryLabel: ke, showVerifiedRoleFields: qe, message: ce, registrationProgress: de, registrationInitialValues: Ee, registrationStep: Le, busy: ee, showPending: le, showLogin: B, showStudentFields: We, showInstitutionFields: Te, authenticatedProfile: ue, requestedRole: Ve, showRegistrationBack: he, showRegistration: V, showRegistrationStep3: Qe }, d = Q((e, i) => {
-    switch (e) {
-      case "showEducatorFields": {
-        const t = typeof i == "function" ? i(m.showEducatorFields) : i;
-        return m.showEducatorFields = t, Re(t), t;
-      }
-      case "showRegistrationStep1": {
-        const t = typeof i == "function" ? i(m.showRegistrationStep1) : i;
-        return m.showRegistrationStep1 = t, ve(t), t;
-      }
-      case "accessMode": {
-        const t = typeof i == "function" ? i(m.accessMode) : i;
-        return m.accessMode = t, Pe(t), t;
-      }
-      case "registrationPrimaryLabel": {
-        const t = typeof i == "function" ? i(m.registrationPrimaryLabel) : i;
-        return m.registrationPrimaryLabel = t, xe(t), t;
-      }
-      case "showVerifiedRoleFields": {
-        const t = typeof i == "function" ? i(m.showVerifiedRoleFields) : i;
-        return m.showVerifiedRoleFields = t, Ie(t), t;
-      }
-      case "message": {
-        const t = typeof i == "function" ? i(m.message) : i;
-        return m.message = t, Ce(t), t;
-      }
-      case "registrationProgress": {
-        const t = typeof i == "function" ? i(m.registrationProgress) : i;
-        return m.registrationProgress = t, Fe(t), t;
-      }
-      case "registrationInitialValues": {
-        const t = typeof i == "function" ? i(m.registrationInitialValues) : i;
-        return m.registrationInitialValues = t, Ae(t), t;
-      }
-      case "registrationStep": {
-        const t = typeof i == "function" ? i(m.registrationStep) : i;
-        return m.registrationStep = t, je(t), t;
-      }
-      case "busy": {
-        const t = typeof i == "function" ? i(m.busy) : i;
-        return m.busy = t, Me(t), t;
-      }
-      case "showPending": {
-        const t = typeof i == "function" ? i(m.showPending) : i;
-        return m.showPending = t, Oe(t), t;
-      }
-      case "showLogin": {
-        const t = typeof i == "function" ? i(m.showLogin) : i;
-        return m.showLogin = t, Ne(t), t;
-      }
-      case "showStudentFields": {
-        const t = typeof i == "function" ? i(m.showStudentFields) : i;
-        return m.showStudentFields = t, Be(t), t;
-      }
-      case "showInstitutionFields": {
-        const t = typeof i == "function" ? i(m.showInstitutionFields) : i;
-        return m.showInstitutionFields = t, De(t), t;
-      }
-      case "authenticatedProfile": {
-        const t = typeof i == "function" ? i(m.authenticatedProfile) : i;
-        return m.authenticatedProfile = t, Ge(t), t;
-      }
-      case "requestedRole": {
-        const t = typeof i == "function" ? i(m.requestedRole) : i;
-        return m.requestedRole = t, $e(t), t;
-      }
-      case "showRegistrationBack": {
-        const t = typeof i == "function" ? i(m.showRegistrationBack) : i;
-        return m.showRegistrationBack = t, Ue(t), t;
-      }
-      case "showRegistration": {
-        const t = typeof i == "function" ? i(m.showRegistration) : i;
-        return m.showRegistration = t, Je(t), t;
-      }
-      case "showRegistrationStep3": {
-        const t = typeof i == "function" ? i(m.showRegistrationStep3) : i;
-        return m.showRegistrationStep3 = t, Ze(t), t;
-      }
-      default:
-        return i;
-    }
+  const h = U((e) => typeof e != "object" || e === null ? e : I === "sm" ? e.sm !== void 0 ? e.sm : e.md !== void 0 ? e.md : e.lg : I === "md" ? e.md !== void 0 ? e.md : e.sm !== void 0 ? e.sm : e.lg : e.lg !== void 0 ? e.lg : e.md !== void 0 ? e.md : e.sm, [I]), c = (e) => Array.isArray(e) ? e.length > 0 : typeof e == "string" ? e.trim() !== "" && e.trim().toLowerCase() !== "false" : !!e, K = l.returnPath !== void 0 ? l.returnPath : l.data?.returnPath !== void 0 ? l.data.returnPath : "/learn", q = l.profile !== void 0 ? l.profile : l.data?.profile !== void 0 ? l.data.profile : {}, M = l.profileServiceEnabled !== void 0 ? l.profileServiceEnabled : l.data?.profileServiceEnabled !== void 0 ? l.data.profileServiceEnabled : !1, W = l.locale !== void 0 ? l.locale : l.data?.locale !== void 0 ? l.data.locale : "en", y = l.authenticated !== void 0 ? l.authenticated : l.data?.authenticated !== void 0 ? l.data.authenticated : !1, oe = l.mode !== void 0 ? l.mode : l.data?.mode !== void 0 ? l.data.mode : "login", ue = l.authProvider !== void 0 ? l.authProvider : l.data?.authProvider !== void 0 ? l.data.authProvider : "firebase-google", S = { returnPath: K, profile: q, profileServiceEnabled: M, locale: W, authenticated: y, mode: oe, authProvider: ue }, P = {}, m = U((e, n) => n, [P]);
+  U((e, n) => {
+    const [t, ...o] = String(e || "").split(".");
+    return t && o.length === 0 ? m(t, n) : n;
   }, [m]);
-  Q((e, i) => {
-    const [t, ...s] = String(e || "").split(".");
-    if (!t) return i;
-    if (s.length === 0) return d(t, i);
-    const n = (r) => {
-      const c = Array.isArray(r) ? [...r] : { ...r || {} };
-      let f = c;
-      return s.forEach((y, R) => {
-        R === s.length - 1 ? f[y] = i : (f[y] = Array.isArray(f[y]) ? [...f[y]] : { ...f[y] || {} }, f = f[y]);
-      }), c;
-    };
-    switch (t) {
-      case "showEducatorFields":
-        return d("showEducatorFields", n), i;
-      case "showRegistrationStep1":
-        return d("showRegistrationStep1", n), i;
-      case "accessMode":
-        return d("accessMode", n), i;
-      case "registrationPrimaryLabel":
-        return d("registrationPrimaryLabel", n), i;
-      case "showVerifiedRoleFields":
-        return d("showVerifiedRoleFields", n), i;
-      case "message":
-        return d("message", n), i;
-      case "registrationProgress":
-        return d("registrationProgress", n), i;
-      case "registrationInitialValues":
-        return d("registrationInitialValues", n), i;
-      case "registrationStep":
-        return d("registrationStep", n), i;
-      case "busy":
-        return d("busy", n), i;
-      case "showPending":
-        return d("showPending", n), i;
-      case "showLogin":
-        return d("showLogin", n), i;
-      case "showStudentFields":
-        return d("showStudentFields", n), i;
-      case "showInstitutionFields":
-        return d("showInstitutionFields", n), i;
-      case "authenticatedProfile":
-        return d("authenticatedProfile", n), i;
-      case "requestedRole":
-        return d("requestedRole", n), i;
-      case "showRegistrationBack":
-        return d("showRegistrationBack", n), i;
-      case "showRegistration":
-        return d("showRegistration", n), i;
-      case "showRegistrationStep3":
-        return d("showRegistrationStep3", n), i;
-      default:
-        return i;
-    }
-  }, [d]);
-  const He = { googleSignInRequested: { properties: { returnPath: { type: "string" } }, required: ["returnPath"], type: "object" }, navigationRequested: { properties: { path: { type: "string" } }, required: ["path"], type: "object" }, registrationCompleted: { properties: { isRegistered: { type: "boolean" }, onboardingStatus: { type: "string" }, redirectPath: { type: "string" }, requestedRole: { type: "string" }, roles: { items: { type: "string" }, type: "array" }, verificationStatus: { type: "string" } }, type: "object" } }, te = (e, i, t) => {
-    if (!i || typeof i != "object") return "";
-    const s = Array.isArray(i.type) ? i.type : i.type ? [i.type] : [], n = e === null ? "null" : Array.isArray(e) ? "array" : Number.isInteger(e) ? "integer" : typeof e;
-    if (s.length && !s.includes(n) && !(n === "integer" && s.includes("number"))) return t + " must be " + s.join(" or ") + ".";
-    if (i.enum && !i.enum.some((r) => JSON.stringify(r) === JSON.stringify(e))) return t + " is not an allowed value.";
+  const me = { googleSignInRequested: { properties: { returnPath: { type: "string" } }, required: ["returnPath"], type: "object" }, navigationRequested: { properties: { path: { type: "string" } }, required: ["path"], type: "object" }, registrationCompleted: { properties: { isRegistered: { type: "boolean" }, onboardingStatus: { type: "string" }, redirectPath: { type: "string" }, requestedRole: { type: "string" }, roles: { items: { type: "string" }, type: "array" }, verificationStatus: { type: "string" } }, type: "object" } }, Y = (e, n, t) => {
+    if (!n || typeof n != "object") return "";
+    const o = Array.isArray(n.type) ? n.type : n.type ? [n.type] : [], d = e === null ? "null" : Array.isArray(e) ? "array" : Number.isInteger(e) ? "integer" : typeof e;
+    if (o.length && !o.includes(d) && !(d === "integer" && o.includes("number"))) return t + " must be " + o.join(" or ") + ".";
+    if (n.enum && !n.enum.some((r) => JSON.stringify(r) === JSON.stringify(e))) return t + " is not an allowed value.";
     if (e && typeof e == "object" && !Array.isArray(e)) {
-      for (const r of i.required || []) if (!Object.prototype.hasOwnProperty.call(e, r)) return t + "." + r + " is required.";
-      for (const [r, c] of Object.entries(i.properties || {})) if (Object.prototype.hasOwnProperty.call(e, r)) {
-        const f = te(e[r], c, t + "." + r);
-        if (f) return f;
+      for (const r of n.required || []) if (!Object.prototype.hasOwnProperty.call(e, r)) return t + "." + r + " is required.";
+      for (const [r, a] of Object.entries(n.properties || {})) if (Object.prototype.hasOwnProperty.call(e, r)) {
+        const p = Y(e[r], a, t + "." + r);
+        if (p) return p;
       }
     }
-    if (Array.isArray(e) && i.items) for (let r = 0; r < e.length; r++) {
-      const c = te(e[r], i.items, t + "[" + r + "]");
-      if (c) return c;
+    if (Array.isArray(e) && n.items) for (let r = 0; r < e.length; r++) {
+      const a = Y(e[r], n.items, t + "[" + r + "]");
+      if (a) return a;
     }
     return "";
-  }, H = Q(async (e, i, t = !1) => {
-    const s = He[e];
-    if (!s) throw new Error("Module output '" + e + "' is not declared.");
-    const n = te(i, s, "output." + e);
-    if (n) throw new Error(n);
-    const r = u.onOutput || u.onModuleOutput || u.runtime?.onOutput;
-    if (typeof r != "function") return i;
-    const c = r(e, i, { moduleId: u.moduleId, awaitHandlers: t });
-    return t ? await c : i;
-  }, [u.onOutput, u.onModuleOutput, u.runtime?.onOutput, u.moduleId]), me = (e, i) => {
-    const t = String(i || "").split(".").filter(Boolean);
-    if (!(!t.length || t.some((s) => ["__proto__", "prototype", "constructor"].includes(s))))
-      return t.reduce((s, n) => {
-        if (!(!s || typeof s != "object"))
-          return typeof s.get == "function" && !(n in s) ? s.get(n) : s[n];
+  }, Q = U(async (e, n, t = !1) => {
+    const o = me[e];
+    if (!o) throw new Error("Module output '" + e + "' is not declared.");
+    const d = Y(n, o, "output." + e);
+    if (d) throw new Error(d);
+    const r = l.onOutput || l.onModuleOutput || l.runtime?.onOutput;
+    if (typeof r != "function") return n;
+    const a = r(e, n, { moduleId: l.moduleId, awaitHandlers: t });
+    return t ? await a : n;
+  }, [l.onOutput, l.onModuleOutput, l.runtime?.onOutput, l.moduleId]), ne = (e, n) => {
+    const t = String(n || "").split(".").filter(Boolean);
+    if (!(!t.length || t.some((o) => ["__proto__", "prototype", "constructor"].includes(o))))
+      return t.reduce((o, d) => {
+        if (!(!o || typeof o != "object"))
+          return typeof o.get == "function" && !(d in o) ? o.get(d) : o[d];
       }, e);
-  }, $ = (e, i) => {
-    if (Array.isArray(e)) return e.map((s) => $(s, i));
-    if (e && typeof e == "object") return Object.fromEntries(Object.entries(e).map(([s, n]) => [$(s, i), $(n, i)]));
+  }, D = (e, n) => {
+    if (Array.isArray(e)) return e.map((o) => D(o, n));
+    if (e && typeof e == "object") return Object.fromEntries(Object.entries(e).map(([o, d]) => [D(o, n), D(d, n)]));
     if (typeof e != "string") return e;
     const t = e.match(/^\{\{\s*([A-Za-z_$][A-Za-z0-9_$.]*)\s*\}\}$/);
-    return t ? me(i, t[1]) : e.replace(/\{\{\s*([A-Za-z_$][A-Za-z0-9_$.]*)\s*\}\}/g, (s, n) => {
-      const r = me(i, n);
+    return t ? ne(n, t[1]) : e.replace(/\{\{\s*([A-Za-z_$][A-Za-z0-9_$.]*)\s*\}\}/g, (o, d) => {
+      const r = ne(n, d);
       return r == null ? "" : typeof r == "object" ? JSON.stringify(r) : String(r);
     });
   };
-  async function Ke(e = {}) {
-    const i = e || {}, t = {}, s = {};
-    d("busy", !0), d("message", "");
-    try {
-      {
-        const n = await U("RudraAuth.signIn", { provider: z.authProvider, returnPath: z.returnPath }, []);
-        s.google_auth = n, t["RudraAuth.signInResult"] = n;
-      }
-    } catch (n) {
-      {
-        i.event;
-        const r = await (async () => ({ message: String(n && n.message || "Sign-in succeeded, but Scholar access could not be resolved. Please try again.") }))();
-        s.google_error = r, t.customCodeResult = r;
-      }
-      return d("message", s.google_error.message), d("accessMode", "login"), d("busy", !1), { error: s.google_error.message, ok: !1 };
-    }
-    H("googleSignInRequested", { returnPath: z.returnPath }, !1).catch((n) => console.error("Module output delivery failed", n));
+  async function he(e = {}) {
+    const n = e || {}, t = {};
     {
-      i.event;
-      const n = await (async () => {
-        const r = s.google_auth || {}, c = r.user || r.currentUser || r.profile || r;
-        if (r.success === !1 || !c || !(c.uid || c.id || c.userId) || !c.email)
-          throw new Error(r.error || "Google sign-in did not return a verified user.");
-        return {
-          uid: c.uid || c.id || c.userId,
-          email: c.email,
-          displayName: c.displayName || c.name || "",
-          emailVerified: c.emailVerified === !0,
-          providerId: c.providerId || r.providerId || "google"
-        };
-      })();
-      s.normalize_auth = n, t.customCodeResult = n;
-    }
-    d("authenticatedProfile", s.normalize_auth), d("accessMode", "resolving");
-    {
-      const r = $({}, { args: i, inputs: z, state: m, sharedState: Z, applicationState: M, pageState: O, pageData: N, serverData: F, vars: t, stepResults: s }) || {};
-      delete r.userIdentity;
-      const c = [void 0], f = u.executeDatabaseQuery || u.runtime?.executeDatabaseQuery;
-      let y;
-      if (typeof f == "function")
-        y = await f({ moduleId: "cmtma35av000204jocz6kqu0s", queryId: "scholarResolveCurrentAccess", parameters: c, namedParameters: r, signal: i.signal });
-      else {
-        const R = await fetch("/api/modules/cmtma35av000204jocz6kqu0s/database/execute", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ queryId: "scholarResolveCurrentAccess", parameters: c, namedParameters: r }), signal: i.signal }), x = await R.json().catch(() => ({}));
-        if (!R.ok || x.success === !1) throw new Error(x.error || "Database query failed (" + R.status + ")");
-        y = x.data;
-      }
-      s.resolve_access = y, t.queryResult = y;
-    }
-    {
-      i.event;
-      const n = await (async () => {
-        const r = s.resolve_access, c = Array.isArray(r) ? r[0] : r, f = c && c.result ? c.result : c, y = !!(f && f.isRegistered === !0), R = y ? f : { ...m.authenticatedProfile, isRegistered: !1 };
-        return {
-          isRegistered: y,
-          profile: R,
-          redirectPath: f && f.redirectPath || z.returnPath || "/learn"
-        };
-      })();
-      s.normalize_access = n, t.customCodeResult = n;
-    }
-    return s.normalize_access.isRegistered ? (d("authenticatedProfile", s.normalize_access.profile), d("busy", !1), H("navigationRequested", { path: s.normalize_access.redirectPath }, !1).catch((n) => console.error("Module output delivery failed", n)), s.normalize_access) : (d("authenticatedProfile", s.normalize_access.profile), d("accessMode", "registration"), d("busy", !1), s.normalize_access);
-  }
-  async function ge(e = {}) {
-    const i = e || {}, t = {};
-    {
-      i.event;
-      const s = await (async () => {
-        const n = z.profile && typeof z.profile == "object" ? z.profile : {};
-        let r = ["login", "registration", "resolving"].includes(z.mode) ? z.mode : "login";
-        z.authenticated === !0 && n.isRegistered === !1 && (r = "registration");
-        const c = r === "resolving" && n.verificationStatus === "pending";
-        return {
-          mode: r,
-          profile: n,
-          showLogin: r === "login",
-          showRegistration: r === "registration",
-          showPending: c
-        };
-      })();
-      t.init_context = s;
-    }
-    return d("authenticatedProfile", t.init_context.profile), d("accessMode", t.init_context.mode), d("showLogin", t.init_context.showLogin), d("showRegistration", t.init_context.showRegistration), d("showPending", t.init_context.showPending), t.init_context;
-  }
-  async function Ye(e = {}) {
-    const i = e || {}, t = {};
-    {
-      i.event;
-      const s = await (async () => ({ isFinal: Math.max(1, Math.min(3, Number(m.registrationStep || 1))) === 3 }))();
-      t.wizard_decide = s;
+      n.event;
+      const o = await (async () => ({ isFinal: Math.max(1, Math.min(3, Number(P.registrationStep || 1))) === 3 }))();
+      t.wizard_decide = o;
     }
     if (t.wizard_decide.isFinal)
-      return await fe({ values: i.values }), t.wizard_submit;
+      return await se({ values: n.values }), t.wizard_submit;
     {
-      i.event;
-      const s = await (async () => {
-        const n = Math.max(1, Math.min(3, Number(m.registrationStep || 1))), r = String(i.values && i.values.requestedRole || m.requestedRole || "student"), c = Math.min(3, n + 1);
+      n.event;
+      const o = await (async () => {
+        const d = Math.max(1, Math.min(3, Number(P.registrationStep || 1))), r = String(n.values && n.values.requestedRole || P.requestedRole || "student"), a = Math.min(3, d + 1);
         return {
-          step: c,
+          step: a,
           role: r,
-          showStep1: c === 1,
-          showStudent: c === 2 && r === "student",
-          showEducator: c === 2 && r === "educator",
-          showInstitution: c === 2 && r === "institution_admin",
-          showVerified: c === 2 && (r === "educator" || r === "institution_admin"),
-          showStep3: c === 3,
-          showBack: c > 1,
-          progress: c === 1 ? "Step 1 of 3 · Profile" : c === 2 ? "Step 2 of 3 · Role details" : "Step 3 of 3 · Review and consent",
-          primaryLabel: c === 3 ? "Create account" : "Next"
+          showStep1: a === 1,
+          showStudent: a === 2 && r === "student",
+          showEducator: a === 2 && r === "educator",
+          showInstitution: a === 2 && r === "institution_admin",
+          showVerified: a === 2 && (r === "educator" || r === "institution_admin"),
+          showStep3: a === 3,
+          showBack: a > 1,
+          progress: a === 1 ? "Step 1 of 3 · Profile" : a === 2 ? "Step 2 of 3 · Role details" : "Step 3 of 3 · Review and consent",
+          primaryLabel: a === 3 ? "Create account" : "Next"
         };
       })();
-      t.wizard_advance = s;
+      t.wizard_advance = o;
     }
-    return d("requestedRole", t.wizard_advance.role), d("registrationStep", t.wizard_advance.step), d("registrationProgress", t.wizard_advance.progress), d("registrationPrimaryLabel", t.wizard_advance.primaryLabel), d("showRegistrationBack", t.wizard_advance.showBack), d("showRegistrationStep1", t.wizard_advance.showStep1), d("showStudentFields", t.wizard_advance.showStudent), d("showEducatorFields", t.wizard_advance.showEducator), d("showInstitutionFields", t.wizard_advance.showInstitution), d("showVerifiedRoleFields", t.wizard_advance.showVerified), d("showRegistrationStep3", t.wizard_advance.showStep3), t.wizard_advance;
+    return m("requestedRole", t.wizard_advance.role), m("registrationStep", t.wizard_advance.step), m("registrationProgress", t.wizard_advance.progress), m("registrationPrimaryLabel", t.wizard_advance.primaryLabel), m("showRegistrationBack", t.wizard_advance.showBack), m("showRegistrationStep1", t.wizard_advance.showStep1), m("showStudentFields", t.wizard_advance.showStudent), m("showEducatorFields", t.wizard_advance.showEducator), m("showInstitutionFields", t.wizard_advance.showInstitution), m("showVerifiedRoleFields", t.wizard_advance.showVerified), m("showRegistrationStep3", t.wizard_advance.showStep3), t.wizard_advance;
   }
-  async function Xe(e = {}) {
-    const i = e || {}, t = {};
+  async function ge(e = {}) {
+    const n = e || {}, t = {};
     {
-      i.event;
-      const s = await (async () => {
-        const n = Math.max(1, Math.min(3, Number(m.registrationStep || 1))), r = String(m.requestedRole || "student"), c = Math.max(1, n - 1);
+      n.event;
+      const o = await (async () => {
+        const d = Math.max(1, Math.min(3, Number(P.registrationStep || 1))), r = String(P.requestedRole || "student"), a = Math.max(1, d - 1);
         return {
-          step: c,
+          step: a,
           role: r,
-          showStep1: c === 1,
-          showStudent: c === 2 && r === "student",
-          showEducator: c === 2 && r === "educator",
-          showInstitution: c === 2 && r === "institution_admin",
-          showVerified: c === 2 && (r === "educator" || r === "institution_admin"),
-          showStep3: c === 3,
-          showBack: c > 1,
-          progress: c === 1 ? "Step 1 of 3 · Profile" : c === 2 ? "Step 2 of 3 · Role details" : "Step 3 of 3 · Review and consent",
-          primaryLabel: c === 3 ? "Create account" : "Next"
+          showStep1: a === 1,
+          showStudent: a === 2 && r === "student",
+          showEducator: a === 2 && r === "educator",
+          showInstitution: a === 2 && r === "institution_admin",
+          showVerified: a === 2 && (r === "educator" || r === "institution_admin"),
+          showStep3: a === 3,
+          showBack: a > 1,
+          progress: a === 1 ? "Step 1 of 3 · Profile" : a === 2 ? "Step 2 of 3 · Role details" : "Step 3 of 3 · Review and consent",
+          primaryLabel: a === 3 ? "Create account" : "Next"
         };
       })();
-      t.wizard_back_prepare = s;
+      t.wizard_back_prepare = o;
     }
-    return d("registrationStep", t.wizard_back_prepare.step), d("registrationProgress", t.wizard_back_prepare.progress), d("registrationPrimaryLabel", t.wizard_back_prepare.primaryLabel), d("showRegistrationBack", t.wizard_back_prepare.showBack), d("showRegistrationStep1", t.wizard_back_prepare.showStep1), d("showStudentFields", t.wizard_back_prepare.showStudent), d("showEducatorFields", t.wizard_back_prepare.showEducator), d("showInstitutionFields", t.wizard_back_prepare.showInstitution), d("showVerifiedRoleFields", t.wizard_back_prepare.showVerified), d("showRegistrationStep3", t.wizard_back_prepare.showStep3), t.wizard_back_prepare;
-  }
-  async function et(e = {}) {
-    const i = e || {};
-    return d("requestedRole", i.value), i.value;
+    return m("registrationStep", t.wizard_back_prepare.step), m("registrationProgress", t.wizard_back_prepare.progress), m("registrationPrimaryLabel", t.wizard_back_prepare.primaryLabel), m("showRegistrationBack", t.wizard_back_prepare.showBack), m("showRegistrationStep1", t.wizard_back_prepare.showStep1), m("showStudentFields", t.wizard_back_prepare.showStudent), m("showEducatorFields", t.wizard_back_prepare.showEducator), m("showInstitutionFields", t.wizard_back_prepare.showInstitution), m("showVerifiedRoleFields", t.wizard_back_prepare.showVerified), m("showRegistrationStep3", t.wizard_back_prepare.showStep3), t.wizard_back_prepare;
   }
   async function fe(e = {}) {
-    const i = e || {}, t = {}, s = {};
-    d("busy", !0), d("message", "");
-    {
-      const r = $({ profile: "{{ args.values }}" }, { args: i, inputs: z, state: m, sharedState: Z, applicationState: M, pageState: O, pageData: N, serverData: F, vars: t, stepResults: s }) || {};
-      delete r.userIdentity, delete r.verifiedEmail, delete r.emailVerified, delete r.providerId;
-      const c = [void 0, void 0, void 0, void 0, r.profile], f = u.executeDatabaseQuery || u.runtime?.executeDatabaseQuery;
-      let y;
-      if (typeof f == "function")
-        y = await f({ moduleId: "cmtma35av000204jocz6kqu0s", queryId: "scholarSubmitOnboarding", parameters: c, namedParameters: r, signal: i.signal });
-      else {
-        const R = await fetch("/api/modules/cmtma35av000204jocz6kqu0s/database/execute", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ queryId: "scholarSubmitOnboarding", parameters: c, namedParameters: r }), signal: i.signal }), x = await R.json().catch(() => ({}));
-        if (!R.ok || x.success === !1) throw new Error(x.error || "Database query failed (" + R.status + ")");
-        y = x.data;
-      }
-      s.reg_call = y, t.queryResult = y;
-    }
-    {
-      i.event;
-      const n = await (async () => {
-        const r = s.reg_call, c = Array.isArray(r) ? r[0] : r, f = c && c.result ? c.result : c;
-        if (!f || f.isRegistered !== !0) throw new Error(f && f.message || "Registration did not complete.");
-        return f;
-      })();
-      s.reg_normalize = n, t.customCodeResult = n;
-    }
-    return H("registrationCompleted", { isRegistered: s.reg_normalize.isRegistered, onboardingStatus: s.reg_normalize.onboardingStatus, redirectPath: s.reg_normalize.redirectPath, requestedRole: s.reg_normalize.requestedRole, roles: s.reg_normalize.roles, verificationStatus: s.reg_normalize.verificationStatus }, !1).catch((n) => console.error("Module output delivery failed", n)), H("navigationRequested", { path: s.reg_normalize.redirectPath }, !1).catch((n) => console.error("Module output delivery failed", n)), d("authenticatedProfile", s.reg_normalize), d("accessMode", "resolving"), d("message", s.reg_normalize.message), d("busy", !1), s.reg_normalize;
+    const n = e || {};
+    return m("requestedRole", n.value), n.value;
   }
-  const tt = {
-    requestGoogleSignIn: Ke,
-    initializeAccessFlow: ge,
-    handleRegistrationSubmit: Ye,
-    goBackRegistrationStep: Xe,
-    setRequestedRole: et,
-    submitRegistration: fe
-  }, it = {
-    requestGoogleSignIn: [],
-    initializeAccessFlow: [],
+  async function se(e = {}) {
+    const n = e || {}, t = {}, o = {};
+    m("busy", !0), m("message", "");
+    {
+      const r = D({ profile: "{{ args.values }}" }, { args: n, inputs: S, state: P, sharedState: J, applicationState: j, pageState: O, pageData: L, serverData: A, vars: t, stepResults: o }) || {};
+      delete r.userIdentity, delete r.verifiedEmail, delete r.emailVerified, delete r.providerId;
+      const a = [void 0, void 0, void 0, void 0, r.profile], p = l.executeDatabaseQuery || l.runtime?.executeDatabaseQuery;
+      let v;
+      if (typeof p == "function")
+        v = await p({ moduleId: "cmtma35av000204jocz6kqu0s", queryId: "scholarSubmitOnboarding", parameters: a, namedParameters: r, signal: n.signal });
+      else {
+        const _ = await fetch("/api/modules/cmtma35av000204jocz6kqu0s/database/execute", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ queryId: "scholarSubmitOnboarding", parameters: a, namedParameters: r }), signal: n.signal }), k = await _.json().catch(() => ({}));
+        if (!_.ok || k.success === !1) throw new Error(k.error || "Database query failed (" + _.status + ")");
+        v = k.data;
+      }
+      o.reg_call = v, t.queryResult = v;
+    }
+    {
+      n.event;
+      const d = await (async () => {
+        const r = o.reg_call, a = Array.isArray(r) ? r[0] : r, p = a && a.result ? a.result : a;
+        if (!p || p.isRegistered !== !0) throw new Error(p && p.message || "Registration did not complete.");
+        return p;
+      })();
+      o.reg_normalize = d, t.customCodeResult = d;
+    }
+    return Q("registrationCompleted", { isRegistered: o.reg_normalize.isRegistered, onboardingStatus: o.reg_normalize.onboardingStatus, redirectPath: o.reg_normalize.redirectPath, requestedRole: o.reg_normalize.requestedRole, roles: o.reg_normalize.roles, verificationStatus: o.reg_normalize.verificationStatus }, !1).catch((d) => console.error("Module output delivery failed", d)), Q("navigationRequested", { path: o.reg_normalize.redirectPath }, !1).catch((d) => console.error("Module output delivery failed", d)), m("authenticatedProfile", o.reg_normalize), m("accessMode", "resolving"), m("message", o.reg_normalize.message), m("busy", !1), o.reg_normalize;
+  }
+  async function pe(e = {}) {
+    const n = e || {}, t = {}, o = {};
+    m("busy", !0), m("message", "");
+    try {
+      {
+        const d = await G("RudraAuth.signIn", { provider: S.authProvider, returnPath: S.returnPath }, []);
+        o.google_auth = d, t["RudraAuth.signInResult"] = d;
+      }
+    } catch (d) {
+      {
+        n.event;
+        const r = await (async () => ({ message: String(d && d.message || "Sign-in succeeded, but Scholar access could not be resolved. Please try again.") }))();
+        o.google_error = r, t.customCodeResult = r;
+      }
+      return m("message", o.google_error.message), m("accessMode", "login"), m("busy", !1), { error: o.google_error.message, ok: !1 };
+    }
+    Q("googleSignInRequested", { returnPath: S.returnPath }, !1).catch((d) => console.error("Module output delivery failed", d));
+    {
+      n.event;
+      const d = await (async () => {
+        const r = o.google_auth || {}, a = r.user || r.currentUser || r.profile || r;
+        if (r.success === !1 || !a || !(a.uid || a.id || a.userId) || !a.email)
+          throw new Error(r.error || "Google sign-in did not return a verified user.");
+        return {
+          uid: a.uid || a.id || a.userId,
+          email: a.email,
+          displayName: a.displayName || a.name || "",
+          emailVerified: a.emailVerified === !0,
+          providerId: a.providerId || r.providerId || "google"
+        };
+      })();
+      o.normalize_auth = d, t.customCodeResult = d;
+    }
+    m("authenticatedProfile", o.normalize_auth), m("accessMode", "resolving");
+    {
+      const r = D({}, { args: n, inputs: S, state: P, sharedState: J, applicationState: j, pageState: O, pageData: L, serverData: A, vars: t, stepResults: o }) || {};
+      delete r.userIdentity;
+      const a = [void 0], p = l.executeDatabaseQuery || l.runtime?.executeDatabaseQuery;
+      let v;
+      if (typeof p == "function")
+        v = await p({ moduleId: "cmtma35av000204jocz6kqu0s", queryId: "scholarResolveCurrentAccess", parameters: a, namedParameters: r, signal: n.signal });
+      else {
+        const _ = await fetch("/api/modules/cmtma35av000204jocz6kqu0s/database/execute", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ queryId: "scholarResolveCurrentAccess", parameters: a, namedParameters: r }), signal: n.signal }), k = await _.json().catch(() => ({}));
+        if (!_.ok || k.success === !1) throw new Error(k.error || "Database query failed (" + _.status + ")");
+        v = k.data;
+      }
+      o.resolve_access = v, t.queryResult = v;
+    }
+    {
+      n.event;
+      const d = await (async () => {
+        const r = o.resolve_access, a = Array.isArray(r) ? r[0] : r, p = a && a.result ? a.result : a, v = !!(p && p.isRegistered === !0), _ = v ? p : { ...P.authenticatedProfile, isRegistered: !1 };
+        return {
+          isRegistered: v,
+          profile: _,
+          redirectPath: p && p.redirectPath || S.returnPath || "/learn"
+        };
+      })();
+      o.normalize_access = d, t.customCodeResult = d;
+    }
+    return o.normalize_access.isRegistered ? (m("authenticatedProfile", o.normalize_access.profile), m("busy", !1), Q("navigationRequested", { path: o.normalize_access.redirectPath }, !1).catch((d) => console.error("Module output delivery failed", d)), o.normalize_access) : (m("authenticatedProfile", o.normalize_access.profile), m("accessMode", "registration"), m("showLogin", !1), m("showRegistration", !0), m("showPending", !1), m("busy", !1), o.normalize_access);
+  }
+  async function ae(e = {}) {
+    const n = e || {}, t = {};
+    {
+      n.event;
+      const o = await (async () => {
+        const d = S.profile && typeof S.profile == "object" ? S.profile : {};
+        let r = ["login", "registration", "resolving"].includes(S.mode) ? S.mode : "login";
+        S.authenticated === !0 && d.isRegistered === !1 && (r = "registration");
+        const a = r === "resolving" && d.verificationStatus === "pending";
+        return {
+          mode: r,
+          profile: d,
+          showLogin: r === "login",
+          showRegistration: r === "registration",
+          showPending: a
+        };
+      })();
+      t.init_context = o;
+    }
+    return m("authenticatedProfile", t.init_context.profile), m("accessMode", t.init_context.mode), m("showLogin", t.init_context.showLogin), m("showRegistration", t.init_context.showRegistration), m("showPending", t.init_context.showPending), t.init_context;
+  }
+  const ye = {
+    handleRegistrationSubmit: he,
+    goBackRegistrationStep: ge,
+    setRequestedRole: fe,
+    submitRegistration: se,
+    requestGoogleSignIn: pe,
+    initializeAccessFlow: ae
+  }, ve = {
     handleRegistrationSubmit: ["values"],
     goBackRegistrationStep: [],
     setRequestedRole: ["value"],
-    submitRegistration: ["values"]
-  }, U = (e, i = {}, t = []) => {
-    const s = tt[e];
-    if (s) {
-      const y = it[e] || [];
-      return s(Object.fromEntries(y.map((R, x) => {
-        const J = Object.prototype.hasOwnProperty.call(i, R) ? i[R] : void 0;
-        return [R, (J === "" || J === void 0) && t[x] !== void 0 ? t[x] : R === "event" && (J === "" || J === void 0) ? t[0] : J];
+    submitRegistration: ["values"],
+    requestGoogleSignIn: [],
+    initializeAccessFlow: []
+  }, G = (e, n = {}, t = []) => {
+    const o = ye[e];
+    if (o) {
+      const v = ve[e] || [];
+      return o(Object.fromEntries(v.map((_, k) => {
+        const $ = Object.prototype.hasOwnProperty.call(n, _) ? n[_] : void 0;
+        return [_, ($ === "" || $ === void 0) && t[k] !== void 0 ? t[k] : _ === "event" && ($ === "" || $ === void 0) ? t[0] : $];
       })));
     }
-    const n = p?.[e];
-    if (typeof n == "function")
-      return n(Object.keys(i).length > 0 ? i : t[0]);
-    const [r, c] = String(e).split("."), f = typeof globalThis < "u" ? globalThis[r]?.[c] : void 0;
-    if (typeof f == "function") return f(...Object.values(i));
+    const d = f?.[e];
+    if (typeof d == "function")
+      return d(Object.keys(n).length > 0 ? n : t[0]);
+    const [r, a] = String(e).split("."), p = typeof globalThis < "u" ? globalThis[r]?.[a] : void 0;
+    if (typeof p == "function") return p(...Object.values(n));
     console.warn("Rudra action '" + e + "' is not available in this runtime.");
-  }, T = re(/* @__PURE__ */ new Map()), rt = Q((e, i, t, s) => {
-    const n = T.current.get(e);
-    if (i === "exhaust" && n?.promise) return n.promise;
-    i === "takeLatest" && n?.controller?.abort();
-    const r = new AbortController(), c = () => Promise.resolve().then(() => t(r.signal)), f = i === "queue" && n?.promise ? n.promise.catch(() => {
-    }).then(c) : c();
-    return T.current.set(e, { controller: r, promise: f }), f.catch((y) => {
-      y?.name !== "AbortError" && console.error(s, y);
+  }, T = V(/* @__PURE__ */ new Map()), we = U((e, n, t, o) => {
+    const d = T.current.get(e);
+    if (n === "exhaust" && d?.promise) return d.promise;
+    n === "takeLatest" && d?.controller?.abort();
+    const r = new AbortController(), a = () => Promise.resolve().then(() => t(r.signal)), p = n === "queue" && d?.promise ? d.promise.catch(() => {
+    }).then(a) : a();
+    return T.current.set(e, { controller: r, promise: p }), p.catch((v) => {
+      v?.name !== "AbortError" && console.error(o, v);
     }).finally(() => {
-      T.current.get(e)?.promise === f && T.current.delete(e);
-    }), f;
+      T.current.get(e)?.promise === p && T.current.delete(e);
+    }), p;
   }, []);
-  G(() => () => {
+  B(() => () => {
     for (const e of T.current.values()) e.controller?.abort();
     T.current.clear();
   }, []);
-  const pe = re(!1);
-  return G(() => {
-    pe.current || (pe.current = !0), rt("initialize_access_from_inputsinitializeAccessFlow", "takeLatest", (e) => ge({}), "Module input lifecycle failed:");
-  }, [L, j, ae]), /* @__PURE__ */ h("div", { ref: k, className: "rudra-module-wrapper", children: l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+  const ce = V(!1);
+  return B(() => {
+    ce.current || (ce.current = !0), we("initialize_access_from_inputsinitializeAccessFlow", "takeLatest", (e) => ae({}), "Module input lifecycle failed:");
+  }, [y, oe, q]), /* @__PURE__ */ u("div", { ref: z, className: "rudra-module-wrapper", children: c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
     "      ",
-    /* @__PURE__ */ o(D, { id: "root", className: "rs-access", children: [
+    /* @__PURE__ */ i(F, { id: "root", className: "rs-access", children: [
       "      ",
-      l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+      c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
         "      ",
-        /* @__PURE__ */ o(D, { id: "panel", className: "rs-access-grid", children: [
+        /* @__PURE__ */ i(F, { id: "panel", className: "rs-access-grid", children: [
           "      ",
-          l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+          c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
             "      ",
-            /* @__PURE__ */ o(D, { id: "story", className: "rs-access-story", children: [
+            /* @__PURE__ */ i(F, { id: "story", className: "rs-access-story", children: [
               "      ",
-              l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+              c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                 "      ",
-                /* @__PURE__ */ o(D, { id: "story_badge", "aria-label": "College mathematics proof of concept", className: "rs-badge-row", children: [
+                /* @__PURE__ */ i(F, { id: "story_badge", "aria-label": "College mathematics proof of concept", className: "rs-badge-row", children: [
                   "      ",
-                  l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+                  c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(v, { icon: "GraduationCap", id: "story_badge_icon", size: 14, color: "#b8f7e7", strokeWidth: 2 })
+                    /* @__PURE__ */ u(b, { icon: "GraduationCap", id: "story_badge_icon", size: 14, color: "#b8f7e7", strokeWidth: 2 })
                   ] }),
-                  l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+                  c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(q, { id: "story_badge_label", className: "rs-badge-label", as: "span", content: "College mathematics · POC", customColor: "#eafff8" })
+                    /* @__PURE__ */ u(x, { id: "story_badge_label", className: "rs-badge-label", as: "span", content: "College mathematics · POC", customColor: "#eafff8" })
                   ] })
                 ] })
               ] }),
-              l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+              c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                 "      ",
-                /* @__PURE__ */ h(q, { id: "title", className: "rs-access-title", as: "h2", content: /* @__PURE__ */ ((e) => e === void 0 ? "Learn mathematics with context, not shortcuts." : e)(_?.i18n?.title), customColor: "#eafff8" })
+                /* @__PURE__ */ u(x, { id: "title", className: "rs-access-title", content: /* @__PURE__ */ ((e) => e === void 0 ? "Learn mathematics with context, not shortcuts." : e)(g?.i18n?.title), customColor: "#eafff8", as: "h2" })
               ] }),
-              l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+              c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                 "      ",
-                /* @__PURE__ */ h(q, { id: "subtitle", className: "rs-muted", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "Work through challenging problems step by step—with explanations that make the ideas stick." : e)(_?.i18n?.subtitle) })
+                /* @__PURE__ */ u(x, { id: "subtitle", className: "rs-muted", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "Work through challenging problems step by step—with explanations that make the ideas stick." : e)(g?.i18n?.subtitle) })
               ] }),
-              l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+              c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                 "      ",
-                /* @__PURE__ */ h(K, { id: "trust", appearance: "outlined", live: "off", title: "SQL is the authority", variant: "neutral" })
+                /* @__PURE__ */ u(H, { id: "trust", title: "SQL is the authority", variant: "neutral", appearance: "outlined", live: "off" })
               ] })
             ] })
           ] }),
-          l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+          c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
             "      ",
-            /* @__PURE__ */ o(D, { id: "form_area", className: "rs-access-form", children: [
+            /* @__PURE__ */ i(F, { id: "form_area", className: "rs-access-form", children: [
               "      ",
-              l(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(B)) && /* @__PURE__ */ o(a, { children: [
+              c(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(g?.showLogin)) && /* @__PURE__ */ i(s, { children: [
                 "      ",
-                /* @__PURE__ */ h(q, { id: "signin_eyebrow", className: "rs-signin-eyebrow", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "WELCOME TO RUDRA SCHOLAR" : e)(_?.i18n?.welcome) })
+                /* @__PURE__ */ u(x, { id: "signin_eyebrow", className: "rs-signin-eyebrow", content: /* @__PURE__ */ ((e) => e === void 0 ? "WELCOME TO RUDRA SCHOLAR" : e)(g?.i18n?.welcome), as: "p" })
               ] }),
-              l(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(B)) && /* @__PURE__ */ o(a, { children: [
+              c(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(g?.showLogin)) && /* @__PURE__ */ i(s, { children: [
                 "      ",
-                /* @__PURE__ */ h(q, { id: "signin_title", className: "rs-signin-title", as: "h2", content: /* @__PURE__ */ ((e) => e === void 0 ? "Ready to think through the next problem?" : e)(_?.i18n?.signInTitle) })
+                /* @__PURE__ */ u(x, { id: "signin_title", className: "rs-signin-title", as: "h2", content: /* @__PURE__ */ ((e) => e === void 0 ? "Ready to think through the next problem?" : e)(g?.i18n?.signInTitle) })
               ] }),
-              l(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(B)) && /* @__PURE__ */ o(a, { children: [
+              c(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(g?.showLogin)) && /* @__PURE__ */ i(s, { children: [
                 "      ",
-                /* @__PURE__ */ h(q, { id: "signin_intro", className: "rs-signin-intro", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "Sign in to continue your lessons, saved work, and learning progress." : e)(_?.i18n?.signInIntro) })
+                /* @__PURE__ */ u(x, { id: "signin_intro", className: "rs-signin-intro", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "Sign in to continue your lessons, saved work, and learning progress." : e)(g?.i18n?.signInIntro) })
               ] }),
-              l(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(B)) && /* @__PURE__ */ o(a, { children: [
+              c(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(g?.showLogin)) && /* @__PURE__ */ i(s, { children: [
                 "      ",
-                /* @__PURE__ */ h(oe, { id: "google", leftIcon: /* @__PURE__ */ o(a, { children: [
+                /* @__PURE__ */ u(te, { id: "google", leftIcon: /* @__PURE__ */ i(s, { children: [
                   "      ",
-                  l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+                  c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(v, { icon: { iconType: "url", url: "https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" }, id: "google_logo", size: 20, strokeWidth: 1.2 })
+                    /* @__PURE__ */ u(b, { icon: { iconType: "url", url: "https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" }, id: "google_logo", strokeWidth: 1.2, size: 20 })
                   ] })
-                ] }), size: "lg", label: /* @__PURE__ */ ((e) => e === void 0 ? "Sign in with Google" : e)(_?.i18n?.google), loading: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(ee), variant: "outline", ariaLabel: "Sign in with Google", rightIcon: !1, id: "scholar-google-signin", theme: "auto", onAction: (...e) => U("requestGoogleSignIn", {}, e), fullWidth: !0 })
+                ] }), variant: "outline", ariaLabel: "Sign in with Google", fullWidth: !0, id: "scholar-google-signin", label: /* @__PURE__ */ ((e) => e === void 0 ? "Sign in with Google" : e)(g?.i18n?.google), loading: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(g?.busy), onAction: (...e) => G("requestGoogleSignIn", {}, e), rightIcon: !1, size: "lg", theme: "auto" })
               ] }),
-              l(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(B)) && /* @__PURE__ */ o(a, { children: [
+              c(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(g?.showLogin)) && /* @__PURE__ */ i(s, { children: [
                 "      ",
-                /* @__PURE__ */ h(q, { id: "notice", className: "rs-signin-note", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "First time here? After Google confirms your email, choose Student, Professor, or Institution administrator. Account setup takes about a minute." : e)(_?.i18n?.signInHelp) })
+                /* @__PURE__ */ u(x, { id: "notice", className: "rs-signin-note", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "First time here? After Google confirms your email, choose Student, Professor, or Institution administrator. Account setup takes about a minute." : e)(g?.i18n?.signInHelp) })
               ] }),
-              l(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(V)) && /* @__PURE__ */ o(a, { children: [
+              c(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(g?.showRegistration)) && /* @__PURE__ */ i(s, { children: [
                 "      ",
-                /* @__PURE__ */ h(q, { id: "heading", as: "h3", content: /* @__PURE__ */ ((e) => e === void 0 ? "Create your Scholar account" : e)(_?.i18n?.profile) })
+                /* @__PURE__ */ u(x, { id: "heading", as: "h3", content: /* @__PURE__ */ ((e) => e === void 0 ? "Create your Scholar account" : e)(g?.i18n?.profile) })
               ] }),
-              l(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(V)) && /* @__PURE__ */ o(a, { children: [
+              c(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(g?.showRegistration)) && /* @__PURE__ */ i(s, { children: [
                 "      ",
-                /* @__PURE__ */ o(ot, { id: "profile_form", className: "rs-form", onSubmit: (...e) => U("submitRegistration", {}, e), initialValues: { requestedRole: "student" }, children: [
+                /* @__PURE__ */ i(be, { id: "profile_form", className: "rs-form", onSubmit: (...e) => G("submitRegistration", {}, e), initialValues: { requestedRole: "student" }, children: [
                   "      ",
-                  l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+                  c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(q, { id: "registration_progress", className: "rs-registration-progress", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "Step 1 of 3 · Profile" : e)(de) })
+                    /* @__PURE__ */ u(x, { id: "registration_progress", className: "rs-registration-progress", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "Step 1 of 3 · Profile" : e)(g?.registrationProgress) })
                   ] }),
-                  l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+                  c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(S, { id: "email", icon: /* @__PURE__ */ o(a, { children: [
+                    /* @__PURE__ */ u(w, { id: "email", icon: /* @__PURE__ */ i(s, { children: [
                       "      ",
-                      l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+                      c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                         "      ",
-                        /* @__PURE__ */ h(v, { icon: "Mail", id: "email_field_icon", size: 18, strokeWidth: 1.8 })
+                        /* @__PURE__ */ u(b, { icon: "Mail", id: "email_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), value: /* @__PURE__ */ ((e) => e === void 0 ? "Signed-in Google account" : e)(ue?.email), disabled: !0, name: "verifiedEmail", size: "md", type: "email", label: "Verified Google email" })
+                    ] }), size: "md", type: "email", label: "Verified Google email", value: /* @__PURE__ */ ((e) => e === void 0 ? "Signed-in Google account" : e)(g?.authenticatedProfile?.email), disabled: !0, name: "verifiedEmail" })
                   ] }),
-                  l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+                  c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(S, { id: "first_name", type: "text", label: "First name", required: !0, name: "firstName", size: "md" })
+                    /* @__PURE__ */ u(w, { id: "first_name", required: !0, name: "firstName", size: "md", type: "text", label: "First name" })
                   ] }),
-                  l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+                  c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(S, { id: "last_name", icon: /* @__PURE__ */ o(a, { children: [
+                    /* @__PURE__ */ u(w, { id: "last_name", icon: /* @__PURE__ */ i(s, { children: [
                       "      ",
-                      l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+                      c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                         "      ",
-                        /* @__PURE__ */ h(v, { icon: "UserRound", id: "last_name_field_icon", size: 18, strokeWidth: 1.8 })
+                        /* @__PURE__ */ u(b, { icon: "UserRound", id: "last_name_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), name: "lastName", size: "md", type: "text", label: "Last name", required: !0 })
+                    ] }), label: "Last name", required: !0, name: "lastName", size: "md", type: "text" })
                   ] }),
-                  l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+                  c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(ye, { id: "role", options: [{ label: "Student", value: "student" }, { label: "Professor / teacher", value: "educator" }, { label: "Institution administrator", value: "institution_admin" }], required: !0, onChangeValue: (...e) => U("setRequestedRole", {}, e), name: "requestedRole", label: "Create account as", value: "student", radius: "md" })
+                    /* @__PURE__ */ u(le, { id: "role", name: "requestedRole", label: "Create account as", value: "student", radius: "md", options: [{ label: "Student", value: "student" }, { label: "Professor / teacher", value: "educator" }, { label: "Institution administrator", value: "institution_admin" }], required: !0, onChangeValue: (...e) => G("setRequestedRole", {}, e) })
                   ] }),
-                  l(void 0) && /* @__PURE__ */ o(a, { children: [
+                  c(void 0) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(S, { id: "qualification", icon: /* @__PURE__ */ o(a, { children: [
+                    /* @__PURE__ */ u(w, { id: "qualification", icon: /* @__PURE__ */ i(s, { children: [
                       "      ",
-                      l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+                      c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                         "      ",
-                        /* @__PURE__ */ h(v, { icon: "GraduationCap", id: "qualification_field_icon", strokeWidth: 1.8, size: 18 })
+                        /* @__PURE__ */ u(b, { icon: "GraduationCap", id: "qualification_field_icon", strokeWidth: 1.8, size: 18 })
                       ] })
-                    ] }), name: "qualification", size: "md", type: "text", label: "Highest relevant qualification", required: !0, placeholder: "For example, M.Sc. Mathematics" })
+                    ] }), size: "md", type: "text", label: "Highest relevant qualification", required: !0, placeholder: "For example, M.Sc. Mathematics", name: "qualification" })
                   ] }),
-                  l(void 0) && /* @__PURE__ */ o(a, { children: [
+                  c(void 0) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(K, { id: "kyc_intro", live: "off", title: "Role verification required", variant: "neutral", appearance: "outlined" })
-                  ] }),
-                  l(void 0) && /* @__PURE__ */ o(a, { children: [
-                    "      ",
-                    /* @__PURE__ */ h(S, { id: "institution", icon: /* @__PURE__ */ o(a, { children: [
+                    /* @__PURE__ */ u(w, { id: "institution", icon: /* @__PURE__ */ i(s, { children: [
                       "      ",
-                      l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+                      c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                         "      ",
-                        /* @__PURE__ */ h(v, { icon: "TicketCheck", id: "institution_field_icon", size: 18, strokeWidth: 1.8 })
+                        /* @__PURE__ */ u(b, { icon: "TicketCheck", id: "institution_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), type: "text", label: "Institution invite code (optional)", required: !1, placeholder: "Enter a verified college invite code", name: "institutionInvite", size: "md" })
+                    ] }), label: "Institution invite code (optional)", required: !1, placeholder: "Enter a verified college invite code", name: "institutionInvite", size: "md", type: "text" })
                   ] }),
-                  l(g({ lg: !1, md: !1, sm: !1 })) && /* @__PURE__ */ o(a, { children: [
+                  c(void 0) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(S, { id: "kyc", placeholder: "Secure upload reference — do not paste document data", name: "kycReference", size: "md", type: "text", label: "Legacy verification field disabled", required: !1 })
+                    /* @__PURE__ */ u(H, { id: "kyc_intro", variant: "neutral", appearance: "outlined", live: "off", title: "Role verification required" })
                   ] }),
-                  l(void 0) && /* @__PURE__ */ o(a, { children: [
+                  c(h({ lg: !1, md: !1, sm: !1 })) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(S, { id: "expertise", icon: /* @__PURE__ */ o(a, { children: [
+                    /* @__PURE__ */ u(w, { id: "kyc", name: "kycReference", size: "md", type: "text", label: "Legacy verification field disabled", required: !1, placeholder: "Secure upload reference — do not paste document data" })
+                  ] }),
+                  c(void 0) && /* @__PURE__ */ i(s, { children: [
+                    "      ",
+                    /* @__PURE__ */ u(w, { id: "expertise", icon: /* @__PURE__ */ i(s, { children: [
                       "      ",
-                      l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+                      c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                         "      ",
-                        /* @__PURE__ */ h(v, { icon: "Sigma", id: "expertise_field_icon", size: 18, strokeWidth: 1.8 })
+                        /* @__PURE__ */ u(b, { icon: "Sigma", id: "expertise_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), name: "subjectExpertise", size: "md", type: "text", label: "Mathematics expertise", required: !0, placeholder: "For example, Linear Algebra, Calculus" })
+                    ] }), required: !0, placeholder: "For example, Linear Algebra, Calculus", name: "subjectExpertise", size: "md", type: "text", label: "Mathematics expertise" })
                   ] }),
-                  l(void 0) && /* @__PURE__ */ o(a, { children: [
+                  c(void 0) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(st, { id: "professional_statement", size: "md", label: "Short professional statement", maxRows: 6, minRows: 3, required: !0, autoResize: !0, placeholder: "Briefly describe your teaching experience.", name: "professionalStatement" })
+                    /* @__PURE__ */ u(_e, { id: "professional_statement", placeholder: "Briefly describe your teaching experience.", name: "professionalStatement", size: "md", label: "Short professional statement", maxRows: 6, minRows: 3, required: !0, autoResize: !0 })
                   ] }),
-                  l(void 0) && /* @__PURE__ */ o(a, { children: [
+                  c(void 0) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(S, { id: "educator_institution", icon: /* @__PURE__ */ o(a, { children: [
+                    /* @__PURE__ */ u(w, { id: "educator_institution", icon: /* @__PURE__ */ i(s, { children: [
                       "      ",
-                      l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+                      c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                         "      ",
-                        /* @__PURE__ */ h(v, { icon: "School", id: "educator_institution_field_icon", size: 18, strokeWidth: 1.8 })
+                        /* @__PURE__ */ u(b, { icon: "School", id: "educator_institution_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), name: "institutionName", size: "md", type: "text", label: "College or university", required: !0 })
+                    ] }), label: "College or university", required: !0, name: "institutionName", size: "md", type: "text" })
                   ] }),
-                  l(void 0) && /* @__PURE__ */ o(a, { children: [
+                  c(void 0) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(S, { id: "evidence", icon: /* @__PURE__ */ o(a, { children: [
+                    /* @__PURE__ */ u(w, { id: "evidence", icon: /* @__PURE__ */ i(s, { children: [
                       "      ",
-                      l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+                      c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                         "      ",
-                        /* @__PURE__ */ h(v, { icon: "BadgeCheck", id: "evidence_field_icon", size: 18, strokeWidth: 1.8 })
+                        /* @__PURE__ */ u(b, { icon: "BadgeCheck", id: "evidence_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), required: !0, placeholder: "Use an institution email or public staff-profile URL", name: "kycEvidence", size: "md", type: "text", label: "KYC verification evidence" })
+                    ] }), size: "md", type: "text", label: "KYC verification evidence", required: !0, placeholder: "Use an institution email or public staff-profile URL", name: "kycEvidence" })
                   ] }),
-                  l(void 0) && /* @__PURE__ */ o(a, { children: [
+                  c(void 0) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(S, { id: "institution_legal_name", icon: /* @__PURE__ */ o(a, { children: [
+                    /* @__PURE__ */ u(w, { id: "institution_legal_name", icon: /* @__PURE__ */ i(s, { children: [
                       "      ",
-                      l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+                      c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                         "      ",
-                        /* @__PURE__ */ h(v, { icon: "Landmark", id: "institution_legal_name_field_icon", size: 18, strokeWidth: 1.8 })
+                        /* @__PURE__ */ u(b, { icon: "Landmark", id: "institution_legal_name_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), size: "md", type: "text", label: "Institution legal name", required: !0, name: "institutionLegalName" })
+                    ] }), name: "institutionLegalName", size: "md", type: "text", label: "Institution legal name", required: !0 })
                   ] }),
-                  l(void 0) && /* @__PURE__ */ o(a, { children: [
+                  c(void 0) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(S, { id: "institution_display_name", name: "institutionDisplayName", size: "md", type: "text", label: "Display name", required: !0 })
+                    /* @__PURE__ */ u(w, { id: "institution_display_name", name: "institutionDisplayName", size: "md", type: "text", label: "Display name", required: !0 })
                   ] }),
-                  l(void 0) && /* @__PURE__ */ o(a, { children: [
+                  c(void 0) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(ye, { id: "institution_type", required: !0, name: "institutionType", label: "Institution type", value: "college", options: [{ label: "College", value: "college" }, { label: "University", value: "university" }] })
+                    /* @__PURE__ */ u(le, { id: "institution_type", required: !0, name: "institutionType", label: "Institution type", value: "college", options: [{ label: "College", value: "college" }, { label: "University", value: "university" }] })
                   ] }),
-                  l(void 0) && /* @__PURE__ */ o(a, { children: [
+                  c(void 0) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(S, { id: "institution_website", icon: /* @__PURE__ */ o(a, { children: [
+                    /* @__PURE__ */ u(w, { id: "institution_website", icon: /* @__PURE__ */ i(s, { children: [
                       "      ",
-                      l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+                      c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                         "      ",
-                        /* @__PURE__ */ h(v, { icon: "Globe", id: "institution_website_field_icon", strokeWidth: 1.8, size: 18 })
+                        /* @__PURE__ */ u(b, { icon: "Globe", id: "institution_website_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), name: "institutionWebsite", size: "md", type: "url", label: "Official website", required: !0, placeholder: "https://example.edu" })
+                    ] }), required: !0, placeholder: "https://example.edu", name: "institutionWebsite", size: "md", type: "url", label: "Official website" })
                   ] }),
-                  l(void 0) && /* @__PURE__ */ o(a, { children: [
+                  c(void 0) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(S, { id: "institution_domain", icon: /* @__PURE__ */ o(a, { children: [
+                    /* @__PURE__ */ u(w, { id: "institution_domain", icon: /* @__PURE__ */ i(s, { children: [
                       "      ",
-                      l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+                      c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                         "      ",
-                        /* @__PURE__ */ h(v, { icon: "AtSign", id: "institution_domain_field_icon", size: 18, strokeWidth: 1.8 })
+                        /* @__PURE__ */ u(b, { icon: "AtSign", id: "institution_domain_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), placeholder: "example.edu", name: "institutionEmailDomain", size: "md", type: "text", label: "Institutional email domain", required: !0 })
+                    ] }), name: "institutionEmailDomain", size: "md", type: "text", label: "Institutional email domain", required: !0, placeholder: "example.edu" })
                   ] }),
-                  l(void 0) && /* @__PURE__ */ o(a, { children: [
+                  c(void 0) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(S, { id: "institution_contact", icon: /* @__PURE__ */ o(a, { children: [
+                    /* @__PURE__ */ u(w, { id: "institution_contact", icon: /* @__PURE__ */ i(s, { children: [
                       "      ",
-                      l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+                      c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                         "      ",
-                        /* @__PURE__ */ h(v, { icon: "Contact", id: "institution_contact_field_icon", size: 18, strokeWidth: 1.8 })
+                        /* @__PURE__ */ u(b, { icon: "Contact", id: "institution_contact_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), label: "Administrative contact", required: !0, name: "institutionContact", size: "md", type: "text" })
+                    ] }), name: "institutionContact", size: "md", type: "text", label: "Administrative contact", required: !0 })
                   ] }),
-                  l(void 0) && /* @__PURE__ */ o(a, { children: [
+                  c(void 0) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(S, { id: "country", icon: /* @__PURE__ */ o(a, { children: [
+                    /* @__PURE__ */ u(w, { id: "country", icon: /* @__PURE__ */ i(s, { children: [
                       "      ",
-                      l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+                      c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                         "      ",
-                        /* @__PURE__ */ h(v, { icon: "MapPin", id: "country_field_icon", strokeWidth: 1.8, size: 18 })
+                        /* @__PURE__ */ u(b, { icon: "MapPin", id: "country_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), type: "text", label: "Country", required: !0, name: "country", size: "md" })
+                    ] }), name: "country", size: "md", type: "text", label: "Country", required: !0 })
                   ] }),
-                  l(g({ lg: !1, md: !1, sm: !1 })) && /* @__PURE__ */ o(a, { children: [
+                  c(h({ lg: !1, md: !1, sm: !1 })) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(se, { id: "age_confirmed", name: "ageConfirmed", label: "I confirm I am 18 or older.", required: !1, colorScheme: "emerald", description: "The initial proof of concept is limited to college learners and adult educators." })
+                    /* @__PURE__ */ u(ee, { id: "age_confirmed", name: "ageConfirmed", label: "I confirm I am 18 or older.", required: !1, colorScheme: "emerald", description: "The initial proof of concept is limited to college learners and adult educators." })
                   ] }),
-                  l(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(V)) && /* @__PURE__ */ o(a, { children: [
+                  c(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(g?.showRegistration)) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(se, { id: "terms", name: "termsAccepted", label: "I accept the Terms of Service.", required: !0, colorScheme: "emerald", description: "Required before an account can be created." })
+                    /* @__PURE__ */ u(ee, { id: "terms", name: "termsAccepted", label: "I accept the Terms of Service.", required: !0, colorScheme: "emerald", description: "Required before an account can be created." })
                   ] }),
-                  l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+                  c(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(g?.showRegistration)) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(oe, { id: "submit", leftIcon: !1, fullWidth: !0, rightIcon: !1, size: "lg", theme: "auto", variant: "primary", label: "Continue", loading: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(ee) })
+                    /* @__PURE__ */ u(ee, { id: "privacy", label: "I have read and accept the Privacy Notice.", required: !0, colorScheme: "emerald", description: "Required before an account can be created.", name: "privacyAccepted" })
                   ] }),
-                  l(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(V)) && /* @__PURE__ */ o(a, { children: [
+                  c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ h(se, { id: "privacy", colorScheme: "emerald", description: "Required before an account can be created.", name: "privacyAccepted", label: "I have read and accept the Privacy Notice.", required: !0 })
+                    /* @__PURE__ */ u(te, { id: "submit", size: "lg", label: "Continue", theme: "auto", leftIcon: !1, loading: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(g?.busy), variant: "primary", fullWidth: !0, rightIcon: !1 })
                   ] }),
-                  l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+                  c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                     "      ",
-                    /* @__PURE__ */ o(D, { id: "registration_actions", className: "rs-registration-actions", children: [
+                    /* @__PURE__ */ i(F, { id: "registration_actions", className: "rs-registration-actions", children: [
                       "      ",
-                      l(he) && /* @__PURE__ */ o(a, { children: [
+                      c(g?.showRegistrationBack) && /* @__PURE__ */ i(s, { children: [
                         "      ",
-                        /* @__PURE__ */ h(oe, { id: "registration_back", leftIcon: /* @__PURE__ */ o(a, { children: [
+                        /* @__PURE__ */ u(te, { id: "registration_back", leftIcon: /* @__PURE__ */ i(s, { children: [
                           "      ",
-                          l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ o(a, { children: [
+                          c(h({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ i(s, { children: [
                             "      ",
-                            /* @__PURE__ */ h(v, { icon: "ArrowLeft", id: "registration_back_icon", size: 18, strokeWidth: 2 })
+                            /* @__PURE__ */ u(b, { icon: "ArrowLeft", id: "registration_back_icon", size: 18, strokeWidth: 2 })
                           ] })
-                        ] }), fullWidth: !0, rightIcon: !1, additionalAttributes: {}, id: "scholar-registration-back", size: "lg", theme: "auto", type: "button", label: "Back", variant: "secondary", onAction: (...e) => U("goBackRegistrationStep", {}, e) })
+                        ] }), theme: "auto", variant: "secondary", onAction: (...e) => G("goBackRegistrationStep", {}, e), fullWidth: !0, rightIcon: !1, size: "lg", type: "button", additionalAttributes: {}, id: "scholar-registration-back", label: "Back" })
                       ] })
                     ] })
                   ] })
                 ] })
               ] }),
-              l(ce) && /* @__PURE__ */ o(a, { children: [
+              c(g?.message) && /* @__PURE__ */ i(s, { children: [
                 "      ",
-                /* @__PURE__ */ h(K, { id: "message", live: "polite", title: "Scholar access", variant: "neutral", appearance: "outlined" })
+                /* @__PURE__ */ u(H, { id: "message", live: "polite", title: "Scholar access", variant: "neutral", appearance: "outlined" })
               ] }),
-              l(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(le)) && /* @__PURE__ */ o(a, { children: [
+              c(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(g?.showPending)) && /* @__PURE__ */ i(s, { children: [
                 "      ",
-                /* @__PURE__ */ h(K, { id: "pending_notice", appearance: "outlined", live: "polite", title: "Professor verification pending", variant: "warning" })
+                /* @__PURE__ */ u(H, { id: "pending_notice", appearance: "outlined", live: "polite", title: "Professor verification pending", variant: "warning" })
               ] })
             ] })
           ] })
@@ -779,5 +648,5 @@ function ht(u) {
   ] }) });
 }
 export {
-  ht as default
+  xe as default
 };
