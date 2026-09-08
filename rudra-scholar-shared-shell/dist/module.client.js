@@ -1,8 +1,8 @@
 import { jsxs as r, Fragment as i, jsx as u } from "react/jsx-runtime";
-import { useState as A, useEffect as T, useRef as ae, useCallback as _ } from "react";
-import { Box as d, Repeater as ie } from "@rudra-studio/rudra-layout";
-import { Typography as p, Button as b, Avatar as oe, Link as P } from "@rudra-studio/rudra-core";
-function de(t) {
+import { useState as A, useEffect as T, useRef as ie, useCallback as _ } from "react";
+import { Box as d, Repeater as oe } from "@rudra-studio/rudra-layout";
+import { Typography as p, Button as b, Avatar as le, Link as P } from "@rudra-studio/rudra-core";
+function me(t) {
   const N = {}, S = t.serverData || t.serverState || {};
   t.sharedState, t.applicationState || S.applicationState, t.pageState || S.pageState, t.pageData || S.pageData;
   const B = {
@@ -20,7 +20,7 @@ function de(t) {
       a.disconnect(), window.removeEventListener("rudra:theme-change", n);
     };
   }, [y]);
-  const R = ae(null), [U, I] = A("lg");
+  const R = ie(null), [U, I] = A("lg");
   T(() => {
     if (!R.current) return;
     const e = new ResizeObserver((n) => {
@@ -32,18 +32,18 @@ function de(t) {
     return e.observe(R.current), () => e.disconnect();
   }, []);
   const l = _((e) => typeof e != "object" || e === null ? e : U === "sm" ? e.sm !== void 0 ? e.sm : e.md !== void 0 ? e.md : e.lg : U === "md" ? e.md !== void 0 ? e.md : e.sm !== void 0 ? e.sm : e.lg : e.lg !== void 0 ? e.lg : e.md !== void 0 ? e.md : e.sm, [U]), o = (e) => Array.isArray(e) ? e.length > 0 : typeof e == "string" ? e.trim() !== "" && e.trim().toLowerCase() !== "false" : !!e, W = t.linkedinUrl !== void 0 ? t.linkedinUrl : t.data?.linkedinUrl !== void 0 ? t.data.linkedinUrl : "https://www.linkedin.com", F = t.xUrl !== void 0 ? t.xUrl : t.data?.xUrl !== void 0 ? t.data.xUrl : "https://x.com";
-  t.displayName !== void 0 ? t.displayName : t.data?.displayName !== void 0 && t.data.displayName, t.locale !== void 0 ? t.locale : t.data?.locale !== void 0 && t.data.locale, t.children !== void 0 ? t.children : t.data?.children !== void 0 && t.data.children;
-  const J = t.navOptions !== void 0 ? t.navOptions : t.data?.navOptions !== void 0 ? t.data.navOptions : [{ href: "/", label: "Explore" }, { href: "/browse", label: "Browse" }, { href: "/professor/context", label: "Professor" }];
+  t.displayName !== void 0 ? t.displayName : t.data?.displayName !== void 0 && t.data.displayName, t.locale !== void 0 ? t.locale : t.data?.locale !== void 0 && t.data.locale;
+  const J = t.children !== void 0 ? t.children : t.data?.children !== void 0 ? t.data.children : void 0, X = t.navOptions !== void 0 ? t.navOptions : t.data?.navOptions !== void 0 ? t.data.navOptions : [{ href: "/", label: "Explore" }, { href: "/browse", label: "Browse" }, { href: "/professor/context", label: "Professor" }];
   t.avatarUrl !== void 0 ? t.avatarUrl : t.data?.avatarUrl !== void 0 && t.data.avatarUrl, t.authenticated !== void 0 ? t.authenticated : t.data?.authenticated !== void 0 && t.data.authenticated;
-  const X = t.title !== void 0 ? t.title : t.data?.title !== void 0 ? t.data.title : "Rudra Scholar", G = t.copyrightText !== void 0 ? t.copyrightText : t.data?.copyrightText !== void 0 ? t.data.copyrightText : "© 2026 Rudra Scholar", w = { linkedinUrl: W, xUrl: F, navOptions: J, title: X, copyrightText: G }, [q, K] = A(() => structuredClone(!1)), [$, Q] = A(() => structuredClone(!1)), x = { accountMenuOpen: q, languageMenuOpen: $ }, g = _((e, n) => {
+  const G = t.title !== void 0 ? t.title : t.data?.title !== void 0 ? t.data.title : "Rudra Scholar", K = t.copyrightText !== void 0 ? t.copyrightText : t.data?.copyrightText !== void 0 ? t.data.copyrightText : "© 2026 Rudra Scholar", M = { linkedinUrl: W, xUrl: F, children: J, navOptions: X, title: G, copyrightText: K }, [q, Q] = A(() => structuredClone(!1)), [$, Y] = A(() => structuredClone(!1)), x = { accountMenuOpen: q, languageMenuOpen: $ }, g = _((e, n) => {
     switch (e) {
       case "accountMenuOpen": {
         const a = typeof n == "function" ? n(x.accountMenuOpen) : n;
-        return x.accountMenuOpen = a, K(a), a;
+        return x.accountMenuOpen = a, Q(a), a;
       }
       case "languageMenuOpen": {
         const a = typeof n == "function" ? n(x.languageMenuOpen) : n;
-        return x.languageMenuOpen = a, Q(a), a;
+        return x.languageMenuOpen = a, Y(a), a;
       }
       default:
         return n;
@@ -56,8 +56,8 @@ function de(t) {
     const h = (s) => {
       const f = Array.isArray(s) ? [...s] : { ...s || {} };
       let m = f;
-      return c.forEach((O, M) => {
-        M === c.length - 1 ? m[O] = n : (m[O] = Array.isArray(m[O]) ? [...m[O]] : { ...m[O] || {} }, m = m[O]);
+      return c.forEach((O, w) => {
+        w === c.length - 1 ? m[O] = n : (m[O] = Array.isArray(m[O]) ? [...m[O]] : { ...m[O] || {} }, m = m[O]);
       }), f;
     };
     switch (a) {
@@ -69,7 +69,7 @@ function de(t) {
         return n;
     }
   }, [g]);
-  const Y = { localeChanged: { properties: { locale: { type: "string" } }, required: ["locale"], type: "object" }, navigationRequested: { properties: { path: { type: "string" } }, required: ["path"], type: "object" }, signOutRequested: { properties: { source: { type: "string" } }, required: ["source"], type: "object" } }, L = (e, n, a) => {
+  const Z = { localeChanged: { properties: { locale: { type: "string" } }, required: ["locale"], type: "object" }, navigationRequested: { properties: { path: { type: "string" } }, required: ["path"], type: "object" }, signOutRequested: { properties: { source: { type: "string" } }, required: ["source"], type: "object" } }, L = (e, n, a) => {
     if (!n || typeof n != "object") return "";
     const c = Array.isArray(n.type) ? n.type : n.type ? [n.type] : [], h = e === null ? "null" : Array.isArray(e) ? "array" : Number.isInteger(e) ? "integer" : typeof e;
     if (c.length && !c.includes(h) && !(h === "integer" && c.includes("number"))) return a + " must be " + c.join(" or ") + ".";
@@ -87,7 +87,7 @@ function de(t) {
     }
     return "";
   }, j = _(async (e, n, a = !1) => {
-    const c = Y[e];
+    const c = Z[e];
     if (!c) throw new Error("Module output '" + e + "' is not declared.");
     const h = L(n, c, "output." + e);
     if (h) throw new Error(h);
@@ -96,7 +96,7 @@ function de(t) {
     const f = s(e, n, { moduleId: t.moduleId, awaitHandlers: a });
     return a ? await f : n;
   }, [t.onOutput, t.onModuleOutput, t.runtime?.onOutput, t.moduleId]);
-  async function Z(e = {}) {
+  async function H(e = {}) {
     const n = e || {}, a = {};
     {
       n.event;
@@ -105,7 +105,7 @@ function de(t) {
     }
     g("languageMenuOpen", a.language_next), g("accountMenuOpen", !1);
   }
-  async function H(e = {}) {
+  async function V(e = {}) {
     const n = e || {}, a = {};
     {
       n.event;
@@ -114,36 +114,36 @@ function de(t) {
     }
     g("accountMenuOpen", a.account_next), g("languageMenuOpen", !1);
   }
-  async function V(e = {}) {
+  async function ee(e = {}) {
     const n = e || {};
     g("accountMenuOpen", !1), j("navigationRequested", { path: n.path }, !1).catch((a) => console.error("Module output delivery failed", a));
   }
-  async function ee(e = {}) {
+  async function te(e = {}) {
     g("accountMenuOpen", !1), j("signOutRequested", { source: "shared-shell" }, !1).catch((n) => console.error("Module output delivery failed", n));
   }
-  async function te(e = {}) {
+  async function ne(e = {}) {
     const n = e || {};
     g("languageMenuOpen", !1), j("localeChanged", { locale: n.locale }, !1).catch((a) => console.error("Module output delivery failed", a));
   }
-  const ne = {
-    toggleLanguageMenu: Z,
-    toggleAccountMenu: H,
-    navigate: V,
-    signOut: ee,
-    selectLanguage: te
-  }, re = {
+  const re = {
+    toggleLanguageMenu: H,
+    toggleAccountMenu: V,
+    navigate: ee,
+    signOut: te,
+    selectLanguage: ne
+  }, ae = {
     toggleLanguageMenu: [],
     toggleAccountMenu: [],
     navigate: ["path"],
     signOut: [],
     selectLanguage: ["locale"]
   }, v = (e, n = {}, a = []) => {
-    const c = ne[e];
+    const c = re[e];
     if (c) {
-      const O = re[e] || [];
-      return c(Object.fromEntries(O.map((M, C) => {
-        const k = Object.prototype.hasOwnProperty.call(n, M) ? n[M] : void 0;
-        return [M, (k === "" || k === void 0) && a[C] !== void 0 ? a[C] : M === "event" && (k === "" || k === void 0) ? a[0] : k];
+      const O = ae[e] || [];
+      return c(Object.fromEntries(O.map((w, C) => {
+        const k = Object.prototype.hasOwnProperty.call(n, w) ? n[w] : void 0;
+        return [w, (k === "" || k === void 0) && a[C] !== void 0 ? a[C] : w === "event" && (k === "" || k === void 0) ? a[0] : k];
       })));
     }
     const h = B?.[e];
@@ -168,17 +168,17 @@ function de(t) {
                 "      ",
                 o(l({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                   "      ",
-                  /* @__PURE__ */ u(p, { id: "brand", className: "rs-brand", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "Rudra Scholar" : e)(w?.title) })
+                  /* @__PURE__ */ u(p, { id: "brand", className: "rs-brand", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "Rudra Scholar" : e)(M?.title) })
                 ] }),
                 o(l({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                   "      ",
-                  /* @__PURE__ */ u(ie, { id: "nav", "aria-label": "Primary navigation", className: "flex flex-wrap items-center gap-2 rs-nav", items: /* @__PURE__ */ ((e) => e === void 0 ? [] : e)(w?.navOptions), children: (e) => (() => {
+                  /* @__PURE__ */ u(oe, { id: "nav", "aria-label": "Primary navigation", className: "flex flex-wrap items-center gap-2 rs-nav", items: /* @__PURE__ */ ((e) => e === void 0 ? [] : e)(M?.navOptions), children: (e) => (() => {
                     const n = { ...e || {}, item: e?.item ?? e, index: e?.index ?? e?.i ?? 0 };
                     return /* @__PURE__ */ r(i, { children: [
                       "      ",
                       o(l({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                         "      ",
-                        /* @__PURE__ */ u(b, { id: "nav_item", className: "rs-nav-button", rightIcon: !1, size: "sm", label: /* @__PURE__ */ ((a) => a === void 0 ? "Link" : a)(n?.item?.label), theme: "auto", variant: "ghost", leftIcon: !1, onAction: (...a) => v("navigate", {}, a) })
+                        /* @__PURE__ */ u(b, { id: "nav_item", className: "rs-nav-button", size: "sm", label: /* @__PURE__ */ ((a) => a === void 0 ? "Link" : a)(n?.item?.label), theme: "auto", variant: "ghost", leftIcon: !1, onAction: (...a) => v("navigate", {}, a), rightIcon: !1 })
                       ] })
                     ] });
                   })() })
@@ -193,7 +193,7 @@ function de(t) {
                         "      ",
                         o(l({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                           "      ",
-                          /* @__PURE__ */ u(b, { id: "language_trigger", className: "rs-control-button", theme: "auto", leftIcon: !1, onAction: (...e) => v("toggleLanguageMenu", {}, e), ariaLabel: "Choose language", rightIcon: !1, label: void 0, variant: "ghost", size: "sm" })
+                          /* @__PURE__ */ u(b, { id: "language_trigger", className: "rs-control-button", theme: "auto", onAction: (...e) => v("toggleLanguageMenu", {}, e), ariaLabel: "Choose language", rightIcon: !1, size: "sm", label: void 0, variant: "ghost", leftIcon: !1 })
                         ] }),
                         o($) && /* @__PURE__ */ r(i, { children: [
                           "      ",
@@ -201,11 +201,11 @@ function de(t) {
                             "      ",
                             o(l({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                               "      ",
-                              /* @__PURE__ */ u(b, { id: "lang_en", className: "rs-menu-button", fullWidth: !0, size: "sm", theme: "auto", variant: "ghost", leftIcon: !1, onAction: (...e) => v("selectLanguage", {}, e), rightIcon: !1, label: "English" })
+                              /* @__PURE__ */ u(b, { id: "lang_en", className: "rs-menu-button", leftIcon: !1, onAction: (...e) => v("selectLanguage", {}, e), fullWidth: !0, size: "sm", label: "English", theme: "auto", variant: "ghost", rightIcon: !1 })
                             ] }),
                             o(l({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                               "      ",
-                              /* @__PURE__ */ u(b, { id: "lang_hi", className: "rs-menu-button", size: "sm", variant: "ghost", fullWidth: !0, rightIcon: !1, label: "हिन्दी", theme: "auto", leftIcon: !1, onAction: (...e) => v("selectLanguage", {}, e) })
+                              /* @__PURE__ */ u(b, { id: "lang_hi", className: "rs-menu-button", label: "हिन्दी", variant: "ghost", onAction: (...e) => v("selectLanguage", {}, e), fullWidth: !0, rightIcon: !1, size: "sm", theme: "auto", leftIcon: !1 })
                             ] })
                           ] })
                         ] })
@@ -213,7 +213,7 @@ function de(t) {
                     ] }),
                     o(void 0) && /* @__PURE__ */ r(i, { children: [
                       "      ",
-                      /* @__PURE__ */ u(b, { id: "sign_in", className: "rs-nav-button rs-sign-in", rightIcon: !1, size: "sm", label: "Sign in", theme: "auto", variant: "outline", leftIcon: !1, onAction: (...e) => v("navigate", {}, e) })
+                      /* @__PURE__ */ u(b, { id: "sign_in", className: "rs-nav-button rs-sign-in", label: "Sign in", theme: "auto", variant: "outline", leftIcon: !1, onAction: (...e) => v("navigate", {}, e), rightIcon: !1, size: "sm" })
                     ] }),
                     o(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(N?.$auth?.isAuthenticated)) && /* @__PURE__ */ r(i, { children: [
                       "      ",
@@ -221,11 +221,11 @@ function de(t) {
                         "      ",
                         o(l({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                           "      ",
-                          /* @__PURE__ */ r(b, { id: "account_trigger", className: "rs-avatar-button", variant: "ghost", onAction: (...e) => v("toggleAccountMenu", {}, e), ariaLabel: "Open account menu", rightIcon: !1, size: "sm", leftIcon: !1, theme: "auto", children: [
+                          /* @__PURE__ */ r(b, { id: "account_trigger", className: "rs-avatar-button", theme: "auto", onAction: (...e) => v("toggleAccountMenu", {}, e), size: "sm", variant: "ghost", leftIcon: !1, ariaLabel: "Open account menu", rightIcon: !1, children: [
                             "      ",
                             o(l({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                               "      ",
-                              /* @__PURE__ */ u(oe, { id: "avatar", theme: "auto", status: "none", loading: "lazy", alt: /* @__PURE__ */ ((e) => e === void 0 ? "My account" : e)(N?.$auth?.user?.profile?.name), src: /* @__PURE__ */ ((e) => e === void 0 ? "" : e)(N?.$auth?.user?.profile?.avatar), name: /* @__PURE__ */ ((e) => e === void 0 ? "My account" : e)(N?.$auth?.user?.profile?.name), size: "md", shape: "circle" })
+                              /* @__PURE__ */ u(le, { id: "avatar", shape: "circle", theme: "auto", status: "none", loading: "lazy", alt: /* @__PURE__ */ ((e) => e === void 0 ? "My account" : e)(N?.$auth?.user?.profile?.name), src: /* @__PURE__ */ ((e) => e === void 0 ? "" : e)(N?.$auth?.user?.profile?.avatar), name: /* @__PURE__ */ ((e) => e === void 0 ? "My account" : e)(N?.$auth?.user?.profile?.name), size: "md" })
                             ] })
                           ] })
                         ] }),
@@ -235,11 +235,11 @@ function de(t) {
                             "      ",
                             o(l({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                               "      ",
-                              /* @__PURE__ */ u(b, { id: "metrics", className: "rs-menu-button", size: "sm", label: "Usage \\u0026 metrics", theme: "auto", leftIcon: !1, rightIcon: !1, variant: "ghost", onAction: (...e) => v("navigate", {}, e), fullWidth: !0 })
+                              /* @__PURE__ */ u(b, { id: "metrics", className: "rs-menu-button", rightIcon: !1, label: "Usage \\u0026 metrics", theme: "auto", size: "sm", variant: "ghost", leftIcon: !1, onAction: (...e) => v("navigate", {}, e), fullWidth: !0 })
                             ] }),
                             o(l({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                               "      ",
-                              /* @__PURE__ */ u(b, { id: "logout", className: "rs-menu-button rs-danger", size: "sm", label: "Sign out", variant: "ghost", leftIcon: !1, theme: "auto", onAction: (...e) => v("signOut", {}, e), fullWidth: !0, rightIcon: !1 })
+                              /* @__PURE__ */ u(b, { id: "logout", className: "rs-menu-button rs-danger", fullWidth: !0, rightIcon: !1, size: "sm", theme: "auto", label: "Sign out", variant: "ghost", leftIcon: !1, onAction: (...e) => v("signOut", {}, e) })
                             ] })
                           ] })
                         ] })
@@ -253,7 +253,7 @@ function de(t) {
         ] }),
         o(l({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
           "      ",
-          /* @__PURE__ */ r(d, { id: "page_content", tabIndex: -1, id: "rs-page-content", role: "main", className: "block rs-main", children: [
+          /* @__PURE__ */ r(d, { id: "page_content", id: "rs-page-content", role: "main", tabIndex: -1, className: "block rs-main", children: [
             "      ",
             o(l({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
               "      ",
@@ -261,7 +261,7 @@ function de(t) {
             ] }),
             o(l({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
               "      ",
-              /* @__PURE__ */ u(d, { id: "el_1788753588621_u0zi0vw" })
+              /* @__PURE__ */ u(d, { id: "el_1788753588621_u0zi0vw", children: M?.children })
             ] })
           ] })
         ] }),
@@ -275,7 +275,7 @@ function de(t) {
                 "      ",
                 o(l({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                   "      ",
-                  /* @__PURE__ */ u(p, { id: "copyright", className: "rs-copyright", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "© 2026 Rudra Scholar" : e)(w?.copyrightText) })
+                  /* @__PURE__ */ u(p, { id: "copyright", className: "rs-copyright", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "© 2026 Rudra Scholar" : e)(M?.copyrightText) })
                 ] }),
                 o(l({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                   "      ",
@@ -283,7 +283,7 @@ function de(t) {
                     "      ",
                     o(l({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                       "      ",
-                      /* @__PURE__ */ r(P, { id: "linkedin", className: "rs-social-link", rel: "noopener noreferrer", href: /* @__PURE__ */ ((e) => e === void 0 ? "https://www.linkedin.com" : e)(w?.linkedinUrl), target: "_blank", children: [
+                      /* @__PURE__ */ r(P, { id: "linkedin", className: "rs-social-link", rel: "noopener noreferrer", href: /* @__PURE__ */ ((e) => e === void 0 ? "https://www.linkedin.com" : e)(M?.linkedinUrl), target: "_blank", children: [
                         "      ",
                         o(l({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                           "      ",
@@ -293,7 +293,7 @@ function de(t) {
                     ] }),
                     o(l({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                       "      ",
-                      /* @__PURE__ */ r(P, { id: "x", className: "rs-social-link", rel: "noopener noreferrer", href: /* @__PURE__ */ ((e) => e === void 0 ? "https://x.com" : e)(w?.xUrl), target: "_blank", children: [
+                      /* @__PURE__ */ r(P, { id: "x", className: "rs-social-link", target: "_blank", rel: "noopener noreferrer", href: /* @__PURE__ */ ((e) => e === void 0 ? "https://x.com" : e)(M?.xUrl), children: [
                         "      ",
                         o(l({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ r(i, { children: [
                           "      ",
@@ -316,5 +316,5 @@ function de(t) {
   ] });
 }
 export {
-  de as default
+  me as default
 };

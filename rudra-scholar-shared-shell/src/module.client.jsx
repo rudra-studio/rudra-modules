@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './styles.css';
 
-import { Box as RudraLayoutBox, Repeater as RudraLayoutRepeater } from '@rudra-studio/rudra-layout';
-import { Link as RudraCoreLink, Avatar as RudraCoreAvatar, Button as RudraCoreButton, Typography as RudraCoreTypography } from '@rudra-studio/rudra-core';
+import { Repeater as RudraLayoutRepeater, Box as RudraLayoutBox } from '@rudra-studio/rudra-layout';
+import { Avatar as RudraCoreAvatar, Button as RudraCoreButton, Typography as RudraCoreTypography, Link as RudraCoreLink } from '@rudra-studio/rudra-core';
 
 export default function CompiledModule(props) {
   const _scope = {};
@@ -274,31 +274,29 @@ return !Boolean(state.accountMenuOpen);
     <div ref={wrapperRef} className="rudra-module-wrapper">
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="shell" data-theme={((_bindingValue) => _bindingValue === undefined ? "light" : _bindingValue)($theme)} className="block rs-shell">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="header" role="banner" className="block rs-header">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="header_inner" className="grid rs-header-inner">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="brand" className="rs-brand" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Rudra Scholar" : _bindingValue)(inputs?.title)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutRepeater id="nav" aria-label="Primary navigation" className="flex flex-wrap items-center gap-2 rs-nav" items={((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(inputs?.navOptions)}>{(_payload) => { const _parentScope = _scope || {}; return (() => { const _scope = { ..._parentScope, ...(_payload || {}), item: _payload?.item ?? _payload, index: _payload?.index ?? _payload?.i ?? 0, parent: _parentScope }; return (<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="nav_item" className="rs-nav-button" rightIcon={false} size="sm" label={((_bindingValue) => _bindingValue === undefined ? "Link" : _bindingValue)(_scope?.item?.label)} theme="auto" variant="ghost" leftIcon={false} onAction={(...eventArgs) => _callAction("navigate", {}, eventArgs)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutRepeater id="nav" aria-label="Primary navigation" className="flex flex-wrap items-center gap-2 rs-nav" items={((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(inputs?.navOptions)}>{(_payload) => { const _parentScope = _scope || {}; return (() => { const _scope = { ..._parentScope, ...(_payload || {}), item: _payload?.item ?? _payload, index: _payload?.index ?? _payload?.i ?? 0, parent: _parentScope }; return (<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="nav_item" className="rs-nav-button" size="sm" label={((_bindingValue) => _bindingValue === undefined ? "Link" : _bindingValue)(_scope?.item?.label)} theme="auto" variant="ghost" leftIcon={false} onAction={(...eventArgs) => _callAction("navigate", {}, eventArgs)} rightIcon={false} />
 </>)}
 </>); })(); }}</RudraLayoutRepeater>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="header_actions" className="flex items-center rs-header-actions">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="language_control" className="block rs-dropdown">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="language_trigger" className="rs-control-button" theme="auto" leftIcon={false} onAction={(...eventArgs) => _callAction("toggleLanguageMenu", {}, eventArgs)} ariaLabel="Choose language" rightIcon={false} label={undefined} variant="ghost" size="sm" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="header_actions" className="flex items-center rs-header-actions">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="language_control" className="block rs-dropdown">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="language_trigger" className="rs-control-button" theme="auto" onAction={(...eventArgs) => _callAction("toggleLanguageMenu", {}, eventArgs)} ariaLabel="Choose language" rightIcon={false} size="sm" label={undefined} variant="ghost" leftIcon={false} />
 </>)}
-      {isVisibleValue(languageMenuOpen) && (<>      <RudraLayoutBox id="language_menu" role="menu" aria-label="Language" className="block rs-menu rs-language-menu">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="lang_en" className="rs-menu-button" fullWidth={true} size="sm" theme="auto" variant="ghost" leftIcon={false} onAction={(...eventArgs) => _callAction("selectLanguage", {}, eventArgs)} rightIcon={false} label="English" />
+      {isVisibleValue(languageMenuOpen) && (<>      <RudraLayoutBox id="language_menu" role="menu" aria-label="Language" className="block rs-menu rs-language-menu">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="lang_en" className="rs-menu-button" leftIcon={false} onAction={(...eventArgs) => _callAction("selectLanguage", {}, eventArgs)} fullWidth={true} size="sm" label="English" theme="auto" variant="ghost" rightIcon={false} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="lang_hi" className="rs-menu-button" size="sm" variant="ghost" fullWidth={true} rightIcon={false} label="हिन्दी" theme="auto" leftIcon={false} onAction={(...eventArgs) => _callAction("selectLanguage", {}, eventArgs)} />
-</>)}
-</RudraLayoutBox>
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="lang_hi" className="rs-menu-button" label="हिन्दी" variant="ghost" onAction={(...eventArgs) => _callAction("selectLanguage", {}, eventArgs)} fullWidth={true} rightIcon={false} size="sm" theme="auto" leftIcon={false} />
 </>)}
 </RudraLayoutBox>
 </>)}
-      {isVisibleValue(undefined) && (<>      <RudraCoreButton id="sign_in" className="rs-nav-button rs-sign-in" rightIcon={false} size="sm" label="Sign in" theme="auto" variant="outline" leftIcon={false} onAction={(...eventArgs) => _callAction("navigate", {}, eventArgs)} />
+</RudraLayoutBox>
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(_scope?.$auth?.isAuthenticated)) && (<>      <RudraLayoutBox id="account_control" className="block rs-dropdown">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="account_trigger" className="rs-avatar-button" variant="ghost" onAction={(...eventArgs) => _callAction("toggleAccountMenu", {}, eventArgs)} ariaLabel="Open account menu" rightIcon={false} size="sm" leftIcon={false} theme="auto">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreAvatar id="avatar" theme="auto" status="none" loading="lazy" alt={((_bindingValue) => _bindingValue === undefined ? "My account" : _bindingValue)(_scope?.$auth?.user?.profile?.name)} src={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(_scope?.$auth?.user?.profile?.avatar)} name={((_bindingValue) => _bindingValue === undefined ? "My account" : _bindingValue)(_scope?.$auth?.user?.profile?.name)} size="md" shape="circle" />
+      {isVisibleValue(undefined) && (<>      <RudraCoreButton id="sign_in" className="rs-nav-button rs-sign-in" label="Sign in" theme="auto" variant="outline" leftIcon={false} onAction={(...eventArgs) => _callAction("navigate", {}, eventArgs)} rightIcon={false} size="sm" />
+</>)}
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(_scope?.$auth?.isAuthenticated)) && (<>      <RudraLayoutBox id="account_control" className="block rs-dropdown">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="account_trigger" className="rs-avatar-button" theme="auto" onAction={(...eventArgs) => _callAction("toggleAccountMenu", {}, eventArgs)} size="sm" variant="ghost" leftIcon={false} ariaLabel="Open account menu" rightIcon={false}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreAvatar id="avatar" shape="circle" theme="auto" status="none" loading="lazy" alt={((_bindingValue) => _bindingValue === undefined ? "My account" : _bindingValue)(_scope?.$auth?.user?.profile?.name)} src={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(_scope?.$auth?.user?.profile?.avatar)} name={((_bindingValue) => _bindingValue === undefined ? "My account" : _bindingValue)(_scope?.$auth?.user?.profile?.name)} size="md" />
 </>)}
 </RudraCoreButton>
 </>)}
-      {isVisibleValue(accountMenuOpen) && (<>      <RudraLayoutBox id="account_menu" role="menu" aria-label="Account" className="block rs-menu rs-account-menu">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="metrics" className="rs-menu-button" size="sm" label="Usage \u0026 metrics" theme="auto" leftIcon={false} rightIcon={false} variant="ghost" onAction={(...eventArgs) => _callAction("navigate", {}, eventArgs)} fullWidth={true} />
+      {isVisibleValue(accountMenuOpen) && (<>      <RudraLayoutBox id="account_menu" role="menu" aria-label="Account" className="block rs-menu rs-account-menu">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="metrics" className="rs-menu-button" rightIcon={false} label="Usage \u0026 metrics" theme="auto" size="sm" variant="ghost" leftIcon={false} onAction={(...eventArgs) => _callAction("navigate", {}, eventArgs)} fullWidth={true} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="logout" className="rs-menu-button rs-danger" size="sm" label="Sign out" variant="ghost" leftIcon={false} theme="auto" onAction={(...eventArgs) => _callAction("signOut", {}, eventArgs)} fullWidth={true} rightIcon={false} />
-</>)}
-</RudraLayoutBox>
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="logout" className="rs-menu-button rs-danger" fullWidth={true} rightIcon={false} size="sm" theme="auto" label="Sign out" variant="ghost" leftIcon={false} onAction={(...eventArgs) => _callAction("signOut", {}, eventArgs)} />
 </>)}
 </RudraLayoutBox>
 </>)}
@@ -308,9 +306,11 @@ return !Boolean(state.accountMenuOpen);
 </>)}
 </RudraLayoutBox>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="page_content" tabIndex={-1} id="rs-page-content" role="main" className="block rs-main">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="el_1788753560389_x3pqf9a" />
+</RudraLayoutBox>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="el_1788753588621_u0zi0vw" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="page_content" id="rs-page-content" role="main" tabIndex={-1} className="block rs-main">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="el_1788753560389_x3pqf9a" />
+</>)}
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="el_1788753588621_u0zi0vw">{inputs?.children}</RudraLayoutBox>
 </>)}
 </RudraLayoutBox>
 </>)}
@@ -320,7 +320,7 @@ return !Boolean(state.accountMenuOpen);
 </>)}
 </RudraCoreLink>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreLink id="x" className="rs-social-link" rel="noopener noreferrer" href={((_bindingValue) => _bindingValue === undefined ? "https://x.com" : _bindingValue)(inputs?.xUrl)} target="_blank">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="x_text" className="rs-social-mark" as="span" content="X" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreLink id="x" className="rs-social-link" target="_blank" rel="noopener noreferrer" href={((_bindingValue) => _bindingValue === undefined ? "https://x.com" : _bindingValue)(inputs?.xUrl)}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="x_text" className="rs-social-mark" as="span" content="X" />
 </>)}
 </RudraCoreLink>
 </>)}
