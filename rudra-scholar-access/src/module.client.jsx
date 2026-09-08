@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './styles.css';
 
-import { UniversalIcon } from './universal-icon.jsx';
-import { Input as RudraFormInput, Checkbox as RudraFormCheckbox, Form as RudraFormForm, Select as RudraFormSelect, Textarea as RudraFormTextarea } from '@rudra-studio/rudra-form';
+import { Form as RudraFormForm, Select as RudraFormSelect, Textarea as RudraFormTextarea, Input as RudraFormInput, Checkbox as RudraFormCheckbox } from '@rudra-studio/rudra-form';
 import { Box as RudraLayoutBox } from '@rudra-studio/rudra-layout';
-import { Typography as RudraCoreTypography, Button as RudraCoreButton, Alert as RudraCoreAlert } from '@rudra-studio/rudra-core';
+import { Button as RudraCoreButton, Alert as RudraCoreAlert, Typography as RudraCoreTypography } from '@rudra-studio/rudra-core';
+import { UniversalIcon } from './universal-icon.jsx';
 
 export default function CompiledModule(props) {
   const _scope = {};
@@ -236,7 +236,19 @@ export default function CompiledModule(props) {
     const stepResults = {};
     _setState("busy", true);
     _setState("message", "");
-    await _callAction("RudraAuth.signIn", { "provider": inputs.authProvider, "returnPath": inputs.returnPath }, []);
+    try {
+      { const result = await _callAction("RudraAuth.signIn", { "provider": inputs.authProvider, "returnPath": inputs.returnPath }, []); stepResults["google_auth"] = result; vars["RudraAuth.signInResult"] = result; }
+    } catch (error) {
+      { const event = args.event; const data = pageData; const globalState = state;
+        const customResult = await (async () => {
+return { message: String((error && error.message) || 'Sign-in succeeded, but Scholar access could not be resolved. Please try again.') };
+        })();
+        stepResults["google_error"] = customResult; vars["customCodeResult"] = customResult; }
+      _setState("message", stepResults.google_error.message);
+      _setState("accessMode", "login");
+      _setState("busy", false);
+      return { "error": stepResults.google_error.message, "ok": false };
+    }
     void _emitOutput("googleSignInRequested", { "returnPath": inputs.returnPath }, false).catch(error => console.error('Module output delivery failed', error));
     { const event = args.event; const data = pageData; const globalState = state;
       const customResult = await (async () => {
@@ -522,18 +534,17 @@ return result;
 
   return (
     <div ref={wrapperRef} className="rudra-module-wrapper">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@rudra-studio/rudra-layout@1.0.26/components/Box/styles.css" precedence="rudra-library" />
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="root" className="rs-access">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="panel" className="rs-access-grid">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="story" className="rs-access-story">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="story_badge" aria-label="College mathematics proof of concept" className="rs-badge-row">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"GraduationCap"} id="story_badge_icon" size={14} color="#b8f7e7" strokeWidth={2} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="root" className="rs-access">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="panel" className="rs-access-grid">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="story" className="rs-access-story">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="story_badge" aria-label="College mathematics proof of concept" className="rs-badge-row">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"GraduationCap"} id="story_badge_icon" color="#b8f7e7" strokeWidth={2} size={14} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="story_badge_label" className="rs-badge-label" customColor="#eafff8" as="span" content="College mathematics · POC" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="story_badge_label" className="rs-badge-label" as="span" content="College mathematics · POC" customColor="#eafff8" />
 </>)}
 </RudraLayoutBox>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="title" className="rs-access-title" as="h2" content={((_bindingValue) => _bindingValue === undefined ? "Learn mathematics with context, not shortcuts." : _bindingValue)(_scope?.i18n?.title)} customColor="#eafff8" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="title" className="rs-access-title" customColor="#eafff8" as="h2" content={((_bindingValue) => _bindingValue === undefined ? "Learn mathematics with context, not shortcuts." : _bindingValue)(_scope?.i18n?.title)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="subtitle" className="rs-muted" content={((_bindingValue) => _bindingValue === undefined ? "Work through challenging problems step by step—with explanations that make the ideas stick." : _bindingValue)(_scope?.i18n?.subtitle)} as="p" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="subtitle" className="rs-muted" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Work through challenging problems step by step—with explanations that make the ideas stick." : _bindingValue)(_scope?.i18n?.subtitle)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreAlert id="trust" appearance="outlined" live="off" title="SQL is the authority" variant="neutral" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreAlert id="trust" live="off" title="SQL is the authority" variant="neutral" appearance="outlined" />
 </>)}
 </RudraLayoutBox>
 </>)}
@@ -543,9 +554,9 @@ return result;
 </>)}
       {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(showLogin)) && (<>      <RudraCoreTypography id="signin_intro" className="rs-signin-intro" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Sign in to continue your lessons, saved work, and learning progress." : _bindingValue)(_scope?.i18n?.signInIntro)} />
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(showLogin)) && (<>      <RudraCoreButton id="google" leftIcon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={{ "iconType": "url", "url": "https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" }} id="google_logo" strokeWidth={1.2} size={20} />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(showLogin)) && (<>      <RudraCoreButton id="google" leftIcon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={{ "iconType": "url", "url": "https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" }} id="google_logo" size={20} strokeWidth={1.2} />
 </>)}
-</>} label={((_bindingValue) => _bindingValue === undefined ? "Sign in with Google" : _bindingValue)(_scope?.i18n?.google)} onAction={(...eventArgs) => _callAction("requestGoogleSignIn", {}, eventArgs)} id="scholar-google-signin" theme="auto" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(busy)} variant="outline" ariaLabel="Sign in with Google" fullWidth={true} rightIcon={false} size="lg" />
+</>} rightIcon={false} id="scholar-google-signin" label={((_bindingValue) => _bindingValue === undefined ? "Sign in with Google" : _bindingValue)(_scope?.i18n?.google)} theme="auto" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(busy)} variant="outline" onAction={(...eventArgs) => _callAction("requestGoogleSignIn", {}, eventArgs)} ariaLabel="Sign in with Google" fullWidth={true} size="lg" />
 </>)}
       {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(showLogin)) && (<>      <RudraCoreTypography id="notice" className="rs-signin-note" content={((_bindingValue) => _bindingValue === undefined ? "First time here? After Google confirms your email, choose Student, Professor, or Institution administrator. Account setup takes about a minute." : _bindingValue)(_scope?.i18n?.signInHelp)} as="p" />
 </>)}
@@ -555,7 +566,7 @@ return result;
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormInput id="email" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"Mail"} id="email_field_icon" size={18} strokeWidth={1.8} />
 </>)}
-</>} name="verifiedEmail" size="md" type="email" label="Verified Google email" value={((_bindingValue) => _bindingValue === undefined ? "Signed-in Google account" : _bindingValue)(authenticatedProfile?.email)} disabled={true} />
+</>} value={((_bindingValue) => _bindingValue === undefined ? "Signed-in Google account" : _bindingValue)(authenticatedProfile?.email)} disabled={true} name="verifiedEmail" size="md" type="email" label="Verified Google email" />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormInput id="first_name" name="firstName" size="md" type="text" label="First name" required={true} />
 </>)}
@@ -563,77 +574,77 @@ return result;
 </>)}
 </>} name="lastName" size="md" type="text" label="Last name" required={true} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormSelect id="role" name="requestedRole" label="Create account as" value="student" radius="md" options={[{"label":"Student","value":"student"},{"label":"Professor / teacher","value":"educator"},{"label":"Institution administrator","value":"institution_admin"}]} required={true} onChangeValue={(...eventArgs) => _callAction("setRequestedRole", {}, eventArgs)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormSelect id="role" radius="md" options={[{"label":"Student","value":"student"},{"label":"Professor / teacher","value":"educator"},{"label":"Institution administrator","value":"institution_admin"}]} required={true} onChangeValue={(...eventArgs) => _callAction("setRequestedRole", {}, eventArgs)} name="requestedRole" label="Create account as" value="student" />
 </>)}
       {isVisibleValue(undefined) && (<>      <RudraFormInput id="qualification" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"GraduationCap"} id="qualification_field_icon" size={18} strokeWidth={1.8} />
 </>)}
-</>} required={true} placeholder="For example, M.Sc. Mathematics" name="qualification" size="md" type="text" label="Highest relevant qualification" />
+</>} size="md" type="text" label="Highest relevant qualification" required={true} placeholder="For example, M.Sc. Mathematics" name="qualification" />
 </>)}
-      {isVisibleValue(undefined) && (<>      <RudraCoreAlert id="kyc_intro" live="off" title="Role verification required" variant="neutral" appearance="outlined" />
+      {isVisibleValue(undefined) && (<>      <RudraCoreAlert id="kyc_intro" variant="neutral" appearance="outlined" live="off" title="Role verification required" />
 </>)}
       {isVisibleValue(undefined) && (<>      <RudraFormInput id="institution" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"TicketCheck"} id="institution_field_icon" size={18} strokeWidth={1.8} />
 </>)}
-</>} type="text" label="Institution invite code (optional)" required={false} placeholder="Enter a verified college invite code" name="institutionInvite" size="md" />
+</>} name="institutionInvite" size="md" type="text" label="Institution invite code (optional)" required={false} placeholder="Enter a verified college invite code" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": false, "md": false, "sm": false })) && (<>      <RudraFormInput id="kyc" required={false} placeholder="Secure upload reference — do not paste document data" name="kycReference" size="md" type="text" label="Legacy verification field disabled" />
+      {isVisibleValue(getResponsiveProp({ "lg": false, "md": false, "sm": false })) && (<>      <RudraFormInput id="kyc" size="md" type="text" label="Legacy verification field disabled" required={false} placeholder="Secure upload reference — do not paste document data" name="kycReference" />
 </>)}
       {isVisibleValue(undefined) && (<>      <RudraFormInput id="expertise" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"Sigma"} id="expertise_field_icon" size={18} strokeWidth={1.8} />
 </>)}
-</>} placeholder="For example, Linear Algebra, Calculus" name="subjectExpertise" size="md" type="text" label="Mathematics expertise" required={true} />
+</>} required={true} placeholder="For example, Linear Algebra, Calculus" name="subjectExpertise" size="md" type="text" label="Mathematics expertise" />
 </>)}
       {isVisibleValue(undefined) && (<>      <RudraFormTextarea id="professional_statement" label="Short professional statement" maxRows={6} minRows={3} required={true} autoResize={true} placeholder="Briefly describe your teaching experience." name="professionalStatement" size="md" />
 </>)}
       {isVisibleValue(undefined) && (<>      <RudraFormInput id="educator_institution" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"School"} id="educator_institution_field_icon" strokeWidth={1.8} size={18} />
 </>)}
-</>} type="text" label="College or university" required={true} name="institutionName" size="md" />
+</>} required={true} name="institutionName" size="md" type="text" label="College or university" />
 </>)}
       {isVisibleValue(undefined) && (<>      <RudraFormInput id="evidence" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"BadgeCheck"} id="evidence_field_icon" size={18} strokeWidth={1.8} />
 </>)}
-</>} label="KYC verification evidence" required={true} placeholder="Use an institution email or public staff-profile URL" name="kycEvidence" size="md" type="text" />
+</>} name="kycEvidence" size="md" type="text" label="KYC verification evidence" required={true} placeholder="Use an institution email or public staff-profile URL" />
 </>)}
-      {isVisibleValue(undefined) && (<>      <RudraFormInput id="institution_legal_name" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"Landmark"} id="institution_legal_name_field_icon" strokeWidth={1.8} size={18} />
+      {isVisibleValue(undefined) && (<>      <RudraFormInput id="institution_legal_name" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"Landmark"} id="institution_legal_name_field_icon" size={18} strokeWidth={1.8} />
 </>)}
-</>} type="text" label="Institution legal name" required={true} name="institutionLegalName" size="md" />
+</>} name="institutionLegalName" size="md" type="text" label="Institution legal name" required={true} />
 </>)}
-      {isVisibleValue(undefined) && (<>      <RudraFormInput id="institution_display_name" required={true} name="institutionDisplayName" size="md" type="text" label="Display name" />
+      {isVisibleValue(undefined) && (<>      <RudraFormInput id="institution_display_name" label="Display name" required={true} name="institutionDisplayName" size="md" type="text" />
 </>)}
-      {isVisibleValue(undefined) && (<>      <RudraFormSelect id="institution_type" label="Institution type" value="college" options={[{"label":"College","value":"college"},{"label":"University","value":"university"}]} required={true} name="institutionType" />
+      {isVisibleValue(undefined) && (<>      <RudraFormSelect id="institution_type" name="institutionType" label="Institution type" value="college" options={[{"label":"College","value":"college"},{"label":"University","value":"university"}]} required={true} />
 </>)}
       {isVisibleValue(undefined) && (<>      <RudraFormInput id="institution_website" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"Globe"} id="institution_website_field_icon" size={18} strokeWidth={1.8} />
 </>)}
-</>} label="Official website" required={true} placeholder="https://example.edu" name="institutionWebsite" size="md" type="url" />
+</>} type="url" label="Official website" required={true} placeholder="https://example.edu" name="institutionWebsite" size="md" />
 </>)}
-      {isVisibleValue(undefined) && (<>      <RudraFormInput id="institution_domain" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"AtSign"} id="institution_domain_field_icon" size={18} strokeWidth={1.8} />
+      {isVisibleValue(undefined) && (<>      <RudraFormInput id="institution_domain" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"AtSign"} id="institution_domain_field_icon" strokeWidth={1.8} size={18} />
 </>)}
-</>} size="md" type="text" label="Institutional email domain" required={true} placeholder="example.edu" name="institutionEmailDomain" />
+</>} label="Institutional email domain" required={true} placeholder="example.edu" name="institutionEmailDomain" size="md" type="text" />
 </>)}
       {isVisibleValue(undefined) && (<>      <RudraFormInput id="institution_contact" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"Contact"} id="institution_contact_field_icon" size={18} strokeWidth={1.8} />
 </>)}
-</>} label="Administrative contact" required={true} name="institutionContact" size="md" type="text" />
+</>} name="institutionContact" size="md" type="text" label="Administrative contact" required={true} />
 </>)}
       {isVisibleValue(undefined) && (<>      <RudraFormInput id="country" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"MapPin"} id="country_field_icon" size={18} strokeWidth={1.8} />
 </>)}
-</>} name="country" size="md" type="text" label="Country" required={true} />
+</>} type="text" label="Country" required={true} name="country" size="md" />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": false, "md": false, "sm": false })) && (<>      <RudraFormCheckbox id="age_confirmed" name="ageConfirmed" label="I confirm I am 18 or older." required={false} colorScheme="emerald" description="The initial proof of concept is limited to college learners and adult educators." />
 </>)}
       {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showRegistration)) && (<>      <RudraFormCheckbox id="terms" name="termsAccepted" label="I accept the Terms of Service." required={true} colorScheme="emerald" description="Required before an account can be created." />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="submit" label="Continue" theme="auto" leftIcon={false} fullWidth={true} rightIcon={false} size="lg" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(busy)} variant="primary" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="submit" theme="auto" variant="primary" leftIcon={false} fullWidth={true} rightIcon={false} size="lg" label="Continue" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(busy)} />
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showRegistration)) && (<>      <RudraFormCheckbox id="privacy" description="Required before an account can be created." name="privacyAccepted" label="I have read and accept the Privacy Notice." required={true} colorScheme="emerald" />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showRegistration)) && (<>      <RudraFormCheckbox id="privacy" required={true} colorScheme="emerald" description="Required before an account can be created." name="privacyAccepted" label="I have read and accept the Privacy Notice." />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="registration_actions" className="rs-registration-actions">      {isVisibleValue(showRegistrationBack) && (<>      <RudraCoreButton id="registration_back" leftIcon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"ArrowLeft"} id="registration_back_icon" size={18} strokeWidth={2} />
 </>)}
-</>} id="scholar-registration-back" type="button" theme="auto" variant="secondary" onAction={(...eventArgs) => _callAction("goBackRegistrationStep", {}, eventArgs)} rightIcon={false} additionalAttributes={{}} size="lg" label="Back" fullWidth={true} />
+</>} onAction={(...eventArgs) => _callAction("goBackRegistrationStep", {}, eventArgs)} fullWidth={true} rightIcon={false} additionalAttributes={{}} size="lg" label="Back" variant="secondary" id="scholar-registration-back" type="button" theme="auto" />
 </>)}
 </RudraLayoutBox>
 </>)}
 </RudraFormForm>
 </>)}
-      {isVisibleValue(message) && (<>      <RudraCoreAlert id="message" variant="neutral" appearance="outlined" live="polite" title="Scholar access" />
+      {isVisibleValue(message) && (<>      <RudraCoreAlert id="message" live="polite" title="Scholar access" variant="neutral" appearance="outlined" />
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showPending)) && (<>      <RudraCoreAlert id="pending_notice" live="polite" title="Professor verification pending" variant="warning" appearance="outlined" />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showPending)) && (<>      <RudraCoreAlert id="pending_notice" variant="warning" appearance="outlined" live="polite" title="Professor verification pending" />
 </>)}
 </RudraLayoutBox>
 </>)}
