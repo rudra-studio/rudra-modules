@@ -93,9 +93,11 @@ jobs:
           
           SAFE_VERSION=$(echo $VERSION | tr '.' '-')
           TAG_NAME="$MODULE-v$SAFE_VERSION"
+          COMMIT_SHA=$(git rev-parse HEAD)
           
           git tag $TAG_NAME
           git push origin $TAG_NAME
+          echo "commit_sha=$COMMIT_SHA" >> "$GITHUB_OUTPUT"
 
       - name: Notify Rudra Backend
         if: ${{ always() }}
@@ -106,6 +108,7 @@ jobs:
           VERSION_ID: ${{ steps.meta.outputs.version_id }}
           MODULE: ${{ steps.meta.outputs.module }}
           VERSION: ${{ steps.meta.outputs.version }}
+          COMMIT_SHA: ${{ steps.tag.outputs.commit_sha }}
           PIPELINE_STATUS: ${{ job.status }}
           BUILD_OUTCOME: ${{ steps.build.outcome }}
           COMMIT_OUTCOME: ${{ steps.commit_dist.outcome }}
@@ -126,9 +129,10 @@ jobs:
             --arg versionId "$VERSION_ID" \
             --arg module "$MODULE" \
             --arg version "$VERSION" \
+            --arg commitSha "$COMMIT_SHA" \
             --arg status "$STATUS" \
             --arg error "$ERROR_MESSAGE" \
-            '{jobId: $jobId, versionId: $versionId, module: $module, version: $version, status: $status} + (if $error == "" then {} else {error: $error} end)')
+            '{jobId: $jobId, versionId: $versionId, module: $module, version: $version, commitSha: $commitSha, status: $status} + (if $error == "" then {} else {error: $error} end)')
 
           curl --fail-with-body --retry 3 --retry-all-errors --location "$WEBHOOK_URL" \
             --header "x-auth-code: $WEBHOOK_SECRET" \
