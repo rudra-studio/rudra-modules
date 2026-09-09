@@ -563,13 +563,13 @@ function ft(u) {
                   ] }),
                   l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ s(d, { children: [
                     "      ",
-                    /* @__PURE__ */ f(k, { id: "story_badge_label", className: "rs-badge-label", as: "span", content: "College mathematics · POC", customColor: "#eafff8" })
+                    /* @__PURE__ */ f(k, { id: "story_badge_label", className: "rs-badge-label", customColor: "#eafff8", as: "span", content: "College mathematics · POC" })
                   ] })
                 ] })
               ] }),
               l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ s(d, { children: [
                 "      ",
-                /* @__PURE__ */ f(k, { id: "title", className: "rs-access-title", as: "h2", content: /* @__PURE__ */ ((e) => e === void 0 ? "Learn mathematics with context, not shortcuts." : e)(v?.i18n?.title), customColor: "#eafff8" })
+                /* @__PURE__ */ f(k, { id: "title", className: "rs-access-title", customColor: "#eafff8", as: "h2", content: /* @__PURE__ */ ((e) => e === void 0 ? "Learn mathematics with context, not shortcuts." : e)(v?.i18n?.title) })
               ] }),
               l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ s(d, { children: [
                 "      ",
@@ -577,7 +577,7 @@ function ft(u) {
               ] }),
               l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ s(d, { children: [
                 "      ",
-                /* @__PURE__ */ f(V, { id: "trust", variant: "neutral", appearance: "outlined", live: "off", title: "SQL is the authority" })
+                /* @__PURE__ */ f(V, { id: "trust", live: "off", title: "SQL is the authority", variant: "neutral", appearance: "outlined" })
               ] })
             ] })
           ] }),
@@ -605,7 +605,7 @@ function ft(u) {
                     "      ",
                     /* @__PURE__ */ f(_, { icon: { iconType: "url", url: "https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" }, id: "google_logo", size: 20, strokeWidth: 1.2 })
                   ] })
-                ] }), theme: "auto", loading: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(se), onAction: (...e) => Z("requestGoogleSignIn", {}, e), ariaLabel: "Sign in with Google", rightIcon: !1, variant: "outline", fullWidth: !0, id: "scholar-google-signin", size: "lg", label: /* @__PURE__ */ ((e) => e === void 0 ? "Sign in with Google" : e)(v?.i18n?.google) })
+                ] }), label: /* @__PURE__ */ ((e) => e === void 0 ? "Sign in with Google" : e)(v?.i18n?.google), theme: "auto", onAction: (...e) => Z("requestGoogleSignIn", {}, e), ariaLabel: "Sign in with Google", fullWidth: !0, rightIcon: !1, id: "scholar-google-signin", size: "lg", loading: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(se), variant: "outline" })
               ] }),
               l(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(B)) && /* @__PURE__ */ s(d, { children: [
                 "      ",
@@ -617,7 +617,7 @@ function ft(u) {
               ] }),
               l(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(oe)) && /* @__PURE__ */ s(d, { children: [
                 "      ",
-                /* @__PURE__ */ s(nt, { id: "profile_form", className: "rs-form", onSubmit: (...e) => Z("handleRegistrationSubmit", {}, e), initialValues: /* @__PURE__ */ ((e) => e === void 0 ? { privacyAccepted: !1, requestedRole: "student", termsAccepted: !1, verifiedEmail: "" } : e)(fe), children: [
+                /* @__PURE__ */ s(nt, { id: "profile_form", className: "rs-form", initialValues: /* @__PURE__ */ ((e) => e === void 0 ? { privacyAccepted: !1, requestedRole: "student", termsAccepted: !1, verifiedEmail: "" } : e)(fe), onSubmit: (...e) => Z("handleRegistrationSubmit", {}, e), children: [
                   "      ",
                   l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ s(d, { children: [
                     "      ",
@@ -629,9 +629,9 @@ function ft(u) {
                       "      ",
                       l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ s(d, { children: [
                         "      ",
-                        /* @__PURE__ */ f(_, { icon: "Mail", id: "email_field_icon", size: 18, strokeWidth: 1.8 })
+                        /* @__PURE__ */ f(_, { icon: "Mail", id: "email_field_icon", strokeWidth: 1.8, size: 18 })
                       ] })
-                    ] }), name: "verifiedEmail", size: "md", type: "email", label: "Verified Google email", value: /* @__PURE__ */ ((e) => e === void 0 ? "Signed-in Google account" : e)(ge?.email), disabled: !0 })
+                    ] }), size: "md", type: "email", label: "Verified Google email", value: /* @__PURE__ */ ((e) => e === void 0 ? "Signed-in Google account" : e)(ge?.email), disabled: !0, name: "verifiedEmail" })
                   ] }),
                   l(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(J)) && /* @__PURE__ */ s(d, { children: [
                     "      ",
@@ -649,13 +649,13 @@ function ft(u) {
                       "      ",
                       l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ s(d, { children: [
                         "      ",
-                        /* @__PURE__ */ f(_, { icon: "UserRound", id: "last_name_field_icon", strokeWidth: 1.8, size: 18 })
+                        /* @__PURE__ */ f(_, { icon: "UserRound", id: "last_name_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
                     ] }), name: "lastName", size: "md", type: "text", label: "Last name", required: !0 })
                   ] }),
                   l(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(J)) && /* @__PURE__ */ s(d, { children: [
                     "      ",
-                    /* @__PURE__ */ f(ze, { id: "role", value: "student", radius: "md", options: [{ label: "Student", value: "student" }, { label: "Professor / teacher", value: "educator" }, { label: "Institution administrator", value: "institution_admin" }], required: !0, onChangeValue: (...e) => Z("setRequestedRole", {}, e), name: "requestedRole", label: "Create account as" })
+                    /* @__PURE__ */ f(ze, { id: "role", options: [{ label: "Student", value: "student" }, { label: "Professor / teacher", value: "educator" }, { label: "Institution administrator", value: "institution_admin" }], required: !0, onChangeValue: (...e) => Z("setRequestedRole", {}, e), name: "requestedRole", label: "Create account as", value: "student", radius: "md" })
                   ] }),
                   l(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(Se)) && /* @__PURE__ */ s(d, { children: [
                     "      ",
@@ -675,15 +675,15 @@ function ft(u) {
                         "      ",
                         /* @__PURE__ */ f(_, { icon: "GraduationCap", id: "qualification_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), required: !0, placeholder: "For example, M.Sc. Mathematics", name: "qualification", size: "md", type: "text", label: "Highest relevant qualification" })
+                    ] }), name: "qualification", size: "md", type: "text", label: "Highest relevant qualification", required: !0, placeholder: "For example, M.Sc. Mathematics" })
                   ] }),
                   l(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(re)) && /* @__PURE__ */ s(d, { children: [
                     "      ",
-                    /* @__PURE__ */ f(V, { id: "kyc_intro", appearance: "outlined", live: "off", title: "Role verification required", variant: "neutral" })
+                    /* @__PURE__ */ f(V, { id: "kyc_intro", title: "Role verification required", variant: "neutral", appearance: "outlined", live: "off" })
                   ] }),
                   l(g({ lg: !1, md: !1, sm: !1 })) && /* @__PURE__ */ s(d, { children: [
                     "      ",
-                    /* @__PURE__ */ f(b, { id: "kyc", label: "Legacy verification field disabled", required: !1, placeholder: "Secure upload reference — do not paste document data", name: "kycReference", size: "md", type: "text" })
+                    /* @__PURE__ */ f(b, { id: "kyc", type: "text", label: "Legacy verification field disabled", required: !1, placeholder: "Secure upload reference — do not paste document data", name: "kycReference", size: "md" })
                   ] }),
                   l(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(D)) && /* @__PURE__ */ s(d, { children: [
                     "      ",
@@ -693,11 +693,11 @@ function ft(u) {
                         "      ",
                         /* @__PURE__ */ f(_, { icon: "Sigma", id: "expertise_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), size: "md", type: "text", label: "Mathematics expertise", required: !0, placeholder: "For example, Linear Algebra, Calculus", name: "subjectExpertise" })
+                    ] }), name: "subjectExpertise", size: "md", type: "text", label: "Mathematics expertise", required: !0, placeholder: "For example, Linear Algebra, Calculus" })
                   ] }),
                   l(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(D)) && /* @__PURE__ */ s(d, { children: [
                     "      ",
-                    /* @__PURE__ */ f(at, { id: "professional_statement", maxRows: 6, minRows: 3, required: !0, autoResize: !0, placeholder: "Briefly describe your teaching experience.", name: "professionalStatement", size: "md", label: "Short professional statement" })
+                    /* @__PURE__ */ f(at, { id: "professional_statement", autoResize: !0, placeholder: "Briefly describe your teaching experience.", name: "professionalStatement", size: "md", label: "Short professional statement", maxRows: 6, minRows: 3, required: !0 })
                   ] }),
                   l(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(D)) && /* @__PURE__ */ s(d, { children: [
                     "      ",
@@ -727,7 +727,7 @@ function ft(u) {
                         "      ",
                         /* @__PURE__ */ f(_, { icon: "Landmark", id: "institution_legal_name_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), type: "text", label: "Institution legal name", required: !0, name: "institutionLegalName", size: "md" })
+                    ] }), label: "Institution legal name", required: !0, name: "institutionLegalName", size: "md", type: "text" })
                   ] }),
                   l(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(j)) && /* @__PURE__ */ s(d, { children: [
                     "      ",
@@ -735,7 +735,7 @@ function ft(u) {
                   ] }),
                   l(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(j)) && /* @__PURE__ */ s(d, { children: [
                     "      ",
-                    /* @__PURE__ */ f(ze, { id: "institution_type", value: "college", options: [{ label: "College", value: "college" }, { label: "University", value: "university" }], required: !0, name: "institutionType", label: "Institution type" })
+                    /* @__PURE__ */ f(ze, { id: "institution_type", name: "institutionType", label: "Institution type", value: "college", options: [{ label: "College", value: "college" }, { label: "University", value: "university" }], required: !0 })
                   ] }),
                   l(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(j)) && /* @__PURE__ */ s(d, { children: [
                     "      ",
@@ -745,7 +745,7 @@ function ft(u) {
                         "      ",
                         /* @__PURE__ */ f(_, { icon: "Globe", id: "institution_website_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), name: "institutionWebsite", size: "md", type: "url", label: "Official website", required: !0, placeholder: "https://example.edu" })
+                    ] }), label: "Official website", required: !0, placeholder: "https://example.edu", name: "institutionWebsite", size: "md", type: "url" })
                   ] }),
                   l(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(j)) && /* @__PURE__ */ s(d, { children: [
                     "      ",
@@ -755,7 +755,7 @@ function ft(u) {
                         "      ",
                         /* @__PURE__ */ f(_, { icon: "AtSign", id: "institution_domain_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), name: "institutionEmailDomain", size: "md", type: "text", label: "Institutional email domain", required: !0, placeholder: "example.edu" })
+                    ] }), size: "md", type: "text", label: "Institutional email domain", required: !0, placeholder: "example.edu", name: "institutionEmailDomain" })
                   ] }),
                   l(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(j)) && /* @__PURE__ */ s(d, { children: [
                     "      ",
@@ -765,7 +765,7 @@ function ft(u) {
                         "      ",
                         /* @__PURE__ */ f(_, { icon: "Contact", id: "institution_contact_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), type: "text", label: "Administrative contact", required: !0, name: "institutionContact", size: "md" })
+                    ] }), size: "md", type: "text", label: "Administrative contact", required: !0, name: "institutionContact" })
                   ] }),
                   l(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(re)) && /* @__PURE__ */ s(d, { children: [
                     "      ",
@@ -775,7 +775,7 @@ function ft(u) {
                         "      ",
                         /* @__PURE__ */ f(_, { icon: "MapPin", id: "country_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), name: "country", size: "md", type: "text", label: "Country", required: !0 })
+                    ] }), type: "text", label: "Country", required: !0, name: "country", size: "md" })
                   ] }),
                   l(g({ lg: !1, md: !1, sm: !1 })) && /* @__PURE__ */ s(d, { children: [
                     "      ",
@@ -801,11 +801,11 @@ function ft(u) {
                             "      ",
                             /* @__PURE__ */ f(_, { icon: "ArrowLeft", id: "registration_back_icon", size: 18, strokeWidth: 2 })
                           ] })
-                        ] }), onAction: (...e) => Z("goBackRegistrationStep", {}, e), fullWidth: !0, rightIcon: !1, size: "lg", type: "button", label: "Back", variant: "secondary", additionalAttributes: {}, id: "scholar-registration-back", theme: "auto" })
+                        ] }), label: "Back", theme: "auto", variant: "secondary", onAction: (...e) => Z("goBackRegistrationStep", {}, e), fullWidth: !0, rightIcon: !1, id: "scholar-registration-back", size: "lg", additionalAttributes: {}, type: "button" })
                       ] }),
                       l(g({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ s(d, { children: [
                         "      ",
-                        /* @__PURE__ */ f(de, { id: "submit", loading: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(se), variant: "primary", leftIcon: !1, id: "scholar-registration-primary", type: "submit", label: /* @__PURE__ */ ((e) => e === void 0 ? "Next" : e)(we), fullWidth: !0, rightIcon: !1, size: "lg", theme: "auto" })
+                        /* @__PURE__ */ f(de, { id: "submit", loading: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(se), leftIcon: !1, rightIcon: !1, size: "lg", type: "submit", label: /* @__PURE__ */ ((e) => e === void 0 ? "Next" : e)(we), variant: "primary", fullWidth: !0, id: "scholar-registration-primary", theme: "auto" })
                       ] })
                     ] })
                   ] })
@@ -813,11 +813,11 @@ function ft(u) {
               ] }),
               l(me) && /* @__PURE__ */ s(d, { children: [
                 "      ",
-                /* @__PURE__ */ f(V, { id: "message", title: "Scholar access", variant: "neutral", appearance: "outlined", live: "polite" })
+                /* @__PURE__ */ f(V, { id: "message", variant: "neutral", appearance: "outlined", live: "polite", title: "Scholar access" })
               ] }),
               l(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(ye)) && /* @__PURE__ */ s(d, { children: [
                 "      ",
-                /* @__PURE__ */ f(V, { id: "pending_notice", variant: "warning", appearance: "outlined", live: "polite", title: "Professor verification pending" })
+                /* @__PURE__ */ f(V, { id: "pending_notice", appearance: "outlined", live: "polite", title: "Professor verification pending", variant: "warning" })
               ] })
             ] })
           ] })
