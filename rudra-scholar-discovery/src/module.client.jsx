@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './styles.css';
 
+import { Button as RudraCoreButton, Card as RudraCoreCard, Alert as RudraCoreAlert, Typography as RudraCoreTypography } from '@rudra-studio/rudra-core';
 import { Box as RudraLayoutBox, Repeater as RudraLayoutRepeater } from '@rudra-studio/rudra-layout';
-import { Typography as RudraCoreTypography, Button as RudraCoreButton, Card as RudraCoreCard, Alert as RudraCoreAlert } from '@rudra-studio/rudra-core';
+import { BlackboardLesson as ChalkmindMathBlackboardLesson } from '@rudra-studio/chalkmind-math';
 import { UniversalIcon } from './universal-icon.jsx';
 
 export default function CompiledModule(props) {
@@ -79,56 +80,59 @@ export default function CompiledModule(props) {
   const isVisibleValue = (value) => Array.isArray(value) ? value.length > 0 : (typeof value === 'string' ? value.trim() !== '' && value.trim().toLowerCase() !== 'false' : Boolean(value));
 
   const subjectCards = props.subjectCards !== undefined ? props.subjectCards : (props.data?.subjectCards !== undefined ? props.data.subjectCards : [{"description":"Vectors, matrices, linear maps, eigenvalues and diagonalisation.","locked":false,"redirectionLink":"/browse/engineering/semester-1/linear-algebra","title":"Linear algebra"},{"description":"Limits, derivatives, integration and multivariable reasoning.","locked":false,"redirectionLink":"/browse/engineering/semester-1/calculus","title":"Calculus"},{"description":"Logic, combinatorics, graphs and recurrence relations.","locked":false,"redirectionLink":"/browse/engineering/semester-1/discrete-mathematics","title":"Discrete mathematics"}]);
-  const pageMode = props.pageMode !== undefined ? props.pageMode : (props.data?.pageMode !== undefined ? props.data.pageMode : "landing");
-  const authenticated = props.authenticated !== undefined ? props.authenticated : (props.data?.authenticated !== undefined ? props.data.authenticated : false);
-  const locale = props.locale !== undefined ? props.locale : (props.data?.locale !== undefined ? props.data.locale : "en");
-  const subjectsLocked = props.subjectsLocked !== undefined ? props.subjectsLocked : (props.data?.subjectsLocked !== undefined ? props.data.subjectsLocked : false);
+  const contentPreview = props.contentPreview !== undefined ? props.contentPreview : (props.data?.contentPreview !== undefined ? props.data.contentPreview : {});
   const programmeSlug = props.programmeSlug !== undefined ? props.programmeSlug : (props.data?.programmeSlug !== undefined ? props.data.programmeSlug : "engineering");
   const initialSolveMode = props.initialSolveMode !== undefined ? props.initialSolveMode : (props.data?.initialSolveMode !== undefined ? props.data.initialSolveMode : "answer");
-  const subjectSlug = props.subjectSlug !== undefined ? props.subjectSlug : (props.data?.subjectSlug !== undefined ? props.data.subjectSlug : "linear-algebra");
+  const pageMode = props.pageMode !== undefined ? props.pageMode : (props.data?.pageMode !== undefined ? props.data.pageMode : "landing");
   const returnPath = props.returnPath !== undefined ? props.returnPath : (props.data?.returnPath !== undefined ? props.data.returnPath : "/learn");
+  const authenticated = props.authenticated !== undefined ? props.authenticated : (props.data?.authenticated !== undefined ? props.data.authenticated : false);
   const autoSolveOnLoad = props.autoSolveOnLoad !== undefined ? props.autoSolveOnLoad : (props.data?.autoSolveOnLoad !== undefined ? props.data.autoSolveOnLoad : true);
+  const locale = props.locale !== undefined ? props.locale : (props.data?.locale !== undefined ? props.data.locale : "en");
+  const subjectsLocked = props.subjectsLocked !== undefined ? props.subjectsLocked : (props.data?.subjectsLocked !== undefined ? props.data.subjectsLocked : false);
+  const subjectSlug = props.subjectSlug !== undefined ? props.subjectSlug : (props.data?.subjectSlug !== undefined ? props.data.subjectSlug : "linear-algebra");
   const semesterSlug = props.semesterSlug !== undefined ? props.semesterSlug : (props.data?.semesterSlug !== undefined ? props.data.semesterSlug : "semester-1");
   const accessProfile = props.accessProfile !== undefined ? props.accessProfile : (props.data?.accessProfile !== undefined ? props.data.accessProfile : {});
-  const inputs = { "subjectCards": subjectCards, "pageMode": pageMode, "authenticated": authenticated, "locale": locale, "subjectsLocked": subjectsLocked, "programmeSlug": programmeSlug, "initialSolveMode": initialSolveMode, "subjectSlug": subjectSlug, "returnPath": returnPath, "autoSolveOnLoad": autoSolveOnLoad, "semesterSlug": semesterSlug, "accessProfile": accessProfile };
-  const [canOpenProfessorStudio, set_canOpenProfessorStudio] = useState(() => structuredClone(false));
-  const [isSubjectNavigating, set_isSubjectNavigating] = useState(() => structuredClone(false));
-  const [showDemoSolution, set_showDemoSolution] = useState(() => structuredClone(true));
-  const [accessDecision, set_accessDecision] = useState(() => structuredClone({"authenticated":false,"isRegistered":false,"roles":[],"verificationStatus":"not_required"}));
-  const [actionMessage, set_actionMessage] = useState(() => structuredClone(""));
-  const [showActionMessage, set_showActionMessage] = useState(() => structuredClone(false));
-  const [demoSolutionMode, set_demoSolutionMode] = useState(() => structuredClone("answer"));
-  const [problemText, set_problemText] = useState(() => structuredClone("Solve the system 2x + y = 7 and −x + y = 1."));
-  const [demoVisibleSteps, set_demoVisibleSteps] = useState(() => structuredClone([{"checked":false,"description":"Subtract the second equation from the first. The y terms cancel.","equation":"(2x + y) − (−x + y) = 7 − 1\n3x = 6","id":"demo-step-1","marker":"01","number":1,"title":"Eliminate y"}]));
-  const [showAccessHint, set_showAccessHint] = useState(() => structuredClone(true));
-  const [lastProblemControlId, set_lastProblemControlId] = useState(() => structuredClone(""));
-  const [demoSolutionTitle, set_demoSolutionTitle] = useState(() => structuredClone("Quick answer"));
+  const inputs = { "subjectCards": subjectCards, "contentPreview": contentPreview, "programmeSlug": programmeSlug, "initialSolveMode": initialSolveMode, "pageMode": pageMode, "returnPath": returnPath, "authenticated": authenticated, "autoSolveOnLoad": autoSolveOnLoad, "locale": locale, "subjectsLocked": subjectsLocked, "subjectSlug": subjectSlug, "semesterSlug": semesterSlug, "accessProfile": accessProfile };
   const [canLearn, set_canLearn] = useState(() => structuredClone(false));
   const [demoSolutionText, set_demoSolutionText] = useState(() => structuredClone("x = 2 and y = 3. Both equations are satisfied."));
-  const [problemLanguage, set_problemLanguage] = useState(() => structuredClone("en"));
-  const [demoStepIndex, set_demoStepIndex] = useState(() => structuredClone(1));
   const [subjectNavigationFailed, set_subjectNavigationFailed] = useState(() => structuredClone(false));
-  const state = { "canOpenProfessorStudio": canOpenProfessorStudio, "isSubjectNavigating": isSubjectNavigating, "showDemoSolution": showDemoSolution, "accessDecision": accessDecision, "actionMessage": actionMessage, "showActionMessage": showActionMessage, "demoSolutionMode": demoSolutionMode, "problemText": problemText, "demoVisibleSteps": demoVisibleSteps, "showAccessHint": showAccessHint, "lastProblemControlId": lastProblemControlId, "demoSolutionTitle": demoSolutionTitle, "canLearn": canLearn, "demoSolutionText": demoSolutionText, "problemLanguage": problemLanguage, "demoStepIndex": demoStepIndex, "subjectNavigationFailed": subjectNavigationFailed };
+  const [contentPreviewDisplay, set_contentPreviewDisplay] = useState(() => structuredClone({"enabled":false,"valid":false}));
+  const [isSubjectNavigating, set_isSubjectNavigating] = useState(() => structuredClone(false));
+  const [demoSolutionTitle, set_demoSolutionTitle] = useState(() => structuredClone("Quick answer"));
+  const [problemText, set_problemText] = useState(() => structuredClone("Solve the system 2x + y = 7 and −x + y = 1."));
+  const [lastProblemControlId, set_lastProblemControlId] = useState(() => structuredClone(""));
+  const [demoSolutionMode, set_demoSolutionMode] = useState(() => structuredClone("answer"));
+  const [canOpenProfessorStudio, set_canOpenProfessorStudio] = useState(() => structuredClone(false));
+  const [demoStepIndex, set_demoStepIndex] = useState(() => structuredClone(1));
+  const [showActionMessage, set_showActionMessage] = useState(() => structuredClone(false));
+  const [showAccessHint, set_showAccessHint] = useState(() => structuredClone(true));
+  const [demoVisibleSteps, set_demoVisibleSteps] = useState(() => structuredClone([{"checked":false,"description":"Subtract the second equation from the first. The y terms cancel.","equation":"(2x + y) − (−x + y) = 7 − 1\n3x = 6","id":"demo-step-1","marker":"01","number":1,"title":"Eliminate y"}]));
+  const [actionMessage, set_actionMessage] = useState(() => structuredClone(""));
+  const [problemLanguage, set_problemLanguage] = useState(() => structuredClone("en"));
+  const [accessDecision, set_accessDecision] = useState(() => structuredClone({"authenticated":false,"isRegistered":false,"roles":[],"verificationStatus":"not_required"}));
+  const [showDemoSolution, set_showDemoSolution] = useState(() => structuredClone(true));
+  const state = { "canLearn": canLearn, "demoSolutionText": demoSolutionText, "subjectNavigationFailed": subjectNavigationFailed, "contentPreviewDisplay": contentPreviewDisplay, "isSubjectNavigating": isSubjectNavigating, "demoSolutionTitle": demoSolutionTitle, "problemText": problemText, "lastProblemControlId": lastProblemControlId, "demoSolutionMode": demoSolutionMode, "canOpenProfessorStudio": canOpenProfessorStudio, "demoStepIndex": demoStepIndex, "showActionMessage": showActionMessage, "showAccessHint": showAccessHint, "demoVisibleSteps": demoVisibleSteps, "actionMessage": actionMessage, "problemLanguage": problemLanguage, "accessDecision": accessDecision, "showDemoSolution": showDemoSolution };
 
   const _setState = useCallback((name, value) => {
     switch (name) {
-      case "canOpenProfessorStudio": { const next = typeof value === 'function' ? value(state.canOpenProfessorStudio) : value; state.canOpenProfessorStudio = next; set_canOpenProfessorStudio(next); return next; }
-      case "isSubjectNavigating": { const next = typeof value === 'function' ? value(state.isSubjectNavigating) : value; state.isSubjectNavigating = next; set_isSubjectNavigating(next); return next; }
-      case "showDemoSolution": { const next = typeof value === 'function' ? value(state.showDemoSolution) : value; state.showDemoSolution = next; set_showDemoSolution(next); return next; }
-      case "accessDecision": { const next = typeof value === 'function' ? value(state.accessDecision) : value; state.accessDecision = next; set_accessDecision(next); return next; }
-      case "actionMessage": { const next = typeof value === 'function' ? value(state.actionMessage) : value; state.actionMessage = next; set_actionMessage(next); return next; }
-      case "showActionMessage": { const next = typeof value === 'function' ? value(state.showActionMessage) : value; state.showActionMessage = next; set_showActionMessage(next); return next; }
-      case "demoSolutionMode": { const next = typeof value === 'function' ? value(state.demoSolutionMode) : value; state.demoSolutionMode = next; set_demoSolutionMode(next); return next; }
-      case "problemText": { const next = typeof value === 'function' ? value(state.problemText) : value; state.problemText = next; set_problemText(next); return next; }
-      case "demoVisibleSteps": { const next = typeof value === 'function' ? value(state.demoVisibleSteps) : value; state.demoVisibleSteps = next; set_demoVisibleSteps(next); return next; }
-      case "showAccessHint": { const next = typeof value === 'function' ? value(state.showAccessHint) : value; state.showAccessHint = next; set_showAccessHint(next); return next; }
-      case "lastProblemControlId": { const next = typeof value === 'function' ? value(state.lastProblemControlId) : value; state.lastProblemControlId = next; set_lastProblemControlId(next); return next; }
-      case "demoSolutionTitle": { const next = typeof value === 'function' ? value(state.demoSolutionTitle) : value; state.demoSolutionTitle = next; set_demoSolutionTitle(next); return next; }
       case "canLearn": { const next = typeof value === 'function' ? value(state.canLearn) : value; state.canLearn = next; set_canLearn(next); return next; }
       case "demoSolutionText": { const next = typeof value === 'function' ? value(state.demoSolutionText) : value; state.demoSolutionText = next; set_demoSolutionText(next); return next; }
-      case "problemLanguage": { const next = typeof value === 'function' ? value(state.problemLanguage) : value; state.problemLanguage = next; set_problemLanguage(next); return next; }
-      case "demoStepIndex": { const next = typeof value === 'function' ? value(state.demoStepIndex) : value; state.demoStepIndex = next; set_demoStepIndex(next); return next; }
       case "subjectNavigationFailed": { const next = typeof value === 'function' ? value(state.subjectNavigationFailed) : value; state.subjectNavigationFailed = next; set_subjectNavigationFailed(next); return next; }
+      case "contentPreviewDisplay": { const next = typeof value === 'function' ? value(state.contentPreviewDisplay) : value; state.contentPreviewDisplay = next; set_contentPreviewDisplay(next); return next; }
+      case "isSubjectNavigating": { const next = typeof value === 'function' ? value(state.isSubjectNavigating) : value; state.isSubjectNavigating = next; set_isSubjectNavigating(next); return next; }
+      case "demoSolutionTitle": { const next = typeof value === 'function' ? value(state.demoSolutionTitle) : value; state.demoSolutionTitle = next; set_demoSolutionTitle(next); return next; }
+      case "problemText": { const next = typeof value === 'function' ? value(state.problemText) : value; state.problemText = next; set_problemText(next); return next; }
+      case "lastProblemControlId": { const next = typeof value === 'function' ? value(state.lastProblemControlId) : value; state.lastProblemControlId = next; set_lastProblemControlId(next); return next; }
+      case "demoSolutionMode": { const next = typeof value === 'function' ? value(state.demoSolutionMode) : value; state.demoSolutionMode = next; set_demoSolutionMode(next); return next; }
+      case "canOpenProfessorStudio": { const next = typeof value === 'function' ? value(state.canOpenProfessorStudio) : value; state.canOpenProfessorStudio = next; set_canOpenProfessorStudio(next); return next; }
+      case "demoStepIndex": { const next = typeof value === 'function' ? value(state.demoStepIndex) : value; state.demoStepIndex = next; set_demoStepIndex(next); return next; }
+      case "showActionMessage": { const next = typeof value === 'function' ? value(state.showActionMessage) : value; state.showActionMessage = next; set_showActionMessage(next); return next; }
+      case "showAccessHint": { const next = typeof value === 'function' ? value(state.showAccessHint) : value; state.showAccessHint = next; set_showAccessHint(next); return next; }
+      case "demoVisibleSteps": { const next = typeof value === 'function' ? value(state.demoVisibleSteps) : value; state.demoVisibleSteps = next; set_demoVisibleSteps(next); return next; }
+      case "actionMessage": { const next = typeof value === 'function' ? value(state.actionMessage) : value; state.actionMessage = next; set_actionMessage(next); return next; }
+      case "problemLanguage": { const next = typeof value === 'function' ? value(state.problemLanguage) : value; state.problemLanguage = next; set_problemLanguage(next); return next; }
+      case "accessDecision": { const next = typeof value === 'function' ? value(state.accessDecision) : value; state.accessDecision = next; set_accessDecision(next); return next; }
+      case "showDemoSolution": { const next = typeof value === 'function' ? value(state.showDemoSolution) : value; state.showDemoSolution = next; set_showDemoSolution(next); return next; }
       default: return value;
     }
   }, [state]);
@@ -150,23 +154,24 @@ export default function CompiledModule(props) {
       return next;
     };
     switch (root) {
-      case "canOpenProfessorStudio": _setState("canOpenProfessorStudio", updateNested); return value;
-      case "isSubjectNavigating": _setState("isSubjectNavigating", updateNested); return value;
-      case "showDemoSolution": _setState("showDemoSolution", updateNested); return value;
-      case "accessDecision": _setState("accessDecision", updateNested); return value;
-      case "actionMessage": _setState("actionMessage", updateNested); return value;
-      case "showActionMessage": _setState("showActionMessage", updateNested); return value;
-      case "demoSolutionMode": _setState("demoSolutionMode", updateNested); return value;
-      case "problemText": _setState("problemText", updateNested); return value;
-      case "demoVisibleSteps": _setState("demoVisibleSteps", updateNested); return value;
-      case "showAccessHint": _setState("showAccessHint", updateNested); return value;
-      case "lastProblemControlId": _setState("lastProblemControlId", updateNested); return value;
-      case "demoSolutionTitle": _setState("demoSolutionTitle", updateNested); return value;
       case "canLearn": _setState("canLearn", updateNested); return value;
       case "demoSolutionText": _setState("demoSolutionText", updateNested); return value;
-      case "problemLanguage": _setState("problemLanguage", updateNested); return value;
-      case "demoStepIndex": _setState("demoStepIndex", updateNested); return value;
       case "subjectNavigationFailed": _setState("subjectNavigationFailed", updateNested); return value;
+      case "contentPreviewDisplay": _setState("contentPreviewDisplay", updateNested); return value;
+      case "isSubjectNavigating": _setState("isSubjectNavigating", updateNested); return value;
+      case "demoSolutionTitle": _setState("demoSolutionTitle", updateNested); return value;
+      case "problemText": _setState("problemText", updateNested); return value;
+      case "lastProblemControlId": _setState("lastProblemControlId", updateNested); return value;
+      case "demoSolutionMode": _setState("demoSolutionMode", updateNested); return value;
+      case "canOpenProfessorStudio": _setState("canOpenProfessorStudio", updateNested); return value;
+      case "demoStepIndex": _setState("demoStepIndex", updateNested); return value;
+      case "showActionMessage": _setState("showActionMessage", updateNested); return value;
+      case "showAccessHint": _setState("showAccessHint", updateNested); return value;
+      case "demoVisibleSteps": _setState("demoVisibleSteps", updateNested); return value;
+      case "actionMessage": _setState("actionMessage", updateNested); return value;
+      case "problemLanguage": _setState("problemLanguage", updateNested); return value;
+      case "accessDecision": _setState("accessDecision", updateNested); return value;
+      case "showDemoSolution": _setState("showDemoSolution", updateNested); return value;
       default: return value;
     }
   }, [_setState]);
@@ -295,6 +300,67 @@ return { authenticated, isRegistered, roles, verificationStatus, canLearn: isReg
     return undefined;
   }
 
+  async function submitProblem(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    try {
+      { const event = args.event; const data = pageData; const globalState = state;
+        const customResult = await (async () => {
+const profile = inputs.accessProfile && typeof inputs.accessProfile === 'object' ? inputs.accessProfile : {};
+const hasProfile = Object.keys(profile).length > 0;
+const authenticated = profile.authenticated === true || profile.isAuthenticated === true || Boolean(profile.uid || profile.userId || profile.id) || inputs.authenticated === true;
+const isRegistered = authenticated && profile.isRegistered === true;
+const problem = String(state.problemText || '').trim();
+return { authenticated, isRegistered, canLearn: isRegistered, problem, hasProblem: problem.length > 0 };
+        })();
+        stepResults["problem_check"] = customResult; vars["customCodeResult"] = customResult; }
+    } catch (_caughtError) {
+      const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "problem_check" };
+      vars.error = error; stepResults["problem_check"] = { error };
+      _setState("actionMessage", "This action could not be completed. Please retry.");
+      _setState("showActionMessage", true);
+      return { "ok": false };
+      return undefined;
+    }
+    if (stepResults.problem_check.canLearn) {
+      if (stepResults.problem_check.hasProblem) {
+        _setState("actionMessage", "");
+        _setState("showActionMessage", false);
+        try {
+          await _emitOutput("problemSubmitted", { "context": { "programmeSlug": inputs.programmeSlug, "semesterSlug": inputs.semesterSlug, "subjectSlug": inputs.subjectSlug }, "languageCode": inputs.locale || 'en', "mode": args.mode, "problem": stepResults.problem_check.problem }, true);
+        } catch (_caughtError) {
+          const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "problem_emit" };
+          vars.error = error; stepResults["problem_emit"] = { error };
+          _setState("actionMessage", "This action could not be completed. Please retry.");
+          _setState("showActionMessage", true);
+          return { "ok": false };
+          return undefined;
+        }
+        return { "languageCode": inputs.locale || 'en', "mode": args.mode, "ok": true, "problem": stepResults.problem_check.problem };
+      } else {
+        _setState("actionMessage", "Enter a mathematics problem before continuing.");
+        _setState("showActionMessage", true);
+        return { "ok": false, "reason": "empty_problem" };
+      }
+    } else {
+      _setState("actionMessage", "Sign in and complete your Scholar profile to solve this problem.");
+      _setState("showActionMessage", true);
+      try {
+        await requestScholarAccess({ "reason": "registration_required", "returnPath": inputs.returnPath });
+      } catch (_caughtError) {
+        const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "problem_denied_request" };
+        vars.error = error; stepResults["problem_denied_request"] = { error };
+        _setState("actionMessage", "This action could not be completed. Please retry.");
+        _setState("showActionMessage", true);
+        return { "ok": false };
+        return undefined;
+      }
+      return stepResults.problem_denied_request;
+    }
+    return undefined;
+  }
+
   async function requestScholarAccess(initialArgs = {}) {
     const args = initialArgs || {};
     const vars = {};
@@ -338,6 +404,193 @@ return { reason, returnPath, path };
       return undefined;
     }
     return stepResults.access_request_prepare;
+    return undefined;
+  }
+
+  async function initializeHomeDemo(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    { const event = args.event; const data = pageData; const globalState = state;
+      const customResult = await (async () => {
+const language = ['en', 'hi', 'ta'].includes(String(inputs.locale || 'en')) ? String(inputs.locale || 'en') : 'en';
+const mode = ['answer', 'steps'].includes(String(inputs.initialSolveMode || 'answer')) ? String(inputs.initialSolveMode || 'answer') : 'answer';
+const copy = {
+  en: {
+    problem: 'Solve the system 2x + y = 7 and −x + y = 1.',
+    answerTitle: 'Quick answer',
+    answer: 'x = 2 and y = 3. Both equations are satisfied.',
+    stepsTitle: 'Detailed solution',
+    steps: '1. Subtract the second equation from the first: 3x = 6.  2. Therefore x = 2.  3. Substitute into −x + y = 1: −2 + y = 1.  4. Therefore y = 3.  5. Check: 2(2) + 3 = 7.'
+  },
+  hi: {
+    problem: 'समीकरण 2x + y = 7 और −x + y = 1 हल कीजिए।',
+    answerTitle: 'त्वरित उत्तर',
+    answer: 'x = 2 और y = 3। दोनों समीकरण संतुष्ट होते हैं।',
+    stepsTitle: 'विस्तृत हल',
+    steps: '1. पहले समीकरण में से दूसरा घटाएँ: 3x = 6।  2. इसलिए x = 2।  3. इसे −x + y = 1 में रखें: −2 + y = 1।  4. इसलिए y = 3।  5. जाँच: 2(2) + 3 = 7।'
+  },
+  ta: {
+    problem: '2x + y = 7 மற்றும் −x + y = 1 என்ற சமன்பாடுகளைத் தீர்க்கவும்.',
+    answerTitle: 'விரைவு விடை',
+    answer: 'x = 2 மற்றும் y = 3. இரண்டு சமன்பாடுகளும் நிறைவேறுகின்றன.',
+    stepsTitle: 'விரிவான தீர்வு',
+    steps: '1. முதல் சமன்பாட்டிலிருந்து இரண்டாவதை கழிக்கவும்: 3x = 6.  2. ஆகவே x = 2.  3. இதை −x + y = 1 இல் பதிலிடவும்: −2 + y = 1.  4. ஆகவே y = 3.  5. சரிபார்ப்பு: 2(2) + 3 = 7.'
+  }
+};
+const selected = copy[language];
+return { language, mode, problem: selected.problem, title: mode === 'steps' ? selected.stepsTitle : selected.answerTitle, solution: mode === 'steps' ? selected.steps : selected.answer, show: inputs.autoSolveOnLoad !== false };
+      })();
+      stepResults["demo_prepare"] = customResult; vars["customCodeResult"] = customResult; }
+    _setState("problemText", stepResults.demo_prepare.problem);
+    _setState("demoSolutionTitle", stepResults.demo_prepare.title);
+    _setState("demoSolutionText", stepResults.demo_prepare.solution);
+    _setState("demoSolutionMode", stepResults.demo_prepare.mode);
+    _setState("showDemoSolution", stepResults.demo_prepare.show);
+    { const event = args.event; const data = pageData; const globalState = state;
+      const customResult = await (async () => {
+function demoSolutionPresentation(locale) {
+  const equations = [
+    '(2x + y) − (−x + y) = 7 − 1\n3x = 6',
+    'x = 6 ÷ 3 = 2',
+    '−2 + y = 1',
+    'y = 1 + 2 = 3',
+    '2(2) + 3 = 7 ✓\n−2 + 3 = 1 ✓',
+  ];
+  const copy = {
+    en: {
+      method: 'Elimination method', result: 'The solution pair', verified: 'Both equations checked', list: 'Step-by-step solution',
+      titles: ['Eliminate y', 'Solve for x', 'Substitute x = 2', 'Solve for y', 'Check both equations'],
+      descriptions: [
+        'Subtract the second equation from the first. The y terms cancel.',
+        'Divide both sides by 3 to isolate x.',
+        'Use the value of x in the second equation, −x + y = 1.',
+        'Add 2 to both sides to isolate y.',
+        'Substitute the pair into the original equations. Both sides match.',
+      ],
+    },
+    hi: {
+      method: 'विलोपन विधि', result: 'हल का युग्म', verified: 'दोनों समीकरणों की जाँच हुई', list: 'चरण-दर-चरण हल',
+      titles: ['y को हटाएँ', 'x का मान निकालें', 'x = 2 रखें', 'y का मान निकालें', 'दोनों समीकरण जाँचें'],
+      descriptions: [
+        'पहले समीकरण में से दूसरा घटाएँ। y वाले पद कट जाते हैं।',
+        'x को अलग करने के लिए दोनों पक्षों को 3 से भाग दें।',
+        'दूसरे समीकरण −x + y = 1 में x का मान रखें।',
+        'y को अलग करने के लिए दोनों पक्षों में 2 जोड़ें।',
+        'मूल समीकरणों में दोनों मान रखें। दोनों पक्ष बराबर हैं।',
+      ],
+    },
+    ta: {
+      method: 'நீக்கல் முறை', result: 'தீர்வு இணை', verified: 'இரு சமன்பாடுகளும் சரிபார்க்கப்பட்டன', list: 'படிப்படியான தீர்வு',
+      titles: ['y-ஐ நீக்கவும்', 'x-ஐக் கண்டறியவும்', 'x = 2 எனப் பதிலிடவும்', 'y-ஐக் கண்டறியவும்', 'இரு சமன்பாடுகளையும் சரிபார்க்கவும்'],
+      descriptions: [
+        'முதல் சமன்பாட்டிலிருந்து இரண்டாவதைக் கழிக்கவும். y உறுப்புகள் நீங்கும்.',
+        'x-ஐத் தனிமைப்படுத்த இரு பக்கங்களையும் 3-ஆல் வகுக்கவும்.',
+        'இரண்டாவது சமன்பாடு −x + y = 1 இல் x-இன் மதிப்பைப் பதிலிடவும்.',
+        'y-ஐத் தனிமைப்படுத்த இரு பக்கங்களிலும் 2-ஐக் கூட்டவும்.',
+        'மூலச் சமன்பாடுகளில் இரு மதிப்புகளையும் பதிலிடவும். இரு பக்கங்களும் சமம்.',
+      ],
+    },
+  };
+  const selected = Object.hasOwn(copy, String(locale)) ? copy[String(locale)] : copy.en;
+  return {
+    method: selected.method, result: selected.result, verified: selected.verified, list: selected.list,
+    steps: selected.titles.map((title, index) => ({
+      id: `demo-step-${index + 1}`, number: index + 1, marker: String(index + 1).padStart(2, '0'),
+      title, description: selected.descriptions[index], equation: equations[index], checked: index === 4,
+    })),
+  };
+}
+const steps = demoSolutionPresentation(inputs.locale).steps;
+return steps.slice(0, 1);
+      })();
+      stepResults["compact_step_prepare"] = customResult; vars["customCodeResult"] = customResult; }
+    _setState("demoStepIndex", 1);
+    _setState("demoVisibleSteps", stepResults.compact_step_prepare);
+    return stepResults.demo_prepare;
+    return undefined;
+  }
+
+  async function showDetailedSolution(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    { const event = args.event; const data = pageData; const globalState = state;
+      const customResult = await (async () => {
+const language = ['en', 'hi', 'ta'].includes(String(inputs.locale || 'en')) ? String(inputs.locale || 'en') : 'en';
+const copy = {
+  en: { title: 'Detailed solution', solution: '1. Subtract the second equation from the first: 3x = 6.  2. Therefore x = 2.  3. Substitute into −x + y = 1: −2 + y = 1.  4. Therefore y = 3.  5. Check: 2(2) + 3 = 7.' },
+  hi: { title: 'विस्तृत हल', solution: '1. पहले समीकरण में से दूसरा घटाएँ: 3x = 6।  2. इसलिए x = 2।  3. इसे −x + y = 1 में रखें: −2 + y = 1।  4. इसलिए y = 3।  5. जाँच: 2(2) + 3 = 7।' },
+  ta: { title: 'விரிவான தீர்வு', solution: '1. முதல் சமன்பாட்டிலிருந்து இரண்டாவதை கழிக்கவும்: 3x = 6.  2. ஆகவே x = 2.  3. இதை −x + y = 1 இல் பதிலிடவும்: −2 + y = 1.  4. ஆகவே y = 3.  5. சரிபார்ப்பு: 2(2) + 3 = 7.' }
+};
+return { language, title: copy[language].title, solution: copy[language].solution };
+      })();
+      stepResults["showDetailedSolution_prepare"] = customResult; vars["customCodeResult"] = customResult; }
+    _setState("demoSolutionTitle", stepResults.showDetailedSolution_prepare.title);
+    _setState("demoSolutionText", stepResults.showDetailedSolution_prepare.solution);
+    _setState("demoSolutionMode", "steps");
+    _setState("showDemoSolution", true);
+    { const event = args.event; const data = pageData; const globalState = state;
+      const customResult = await (async () => {
+function demoSolutionPresentation(locale) {
+  const equations = [
+    '(2x + y) − (−x + y) = 7 − 1\n3x = 6',
+    'x = 6 ÷ 3 = 2',
+    '−2 + y = 1',
+    'y = 1 + 2 = 3',
+    '2(2) + 3 = 7 ✓\n−2 + 3 = 1 ✓',
+  ];
+  const copy = {
+    en: {
+      method: 'Elimination method', result: 'The solution pair', verified: 'Both equations checked', list: 'Step-by-step solution',
+      titles: ['Eliminate y', 'Solve for x', 'Substitute x = 2', 'Solve for y', 'Check both equations'],
+      descriptions: [
+        'Subtract the second equation from the first. The y terms cancel.',
+        'Divide both sides by 3 to isolate x.',
+        'Use the value of x in the second equation, −x + y = 1.',
+        'Add 2 to both sides to isolate y.',
+        'Substitute the pair into the original equations. Both sides match.',
+      ],
+    },
+    hi: {
+      method: 'विलोपन विधि', result: 'हल का युग्म', verified: 'दोनों समीकरणों की जाँच हुई', list: 'चरण-दर-चरण हल',
+      titles: ['y को हटाएँ', 'x का मान निकालें', 'x = 2 रखें', 'y का मान निकालें', 'दोनों समीकरण जाँचें'],
+      descriptions: [
+        'पहले समीकरण में से दूसरा घटाएँ। y वाले पद कट जाते हैं।',
+        'x को अलग करने के लिए दोनों पक्षों को 3 से भाग दें।',
+        'दूसरे समीकरण −x + y = 1 में x का मान रखें।',
+        'y को अलग करने के लिए दोनों पक्षों में 2 जोड़ें।',
+        'मूल समीकरणों में दोनों मान रखें। दोनों पक्ष बराबर हैं।',
+      ],
+    },
+    ta: {
+      method: 'நீக்கல் முறை', result: 'தீர்வு இணை', verified: 'இரு சமன்பாடுகளும் சரிபார்க்கப்பட்டன', list: 'படிப்படியான தீர்வு',
+      titles: ['y-ஐ நீக்கவும்', 'x-ஐக் கண்டறியவும்', 'x = 2 எனப் பதிலிடவும்', 'y-ஐக் கண்டறியவும்', 'இரு சமன்பாடுகளையும் சரிபார்க்கவும்'],
+      descriptions: [
+        'முதல் சமன்பாட்டிலிருந்து இரண்டாவதைக் கழிக்கவும். y உறுப்புகள் நீங்கும்.',
+        'x-ஐத் தனிமைப்படுத்த இரு பக்கங்களையும் 3-ஆல் வகுக்கவும்.',
+        'இரண்டாவது சமன்பாடு −x + y = 1 இல் x-இன் மதிப்பைப் பதிலிடவும்.',
+        'y-ஐத் தனிமைப்படுத்த இரு பக்கங்களிலும் 2-ஐக் கூட்டவும்.',
+        'மூலச் சமன்பாடுகளில் இரு மதிப்புகளையும் பதிலிடவும். இரு பக்கங்களும் சமம்.',
+      ],
+    },
+  };
+  const selected = Object.hasOwn(copy, String(locale)) ? copy[String(locale)] : copy.en;
+  return {
+    method: selected.method, result: selected.result, verified: selected.verified, list: selected.list,
+    steps: selected.titles.map((title, index) => ({
+      id: `demo-step-${index + 1}`, number: index + 1, marker: String(index + 1).padStart(2, '0'),
+      title, description: selected.descriptions[index], equation: equations[index], checked: index === 4,
+    })),
+  };
+}
+const steps = demoSolutionPresentation(inputs.locale).steps;
+return steps.slice(0, 1);
+      })();
+      stepResults["compact_step_prepare"] = customResult; vars["customCodeResult"] = customResult; }
+    _setState("demoStepIndex", 1);
+    _setState("demoVisibleSteps", stepResults.compact_step_prepare);
+    return { "mode": "steps", "ok": true, "solution": stepResults.showDetailedSolution_prepare.solution };
     return undefined;
   }
 
@@ -448,107 +701,26 @@ return {
     return undefined;
   }
 
-  async function initializeHomeDemo(initialArgs = {}) {
+  async function showQuickSolution(initialArgs = {}) {
     const args = initialArgs || {};
     const vars = {};
     const stepResults = {};
     { const event = args.event; const data = pageData; const globalState = state;
       const customResult = await (async () => {
 const language = ['en', 'hi', 'ta'].includes(String(inputs.locale || 'en')) ? String(inputs.locale || 'en') : 'en';
-const mode = ['answer', 'steps'].includes(String(inputs.initialSolveMode || 'answer')) ? String(inputs.initialSolveMode || 'answer') : 'answer';
 const copy = {
-  en: {
-    problem: 'Solve the system 2x + y = 7 and −x + y = 1.',
-    answerTitle: 'Quick answer',
-    answer: 'x = 2 and y = 3. Both equations are satisfied.',
-    stepsTitle: 'Detailed solution',
-    steps: '1. Subtract the second equation from the first: 3x = 6.  2. Therefore x = 2.  3. Substitute into −x + y = 1: −2 + y = 1.  4. Therefore y = 3.  5. Check: 2(2) + 3 = 7.'
-  },
-  hi: {
-    problem: 'समीकरण 2x + y = 7 और −x + y = 1 हल कीजिए।',
-    answerTitle: 'त्वरित उत्तर',
-    answer: 'x = 2 और y = 3। दोनों समीकरण संतुष्ट होते हैं।',
-    stepsTitle: 'विस्तृत हल',
-    steps: '1. पहले समीकरण में से दूसरा घटाएँ: 3x = 6।  2. इसलिए x = 2।  3. इसे −x + y = 1 में रखें: −2 + y = 1।  4. इसलिए y = 3।  5. जाँच: 2(2) + 3 = 7।'
-  },
-  ta: {
-    problem: '2x + y = 7 மற்றும் −x + y = 1 என்ற சமன்பாடுகளைத் தீர்க்கவும்.',
-    answerTitle: 'விரைவு விடை',
-    answer: 'x = 2 மற்றும் y = 3. இரண்டு சமன்பாடுகளும் நிறைவேறுகின்றன.',
-    stepsTitle: 'விரிவான தீர்வு',
-    steps: '1. முதல் சமன்பாட்டிலிருந்து இரண்டாவதை கழிக்கவும்: 3x = 6.  2. ஆகவே x = 2.  3. இதை −x + y = 1 இல் பதிலிடவும்: −2 + y = 1.  4. ஆகவே y = 3.  5. சரிபார்ப்பு: 2(2) + 3 = 7.'
-  }
+  en: { title: 'Quick answer', solution: 'x = 2 and y = 3. Both equations are satisfied.' },
+  hi: { title: 'त्वरित उत्तर', solution: 'x = 2 और y = 3। दोनों समीकरण संतुष्ट होते हैं।' },
+  ta: { title: 'விரைவு விடை', solution: 'x = 2 மற்றும் y = 3. இரண்டு சமன்பாடுகளும் நிறைவேறுகின்றன.' }
 };
-const selected = copy[language];
-return { language, mode, problem: selected.problem, title: mode === 'steps' ? selected.stepsTitle : selected.answerTitle, solution: mode === 'steps' ? selected.steps : selected.answer, show: inputs.autoSolveOnLoad !== false };
+return { language, title: copy[language].title, solution: copy[language].solution };
       })();
-      stepResults["demo_prepare"] = customResult; vars["customCodeResult"] = customResult; }
-    _setState("problemText", stepResults.demo_prepare.problem);
-    _setState("demoSolutionTitle", stepResults.demo_prepare.title);
-    _setState("demoSolutionText", stepResults.demo_prepare.solution);
-    _setState("demoSolutionMode", stepResults.demo_prepare.mode);
-    _setState("showDemoSolution", stepResults.demo_prepare.show);
-    { const event = args.event; const data = pageData; const globalState = state;
-      const customResult = await (async () => {
-function demoSolutionPresentation(locale) {
-  const equations = [
-    '(2x + y) − (−x + y) = 7 − 1\n3x = 6',
-    'x = 6 ÷ 3 = 2',
-    '−2 + y = 1',
-    'y = 1 + 2 = 3',
-    '2(2) + 3 = 7 ✓\n−2 + 3 = 1 ✓',
-  ];
-  const copy = {
-    en: {
-      method: 'Elimination method', result: 'The solution pair', verified: 'Both equations checked', list: 'Step-by-step solution',
-      titles: ['Eliminate y', 'Solve for x', 'Substitute x = 2', 'Solve for y', 'Check both equations'],
-      descriptions: [
-        'Subtract the second equation from the first. The y terms cancel.',
-        'Divide both sides by 3 to isolate x.',
-        'Use the value of x in the second equation, −x + y = 1.',
-        'Add 2 to both sides to isolate y.',
-        'Substitute the pair into the original equations. Both sides match.',
-      ],
-    },
-    hi: {
-      method: 'विलोपन विधि', result: 'हल का युग्म', verified: 'दोनों समीकरणों की जाँच हुई', list: 'चरण-दर-चरण हल',
-      titles: ['y को हटाएँ', 'x का मान निकालें', 'x = 2 रखें', 'y का मान निकालें', 'दोनों समीकरण जाँचें'],
-      descriptions: [
-        'पहले समीकरण में से दूसरा घटाएँ। y वाले पद कट जाते हैं।',
-        'x को अलग करने के लिए दोनों पक्षों को 3 से भाग दें।',
-        'दूसरे समीकरण −x + y = 1 में x का मान रखें।',
-        'y को अलग करने के लिए दोनों पक्षों में 2 जोड़ें।',
-        'मूल समीकरणों में दोनों मान रखें। दोनों पक्ष बराबर हैं।',
-      ],
-    },
-    ta: {
-      method: 'நீக்கல் முறை', result: 'தீர்வு இணை', verified: 'இரு சமன்பாடுகளும் சரிபார்க்கப்பட்டன', list: 'படிப்படியான தீர்வு',
-      titles: ['y-ஐ நீக்கவும்', 'x-ஐக் கண்டறியவும்', 'x = 2 எனப் பதிலிடவும்', 'y-ஐக் கண்டறியவும்', 'இரு சமன்பாடுகளையும் சரிபார்க்கவும்'],
-      descriptions: [
-        'முதல் சமன்பாட்டிலிருந்து இரண்டாவதைக் கழிக்கவும். y உறுப்புகள் நீங்கும்.',
-        'x-ஐத் தனிமைப்படுத்த இரு பக்கங்களையும் 3-ஆல் வகுக்கவும்.',
-        'இரண்டாவது சமன்பாடு −x + y = 1 இல் x-இன் மதிப்பைப் பதிலிடவும்.',
-        'y-ஐத் தனிமைப்படுத்த இரு பக்கங்களிலும் 2-ஐக் கூட்டவும்.',
-        'மூலச் சமன்பாடுகளில் இரு மதிப்புகளையும் பதிலிடவும். இரு பக்கங்களும் சமம்.',
-      ],
-    },
-  };
-  const selected = Object.hasOwn(copy, String(locale)) ? copy[String(locale)] : copy.en;
-  return {
-    method: selected.method, result: selected.result, verified: selected.verified, list: selected.list,
-    steps: selected.titles.map((title, index) => ({
-      id: `demo-step-${index + 1}`, number: index + 1, marker: String(index + 1).padStart(2, '0'),
-      title, description: selected.descriptions[index], equation: equations[index], checked: index === 4,
-    })),
-  };
-}
-const steps = demoSolutionPresentation(inputs.locale).steps;
-return steps.slice(0, 1);
-      })();
-      stepResults["compact_step_prepare"] = customResult; vars["customCodeResult"] = customResult; }
-    _setState("demoStepIndex", 1);
-    _setState("demoVisibleSteps", stepResults.compact_step_prepare);
-    return stepResults.demo_prepare;
+      stepResults["showQuickSolution_prepare"] = customResult; vars["customCodeResult"] = customResult; }
+    _setState("demoSolutionTitle", stepResults.showQuickSolution_prepare.title);
+    _setState("demoSolutionText", stepResults.showQuickSolution_prepare.solution);
+    _setState("demoSolutionMode", "answer");
+    _setState("showDemoSolution", true);
+    return { "mode": "answer", "ok": true, "solution": stepResults.showQuickSolution_prepare.solution };
     return undefined;
   }
 
@@ -672,198 +844,139 @@ return { index, steps: steps.slice(index - 1, index) };
     return undefined;
   }
 
-  async function showDetailedSolution(initialArgs = {}) {
+  async function initializeContentPreview(initialArgs = {}) {
     const args = initialArgs || {};
     const vars = {};
     const stepResults = {};
     { const event = args.event; const data = pageData; const globalState = state;
       const customResult = await (async () => {
-const language = ['en', 'hi', 'ta'].includes(String(inputs.locale || 'en')) ? String(inputs.locale || 'en') : 'en';
-const copy = {
-  en: { title: 'Detailed solution', solution: '1. Subtract the second equation from the first: 3x = 6.  2. Therefore x = 2.  3. Substitute into −x + y = 1: −2 + y = 1.  4. Therefore y = 3.  5. Check: 2(2) + 3 = 7.' },
-  hi: { title: 'विस्तृत हल', solution: '1. पहले समीकरण में से दूसरा घटाएँ: 3x = 6।  2. इसलिए x = 2।  3. इसे −x + y = 1 में रखें: −2 + y = 1।  4. इसलिए y = 3।  5. जाँच: 2(2) + 3 = 7।' },
-  ta: { title: 'விரிவான தீர்வு', solution: '1. முதல் சமன்பாட்டிலிருந்து இரண்டாவதை கழிக்கவும்: 3x = 6.  2. ஆகவே x = 2.  3. இதை −x + y = 1 இல் பதிலிடவும்: −2 + y = 1.  4. ஆகவே y = 3.  5. சரிபார்ப்பு: 2(2) + 3 = 7.' }
-};
-return { language, title: copy[language].title, solution: copy[language].solution };
-      })();
-      stepResults["showDetailedSolution_prepare"] = customResult; vars["customCodeResult"] = customResult; }
-    _setState("demoSolutionTitle", stepResults.showDetailedSolution_prepare.title);
-    _setState("demoSolutionText", stepResults.showDetailedSolution_prepare.solution);
-    _setState("demoSolutionMode", "steps");
-    _setState("showDemoSolution", true);
-    { const event = args.event; const data = pageData; const globalState = state;
-      const customResult = await (async () => {
-function demoSolutionPresentation(locale) {
-  const equations = [
-    '(2x + y) − (−x + y) = 7 − 1\n3x = 6',
-    'x = 6 ÷ 3 = 2',
-    '−2 + y = 1',
-    'y = 1 + 2 = 3',
-    '2(2) + 3 = 7 ✓\n−2 + 3 = 1 ✓',
-  ];
-  const copy = {
-    en: {
-      method: 'Elimination method', result: 'The solution pair', verified: 'Both equations checked', list: 'Step-by-step solution',
-      titles: ['Eliminate y', 'Solve for x', 'Substitute x = 2', 'Solve for y', 'Check both equations'],
-      descriptions: [
-        'Subtract the second equation from the first. The y terms cancel.',
-        'Divide both sides by 3 to isolate x.',
-        'Use the value of x in the second equation, −x + y = 1.',
-        'Add 2 to both sides to isolate y.',
-        'Substitute the pair into the original equations. Both sides match.',
-      ],
-    },
-    hi: {
-      method: 'विलोपन विधि', result: 'हल का युग्म', verified: 'दोनों समीकरणों की जाँच हुई', list: 'चरण-दर-चरण हल',
-      titles: ['y को हटाएँ', 'x का मान निकालें', 'x = 2 रखें', 'y का मान निकालें', 'दोनों समीकरण जाँचें'],
-      descriptions: [
-        'पहले समीकरण में से दूसरा घटाएँ। y वाले पद कट जाते हैं।',
-        'x को अलग करने के लिए दोनों पक्षों को 3 से भाग दें।',
-        'दूसरे समीकरण −x + y = 1 में x का मान रखें।',
-        'y को अलग करने के लिए दोनों पक्षों में 2 जोड़ें।',
-        'मूल समीकरणों में दोनों मान रखें। दोनों पक्ष बराबर हैं।',
-      ],
-    },
-    ta: {
-      method: 'நீக்கல் முறை', result: 'தீர்வு இணை', verified: 'இரு சமன்பாடுகளும் சரிபார்க்கப்பட்டன', list: 'படிப்படியான தீர்வு',
-      titles: ['y-ஐ நீக்கவும்', 'x-ஐக் கண்டறியவும்', 'x = 2 எனப் பதிலிடவும்', 'y-ஐக் கண்டறியவும்', 'இரு சமன்பாடுகளையும் சரிபார்க்கவும்'],
-      descriptions: [
-        'முதல் சமன்பாட்டிலிருந்து இரண்டாவதைக் கழிக்கவும். y உறுப்புகள் நீங்கும்.',
-        'x-ஐத் தனிமைப்படுத்த இரு பக்கங்களையும் 3-ஆல் வகுக்கவும்.',
-        'இரண்டாவது சமன்பாடு −x + y = 1 இல் x-இன் மதிப்பைப் பதிலிடவும்.',
-        'y-ஐத் தனிமைப்படுத்த இரு பக்கங்களிலும் 2-ஐக் கூட்டவும்.',
-        'மூலச் சமன்பாடுகளில் இரு மதிப்புகளையும் பதிலிடவும். இரு பக்கங்களும் சமம்.',
-      ],
-    },
+function normalizeScholarLesson(value, fallbackStatement = '') {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('A lesson object is required.');
+  const string = (value, field, required = false) => {
+    if (value != null && typeof value !== 'string') throw new Error(field + ' must be text.');
+    const text = (value || '').trim();
+    if ((required && !text) || text.length > 16000) throw new Error('Invalid ' + field + '.');
+    return text;
   };
-  const selected = Object.hasOwn(copy, String(locale)) ? copy[String(locale)] : copy.en;
+  if (!Array.isArray(value.steps) || !value.steps.length || value.steps.length > 80) throw new Error('A lesson needs 1–80 steps.');
+  const ids = new Set();
+  const steps = value.steps.map((step, index) => {
+    if (!step || typeof step !== 'object' || Array.isArray(step)) throw new Error('Invalid lesson step.');
+    const id = string(step.id, 'step ID') || 'step-' + (index + 1);
+    if (ids.has(id)) throw new Error('Step IDs must be unique.');
+    ids.add(id);
+    const q = step.teacherQuestion;
+    if (!q || !Array.isArray(q.options) || q.options.length !== 4) throw new Error('Every teacher check needs exactly four choices.');
+    const optionIds = new Set();
+    const options = q.options.map((option) => {
+      const value = string(option?.value, 'option ID', true);
+      if (optionIds.has(value)) throw new Error('Answer option IDs must be unique.');
+      optionIds.add(value);
+      return { value, label: string(option?.label, 'option label', true) };
+    });
+    const correctValue = string(q.correctValue, 'correct answer ID', true);
+    if (!optionIds.has(correctValue)) throw new Error('The correct answer must reference a supplied option.');
+    const prompt = string(q.prompt || step.teacherPrompt, 'teacher question', true);
+    if (!Array.isArray(step.content) || !step.content.length || step.content.length > 60) throw new Error('Each step needs board content.');
+    const content = step.content.map((block) => {
+      if (!block || typeof block !== 'object') throw new Error('Invalid board content.');
+      switch (block.type) {
+        case 'heading': case 'text': case 'note':
+          return { ...block, text: string(block.text, 'board text', true) };
+        case 'equation':
+          return { ...block, visualText: string(block.visualText, 'readable equation', true), latex: string(block.latex, 'equation') };
+        case 'definition':
+          return { ...block, term: string(block.term, 'term', true), text: string(block.text, 'definition', true) };
+        case 'theorem':
+          return { ...block, statement: string(block.statement, 'theorem', true) };
+        case 'list': case 'proof': {
+          const key = block.type === 'list' ? 'items' : 'lines';
+          if (!Array.isArray(block[key]) || !block[key].length) throw new Error('Invalid board list.');
+          return { ...block, [key]: block[key].map((entry) => string(entry, 'list entry', true)) };
+        }
+        case 'matrix': {
+          const rows = block.matrix?.rows;
+          if (!Array.isArray(rows) || !rows.length || rows.length > 30 || !Array.isArray(rows[0]) || !rows[0].length || rows[0].length > 30 || rows.some((row) => !Array.isArray(row) || row.length !== rows[0].length || row.some((cell) => !['string', 'number'].includes(typeof cell)))) throw new Error('Invalid matrix.');
+          return block;
+        }
+        case 'table':
+          if (!Array.isArray(block.headers) || !block.headers.length || !Array.isArray(block.rows) || block.rows.some((row) => !Array.isArray(row) || row.length !== block.headers.length)) throw new Error('Invalid table.');
+          return { ...block, headers: block.headers.map((x) => string(x, 'table heading')), rows: block.rows.map((row) => row.map((x) => string(x, 'table cell'))) };
+        case 'graph': {
+          if (!Array.isArray(block.nodes) || !Array.isArray(block.edges)) throw new Error('Invalid graph.');
+          const nodeIds = new Set();
+          for (const node of block.nodes) {
+            if (!node?.id || nodeIds.has(node.id) || !Number.isFinite(node.x) || !Number.isFinite(node.y)) throw new Error('Invalid graph node.');
+            nodeIds.add(node.id);
+          }
+          if (block.edges.some((edge) => !nodeIds.has(edge?.from) || !nodeIds.has(edge?.to))) throw new Error('Invalid graph edge.');
+          return block;
+        }
+        default: throw new Error('Unsupported board content type.');
+      }
+    });
+    const result = { id, title: string(step.title, 'step title', true), content, teacherPrompt: prompt,
+      teacherQuestion: { prompt, options, correctValue, explanation: string(q.explanation, 'answer explanation', true) } };
+    for (const field of ['narration', 'explanation', 'simpleExplanation', 'visualExplanation', 'why', 'commonMistake']) result[field] = string(step[field], field);
+    return result;
+  });
   return {
-    method: selected.method, result: selected.result, verified: selected.verified, list: selected.list,
-    steps: selected.titles.map((title, index) => ({
-      id: `demo-step-${index + 1}`, number: index + 1, marker: String(index + 1).padStart(2, '0'),
-      title, description: selected.descriptions[index], equation: equations[index], checked: index === 4,
-    })),
+    title: string(value.title, 'lesson title', true), lessonKind: 'worked-example',
+    problemLabel: string(value.problemLabel, 'problem label') || 'Problem',
+    problemStatement: string(value.problemStatement || fallbackStatement, 'problem statement', true),
+    learningGoal: string(value.learningGoal, 'learning goal'), steps,
+    verification: { status: 'unverified', message: 'AI-generated teaching content. Mathematical correctness has not been independently verified.' },
   };
 }
-const steps = demoSolutionPresentation(inputs.locale).steps;
-return steps.slice(0, 1);
+function normalizeContentPreview(value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value) || !Object.keys(value).length) return { enabled: false, valid: false };
+  if (JSON.stringify(value).length > 250000) throw new Error('Preview is too large.');
+  if (value.schemaVersion !== 1) throw new Error('Unsupported preview schema.');
+  const lesson = normalizeScholarLesson(value.lesson, value.problem?.statement);
+  const context = value.context || {};
+  const str = v => typeof v === 'string' ? v.trim().slice(0, 500) : '';
+  if (!str(context.syllabusId) || !str(context.contextKey) || !str(value.problem?.id)) throw new Error('Preview needs saved syllabus, context, and problem IDs.');
+  return { enabled: true, valid: true, schemaVersion: 1,
+    context: { syllabusId: str(context.syllabusId), contextKey: str(context.contextKey), versionNumber: Math.max(1, Math.floor(Number(context.versionNumber) || 1)), locale: ['en','hi','ta'].includes(context.locale) ? context.locale : 'en', topicPath: str(context.topicPath) },
+    problem: { id: str(value.problem.id), statement: lesson.problemStatement, solutionMode: value.problem.solutionMode === 'quick' ? 'quick' : 'detailed' },
+    lesson, boardSteps: lesson.steps.map(({ teacherQuestion, teacherPrompt, ...step }) => step),
+    message: 'Content preview · no AI request, learning-time charge, or progress write. Mathematical correctness is not independently verified.' };
+}
+try { return normalizeContentPreview(inputs.contentPreview); } catch { return { enabled: true, valid: false, message: 'This preview is incomplete or invalid. Return to Studio and prepare it again.' }; }
       })();
-      stepResults["compact_step_prepare"] = customResult; vars["customCodeResult"] = customResult; }
-    _setState("demoStepIndex", 1);
-    _setState("demoVisibleSteps", stepResults.compact_step_prepare);
-    return { "mode": "steps", "ok": true, "solution": stepResults.showDetailedSolution_prepare.solution };
-    return undefined;
-  }
-
-  async function submitProblem(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    try {
-      { const event = args.event; const data = pageData; const globalState = state;
-        const customResult = await (async () => {
-const profile = inputs.accessProfile && typeof inputs.accessProfile === 'object' ? inputs.accessProfile : {};
-const hasProfile = Object.keys(profile).length > 0;
-const authenticated = profile.authenticated === true || profile.isAuthenticated === true || Boolean(profile.uid || profile.userId || profile.id) || inputs.authenticated === true;
-const isRegistered = authenticated && profile.isRegistered === true;
-const problem = String(state.problemText || '').trim();
-return { authenticated, isRegistered, canLearn: isRegistered, problem, hasProblem: problem.length > 0 };
-        })();
-        stepResults["problem_check"] = customResult; vars["customCodeResult"] = customResult; }
-    } catch (_caughtError) {
-      const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "problem_check" };
-      vars.error = error; stepResults["problem_check"] = { error };
-      _setState("actionMessage", "This action could not be completed. Please retry.");
-      _setState("showActionMessage", true);
-      return { "ok": false };
-      return undefined;
-    }
-    if (stepResults.problem_check.canLearn) {
-      if (stepResults.problem_check.hasProblem) {
-        _setState("actionMessage", "");
-        _setState("showActionMessage", false);
-        try {
-          await _emitOutput("problemSubmitted", { "context": { "programmeSlug": inputs.programmeSlug, "semesterSlug": inputs.semesterSlug, "subjectSlug": inputs.subjectSlug }, "languageCode": inputs.locale || 'en', "mode": args.mode, "problem": stepResults.problem_check.problem }, true);
-        } catch (_caughtError) {
-          const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "problem_emit" };
-          vars.error = error; stepResults["problem_emit"] = { error };
-          _setState("actionMessage", "This action could not be completed. Please retry.");
-          _setState("showActionMessage", true);
-          return { "ok": false };
-          return undefined;
-        }
-        return { "languageCode": inputs.locale || 'en', "mode": args.mode, "ok": true, "problem": stepResults.problem_check.problem };
-      } else {
-        _setState("actionMessage", "Enter a mathematics problem before continuing.");
-        _setState("showActionMessage", true);
-        return { "ok": false, "reason": "empty_problem" };
-      }
-    } else {
-      _setState("actionMessage", "Sign in and complete your Scholar profile to solve this problem.");
-      _setState("showActionMessage", true);
-      try {
-        await requestScholarAccess({ "reason": "registration_required", "returnPath": inputs.returnPath });
-      } catch (_caughtError) {
-        const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "problem_denied_request" };
-        vars.error = error; stepResults["problem_denied_request"] = { error };
-        _setState("actionMessage", "This action could not be completed. Please retry.");
-        _setState("showActionMessage", true);
-        return { "ok": false };
-        return undefined;
-      }
-      return stepResults.problem_denied_request;
-    }
-    return undefined;
-  }
-
-  async function showQuickSolution(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    { const event = args.event; const data = pageData; const globalState = state;
-      const customResult = await (async () => {
-const language = ['en', 'hi', 'ta'].includes(String(inputs.locale || 'en')) ? String(inputs.locale || 'en') : 'en';
-const copy = {
-  en: { title: 'Quick answer', solution: 'x = 2 and y = 3. Both equations are satisfied.' },
-  hi: { title: 'त्वरित उत्तर', solution: 'x = 2 और y = 3। दोनों समीकरण संतुष्ट होते हैं।' },
-  ta: { title: 'விரைவு விடை', solution: 'x = 2 மற்றும் y = 3. இரண்டு சமன்பாடுகளும் நிறைவேறுகின்றன.' }
-};
-return { language, title: copy[language].title, solution: copy[language].solution };
-      })();
-      stepResults["showQuickSolution_prepare"] = customResult; vars["customCodeResult"] = customResult; }
-    _setState("demoSolutionTitle", stepResults.showQuickSolution_prepare.title);
-    _setState("demoSolutionText", stepResults.showQuickSolution_prepare.solution);
-    _setState("demoSolutionMode", "answer");
-    _setState("showDemoSolution", true);
-    return { "mode": "answer", "ok": true, "solution": stepResults.showQuickSolution_prepare.solution };
+      stepResults["preview_validate"] = customResult; vars["customCodeResult"] = customResult; }
+    _setState("contentPreviewDisplay", stepResults.preview_validate);
+    return stepResults.preview_validate;
     return undefined;
   }
 
   const _localActions = {
     "requestImage": requestImage,
+    "submitProblem": submitProblem,
     "requestScholarAccess": requestScholarAccess,
+    "initializeHomeDemo": initializeHomeDemo,
+    "showDetailedSolution": showDetailedSolution,
     "initializeDiscoveryAccess": initializeDiscoveryAccess,
     "openProfessorStudio": openProfessorStudio,
     "navigate": navigate,
-    "initializeHomeDemo": initializeHomeDemo,
+    "showQuickSolution": showQuickSolution,
     "openDiscoverySubject": openDiscoverySubject,
     "selectDemoSolutionStep": selectDemoSolutionStep,
-    "showDetailedSolution": showDetailedSolution,
-    "submitProblem": submitProblem,
-    "showQuickSolution": showQuickSolution,
+    "initializeContentPreview": initializeContentPreview,
   };
   const _localActionArguments = {
     "requestImage": [],
+    "submitProblem": ["mode"],
     "requestScholarAccess": ["reason", "returnPath"],
+    "initializeHomeDemo": [],
+    "showDetailedSolution": [],
     "initializeDiscoveryAccess": [],
     "openProfessorStudio": [],
     "navigate": ["path"],
-    "initializeHomeDemo": [],
+    "showQuickSolution": [],
     "openDiscoverySubject": ["event"],
     "selectDemoSolutionStep": ["event"],
-    "showDetailedSolution": [],
-    "submitProblem": ["mode"],
-    "showQuickSolution": [],
+    "initializeContentPreview": [],
   };
   const _callAction = (name, configuredArgs = {}, eventArgs = []) => {
     const localAction = _localActions[name];
@@ -914,16 +1027,27 @@ return { language, title: copy[language].title, solution: copy[language].solutio
     if (!_inputLifecycleMounted1.current) { _inputLifecycleMounted1.current = true; return; }
     void _runLifecycle("discovery_demo_inputsinitializeHomeDemo", "takeLatest", (signal) => initializeHomeDemo({ signal }), 'Module input lifecycle failed:');
   }, [locale, autoSolveOnLoad, initialSolveMode]);
+  const _inputLifecycleMounted2 = useRef(false);
+  useEffect(() => {
+    if (!_inputLifecycleMounted2.current) { _inputLifecycleMounted2.current = true; }
+    void _runLifecycle("content_preview_inputsinitializeContentPreview", "takeLatest", (signal) => initializeContentPreview({ signal }), 'Module input lifecycle failed:');
+  }, [contentPreview]);
 
   return (
     <div ref={wrapperRef} className="rudra-module-wrapper">
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="root" className="block rs-discovery">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="hero" className="block rs-hero">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="hero_inner" className="grid rs-hero-inner">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="copy" className="flex flex-col rs-stack">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="kicker" className="rs-kicker" as="p" content={((_bindingValue) => _bindingValue === undefined ? "A mathematics studio for college" : _bindingValue)(_scope?.i18n?.kicker)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="root" className="block rs-discovery">      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(contentPreviewDisplay?.enabled)) && (<>      <RudraLayoutBox id="content_preview_panel" className="flex flex-col rs-content-preview">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="content_preview_notice" className="rs-content-preview-notice" as="p" content={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(contentPreviewDisplay?.message)} aria-live="polite" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="title" className="rs-title" as="h2" content={((_bindingValue) => _bindingValue === undefined ? "See the reasoning. Steer the lesson." : _bindingValue)(_scope?.i18n?.title)} customColor="#effff9" />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(contentPreviewDisplay?.valid)) && (<>      <ChalkmindMathBlackboardLesson id="content_preview_board" title={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(contentPreviewDisplay?.lesson?.title)} autoAdvance={false} learningGoal={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(contentPreviewDisplay?.lesson?.learningGoal)} problemLabel={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(contentPreviewDisplay?.lesson?.problemLabel)} captionsEnabled={true} popupInitiallyOpen={false} steps={((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(contentPreviewDisplay?.boardSteps)} playing={false} problemStatement={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(contentPreviewDisplay?.lesson?.problemStatement)} />
+</>)}
+</RudraLayoutBox>
+</>)}
+      {isVisibleValue((((value) => { return !value; })(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(contentPreviewDisplay?.enabled)))) && (<>      <RudraLayoutBox id="content_preview_normal_hero" className="block">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="hero" className="block rs-hero">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="hero_inner" className="grid rs-hero-inner">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="copy" className="flex flex-col rs-stack">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="kicker" className="rs-kicker" as="p" content={((_bindingValue) => _bindingValue === undefined ? "A mathematics studio for college" : _bindingValue)(_scope?.i18n?.kicker)} />
+</>)}
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="title" className="rs-title" content={((_bindingValue) => _bindingValue === undefined ? "See the reasoning. Steer the lesson." : _bindingValue)(_scope?.i18n?.title)} customColor="#effff9" as="h2" />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="lede" className="rs-lede" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Choose programme, semester and subject, then learn step by step." : _bindingValue)(_scope?.i18n?.lede)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="hero_actions" className="flex flex-wrap rs-actions">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="browse_cta" size="lg" label={((_bindingValue) => _bindingValue === undefined ? "Browse mathematics" : _bindingValue)(_scope?.i18n?.browse)} theme="dark" variant="primary" onAction={(...eventArgs) => _callAction("navigate", {"path": "/browse/engineering/semester-1"}, eventArgs)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="hero_actions" className="flex flex-wrap rs-actions">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="browse_cta" variant="primary" onAction={(...eventArgs) => _callAction("navigate", {"path": "/browse/engineering/semester-1"}, eventArgs)} size="lg" label={((_bindingValue) => _bindingValue === undefined ? "Browse mathematics" : _bindingValue)(_scope?.i18n?.browse)} theme="dark" />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="prof_cta" size="lg" label="Professor Studio" theme="dark" variant="outline" onAction={(...eventArgs) => _callAction("openProfessorStudio", {}, eventArgs)} />
 </>)}
@@ -931,27 +1055,27 @@ return { language, title: copy[language].title, solution: copy[language].solutio
 </>)}
 </RudraLayoutBox>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="workbench" className="flex flex-col rs-workbench">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="prompt_title" content={((_bindingValue) => _bindingValue === undefined ? "Explore a worked example" : _bindingValue)(_scope?.i18n?.prompt)} as="h3" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="workbench" className="flex flex-col rs-workbench">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="prompt_title" as="h3" content={((_bindingValue) => _bindingValue === undefined ? "Explore a worked example" : _bindingValue)(_scope?.i18n?.prompt)} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="demo_disclosure" className="rs-demo-disclosure" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Fixed worked example — no AI request is made here." : _bindingValue)(_scope?.i18n?.demoNote)} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="problem_input" className="rs-demo-problem" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Solve the system 2x + y = 7 and −x + y = 1." : _bindingValue)(problemText)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="problem_actions" className="grid rs-actions rs-solution-controls">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="solve_now" id="scholar-demo-quick" onAction={(...eventArgs) => _callAction("showQuickSolution", {}, eventArgs)} aria-pressed={(((value) => { return value === 'answer'; })(((_bindingValue) => _bindingValue === undefined ? "answer" : _bindingValue)(demoSolutionMode)))} aria-controls="scholar-demo-solution" additionalAttributes={{}} type="button" label={((_bindingValue) => _bindingValue === undefined ? "Show answer" : _bindingValue)(_scope?.i18n?.solveNow)} theme="light" variant="primary" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="problem_actions" className="grid rs-actions rs-solution-controls">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="solve_now" onAction={(...eventArgs) => _callAction("showQuickSolution", {}, eventArgs)} aria-pressed={(((value) => { return value === 'answer'; })(((_bindingValue) => _bindingValue === undefined ? "answer" : _bindingValue)(demoSolutionMode)))} type="button" aria-controls="scholar-demo-solution" additionalAttributes={{}} id="scholar-demo-quick" label={((_bindingValue) => _bindingValue === undefined ? "Show answer" : _bindingValue)(_scope?.i18n?.solveNow)} theme="light" variant="primary" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="steps" aria-pressed={(((value) => { return value === 'steps'; })(((_bindingValue) => _bindingValue === undefined ? "answer" : _bindingValue)(demoSolutionMode)))} additionalAttributes={{}} type="button" label={((_bindingValue) => _bindingValue === undefined ? "Show detailed steps" : _bindingValue)(_scope?.i18n?.solveSteps)} theme="light" aria-controls="scholar-demo-solution" id="scholar-demo-detailed" variant="outline" onAction={(...eventArgs) => _callAction("showDetailedSolution", {}, eventArgs)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="steps" onAction={(...eventArgs) => _callAction("showDetailedSolution", {}, eventArgs)} aria-controls="scholar-demo-solution" additionalAttributes={{}} type="button" label={((_bindingValue) => _bindingValue === undefined ? "Show detailed steps" : _bindingValue)(_scope?.i18n?.solveSteps)} aria-pressed={(((value) => { return value === 'steps'; })(((_bindingValue) => _bindingValue === undefined ? "answer" : _bindingValue)(demoSolutionMode)))} id="scholar-demo-detailed" theme="light" variant="outline" />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": false, "md": false, "sm": false })) && (<>      <RudraCoreButton id="teacher" label="Learn with professor" theme="light" variant="outline" onAction={(...eventArgs) => _callAction("submitProblem", {"mode": "professor"}, eventArgs)} />
 </>)}
 </RudraLayoutBox>
 </>)}
-      {isVisibleValue(showDemoSolution) && (<>      <RudraLayoutBox id="demo_solution" data-solution-mode={((_bindingValue) => _bindingValue === undefined ? "answer" : _bindingValue)(demoSolutionMode)} aria-live="polite" aria-labelledby="scholar-demo-solution-title" className="flex flex-col rs-solution" id="scholar-demo-solution" role="region">      {isVisibleValue((((value) => { return value === 'steps'; })(((_bindingValue) => _bindingValue === undefined ? "answer" : _bindingValue)(demoSolutionMode)))) && (<>      <RudraLayoutBox id="demo_step_picker" aria-label={((_bindingValue) => _bindingValue === undefined ? "Choose a solution step" : _bindingValue)(_scope?.i18n?.demoStepPicker)} className="grid rs-step-picker" role="group">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="demo_step_pick_1" className="rs-step-dot" id="scholar-demo_step_pick_1" type="button" label="1" value={1} onAction={(...eventArgs) => _callAction("selectDemoSolutionStep", {}, eventArgs)} ariaLabel={((_bindingValue) => _bindingValue === undefined ? "Step 1: Eliminate y" : _bindingValue)(_scope?.i18n?.demoStepLabel1)} aria-pressed={(((value) => { return value === 1; })(((_bindingValue) => _bindingValue === undefined ? 1 : _bindingValue)(demoStepIndex)))} />
+      {isVisibleValue(showDemoSolution) && (<>      <RudraLayoutBox id="demo_solution" data-solution-mode={((_bindingValue) => _bindingValue === undefined ? "answer" : _bindingValue)(demoSolutionMode)} aria-live="polite" aria-labelledby="scholar-demo-solution-title" className="flex flex-col rs-solution" id="scholar-demo-solution" role="region">      {isVisibleValue((((value) => { return value === 'steps'; })(((_bindingValue) => _bindingValue === undefined ? "answer" : _bindingValue)(demoSolutionMode)))) && (<>      <RudraLayoutBox id="demo_step_picker" aria-label={((_bindingValue) => _bindingValue === undefined ? "Choose a solution step" : _bindingValue)(_scope?.i18n?.demoStepPicker)} className="grid rs-step-picker" role="group">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="demo_step_pick_1" className="rs-step-dot" onAction={(...eventArgs) => _callAction("selectDemoSolutionStep", {}, eventArgs)} ariaLabel={((_bindingValue) => _bindingValue === undefined ? "Step 1: Eliminate y" : _bindingValue)(_scope?.i18n?.demoStepLabel1)} aria-pressed={(((value) => { return value === 1; })(((_bindingValue) => _bindingValue === undefined ? 1 : _bindingValue)(demoStepIndex)))} id="scholar-demo_step_pick_1" type="button" label="1" value={1} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="demo_step_pick_2" className="rs-step-dot" type="button" label="2" value={2} onAction={(...eventArgs) => _callAction("selectDemoSolutionStep", {}, eventArgs)} ariaLabel={((_bindingValue) => _bindingValue === undefined ? "Step 2: Solve for x" : _bindingValue)(_scope?.i18n?.demoStepLabel2)} aria-pressed={(((value) => { return value === 2; })(((_bindingValue) => _bindingValue === undefined ? 1 : _bindingValue)(demoStepIndex)))} id="scholar-demo_step_pick_2" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="demo_step_pick_2" className="rs-step-dot" aria-pressed={(((value) => { return value === 2; })(((_bindingValue) => _bindingValue === undefined ? 1 : _bindingValue)(demoStepIndex)))} id="scholar-demo_step_pick_2" type="button" label="2" value={2} onAction={(...eventArgs) => _callAction("selectDemoSolutionStep", {}, eventArgs)} ariaLabel={((_bindingValue) => _bindingValue === undefined ? "Step 2: Solve for x" : _bindingValue)(_scope?.i18n?.demoStepLabel2)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="demo_step_pick_3" className="rs-step-dot" id="scholar-demo_step_pick_3" type="button" label="3" value={3} onAction={(...eventArgs) => _callAction("selectDemoSolutionStep", {}, eventArgs)} ariaLabel={((_bindingValue) => _bindingValue === undefined ? "Step 3: Substitute x = 2" : _bindingValue)(_scope?.i18n?.demoStepLabel3)} aria-pressed={(((value) => { return value === 3; })(((_bindingValue) => _bindingValue === undefined ? 1 : _bindingValue)(demoStepIndex)))} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="demo_step_pick_3" className="rs-step-dot" onAction={(...eventArgs) => _callAction("selectDemoSolutionStep", {}, eventArgs)} ariaLabel={((_bindingValue) => _bindingValue === undefined ? "Step 3: Substitute x = 2" : _bindingValue)(_scope?.i18n?.demoStepLabel3)} aria-pressed={(((value) => { return value === 3; })(((_bindingValue) => _bindingValue === undefined ? 1 : _bindingValue)(demoStepIndex)))} id="scholar-demo_step_pick_3" type="button" label="3" value={3} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="demo_step_pick_4" className="rs-step-dot" ariaLabel={((_bindingValue) => _bindingValue === undefined ? "Step 4: Solve for y" : _bindingValue)(_scope?.i18n?.demoStepLabel4)} aria-pressed={(((value) => { return value === 4; })(((_bindingValue) => _bindingValue === undefined ? 1 : _bindingValue)(demoStepIndex)))} id="scholar-demo_step_pick_4" type="button" label="4" value={4} onAction={(...eventArgs) => _callAction("selectDemoSolutionStep", {}, eventArgs)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="demo_step_pick_4" className="rs-step-dot" aria-pressed={(((value) => { return value === 4; })(((_bindingValue) => _bindingValue === undefined ? 1 : _bindingValue)(demoStepIndex)))} id="scholar-demo_step_pick_4" type="button" label="4" value={4} onAction={(...eventArgs) => _callAction("selectDemoSolutionStep", {}, eventArgs)} ariaLabel={((_bindingValue) => _bindingValue === undefined ? "Step 4: Solve for y" : _bindingValue)(_scope?.i18n?.demoStepLabel4)} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="demo_step_pick_5" className="rs-step-dot" label="5" value={5} onAction={(...eventArgs) => _callAction("selectDemoSolutionStep", {}, eventArgs)} ariaLabel={((_bindingValue) => _bindingValue === undefined ? "Step 5: Check both equations" : _bindingValue)(_scope?.i18n?.demoStepLabel5)} aria-pressed={(((value) => { return value === 5; })(((_bindingValue) => _bindingValue === undefined ? 1 : _bindingValue)(demoStepIndex)))} id="scholar-demo_step_pick_5" type="button" />
 </>)}
@@ -1073,7 +1197,7 @@ return { language, title: copy[language].title, solution: copy[language].solutio
   };
 })(value).result; })(((_bindingValue) => _bindingValue === undefined ? "en" : _bindingValue)(inputs?.locale)))} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="demo_solution_values" className="grid rs-solution-values">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="demo_solution_x" className="rs-solution-value" content="x = 2" as="p" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="demo_solution_values" className="grid rs-solution-values">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="demo_solution_x" className="rs-solution-value" as="p" content="x = 2" />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="demo_solution_y" className="rs-solution-value" as="p" content="y = 3" />
 </>)}
@@ -1136,7 +1260,7 @@ return { language, title: copy[language].title, solution: copy[language].solutio
 </>)}
 </RudraLayoutBox>
 </>)}
-      {isVisibleValue((((value) => { return value === 'steps'; })(((_bindingValue) => _bindingValue === undefined ? "answer" : _bindingValue)(demoSolutionMode)))) && (<>      <RudraLayoutRepeater id="demo_solution_steps" className="grid rs-solution-steps" role="list" items={((_bindingValue) => _bindingValue === undefined ? [{ "checked": false, "description": "Subtract the second equation from the first. The y terms cancel.", "equation": "(2x + y) − (−x + y) = 7 − 1\n3x = 6", "id": "demo-step-1", "marker": 1, "number": 1, "title": "Eliminate y" }] : _bindingValue)(demoVisibleSteps)} aria-label={(((value) => { return (function demoSolutionPresentation(locale) {
+      {isVisibleValue((((value) => { return value === 'steps'; })(((_bindingValue) => _bindingValue === undefined ? "answer" : _bindingValue)(demoSolutionMode)))) && (<>      <RudraLayoutRepeater id="demo_solution_steps" className="grid rs-solution-steps" items={((_bindingValue) => _bindingValue === undefined ? [{ "checked": false, "description": "Subtract the second equation from the first. The y terms cancel.", "equation": "(2x + y) − (−x + y) = 7 − 1\n3x = 6", "id": "demo-step-1", "marker": 1, "number": 1, "title": "Eliminate y" }] : _bindingValue)(demoVisibleSteps)} aria-label={(((value) => { return (function demoSolutionPresentation(locale) {
   const equations = [
     '(2x + y) − (−x + y) = 7 − 1\n3x = 6',
     'x = 6 ÷ 3 = 2',
@@ -1187,7 +1311,7 @@ return { language, title: copy[language].title, solution: copy[language].solutio
       title, description: selected.descriptions[index], equation: equations[index], checked: index === 4,
     })),
   };
-})(value).list; })(((_bindingValue) => _bindingValue === undefined ? "en" : _bindingValue)(inputs?.locale)))}>{(_payload) => { const _parentScope = _scope || {}; return (() => { const _scope = { ..._parentScope, ...(_payload || {}), item: _payload?.item ?? _payload, index: _payload?.index ?? _payload?.i ?? 0, parent: _parentScope }; return (<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="demo_solution_step" aria-posinset={((_bindingValue) => _bindingValue === undefined ? 1 : _bindingValue)(_scope?.item?.number)} aria-setsize={5} className={`${((_classValue) => _classValue == null || _classValue === false || typeof _classValue === 'object' ? '' : "" + String(_classValue))((((value) => { return 'grid rs-solution-step' + (value ? ' rs-solution-step--check' : ''); })(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(_scope?.item?.checked))))}`} role="listitem">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="demo_solution_step_marker" className="rs-solution-step-marker" aria-hidden={true} as="span" content={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(_scope?.item?.marker)} />
+})(value).list; })(((_bindingValue) => _bindingValue === undefined ? "en" : _bindingValue)(inputs?.locale)))} role="list">{(_payload) => { const _parentScope = _scope || {}; return (() => { const _scope = { ..._parentScope, ...(_payload || {}), item: _payload?.item ?? _payload, index: _payload?.index ?? _payload?.i ?? 0, parent: _parentScope }; return (<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="demo_solution_step" aria-setsize={5} aria-posinset={((_bindingValue) => _bindingValue === undefined ? 1 : _bindingValue)(_scope?.item?.number)} className={`${((_classValue) => _classValue == null || _classValue === false || typeof _classValue === 'object' ? '' : "" + String(_classValue))((((value) => { return 'grid rs-solution-step' + (value ? ' rs-solution-step--check' : ''); })(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(_scope?.item?.checked))))}`} role="listitem">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="demo_solution_step_marker" className="rs-solution-step-marker" as="span" content={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(_scope?.item?.marker)} aria-hidden={true} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="demo_solution_step_content" className="flex flex-col rs-solution-step-content">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="demo_solution_step_title" className="rs-solution-step-title" as="h4" content={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(_scope?.item?.title)} />
 </>)}
@@ -1213,17 +1337,19 @@ return { language, title: copy[language].title, solution: copy[language].solutio
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="image" leftIcon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"LockKeyhole"} id="image_lock_icon" size={18} strokeWidth={2} />
 </>)}
-</>} disabled={true} onAction={(...eventArgs) => _callAction("requestImage", {}, eventArgs)} ariaLabel="Image problem upload is locked until a post-release update" additionalAttributes={{"disabled":true,"title":"Planned for a post-release update"}} id="scholar-image-upload-locked" label="Upload an image · Coming soon" theme="light" variant="ghost" />
+</>} label="Upload an image · Coming soon" theme="light" variant="ghost" disabled={true} onAction={(...eventArgs) => _callAction("requestImage", {}, eventArgs)} ariaLabel="Image problem upload is locked until a post-release update" additionalAttributes={{"disabled":true,"title":"Planned for a post-release update"}} id="scholar-image-upload-locked" />
 </>)}
-      {isVisibleValue(showActionMessage) && (<>      <RudraCoreAlert id="problem_status" variant="warning" appearance="soft" live="polite" title="Action needed" />
-</>)}
-</RudraLayoutBox>
+      {isVisibleValue(showActionMessage) && (<>      <RudraCoreAlert id="problem_status" live="polite" title="Action needed" variant="warning" appearance="soft" />
 </>)}
 </RudraLayoutBox>
 </>)}
 </RudraLayoutBox>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="subjects" className="flex flex-col rs-subject-section">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="subjects_heading" className="rs-subjects-heading" content={((_bindingValue) => _bindingValue === undefined ? "Start with a subject" : _bindingValue)(_scope?.i18n?.popular)} as="h2" />
+</RudraLayoutBox>
+</>)}
+</RudraLayoutBox>
+</>)}
+      {isVisibleValue((((value) => { return !value; })(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(contentPreviewDisplay?.enabled)))) && (<>      <RudraLayoutBox id="content_preview_normal_subjects" className="block">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="subjects" className="flex flex-col rs-subject-section">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="subjects_heading" className="rs-subjects-heading" as="h2" content={((_bindingValue) => _bindingValue === undefined ? "Start with a subject" : _bindingValue)(_scope?.i18n?.popular)} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="subjects_intro" className="rs-subjects-intro" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Choose a foundation subject and explore its concepts, examples, and problems." : _bindingValue)(_scope?.i18n?.subjectsIntro)} />
 </>)}
@@ -1267,23 +1393,23 @@ return { language, title: copy[language].title, solution: copy[language].solutio
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="linear_go" leftIcon={<>      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(_scope?.item?.locked)) && (<>      <UniversalIcon icon={"LockKeyhole"} id="subject_lock_icon" size={16} strokeWidth={1.8} />
 </>)}
-</>} type="button" label={((_bindingValue) => _bindingValue === undefined ? "Open subject" : _bindingValue)(_scope?.item?.actionLabel)} variant="outline" disabled={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(_scope?.item?.locked)} fullWidth={true} size="md" theme="auto" value={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(_scope?.item?.redirectionLink)} loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isSubjectNavigating)} onAction={(...eventArgs) => _callAction("openDiscoverySubject", {}, eventArgs)} />
+</>} fullWidth={true} type="button" label={((_bindingValue) => _bindingValue === undefined ? "Open subject" : _bindingValue)(_scope?.item?.actionLabel)} variant="outline" size="md" theme="auto" value={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(_scope?.item?.redirectionLink)} loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isSubjectNavigating)} disabled={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(_scope?.item?.locked)} onAction={(...eventArgs) => _callAction("openDiscoverySubject", {}, eventArgs)} />
 </>)}
 </RudraCoreCard>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": false, "md": false, "sm": false })) && (<>      <RudraCoreCard id="calculus" className="flex flex-col rs-subject-card" theme="auto" as="article">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="calculus_title" className="rs-subject-card-title" as="h3" content="Calculus" />
+      {isVisibleValue(getResponsiveProp({ "lg": false, "md": false, "sm": false })) && (<>      <RudraCoreCard id="calculus" className="flex flex-col rs-subject-card" as="article" theme="auto">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="calculus_title" className="rs-subject-card-title" as="h3" content="Calculus" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="calculus_copy" className="rs-subject-card-copy" as="p" content="Limits, derivatives, integration and multivariable reasoning." />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="calculus_copy" className="rs-subject-card-copy" content="Limits, derivatives, integration and multivariable reasoning." as="p" />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="calculus_go" size="md" label="Open subject" theme="auto" variant="outline" onAction={(...eventArgs) => _callAction("navigate", {"path": "/browse/engineering/semester-1/calculus"}, eventArgs)} fullWidth={true} />
 </>)}
 </RudraCoreCard>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": false, "md": false, "sm": false })) && (<>      <RudraCoreCard id="discrete" className="flex flex-col rs-subject-card" as="article" theme="auto">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="discrete_title" className="rs-subject-card-title" content="Discrete mathematics" as="h3" />
+      {isVisibleValue(getResponsiveProp({ "lg": false, "md": false, "sm": false })) && (<>      <RudraCoreCard id="discrete" className="flex flex-col rs-subject-card" theme="auto" as="article">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="discrete_title" className="rs-subject-card-title" content="Discrete mathematics" as="h3" />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="discrete_copy" className="rs-subject-card-copy" as="p" content="Logic, combinatorics, graphs and recurrence relations." />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="discrete_go" variant="outline" onAction={(...eventArgs) => _callAction("navigate", {"path": "/browse/engineering/semester-1/discrete-mathematics"}, eventArgs)} fullWidth={true} size="md" label="Open subject" theme="auto" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="discrete_go" size="md" label="Open subject" theme="auto" variant="outline" onAction={(...eventArgs) => _callAction("navigate", {"path": "/browse/engineering/semester-1/discrete-mathematics"}, eventArgs)} fullWidth={true} />
 </>)}
 </RudraCoreCard>
 </>)}
@@ -1308,7 +1434,7 @@ return { language, title: copy[language].title, solution: copy[language].solutio
   return cards;
 })(value).length === 0; })(((_bindingValue) => _bindingValue === undefined ? {  } : _bindingValue)(inputs)))) && (<>      <RudraCoreTypography id="subjects_empty" className="rs-subject-empty" as="p" content={((_bindingValue) => _bindingValue === undefined ? "No subjects are available here yet. Browse the course catalogue to continue." : _bindingValue)(_scope?.i18n?.emptySubjects)} />
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(subjectNavigationFailed)) && (<>      <RudraCoreTypography id="subjects_error" className="rs-subject-error" role="alert" content={((_bindingValue) => _bindingValue === undefined ? "This subject could not be opened. Please try again." : _bindingValue)(_scope?.i18n?.subjectError)} as="p" />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(subjectNavigationFailed)) && (<>      <RudraCoreTypography id="subjects_error" className="rs-subject-error" as="p" role="alert" content={((_bindingValue) => _bindingValue === undefined ? "This subject could not be opened. Please try again." : _bindingValue)(_scope?.i18n?.subjectError)} />
 </>)}
       {isVisibleValue((((value) => { return (function normalizeLockableSubjects(inputs) {
   const cards = [], seen = new Set();
@@ -1327,7 +1453,9 @@ return { language, title: copy[language].title, solution: copy[language].solutio
     cards.push({ id: path, title, description: typeof item.description === 'string' ? item.description.trim().slice(0, 600) : '', redirectionLink: path, locked, actionLabel: locked ? lockLabel : labels[0] });
   }
   return cards;
-})(value).length === 0; })(((_bindingValue) => _bindingValue === undefined ? {  } : _bindingValue)(inputs)))) && (<>      <RudraCoreButton id="subjects_browse" size="lg" type="button" label={((_bindingValue) => _bindingValue === undefined ? "Browse courses" : _bindingValue)(_scope?.i18n?.browseCatalogue)} theme="auto" variant="primary" onAction={(...eventArgs) => _callAction("navigate", {"path": "/browse"}, eventArgs)} />
+})(value).length === 0; })(((_bindingValue) => _bindingValue === undefined ? {  } : _bindingValue)(inputs)))) && (<>      <RudraCoreButton id="subjects_browse" label={((_bindingValue) => _bindingValue === undefined ? "Browse courses" : _bindingValue)(_scope?.i18n?.browseCatalogue)} theme="auto" variant="primary" onAction={(...eventArgs) => _callAction("navigate", {"path": "/browse"}, eventArgs)} size="lg" type="button" />
+</>)}
+</RudraLayoutBox>
 </>)}
 </RudraLayoutBox>
 </>)}
