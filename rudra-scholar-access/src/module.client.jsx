@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './styles.css';
 
-import { Button as RudraCoreButton, Alert as RudraCoreAlert, Typography as RudraCoreTypography } from '@rudra-studio/rudra-core';
+import { Typography as RudraCoreTypography, Button as RudraCoreButton, Alert as RudraCoreAlert } from '@rudra-studio/rudra-core';
+import { Form as RudraFormForm, Textarea as RudraFormTextarea, Checkbox as RudraFormCheckbox, Input as RudraFormInput, Select as RudraFormSelect } from '@rudra-studio/rudra-form';
 import { Box as RudraLayoutBox } from '@rudra-studio/rudra-layout';
 import { UniversalIcon } from './universal-icon.jsx';
-import { Form as RudraFormForm, Input as RudraFormInput, Select as RudraFormSelect, Textarea as RudraFormTextarea, Checkbox as RudraFormCheckbox } from '@rudra-studio/rudra-form';
 
 export default function CompiledModule(props) {
   const _scope = {};
@@ -21,6 +21,15 @@ export default function CompiledModule(props) {
     ...(props.functions || {}),
     ...(props.actions || {}),
   };
+  const $route = props.$route ?? props.route ?? props.data?.$route ?? props.data?.route ?? props.runtime?.data?.$route ?? props.runtime?.route ?? serverData?.$route ?? serverData?.route ?? null;
+  const $params = props.$params ?? props.routeParams ?? props.params ?? props.data?.$params ?? props.data?.routeParams ?? props.data?.params ?? props.runtime?.data?.$params ?? props.runtime?.route?.params ?? props.runtime?.routeParams ?? props.runtime?.params ?? serverData?.$params ?? serverData?.routeParams ?? serverData?.params ?? {};
+  const $query = props.$query ?? props.queryParams ?? props.query ?? props.data?.$query ?? props.data?.queryParams ?? props.data?.query ?? props.runtime?.data?.$query ?? props.runtime?.route?.query ?? props.runtime?.queryParams ?? props.runtime?.query ?? serverData?.$query ?? serverData?.queryParams ?? serverData?.query ?? {};
+  const $auth = props.$auth ?? props.auth ?? props.data?.$auth ?? props.data?.auth ?? props.runtime?.data?.$auth ?? props.runtime?.authInfo ?? props.runtime?.auth ?? serverData?.$auth ?? serverData?.auth ?? null;
+  const $config = props.$config ?? props.config ?? props.data?.$config ?? props.data?.config ?? props.runtime?.data?.$config ?? props.runtime?.config ?? serverData?.$config ?? serverData?.config ?? {};
+  const $env = props.$env ?? props.env ?? props.data?.$env ?? props.data?.env ?? props.runtime?.data?.$env ?? props.runtime?.env ?? serverData?.$env ?? serverData?.env ?? {};
+  const $locale = props.$locale ?? props.locale ?? props.data?.$locale ?? props.data?.locale ?? props.runtime?.data?.$locale ?? props.runtime?.locale ?? serverData?.$locale ?? serverData?.locale ?? 'en';
+  const $translations = props.$translations ?? props.translations ?? props.data?.$translations ?? props.data?.translations ?? props.runtime?.data?.$translations ?? props.runtime?.translations ?? serverData?.$translations ?? serverData?.translations ?? {};
+  const $i18n = props.$i18n ?? props.i18n ?? props.data?.$i18n ?? props.data?.i18n ?? props.runtime?.data?.$i18n ?? props.runtime?.i18n ?? serverData?.$i18n ?? serverData?.i18n ?? { locale: $locale, translations: $translations };
   const _explicitTheme = props.$theme ?? props.theme ?? props.data?.$theme ?? props.runtime?.data?.$theme ?? props.runtime?.theme;
   const _getDocumentTheme = () => {
     if (typeof document === 'undefined') return 'light';
@@ -70,66 +79,66 @@ export default function CompiledModule(props) {
 
   const isVisibleValue = (value) => Array.isArray(value) ? value.length > 0 : (typeof value === 'string' ? value.trim() !== '' && value.trim().toLowerCase() !== 'false' : Boolean(value));
 
-  const returnPath = props.returnPath !== undefined ? props.returnPath : (props.data?.returnPath !== undefined ? props.data.returnPath : "/learn");
-  const profile = props.profile !== undefined ? props.profile : (props.data?.profile !== undefined ? props.data.profile : {});
   const profileServiceEnabled = props.profileServiceEnabled !== undefined ? props.profileServiceEnabled : (props.data?.profileServiceEnabled !== undefined ? props.data.profileServiceEnabled : false);
   const locale = props.locale !== undefined ? props.locale : (props.data?.locale !== undefined ? props.data.locale : "en");
   const authenticated = props.authenticated !== undefined ? props.authenticated : (props.data?.authenticated !== undefined ? props.data.authenticated : false);
   const mode = props.mode !== undefined ? props.mode : (props.data?.mode !== undefined ? props.data.mode : "login");
   const authProvider = props.authProvider !== undefined ? props.authProvider : (props.data?.authProvider !== undefined ? props.data.authProvider : "firebase-google");
-  const inputs = { "returnPath": returnPath, "profile": profile, "profileServiceEnabled": profileServiceEnabled, "locale": locale, "authenticated": authenticated, "mode": mode, "authProvider": authProvider };
-  const [showEducatorFields, set_showEducatorFields] = useState(() => structuredClone(false));
-  const [showPending, set_showPending] = useState(() => structuredClone(false));
-  const [showRegistrationStep3, set_showRegistrationStep3] = useState(() => structuredClone(false));
-  const [termsAccepted, set_termsAccepted] = useState(() => structuredClone(false));
-  const [consentRequired, set_consentRequired] = useState(() => structuredClone(false));
-  const [registrationPrimaryLabel, set_registrationPrimaryLabel] = useState(() => structuredClone("Next"));
-  const [registrationStep, set_registrationStep] = useState(() => structuredClone(1));
-  const [showLogin, set_showLogin] = useState(() => structuredClone(true));
+  const returnPath = props.returnPath !== undefined ? props.returnPath : (props.data?.returnPath !== undefined ? props.data.returnPath : "/learn");
+  const profile = props.profile !== undefined ? props.profile : (props.data?.profile !== undefined ? props.data.profile : {});
+  const inputs = { "profileServiceEnabled": profileServiceEnabled, "locale": locale, "authenticated": authenticated, "mode": mode, "authProvider": authProvider, "returnPath": returnPath, "profile": profile };
   const [showRegistrationBack, set_showRegistrationBack] = useState(() => structuredClone(false));
   const [showRegistrationStep1, set_showRegistrationStep1] = useState(() => structuredClone(true));
-  const [accessMode, set_accessMode] = useState(() => structuredClone("login"));
-  const [message, set_message] = useState(() => structuredClone(""));
-  const [registrationInitialValues, set_registrationInitialValues] = useState(() => structuredClone({"privacyAccepted":false,"requestedRole":"student","termsAccepted":false,"verifiedEmail":""}));
   const [busy, set_busy] = useState(() => structuredClone(false));
+  const [showVerifiedRoleFields, set_showVerifiedRoleFields] = useState(() => structuredClone(false));
+  const [termsAccepted, set_termsAccepted] = useState(() => structuredClone(false));
+  const [showRegistrationStep3, set_showRegistrationStep3] = useState(() => structuredClone(false));
+  const [registrationStep, set_registrationStep] = useState(() => structuredClone(1));
   const [showStudentFields, set_showStudentFields] = useState(() => structuredClone(true));
   const [authenticatedProfile, set_authenticatedProfile] = useState(() => structuredClone({}));
-  const [requestedRole, set_requestedRole] = useState(() => structuredClone("student"));
-  const [showVerifiedRoleFields, set_showVerifiedRoleFields] = useState(() => structuredClone(false));
+  const [registrationPrimaryLabel, set_registrationPrimaryLabel] = useState(() => structuredClone("Next"));
+  const [showLogin, set_showLogin] = useState(() => structuredClone(true));
+  const [accessMode, set_accessMode] = useState(() => structuredClone("login"));
+  const [showEducatorFields, set_showEducatorFields] = useState(() => structuredClone(false));
   const [registrationProgress, set_registrationProgress] = useState(() => structuredClone("Step 1 of 3 · Profile"));
-  const [showInstitutionFields, set_showInstitutionFields] = useState(() => structuredClone(false));
-  const [showRegistration, set_showRegistration] = useState(() => structuredClone(false));
   const [showStudentInvitation, set_showStudentInvitation] = useState(() => structuredClone(true));
-  const [consentReady, set_consentReady] = useState(() => structuredClone(false));
+  const [showPending, set_showPending] = useState(() => structuredClone(false));
+  const [registrationInitialValues, set_registrationInitialValues] = useState(() => structuredClone({"privacyAccepted":false,"requestedRole":"student","termsAccepted":false,"verifiedEmail":""}));
+  const [showInstitutionFields, set_showInstitutionFields] = useState(() => structuredClone(false));
   const [privacyAccepted, set_privacyAccepted] = useState(() => structuredClone(false));
-  const state = { "showEducatorFields": showEducatorFields, "showPending": showPending, "showRegistrationStep3": showRegistrationStep3, "termsAccepted": termsAccepted, "consentRequired": consentRequired, "registrationPrimaryLabel": registrationPrimaryLabel, "registrationStep": registrationStep, "showLogin": showLogin, "showRegistrationBack": showRegistrationBack, "showRegistrationStep1": showRegistrationStep1, "accessMode": accessMode, "message": message, "registrationInitialValues": registrationInitialValues, "busy": busy, "showStudentFields": showStudentFields, "authenticatedProfile": authenticatedProfile, "requestedRole": requestedRole, "showVerifiedRoleFields": showVerifiedRoleFields, "registrationProgress": registrationProgress, "showInstitutionFields": showInstitutionFields, "showRegistration": showRegistration, "showStudentInvitation": showStudentInvitation, "consentReady": consentReady, "privacyAccepted": privacyAccepted };
+  const [message, set_message] = useState(() => structuredClone(""));
+  const [consentReady, set_consentReady] = useState(() => structuredClone(false));
+  const [showRegistration, set_showRegistration] = useState(() => structuredClone(false));
+  const [requestedRole, set_requestedRole] = useState(() => structuredClone("student"));
+  const [consentRequired, set_consentRequired] = useState(() => structuredClone(false));
+  const state = { "showRegistrationBack": showRegistrationBack, "showRegistrationStep1": showRegistrationStep1, "busy": busy, "showVerifiedRoleFields": showVerifiedRoleFields, "termsAccepted": termsAccepted, "showRegistrationStep3": showRegistrationStep3, "registrationStep": registrationStep, "showStudentFields": showStudentFields, "authenticatedProfile": authenticatedProfile, "registrationPrimaryLabel": registrationPrimaryLabel, "showLogin": showLogin, "accessMode": accessMode, "showEducatorFields": showEducatorFields, "registrationProgress": registrationProgress, "showStudentInvitation": showStudentInvitation, "showPending": showPending, "registrationInitialValues": registrationInitialValues, "showInstitutionFields": showInstitutionFields, "privacyAccepted": privacyAccepted, "message": message, "consentReady": consentReady, "showRegistration": showRegistration, "requestedRole": requestedRole, "consentRequired": consentRequired };
 
   const _setState = useCallback((name, value) => {
     switch (name) {
-      case "showEducatorFields": { const next = typeof value === 'function' ? value(state.showEducatorFields) : value; state.showEducatorFields = next; set_showEducatorFields(next); return next; }
-      case "showPending": { const next = typeof value === 'function' ? value(state.showPending) : value; state.showPending = next; set_showPending(next); return next; }
-      case "showRegistrationStep3": { const next = typeof value === 'function' ? value(state.showRegistrationStep3) : value; state.showRegistrationStep3 = next; set_showRegistrationStep3(next); return next; }
-      case "termsAccepted": { const next = typeof value === 'function' ? value(state.termsAccepted) : value; state.termsAccepted = next; set_termsAccepted(next); return next; }
-      case "consentRequired": { const next = typeof value === 'function' ? value(state.consentRequired) : value; state.consentRequired = next; set_consentRequired(next); return next; }
-      case "registrationPrimaryLabel": { const next = typeof value === 'function' ? value(state.registrationPrimaryLabel) : value; state.registrationPrimaryLabel = next; set_registrationPrimaryLabel(next); return next; }
-      case "registrationStep": { const next = typeof value === 'function' ? value(state.registrationStep) : value; state.registrationStep = next; set_registrationStep(next); return next; }
-      case "showLogin": { const next = typeof value === 'function' ? value(state.showLogin) : value; state.showLogin = next; set_showLogin(next); return next; }
       case "showRegistrationBack": { const next = typeof value === 'function' ? value(state.showRegistrationBack) : value; state.showRegistrationBack = next; set_showRegistrationBack(next); return next; }
       case "showRegistrationStep1": { const next = typeof value === 'function' ? value(state.showRegistrationStep1) : value; state.showRegistrationStep1 = next; set_showRegistrationStep1(next); return next; }
-      case "accessMode": { const next = typeof value === 'function' ? value(state.accessMode) : value; state.accessMode = next; set_accessMode(next); return next; }
-      case "message": { const next = typeof value === 'function' ? value(state.message) : value; state.message = next; set_message(next); return next; }
-      case "registrationInitialValues": { const next = typeof value === 'function' ? value(state.registrationInitialValues) : value; state.registrationInitialValues = next; set_registrationInitialValues(next); return next; }
       case "busy": { const next = typeof value === 'function' ? value(state.busy) : value; state.busy = next; set_busy(next); return next; }
+      case "showVerifiedRoleFields": { const next = typeof value === 'function' ? value(state.showVerifiedRoleFields) : value; state.showVerifiedRoleFields = next; set_showVerifiedRoleFields(next); return next; }
+      case "termsAccepted": { const next = typeof value === 'function' ? value(state.termsAccepted) : value; state.termsAccepted = next; set_termsAccepted(next); return next; }
+      case "showRegistrationStep3": { const next = typeof value === 'function' ? value(state.showRegistrationStep3) : value; state.showRegistrationStep3 = next; set_showRegistrationStep3(next); return next; }
+      case "registrationStep": { const next = typeof value === 'function' ? value(state.registrationStep) : value; state.registrationStep = next; set_registrationStep(next); return next; }
       case "showStudentFields": { const next = typeof value === 'function' ? value(state.showStudentFields) : value; state.showStudentFields = next; set_showStudentFields(next); return next; }
       case "authenticatedProfile": { const next = typeof value === 'function' ? value(state.authenticatedProfile) : value; state.authenticatedProfile = next; set_authenticatedProfile(next); return next; }
-      case "requestedRole": { const next = typeof value === 'function' ? value(state.requestedRole) : value; state.requestedRole = next; set_requestedRole(next); return next; }
-      case "showVerifiedRoleFields": { const next = typeof value === 'function' ? value(state.showVerifiedRoleFields) : value; state.showVerifiedRoleFields = next; set_showVerifiedRoleFields(next); return next; }
+      case "registrationPrimaryLabel": { const next = typeof value === 'function' ? value(state.registrationPrimaryLabel) : value; state.registrationPrimaryLabel = next; set_registrationPrimaryLabel(next); return next; }
+      case "showLogin": { const next = typeof value === 'function' ? value(state.showLogin) : value; state.showLogin = next; set_showLogin(next); return next; }
+      case "accessMode": { const next = typeof value === 'function' ? value(state.accessMode) : value; state.accessMode = next; set_accessMode(next); return next; }
+      case "showEducatorFields": { const next = typeof value === 'function' ? value(state.showEducatorFields) : value; state.showEducatorFields = next; set_showEducatorFields(next); return next; }
       case "registrationProgress": { const next = typeof value === 'function' ? value(state.registrationProgress) : value; state.registrationProgress = next; set_registrationProgress(next); return next; }
-      case "showInstitutionFields": { const next = typeof value === 'function' ? value(state.showInstitutionFields) : value; state.showInstitutionFields = next; set_showInstitutionFields(next); return next; }
-      case "showRegistration": { const next = typeof value === 'function' ? value(state.showRegistration) : value; state.showRegistration = next; set_showRegistration(next); return next; }
       case "showStudentInvitation": { const next = typeof value === 'function' ? value(state.showStudentInvitation) : value; state.showStudentInvitation = next; set_showStudentInvitation(next); return next; }
-      case "consentReady": { const next = typeof value === 'function' ? value(state.consentReady) : value; state.consentReady = next; set_consentReady(next); return next; }
+      case "showPending": { const next = typeof value === 'function' ? value(state.showPending) : value; state.showPending = next; set_showPending(next); return next; }
+      case "registrationInitialValues": { const next = typeof value === 'function' ? value(state.registrationInitialValues) : value; state.registrationInitialValues = next; set_registrationInitialValues(next); return next; }
+      case "showInstitutionFields": { const next = typeof value === 'function' ? value(state.showInstitutionFields) : value; state.showInstitutionFields = next; set_showInstitutionFields(next); return next; }
       case "privacyAccepted": { const next = typeof value === 'function' ? value(state.privacyAccepted) : value; state.privacyAccepted = next; set_privacyAccepted(next); return next; }
+      case "message": { const next = typeof value === 'function' ? value(state.message) : value; state.message = next; set_message(next); return next; }
+      case "consentReady": { const next = typeof value === 'function' ? value(state.consentReady) : value; state.consentReady = next; set_consentReady(next); return next; }
+      case "showRegistration": { const next = typeof value === 'function' ? value(state.showRegistration) : value; state.showRegistration = next; set_showRegistration(next); return next; }
+      case "requestedRole": { const next = typeof value === 'function' ? value(state.requestedRole) : value; state.requestedRole = next; set_requestedRole(next); return next; }
+      case "consentRequired": { const next = typeof value === 'function' ? value(state.consentRequired) : value; state.consentRequired = next; set_consentRequired(next); return next; }
       default: return value;
     }
   }, [state]);
@@ -151,30 +160,30 @@ export default function CompiledModule(props) {
       return next;
     };
     switch (root) {
-      case "showEducatorFields": _setState("showEducatorFields", updateNested); return value;
-      case "showPending": _setState("showPending", updateNested); return value;
-      case "showRegistrationStep3": _setState("showRegistrationStep3", updateNested); return value;
-      case "termsAccepted": _setState("termsAccepted", updateNested); return value;
-      case "consentRequired": _setState("consentRequired", updateNested); return value;
-      case "registrationPrimaryLabel": _setState("registrationPrimaryLabel", updateNested); return value;
-      case "registrationStep": _setState("registrationStep", updateNested); return value;
-      case "showLogin": _setState("showLogin", updateNested); return value;
       case "showRegistrationBack": _setState("showRegistrationBack", updateNested); return value;
       case "showRegistrationStep1": _setState("showRegistrationStep1", updateNested); return value;
-      case "accessMode": _setState("accessMode", updateNested); return value;
-      case "message": _setState("message", updateNested); return value;
-      case "registrationInitialValues": _setState("registrationInitialValues", updateNested); return value;
       case "busy": _setState("busy", updateNested); return value;
+      case "showVerifiedRoleFields": _setState("showVerifiedRoleFields", updateNested); return value;
+      case "termsAccepted": _setState("termsAccepted", updateNested); return value;
+      case "showRegistrationStep3": _setState("showRegistrationStep3", updateNested); return value;
+      case "registrationStep": _setState("registrationStep", updateNested); return value;
       case "showStudentFields": _setState("showStudentFields", updateNested); return value;
       case "authenticatedProfile": _setState("authenticatedProfile", updateNested); return value;
-      case "requestedRole": _setState("requestedRole", updateNested); return value;
-      case "showVerifiedRoleFields": _setState("showVerifiedRoleFields", updateNested); return value;
+      case "registrationPrimaryLabel": _setState("registrationPrimaryLabel", updateNested); return value;
+      case "showLogin": _setState("showLogin", updateNested); return value;
+      case "accessMode": _setState("accessMode", updateNested); return value;
+      case "showEducatorFields": _setState("showEducatorFields", updateNested); return value;
       case "registrationProgress": _setState("registrationProgress", updateNested); return value;
-      case "showInstitutionFields": _setState("showInstitutionFields", updateNested); return value;
-      case "showRegistration": _setState("showRegistration", updateNested); return value;
       case "showStudentInvitation": _setState("showStudentInvitation", updateNested); return value;
-      case "consentReady": _setState("consentReady", updateNested); return value;
+      case "showPending": _setState("showPending", updateNested); return value;
+      case "registrationInitialValues": _setState("registrationInitialValues", updateNested); return value;
+      case "showInstitutionFields": _setState("showInstitutionFields", updateNested); return value;
       case "privacyAccepted": _setState("privacyAccepted", updateNested); return value;
+      case "message": _setState("message", updateNested); return value;
+      case "consentReady": _setState("consentReady", updateNested); return value;
+      case "showRegistration": _setState("showRegistration", updateNested); return value;
+      case "requestedRole": _setState("requestedRole", updateNested); return value;
+      case "consentRequired": _setState("consentRequired", updateNested); return value;
       default: return value;
     }
   }, [_setState]);
@@ -245,6 +254,149 @@ export default function CompiledModule(props) {
     return !(value && typeof value === 'object' && !Array.isArray(value) && Object.keys(value).length === 0);
   };
 
+  async function submitRegistration(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    try {
+      { const event = args.event; const data = pageData; const globalState = state;
+        const customResult = await (async () => {
+const raw = args.values && typeof args.values === 'object' ? args.values : {};
+const profile = state.authenticatedProfile && typeof state.authenticatedProfile === 'object' ? state.authenticatedProfile : {};
+const value = (name) => String(raw[name] || '').trim();
+const requestedRole = value('requestedRole') || String(state.requestedRole || 'student');
+const verifiedEmail = String(profile.email || value('verifiedEmail')).trim();
+if (!verifiedEmail) throw new Error('Your verified Google email is missing. Please sign in again.');
+if (!value('firstName') || !value('lastName')) throw new Error('First name and last name are required.');
+if (!['student', 'educator', 'institution_admin'].includes(requestedRole)) throw new Error('Choose a valid Scholar role.');
+if (requestedRole === 'educator' && (!value('qualification') || !value('subjectExpertise') || !value('professionalStatement') || !value('institutionName') || !value('kycEvidence') || !value('country'))) throw new Error('Complete all professor verification fields.');
+if (requestedRole === 'institution_admin' && (!value('institutionLegalName') || !value('institutionDisplayName') || !value('institutionType') || !value('institutionWebsite') || !value('institutionEmailDomain') || !value('institutionContact') || !value('country'))) throw new Error('Complete all institution verification fields.');
+if (raw.termsAccepted !== true || raw.privacyAccepted !== true) throw new Error('Accept the Terms of Service and Privacy Notice to continue.');
+return { ...raw, verifiedEmail, requestedRole, termsAccepted: true, privacyAccepted: true };
+        })();
+        stepResults["reg_validate"] = customResult; vars["customCodeResult"] = customResult; }
+    } catch (_caughtError) {
+      const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "reg_validate" };
+      vars.error = error; stepResults["reg_validate"] = { error };
+      { const event = args.event; const data = pageData; const globalState = state;
+        const customResult = await (async () => {
+return { message: String((error && error.message) || 'Registration failed. Please try again.') };
+        })();
+        stepResults["reg_error"] = customResult; vars["customCodeResult"] = customResult; }
+      _setState("message", stepResults.reg_error.message);
+      _setState("busy", false);
+      return { "error": stepResults.reg_error.message, "ok": false };
+      return undefined;
+    }
+    _setState("busy", true);
+    _setState("message", "");
+    try {
+      { const roots = { args, inputs, state, sharedState, applicationState, pageState, pageData, serverData, vars, stepResults };
+        const namedParameters = _resolveRuntimeValue({"profile":"{{ stepResults.reg_validate }}"}, roots) || {};
+        delete namedParameters["userIdentity"];
+        delete namedParameters["verifiedEmail"];
+        delete namedParameters["emailVerified"];
+        delete namedParameters["providerId"];
+        const parameters = [undefined, undefined, undefined, undefined, namedParameters["profile"]];
+        const queryExecutor = props.executeDatabaseQuery || props.runtime?.executeDatabaseQuery;
+        let result;
+        if (typeof queryExecutor === 'function') {
+          result = await queryExecutor({ moduleId: "cmtma35av000204jocz6kqu0s", queryId: "scholarSubmitOnboarding", parameters, namedParameters, signal: args.signal });
+        } else {
+          const queryResponse = await fetch("/api/modules/cmtma35av000204jocz6kqu0s/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "scholarSubmitOnboarding", parameters, namedParameters }), signal: args.signal });
+          const queryPayload = await queryResponse.json().catch(() => ({}));
+          if (!queryResponse.ok || queryPayload.success === false) throw new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')');
+          result = queryPayload.data;
+        }
+        stepResults["reg_call"] = result; vars["queryResult"] = result; }
+    } catch (_caughtError) {
+      const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "reg_call" };
+      vars.error = error; stepResults["reg_call"] = { error };
+      { const event = args.event; const data = pageData; const globalState = state;
+        const customResult = await (async () => {
+return { message: String((error && error.message) || 'Registration failed. Please try again.') };
+        })();
+        stepResults["reg_error"] = customResult; vars["customCodeResult"] = customResult; }
+      _setState("message", stepResults.reg_error.message);
+      _setState("busy", false);
+      return { "error": stepResults.reg_error.message, "ok": false };
+      return undefined;
+    }
+    try {
+      { const event = args.event; const data = pageData; const globalState = state;
+        const customResult = await (async () => {
+const rows = stepResults.reg_call;
+const row = Array.isArray(rows) ? rows[0] : rows;
+const result = row && row.result ? row.result : row;
+if (!result || result.isRegistered !== true) throw new Error((result && result.message) || 'Registration did not complete.');
+return result;
+        })();
+        stepResults["reg_normalize"] = customResult; vars["customCodeResult"] = customResult; }
+    } catch (_caughtError) {
+      const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "reg_normalize" };
+      vars.error = error; stepResults["reg_normalize"] = { error };
+      { const event = args.event; const data = pageData; const globalState = state;
+        const customResult = await (async () => {
+return { message: String((error && error.message) || 'Registration failed. Please try again.') };
+        })();
+        stepResults["reg_error"] = customResult; vars["customCodeResult"] = customResult; }
+      _setState("message", stepResults.reg_error.message);
+      _setState("busy", false);
+      return { "error": stepResults.reg_error.message, "ok": false };
+      return undefined;
+    }
+    await _emitOutput("registrationCompleted", { "isRegistered": stepResults.reg_normalize.isRegistered, "onboardingStatus": stepResults.reg_normalize.onboardingStatus, "redirectPath": stepResults.reg_normalize.redirectPath, "requestedRole": stepResults.reg_normalize.requestedRole, "roles": stepResults.reg_normalize.roles, "verificationStatus": stepResults.reg_normalize.verificationStatus }, true);
+    await _emitOutput("navigationRequested", { "path": stepResults.reg_normalize.redirectPath }, true);
+    _setState("authenticatedProfile", stepResults.reg_normalize);
+    _setState("accessMode", "resolving");
+    _setState("message", stepResults.reg_normalize.message);
+    _setState("busy", false);
+    return stepResults.reg_normalize;
+    return undefined;
+  }
+
+  async function setPrivacyAccepted(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    _setState("privacyAccepted", args.value);
+    { const event = args.event; const data = pageData; const globalState = state;
+      const customResult = await (async () => {
+return args.value === true && state.termsAccepted === true;
+      })();
+      stepResults["privacyAccepted_ready"] = customResult; vars["customCodeResult"] = customResult; }
+    _setState("consentReady", stepResults.privacyAccepted_ready);
+    { const event = args.event; const data = pageData; const globalState = state;
+      const customResult = await (async () => {
+return !(args.value === true && state.termsAccepted === true);
+      })();
+      stepResults["privacyAccepted_missing"] = customResult; vars["customCodeResult"] = customResult; }
+    _setState("consentRequired", stepResults.privacyAccepted_missing);
+    return args.value;
+    return undefined;
+  }
+
+  async function setTermsAccepted(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    _setState("termsAccepted", args.value);
+    { const event = args.event; const data = pageData; const globalState = state;
+      const customResult = await (async () => {
+return args.value === true && state.privacyAccepted === true;
+      })();
+      stepResults["termsAccepted_ready"] = customResult; vars["customCodeResult"] = customResult; }
+    _setState("consentReady", stepResults.termsAccepted_ready);
+    { const event = args.event; const data = pageData; const globalState = state;
+      const customResult = await (async () => {
+return !(args.value === true && state.privacyAccepted === true);
+      })();
+      stepResults["termsAccepted_missing"] = customResult; vars["customCodeResult"] = customResult; }
+    _setState("consentRequired", stepResults.termsAccepted_missing);
+    return args.value;
+    return undefined;
+  }
+
   async function requestGoogleSignIn(initialArgs = {}) {
     const args = initialArgs || {};
     const vars = {};
@@ -253,7 +405,9 @@ export default function CompiledModule(props) {
     _setState("message", "");
     try {
       { const result = await _callAction("RudraAuth.signIn", { "provider": inputs.authProvider, "returnPath": inputs.returnPath }, []); stepResults["google_auth"] = result; vars["RudraAuth.signInResult"] = result; }
-    } catch (error) {
+    } catch (_caughtError) {
+      const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "google_auth" };
+      vars.error = error; stepResults["google_auth"] = { error };
       { const event = args.event; const data = pageData; const globalState = state;
         const customResult = await (async () => {
 return { message: String((error && error.message) || 'Sign-in succeeded, but Scholar access could not be resolved. Please try again.') };
@@ -263,10 +417,12 @@ return { message: String((error && error.message) || 'Sign-in succeeded, but Sch
       _setState("accessMode", "login");
       _setState("busy", false);
       return { "error": stepResults.google_error.message, "ok": false };
+      return undefined;
     }
-    void _emitOutput("googleSignInRequested", { "returnPath": inputs.returnPath }, false).catch(error => console.error('Module output delivery failed', error));
-    { const event = args.event; const data = pageData; const globalState = state;
-      const customResult = await (async () => {
+    await _emitOutput("googleSignInRequested", { "returnPath": inputs.returnPath }, true);
+    try {
+      { const event = args.event; const data = pageData; const globalState = state;
+        const customResult = await (async () => {
 const response = stepResults.google_auth || {};
 const source = response.user || response.currentUser || response.profile || response;
 if (response.success === false || !source || !(source.uid || source.id || source.userId) || !source.email) {
@@ -279,29 +435,59 @@ return {
   emailVerified: source.emailVerified === true,
   providerId: source.providerId || response.providerId || 'google'
 };
-      })();
-      stepResults["normalize_auth"] = customResult; vars["customCodeResult"] = customResult; }
+        })();
+        stepResults["normalize_auth"] = customResult; vars["customCodeResult"] = customResult; }
+    } catch (_caughtError) {
+      const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "normalize_auth" };
+      vars.error = error; stepResults["normalize_auth"] = { error };
+      { const event = args.event; const data = pageData; const globalState = state;
+        const customResult = await (async () => {
+return { message: String((error && error.message) || 'Sign-in succeeded, but Scholar access could not be resolved. Please try again.') };
+        })();
+        stepResults["google_error"] = customResult; vars["customCodeResult"] = customResult; }
+      _setState("message", stepResults.google_error.message);
+      _setState("accessMode", "login");
+      _setState("busy", false);
+      return { "error": stepResults.google_error.message, "ok": false };
+      return undefined;
+    }
     _setState("authenticatedProfile", stepResults.normalize_auth);
     _setState("accessMode", "resolving");
-    { const roots = { args, inputs, state, sharedState, applicationState, pageState, pageData, serverData, vars, stepResults };
-      const namedParameters = _resolveRuntimeValue({}, roots) || {};
-      delete namedParameters["userIdentity"];
-      delete namedParameters["verifiedEmail"];
-      delete namedParameters["emailVerified"];
-      const parameters = [undefined, undefined, undefined];
-      const queryExecutor = props.executeDatabaseQuery || props.runtime?.executeDatabaseQuery;
-      let result;
-      if (typeof queryExecutor === 'function') {
-        result = await queryExecutor({ moduleId: "cmtma35av000204jocz6kqu0s", queryId: "scholarResolveCurrentAccess", parameters, namedParameters, signal: args.signal });
-      } else {
-        const queryResponse = await fetch("/api/modules/cmtma35av000204jocz6kqu0s/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "scholarResolveCurrentAccess", parameters, namedParameters }), signal: args.signal });
-        const queryPayload = await queryResponse.json().catch(() => ({}));
-        if (!queryResponse.ok || queryPayload.success === false) throw new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')');
-        result = queryPayload.data;
-      }
-      stepResults["resolve_access"] = result; vars["queryResult"] = result; }
-    { const event = args.event; const data = pageData; const globalState = state;
-      const customResult = await (async () => {
+    try {
+      { const roots = { args, inputs, state, sharedState, applicationState, pageState, pageData, serverData, vars, stepResults };
+        const namedParameters = _resolveRuntimeValue({}, roots) || {};
+        delete namedParameters["userIdentity"];
+        delete namedParameters["verifiedEmail"];
+        delete namedParameters["emailVerified"];
+        const parameters = [undefined, undefined, undefined];
+        const queryExecutor = props.executeDatabaseQuery || props.runtime?.executeDatabaseQuery;
+        let result;
+        if (typeof queryExecutor === 'function') {
+          result = await queryExecutor({ moduleId: "cmtma35av000204jocz6kqu0s", queryId: "scholarResolveCurrentAccess", parameters, namedParameters, signal: args.signal });
+        } else {
+          const queryResponse = await fetch("/api/modules/cmtma35av000204jocz6kqu0s/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "scholarResolveCurrentAccess", parameters, namedParameters }), signal: args.signal });
+          const queryPayload = await queryResponse.json().catch(() => ({}));
+          if (!queryResponse.ok || queryPayload.success === false) throw new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')');
+          result = queryPayload.data;
+        }
+        stepResults["resolve_access"] = result; vars["queryResult"] = result; }
+    } catch (_caughtError) {
+      const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "resolve_access" };
+      vars.error = error; stepResults["resolve_access"] = { error };
+      { const event = args.event; const data = pageData; const globalState = state;
+        const customResult = await (async () => {
+return { message: String((error && error.message) || 'Sign-in succeeded, but Scholar access could not be resolved. Please try again.') };
+        })();
+        stepResults["google_error"] = customResult; vars["customCodeResult"] = customResult; }
+      _setState("message", stepResults.google_error.message);
+      _setState("accessMode", "login");
+      _setState("busy", false);
+      return { "error": stepResults.google_error.message, "ok": false };
+      return undefined;
+    }
+    try {
+      { const event = args.event; const data = pageData; const globalState = state;
+        const customResult = await (async () => {
 const rows = stepResults.resolve_access;
 const row = Array.isArray(rows) ? rows[0] : rows;
 const resolved = row && row.result ? row.result : row;
@@ -318,12 +504,26 @@ return {
   },
   redirectPath: (resolved && resolved.redirectPath) || inputs.returnPath || '/learn'
 };
-      })();
-      stepResults["normalize_access"] = customResult; vars["customCodeResult"] = customResult; }
+        })();
+        stepResults["normalize_access"] = customResult; vars["customCodeResult"] = customResult; }
+    } catch (_caughtError) {
+      const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "normalize_access" };
+      vars.error = error; stepResults["normalize_access"] = { error };
+      { const event = args.event; const data = pageData; const globalState = state;
+        const customResult = await (async () => {
+return { message: String((error && error.message) || 'Sign-in succeeded, but Scholar access could not be resolved. Please try again.') };
+        })();
+        stepResults["google_error"] = customResult; vars["customCodeResult"] = customResult; }
+      _setState("message", stepResults.google_error.message);
+      _setState("accessMode", "login");
+      _setState("busy", false);
+      return { "error": stepResults.google_error.message, "ok": false };
+      return undefined;
+    }
     if (stepResults.normalize_access.isRegistered) {
       _setState("authenticatedProfile", stepResults.normalize_access.profile);
       _setState("busy", false);
-      void _emitOutput("navigationRequested", { "path": stepResults.normalize_access.redirectPath }, false).catch(error => console.error('Module output delivery failed', error));
+      await _emitOutput("navigationRequested", { "path": stepResults.normalize_access.redirectPath }, true);
       return stepResults.normalize_access;
     } else {
       _setState("authenticatedProfile", stepResults.normalize_access.profile);
@@ -336,44 +536,6 @@ return {
       _setState("busy", false);
       return stepResults.normalize_access;
     }
-    return undefined;
-  }
-
-  async function initializeAccessFlow(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    { const event = args.event; const data = pageData; const globalState = state;
-      const customResult = await (async () => {
-const suppliedProfile = inputs.profile && typeof inputs.profile === 'object' ? inputs.profile : {};
-const currentProfile = state.authenticatedProfile && typeof state.authenticatedProfile === 'object' ? state.authenticatedProfile : {};
-const profile = Object.keys(suppliedProfile).length ? suppliedProfile : currentProfile;
-let mode = ['login', 'registration', 'resolving'].includes(inputs.mode) ? inputs.mode : 'login';
-if (inputs.authenticated === true && profile.isRegistered !== true && profile.email) mode = 'registration';
-const showPending = mode === 'resolving' && profile.verificationStatus === 'pending';
-return {
-  mode,
-  profile,
-  initialValues: {
-    verifiedEmail: String(profile.email || ''),
-    requestedRole: String(profile.requestedRole || state.requestedRole || 'student'),
-    termsAccepted: false,
-    privacyAccepted: false
-  },
-  showLogin: mode === 'login',
-  showRegistration: mode === 'registration',
-  showPending
-};
-      })();
-      stepResults["init_context"] = customResult; vars["customCodeResult"] = customResult; }
-    _setState("authenticatedProfile", stepResults.init_context.profile);
-    _setState("registrationInitialValues", stepResults.init_context.initialValues);
-    _setState("showStudentInvitation", stepResults.init_context.showStudentInvitation);
-    _setState("accessMode", stepResults.init_context.mode);
-    _setState("showLogin", stepResults.init_context.showLogin);
-    _setState("showRegistration", stepResults.init_context.showRegistration);
-    _setState("showPending", stepResults.init_context.showPending);
-    return stepResults.init_context;
     return undefined;
   }
 
@@ -486,126 +648,63 @@ return { role, showStudentInvitation: role === 'student' && (step === 1 || step 
     return undefined;
   }
 
-  async function submitRegistration(initialArgs = {}) {
+  async function initializeAccessFlow(initialArgs = {}) {
     const args = initialArgs || {};
     const vars = {};
     const stepResults = {};
     { const event = args.event; const data = pageData; const globalState = state;
       const customResult = await (async () => {
-const raw = args.values && typeof args.values === 'object' ? args.values : {};
-const profile = state.authenticatedProfile && typeof state.authenticatedProfile === 'object' ? state.authenticatedProfile : {};
-const value = (name) => String(raw[name] || '').trim();
-const requestedRole = value('requestedRole') || String(state.requestedRole || 'student');
-const verifiedEmail = String(profile.email || value('verifiedEmail')).trim();
-if (!verifiedEmail) throw new Error('Your verified Google email is missing. Please sign in again.');
-if (!value('firstName') || !value('lastName')) throw new Error('First name and last name are required.');
-if (!['student', 'educator', 'institution_admin'].includes(requestedRole)) throw new Error('Choose a valid Scholar role.');
-if (requestedRole === 'educator' && (!value('qualification') || !value('subjectExpertise') || !value('professionalStatement') || !value('institutionName') || !value('kycEvidence') || !value('country'))) throw new Error('Complete all professor verification fields.');
-if (requestedRole === 'institution_admin' && (!value('institutionLegalName') || !value('institutionDisplayName') || !value('institutionType') || !value('institutionWebsite') || !value('institutionEmailDomain') || !value('institutionContact') || !value('country'))) throw new Error('Complete all institution verification fields.');
-if (raw.termsAccepted !== true || raw.privacyAccepted !== true) throw new Error('Accept the Terms of Service and Privacy Notice to continue.');
-return { ...raw, verifiedEmail, requestedRole, termsAccepted: true, privacyAccepted: true };
+const suppliedProfile = inputs.profile && typeof inputs.profile === 'object' ? inputs.profile : {};
+const currentProfile = state.authenticatedProfile && typeof state.authenticatedProfile === 'object' ? state.authenticatedProfile : {};
+const profile = Object.keys(suppliedProfile).length ? suppliedProfile : currentProfile;
+let mode = ['login', 'registration', 'resolving'].includes(inputs.mode) ? inputs.mode : 'login';
+if (inputs.authenticated === true && profile.isRegistered !== true && profile.email) mode = 'registration';
+const showPending = mode === 'resolving' && profile.verificationStatus === 'pending';
+return {
+  mode,
+  profile,
+  initialValues: {
+    verifiedEmail: String(profile.email || ''),
+    requestedRole: String(profile.requestedRole || state.requestedRole || 'student'),
+    termsAccepted: false,
+    privacyAccepted: false
+  },
+  showLogin: mode === 'login',
+  showRegistration: mode === 'registration',
+  showPending
+};
       })();
-      stepResults["reg_validate"] = customResult; vars["customCodeResult"] = customResult; }
-    _setState("busy", true);
-    _setState("message", "");
-    { const roots = { args, inputs, state, sharedState, applicationState, pageState, pageData, serverData, vars, stepResults };
-      const namedParameters = _resolveRuntimeValue({"profile":"{{ stepResults.reg_validate }}"}, roots) || {};
-      delete namedParameters["userIdentity"];
-      delete namedParameters["verifiedEmail"];
-      delete namedParameters["emailVerified"];
-      delete namedParameters["providerId"];
-      const parameters = [undefined, undefined, undefined, undefined, namedParameters["profile"]];
-      const queryExecutor = props.executeDatabaseQuery || props.runtime?.executeDatabaseQuery;
-      let result;
-      if (typeof queryExecutor === 'function') {
-        result = await queryExecutor({ moduleId: "cmtma35av000204jocz6kqu0s", queryId: "scholarSubmitOnboarding", parameters, namedParameters, signal: args.signal });
-      } else {
-        const queryResponse = await fetch("/api/modules/cmtma35av000204jocz6kqu0s/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "scholarSubmitOnboarding", parameters, namedParameters }), signal: args.signal });
-        const queryPayload = await queryResponse.json().catch(() => ({}));
-        if (!queryResponse.ok || queryPayload.success === false) throw new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')');
-        result = queryPayload.data;
-      }
-      stepResults["reg_call"] = result; vars["queryResult"] = result; }
-    { const event = args.event; const data = pageData; const globalState = state;
-      const customResult = await (async () => {
-const rows = stepResults.reg_call;
-const row = Array.isArray(rows) ? rows[0] : rows;
-const result = row && row.result ? row.result : row;
-if (!result || result.isRegistered !== true) throw new Error((result && result.message) || 'Registration did not complete.');
-return result;
-      })();
-      stepResults["reg_normalize"] = customResult; vars["customCodeResult"] = customResult; }
-    void _emitOutput("registrationCompleted", { "isRegistered": stepResults.reg_normalize.isRegistered, "onboardingStatus": stepResults.reg_normalize.onboardingStatus, "redirectPath": stepResults.reg_normalize.redirectPath, "requestedRole": stepResults.reg_normalize.requestedRole, "roles": stepResults.reg_normalize.roles, "verificationStatus": stepResults.reg_normalize.verificationStatus }, false).catch(error => console.error('Module output delivery failed', error));
-    void _emitOutput("navigationRequested", { "path": stepResults.reg_normalize.redirectPath }, false).catch(error => console.error('Module output delivery failed', error));
-    _setState("authenticatedProfile", stepResults.reg_normalize);
-    _setState("accessMode", "resolving");
-    _setState("message", stepResults.reg_normalize.message);
-    _setState("busy", false);
-    return stepResults.reg_normalize;
-    return undefined;
-  }
-
-  async function setPrivacyAccepted(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    _setState("privacyAccepted", args.value);
-    { const event = args.event; const data = pageData; const globalState = state;
-      const customResult = await (async () => {
-return args.value === true && state.termsAccepted === true;
-      })();
-      stepResults["privacyAccepted_ready"] = customResult; vars["customCodeResult"] = customResult; }
-    _setState("consentReady", stepResults.privacyAccepted_ready);
-    { const event = args.event; const data = pageData; const globalState = state;
-      const customResult = await (async () => {
-return !(args.value === true && state.termsAccepted === true);
-      })();
-      stepResults["privacyAccepted_missing"] = customResult; vars["customCodeResult"] = customResult; }
-    _setState("consentRequired", stepResults.privacyAccepted_missing);
-    return args.value;
-    return undefined;
-  }
-
-  async function setTermsAccepted(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    _setState("termsAccepted", args.value);
-    { const event = args.event; const data = pageData; const globalState = state;
-      const customResult = await (async () => {
-return args.value === true && state.privacyAccepted === true;
-      })();
-      stepResults["termsAccepted_ready"] = customResult; vars["customCodeResult"] = customResult; }
-    _setState("consentReady", stepResults.termsAccepted_ready);
-    { const event = args.event; const data = pageData; const globalState = state;
-      const customResult = await (async () => {
-return !(args.value === true && state.privacyAccepted === true);
-      })();
-      stepResults["termsAccepted_missing"] = customResult; vars["customCodeResult"] = customResult; }
-    _setState("consentRequired", stepResults.termsAccepted_missing);
-    return args.value;
+      stepResults["init_context"] = customResult; vars["customCodeResult"] = customResult; }
+    _setState("authenticatedProfile", stepResults.init_context.profile);
+    _setState("registrationInitialValues", stepResults.init_context.initialValues);
+    _setState("showStudentInvitation", stepResults.init_context.showStudentInvitation);
+    _setState("accessMode", stepResults.init_context.mode);
+    _setState("showLogin", stepResults.init_context.showLogin);
+    _setState("showRegistration", stepResults.init_context.showRegistration);
+    _setState("showPending", stepResults.init_context.showPending);
+    return stepResults.init_context;
     return undefined;
   }
 
   const _localActions = {
-    "requestGoogleSignIn": requestGoogleSignIn,
-    "initializeAccessFlow": initializeAccessFlow,
-    "handleRegistrationSubmit": handleRegistrationSubmit,
-    "goBackRegistrationStep": goBackRegistrationStep,
-    "setRequestedRole": setRequestedRole,
     "submitRegistration": submitRegistration,
     "setPrivacyAccepted": setPrivacyAccepted,
     "setTermsAccepted": setTermsAccepted,
+    "requestGoogleSignIn": requestGoogleSignIn,
+    "handleRegistrationSubmit": handleRegistrationSubmit,
+    "goBackRegistrationStep": goBackRegistrationStep,
+    "setRequestedRole": setRequestedRole,
+    "initializeAccessFlow": initializeAccessFlow,
   };
   const _localActionArguments = {
-    "requestGoogleSignIn": [],
-    "initializeAccessFlow": [],
-    "handleRegistrationSubmit": ["values"],
-    "goBackRegistrationStep": [],
-    "setRequestedRole": ["value"],
     "submitRegistration": ["values"],
     "setPrivacyAccepted": ["value"],
     "setTermsAccepted": ["value"],
+    "requestGoogleSignIn": [],
+    "handleRegistrationSubmit": ["values"],
+    "goBackRegistrationStep": [],
+    "setRequestedRole": ["value"],
+    "initializeAccessFlow": [],
   };
   const _callAction = (name, configuredArgs = {}, eventArgs = []) => {
     const localAction = _localActions[name];
@@ -650,15 +749,15 @@ return !(args.value === true && state.privacyAccepted === true);
     <div ref={wrapperRef} className="rudra-module-wrapper">
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="root" className="rs-access">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="panel" className="rs-access-grid">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="story" className="rs-access-story">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="story_badge" aria-label="College mathematics proof of concept" className="rs-badge-row">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"GraduationCap"} id="story_badge_icon" color="#b8f7e7" strokeWidth={2} size={14} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="story_badge_label" className="rs-badge-label" as="span" content="College mathematics · POC" customColor="#eafff8" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="story_badge_label" className="rs-badge-label" customColor="#eafff8" as="span" content="College mathematics · POC" />
 </>)}
 </RudraLayoutBox>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="title" className="rs-access-title" content={((_bindingValue) => _bindingValue === undefined ? "Learn mathematics with context, not shortcuts." : _bindingValue)(_scope?.i18n?.title)} customColor="#eafff8" as="h2" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="title" className="rs-access-title" customColor="#eafff8" as="h2" content={((_bindingValue) => _bindingValue === undefined ? "Learn mathematics with context, not shortcuts." : _bindingValue)(_scope?.i18n?.title)} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="subtitle" className="rs-muted" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Work through challenging problems step by step—with explanations that make the ideas stick." : _bindingValue)(_scope?.i18n?.subtitle)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreAlert id="trust" live="off" title="SQL is the authority" variant="neutral" appearance="outlined" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreAlert id="trust" appearance="outlined" live="off" title="SQL is the authority" variant="neutral" />
 </>)}
 </RudraLayoutBox>
 </>)}
@@ -666,101 +765,101 @@ return !(args.value === true && state.privacyAccepted === true);
 </>)}
       {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(showLogin)) && (<>      <RudraCoreTypography id="signin_title" className="rs-signin-title" as="h2" content={((_bindingValue) => _bindingValue === undefined ? "Ready to think through the next problem?" : _bindingValue)(_scope?.i18n?.signInTitle)} />
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(showLogin)) && (<>      <RudraCoreTypography id="signin_intro" className="rs-signin-intro" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Sign in to continue your lessons, saved work, and learning progress." : _bindingValue)(_scope?.i18n?.signInIntro)} />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(showLogin)) && (<>      <RudraCoreTypography id="signin_intro" className="rs-signin-intro" content={((_bindingValue) => _bindingValue === undefined ? "Sign in to continue your lessons, saved work, and learning progress." : _bindingValue)(_scope?.i18n?.signInIntro)} as="p" />
 </>)}
       {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(showLogin)) && (<>      <RudraCoreButton id="google" leftIcon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={{ "iconType": "url", "url": "https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" }} id="google_logo" size={20} strokeWidth={1.2} />
 </>)}
-</>} ariaLabel="Sign in with Google" fullWidth={true} size="lg" label={((_bindingValue) => _bindingValue === undefined ? "Sign in with Google" : _bindingValue)(_scope?.i18n?.google)} loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(busy)} variant="outline" onAction={(...eventArgs) => _callAction("requestGoogleSignIn", {}, eventArgs)} rightIcon={false} id="scholar-google-signin" theme="auto" />
+</>} variant="outline" onAction={(...eventArgs) => _callAction("requestGoogleSignIn", {}, eventArgs)} ariaLabel="Sign in with Google" label={((_bindingValue) => _bindingValue === undefined ? "Sign in with Google" : _bindingValue)(_scope?.i18n?.google)} fullWidth={true} rightIcon={false} id="scholar-google-signin" size="lg" theme="auto" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(busy)} />
 </>)}
       {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(showLogin)) && (<>      <RudraCoreTypography id="notice" className="rs-signin-note" as="p" content={((_bindingValue) => _bindingValue === undefined ? "First time here? After Google confirms your email, choose Student, Professor, or Institution administrator. Account setup takes about a minute." : _bindingValue)(_scope?.i18n?.signInHelp)} />
 </>)}
       {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showRegistration)) && (<>      <RudraCoreTypography id="heading" as="h3" content={((_bindingValue) => _bindingValue === undefined ? "Create your Scholar account" : _bindingValue)(_scope?.i18n?.profile)} />
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showRegistration)) && (<>      <RudraFormForm id="profile_form" className="rs-form" onSubmit={(...eventArgs) => _callAction("handleRegistrationSubmit", {}, eventArgs)} initialValues={((_bindingValue) => _bindingValue === undefined ? { "privacyAccepted": false, "requestedRole": "student", "termsAccepted": false, "verifiedEmail": "" } : _bindingValue)(registrationInitialValues)}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="registration_progress" className="rs-registration-progress" content={((_bindingValue) => _bindingValue === undefined ? "Step 1 of 3 · Profile" : _bindingValue)(registrationProgress)} as="p" />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showRegistration)) && (<>      <RudraFormForm id="profile_form" className="rs-form" onSubmit={(...eventArgs) => _callAction("handleRegistrationSubmit", {}, eventArgs)} initialValues={((_bindingValue) => _bindingValue === undefined ? { "privacyAccepted": false, "requestedRole": "student", "termsAccepted": false, "verifiedEmail": "" } : _bindingValue)(registrationInitialValues)}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="registration_progress" className="rs-registration-progress" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Step 1 of 3 · Profile" : _bindingValue)(registrationProgress)} />
 </>)}
       {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showRegistrationStep1)) && (<>      <RudraFormInput id="email" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"Mail"} id="email_field_icon" size={18} strokeWidth={1.8} />
 </>)}
-</>} name="verifiedEmail" size="md" type="email" label="Verified Google email" value={((_bindingValue) => _bindingValue === undefined ? "Signed-in Google account" : _bindingValue)(authenticatedProfile?.email)} disabled={true} />
+</>} type="email" label="Verified Google email" value={((_bindingValue) => _bindingValue === undefined ? "Signed-in Google account" : _bindingValue)(authenticatedProfile?.email)} disabled={true} name="verifiedEmail" size="md" />
 </>)}
       {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showRegistrationStep1)) && (<>      <RudraFormInput id="first_name" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"UserRound"} id="first_name_field_icon" strokeWidth={1.8} size={18} />
 </>)}
 </>} name="firstName" size="md" type="text" label="First name" required={true} />
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showRegistrationStep1)) && (<>      <RudraFormInput id="last_name" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"UserRound"} id="last_name_field_icon" size={18} strokeWidth={1.8} />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showRegistrationStep1)) && (<>      <RudraFormInput id="last_name" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"UserRound"} id="last_name_field_icon" strokeWidth={1.8} size={18} />
 </>)}
-</>} required={true} name="lastName" size="md" type="text" label="Last name" />
+</>} name="lastName" size="md" type="text" label="Last name" required={true} />
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showRegistrationStep1)) && (<>      <RudraFormSelect id="role" options={[{"label":"Student","value":"student"},{"label":"Professor / teacher","value":"educator"},{"label":"Institution administrator","value":"institution_admin"}]} required={true} onChangeValue={(...eventArgs) => _callAction("setRequestedRole", {}, eventArgs)} name="requestedRole" label="Create account as" value="student" radius="md" />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showRegistrationStep1)) && (<>      <RudraFormSelect id="role" label="Create account as" value="student" radius="md" options={[{"label":"Student","value":"student"},{"label":"Professor / teacher","value":"educator"},{"label":"Institution administrator","value":"institution_admin"}]} required={true} onChangeValue={(...eventArgs) => _callAction("setRequestedRole", {}, eventArgs)} name="requestedRole" />
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showEducatorFields)) && (<>      <RudraFormInput id="qualification" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"GraduationCap"} id="qualification_field_icon" strokeWidth={1.8} size={18} />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showEducatorFields)) && (<>      <RudraFormInput id="qualification" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"GraduationCap"} id="qualification_field_icon" size={18} strokeWidth={1.8} />
 </>)}
 </>} name="qualification" size="md" type="text" label="Highest relevant qualification" required={true} placeholder="For example, M.Sc. Mathematics" />
 </>)}
       {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(showStudentInvitation)) && (<>      <RudraFormInput id="institution" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"TicketCheck"} id="institution_field_icon" size={18} strokeWidth={1.8} />
 </>)}
-</>} size="md" type="text" label="Institution invite code (optional)" required={false} placeholder="Enter a verified college invite code" name="institutionInvite" />
+</>} name="institutionInvite" size="md" type="text" label="Institution invite code (optional)" required={false} placeholder="Enter a verified college invite code" />
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showVerifiedRoleFields)) && (<>      <RudraCoreAlert id="kyc_intro" live="off" title="Role verification required" variant="neutral" appearance="outlined" />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showVerifiedRoleFields)) && (<>      <RudraCoreAlert id="kyc_intro" variant="neutral" appearance="outlined" live="off" title="Role verification required" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": false, "md": false, "sm": false })) && (<>      <RudraFormInput id="kyc" placeholder="Secure upload reference — do not paste document data" name="kycReference" size="md" type="text" label="Legacy verification field disabled" required={false} />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showEducatorFields)) && (<>      <RudraFormInput id="expertise" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"Sigma"} id="expertise_field_icon" strokeWidth={1.8} size={18} />
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showEducatorFields)) && (<>      <RudraFormInput id="expertise" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"Sigma"} id="expertise_field_icon" size={18} strokeWidth={1.8} />
+</>} type="text" label="Mathematics expertise" required={true} placeholder="For example, Linear Algebra, Calculus" name="subjectExpertise" size="md" />
 </>)}
-</>} name="subjectExpertise" size="md" type="text" label="Mathematics expertise" required={true} placeholder="For example, Linear Algebra, Calculus" />
+      {isVisibleValue(getResponsiveProp({ "lg": false, "md": false, "sm": false })) && (<>      <RudraFormInput id="kyc" required={false} placeholder="Secure upload reference — do not paste document data" name="kycReference" size="md" type="text" label="Legacy verification field disabled" />
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showEducatorFields)) && (<>      <RudraFormTextarea id="professional_statement" label="Short professional statement" maxRows={6} minRows={3} required={true} autoResize={true} placeholder="Briefly describe your teaching experience." name="professionalStatement" size="md" />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showEducatorFields)) && (<>      <RudraFormTextarea id="professional_statement" placeholder="Briefly describe your teaching experience." name="professionalStatement" size="md" label="Short professional statement" maxRows={6} minRows={3} required={true} autoResize={true} />
 </>)}
       {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showEducatorFields)) && (<>      <RudraFormInput id="educator_institution" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"School"} id="educator_institution_field_icon" size={18} strokeWidth={1.8} />
 </>)}
-</>} name="institutionName" size="md" type="text" label="College or university" required={true} />
+</>} required={true} name="institutionName" size="md" type="text" label="College or university" />
 </>)}
       {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showEducatorFields)) && (<>      <RudraFormInput id="evidence" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"BadgeCheck"} id="evidence_field_icon" size={18} strokeWidth={1.8} />
 </>)}
 </>} name="kycEvidence" size="md" type="text" label="KYC verification evidence" required={true} placeholder="Use an institution email or public staff-profile URL" />
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showInstitutionFields)) && (<>      <RudraFormInput id="institution_legal_name" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"Landmark"} id="institution_legal_name_field_icon" strokeWidth={1.8} size={18} />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showInstitutionFields)) && (<>      <RudraFormInput id="institution_legal_name" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"Landmark"} id="institution_legal_name_field_icon" size={18} strokeWidth={1.8} />
 </>)}
 </>} name="institutionLegalName" size="md" type="text" label="Institution legal name" required={true} />
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showInstitutionFields)) && (<>      <RudraFormInput id="institution_display_name" label="Display name" required={true} name="institutionDisplayName" size="md" type="text" />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showInstitutionFields)) && (<>      <RudraFormInput id="institution_display_name" required={true} name="institutionDisplayName" size="md" type="text" label="Display name" />
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showInstitutionFields)) && (<>      <RudraFormSelect id="institution_type" options={[{"label":"College","value":"college"},{"label":"University","value":"university"}]} required={true} name="institutionType" label="Institution type" value="college" />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showInstitutionFields)) && (<>      <RudraFormSelect id="institution_type" name="institutionType" label="Institution type" value="college" options={[{"label":"College","value":"college"},{"label":"University","value":"university"}]} required={true} />
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showInstitutionFields)) && (<>      <RudraFormInput id="institution_website" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"Globe"} id="institution_website_field_icon" size={18} strokeWidth={1.8} />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showInstitutionFields)) && (<>      <RudraFormInput id="institution_website" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"Globe"} id="institution_website_field_icon" strokeWidth={1.8} size={18} />
 </>)}
-</>} placeholder="https://example.edu" name="institutionWebsite" size="md" type="url" label="Official website" required={true} />
+</>} name="institutionWebsite" size="md" type="url" label="Official website" required={true} placeholder="https://example.edu" />
 </>)}
       {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showInstitutionFields)) && (<>      <RudraFormInput id="institution_domain" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"AtSign"} id="institution_domain_field_icon" size={18} strokeWidth={1.8} />
 </>)}
-</>} required={true} placeholder="example.edu" name="institutionEmailDomain" size="md" type="text" label="Institutional email domain" />
+</>} name="institutionEmailDomain" size="md" type="text" label="Institutional email domain" required={true} placeholder="example.edu" />
 </>)}
       {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showInstitutionFields)) && (<>      <RudraFormInput id="institution_contact" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"Contact"} id="institution_contact_field_icon" size={18} strokeWidth={1.8} />
 </>)}
-</>} name="institutionContact" size="md" type="text" label="Administrative contact" required={true} />
+</>} type="text" label="Administrative contact" required={true} name="institutionContact" size="md" />
 </>)}
       {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showVerifiedRoleFields)) && (<>      <RudraFormInput id="country" icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"MapPin"} id="country_field_icon" size={18} strokeWidth={1.8} />
 </>)}
-</>} label="Country" required={true} name="country" size="md" type="text" />
+</>} name="country" size="md" type="text" label="Country" required={true} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": false, "md": false, "sm": false })) && (<>      <RudraFormCheckbox id="age_confirmed" name="ageConfirmed" label="I confirm I am 18 or older." required={false} colorScheme="emerald" description="The initial proof of concept is limited to college learners and adult educators." />
+      {isVisibleValue(getResponsiveProp({ "lg": false, "md": false, "sm": false })) && (<>      <RudraFormCheckbox id="age_confirmed" colorScheme="emerald" description="The initial proof of concept is limited to college learners and adult educators." name="ageConfirmed" label="I confirm I am 18 or older." required={false} />
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showRegistrationStep3)) && (<>      <RudraFormCheckbox id="terms" description="Required before an account can be created." onChangeValue={(...eventArgs) => _callAction("setTermsAccepted", {}, eventArgs)} name="termsAccepted" label="I accept the Terms of Service." value={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(termsAccepted)} required={true} colorScheme="emerald" />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showRegistrationStep3)) && (<>      <RudraFormCheckbox id="terms" onChangeValue={(...eventArgs) => _callAction("setTermsAccepted", {}, eventArgs)} name="termsAccepted" label="I accept the Terms of Service." value={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(termsAccepted)} required={true} colorScheme="emerald" description="Required before an account can be created." />
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showRegistrationStep3)) && (<>      <RudraFormCheckbox id="privacy" onChangeValue={(...eventArgs) => _callAction("setPrivacyAccepted", {}, eventArgs)} name="privacyAccepted" label="I have read and accept the Privacy Notice." value={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(privacyAccepted)} required={true} colorScheme="emerald" description="Required before an account can be created." />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showRegistrationStep3)) && (<>      <RudraFormCheckbox id="privacy" required={true} colorScheme="emerald" description="Required before an account can be created." onChangeValue={(...eventArgs) => _callAction("setPrivacyAccepted", {}, eventArgs)} name="privacyAccepted" label="I have read and accept the Privacy Notice." value={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(privacyAccepted)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="registration_actions" className="rs-registration-actions">      {isVisibleValue(showRegistrationBack) && (<>      <RudraCoreButton id="registration_back" leftIcon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"ArrowLeft"} id="registration_back_icon" size={18} strokeWidth={2} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="registration_actions" className="rs-registration-actions">      {isVisibleValue(showRegistrationBack) && (<>      <RudraCoreButton id="registration_back" leftIcon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={"ArrowLeft"} id="registration_back_icon" strokeWidth={2} size={18} />
 </>)}
-</>} size="lg" type="button" label="Back" variant="secondary" onAction={(...eventArgs) => _callAction("goBackRegistrationStep", {}, eventArgs)} rightIcon={false} additionalAttributes={{}} id="scholar-registration-back" theme="auto" fullWidth={true} />
+</>} type="button" theme="auto" variant="secondary" onAction={(...eventArgs) => _callAction("goBackRegistrationStep", {}, eventArgs)} fullWidth={true} additionalAttributes={{}} id="scholar-registration-back" label="Back" rightIcon={false} size="lg" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="submit" variant="primary" leftIcon={false} size="lg" type="submit" disabled={((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(consentRequired)} fullWidth={true} rightIcon={false} id="scholar-registration-primary" label={((_bindingValue) => _bindingValue === undefined ? "Next" : _bindingValue)(registrationPrimaryLabel)} theme="auto" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(busy)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="submit" id="scholar-registration-primary" size="lg" theme="auto" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(busy)} leftIcon={false} fullWidth={true} rightIcon={false} type="submit" label={((_bindingValue) => _bindingValue === undefined ? "Next" : _bindingValue)(registrationPrimaryLabel)} variant="primary" disabled={((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(consentRequired)} />
 </>)}
 </RudraLayoutBox>
 </>)}
 </RudraFormForm>
 </>)}
-      {isVisibleValue(message) && (<>      <RudraCoreAlert id="message" variant="neutral" appearance="outlined" live="polite" title="Scholar access" />
+      {isVisibleValue(message) && (<>      <RudraCoreAlert id="message" live="polite" title="Scholar access" variant="neutral" appearance="outlined" />
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showPending)) && (<>      <RudraCoreAlert id="pending_notice" title="Professor verification pending" variant="warning" appearance="outlined" live="polite" />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(showPending)) && (<>      <RudraCoreAlert id="pending_notice" appearance="outlined" live="polite" title="Professor verification pending" variant="warning" />
 </>)}
 </RudraLayoutBox>
 </>)}
