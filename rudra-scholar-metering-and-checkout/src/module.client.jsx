@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './styles.css';
 
-import { Box as RudraLayoutBox, Container as RudraLayoutContainer } from '@rudra-studio/rudra-layout';
-import { Typography as RudraCoreTypography, Card as RudraCoreCard } from '@rudra-studio/rudra-core';
+import { Card as RudraCoreCard, Typography as RudraCoreTypography, Button as RudraCoreButton } from '@rudra-studio/rudra-core';
+import { Container as RudraLayoutContainer, Box as RudraLayoutBox } from '@rudra-studio/rudra-layout';
 
 export default function CompiledModule(props) {
   const _scope = {};
@@ -19,6 +19,15 @@ export default function CompiledModule(props) {
     ...(props.functions || {}),
     ...(props.actions || {}),
   };
+  const $route = props.$route ?? props.route ?? props.data?.$route ?? props.data?.route ?? props.runtime?.data?.$route ?? props.runtime?.route ?? serverData?.$route ?? serverData?.route ?? null;
+  const $params = props.$params ?? props.routeParams ?? props.params ?? props.data?.$params ?? props.data?.routeParams ?? props.data?.params ?? props.runtime?.data?.$params ?? props.runtime?.route?.params ?? props.runtime?.routeParams ?? props.runtime?.params ?? serverData?.$params ?? serverData?.routeParams ?? serverData?.params ?? {};
+  const $query = props.$query ?? props.queryParams ?? props.query ?? props.data?.$query ?? props.data?.queryParams ?? props.data?.query ?? props.runtime?.data?.$query ?? props.runtime?.route?.query ?? props.runtime?.queryParams ?? props.runtime?.query ?? serverData?.$query ?? serverData?.queryParams ?? serverData?.query ?? {};
+  const $auth = props.$auth ?? props.auth ?? props.data?.$auth ?? props.data?.auth ?? props.runtime?.data?.$auth ?? props.runtime?.authInfo ?? props.runtime?.auth ?? serverData?.$auth ?? serverData?.auth ?? null;
+  const $config = props.$config ?? props.config ?? props.data?.$config ?? props.data?.config ?? props.runtime?.data?.$config ?? props.runtime?.config ?? serverData?.$config ?? serverData?.config ?? {};
+  const $env = props.$env ?? props.env ?? props.data?.$env ?? props.data?.env ?? props.runtime?.data?.$env ?? props.runtime?.env ?? serverData?.$env ?? serverData?.env ?? {};
+  const $locale = props.$locale ?? props.locale ?? props.data?.$locale ?? props.data?.locale ?? props.runtime?.data?.$locale ?? props.runtime?.locale ?? serverData?.$locale ?? serverData?.locale ?? 'en';
+  const $translations = props.$translations ?? props.translations ?? props.data?.$translations ?? props.data?.translations ?? props.runtime?.data?.$translations ?? props.runtime?.translations ?? serverData?.$translations ?? serverData?.translations ?? {};
+  const $i18n = props.$i18n ?? props.i18n ?? props.data?.$i18n ?? props.data?.i18n ?? props.runtime?.data?.$i18n ?? props.runtime?.i18n ?? serverData?.$i18n ?? serverData?.i18n ?? { locale: $locale, translations: $translations };
   const _explicitTheme = props.$theme ?? props.theme ?? props.data?.$theme ?? props.runtime?.data?.$theme ?? props.runtime?.theme;
   const _getDocumentTheme = () => {
     if (typeof document === 'undefined') return 'light';
@@ -69,32 +78,36 @@ export default function CompiledModule(props) {
   const isVisibleValue = (value) => Array.isArray(value) ? value.length > 0 : (typeof value === 'string' ? value.trim() !== '' && value.trim().toLowerCase() !== 'false' : Boolean(value));
 
   const authenticated = props.authenticated !== undefined ? props.authenticated : (props.data?.authenticated !== undefined ? props.data.authenticated : false);
-  const recentCourses = props.recentCourses !== undefined ? props.recentCourses : (props.data?.recentCourses !== undefined ? props.data.recentCourses : [{"id":"linear-algebra-foundations","lastVisitedAt":"Today","professorName":"Dr. Meera Iyer","progressPercent":42,"title":"Linear Algebra Foundations"},{"id":"calculus-one","lastVisitedAt":"Yesterday","professorName":"Prof. Arjun Rao","progressPercent":68,"title":"Calculus I"},{"id":"discrete-mathematics","lastVisitedAt":"3 days ago","professorName":"Dr. Kavitha N","progressPercent":25,"title":"Discrete Mathematics"}]);
-  const visitedCourseCount = props.visitedCourseCount !== undefined ? props.visitedCourseCount : (props.data?.visitedCourseCount !== undefined ? props.data.visitedCourseCount : 3);
-  const usageSummary = props.usageSummary !== undefined ? props.usageSummary : (props.data?.usageSummary !== undefined ? props.data.usageSummary : {"active":false,"isExhausted":false,"remainingSeconds":1200,"totalGrantedSeconds":1200});
   const currentCourse = props.currentCourse !== undefined ? props.currentCourse : (props.data?.currentCourse !== undefined ? props.data.currentCourse : {"description":"Continue matrices, determinants, eigenvalues, and worked examples.","id":"linear-algebra-foundations","lastVisitedAt":"Today","professorName":"Dr. Meera Iyer","progressPercent":42,"section":"Matrices and Eigenvalues","title":"Linear Algebra Foundations"});
-  const vaultSummary = props.vaultSummary !== undefined ? props.vaultSummary : (props.data?.vaultSummary !== undefined ? props.data.vaultSummary : {"configured":false,"dailyRequestsLimit":50,"dailyRequestsUsed":0,"dailyTokensLimit":"[REDACTED]","dailyTokensUsed":"[REDACTED]","lastFour":"","model":"","provider":"","status":"not_configured"});
   const availableMinutes = props.availableMinutes !== undefined ? props.availableMinutes : (props.data?.availableMinutes !== undefined ? props.data.availableMinutes : 20);
   const usedMinutes = props.usedMinutes !== undefined ? props.usedMinutes : (props.data?.usedMinutes !== undefined ? props.data.usedMinutes : 0);
+  const recentCourses = props.recentCourses !== undefined ? props.recentCourses : (props.data?.recentCourses !== undefined ? props.data.recentCourses : [{"id":"linear-algebra-foundations","lastVisitedAt":"Today","professorName":"Dr. Meera Iyer","progressPercent":42,"title":"Linear Algebra Foundations"},{"id":"calculus-one","lastVisitedAt":"Yesterday","professorName":"Prof. Arjun Rao","progressPercent":68,"title":"Calculus I"},{"id":"discrete-mathematics","lastVisitedAt":"3 days ago","professorName":"Dr. Kavitha N","progressPercent":25,"title":"Discrete Mathematics"}]);
+  const vaultSummary = props.vaultSummary !== undefined ? props.vaultSummary : (props.data?.vaultSummary !== undefined ? props.data.vaultSummary : {"configured":false,"dailyRequestsLimit":50,"dailyRequestsUsed":0,"lastFour":"","model":"","provider":"","status":"not_configured"});
   const vaultEnabled = props.vaultEnabled !== undefined ? props.vaultEnabled : (props.data?.vaultEnabled !== undefined ? props.data.vaultEnabled : false);
+  const locale = props.locale !== undefined ? props.locale : (props.data?.locale !== undefined ? props.data.locale : "en");
+  const usageSummary = props.usageSummary !== undefined ? props.usageSummary : (props.data?.usageSummary !== undefined ? props.data.usageSummary : {"active":false,"isExhausted":false,"remainingSeconds":1200,"totalGrantedSeconds":1200});
+  const visitedCourseCount = props.visitedCourseCount !== undefined ? props.visitedCourseCount : (props.data?.visitedCourseCount !== undefined ? props.data.visitedCourseCount : 3);
   const checkoutStatus = props.checkoutStatus !== undefined ? props.checkoutStatus : (props.data?.checkoutStatus !== undefined ? props.data.checkoutStatus : {"message":"","state":"idle"});
   const userRole = props.userRole !== undefined ? props.userRole : (props.data?.userRole !== undefined ? props.data.userRole : "guest");
-  const locale = props.locale !== undefined ? props.locale : (props.data?.locale !== undefined ? props.data.locale : "en");
-  const inputs = { "authenticated": authenticated, "recentCourses": recentCourses, "visitedCourseCount": visitedCourseCount, "usageSummary": usageSummary, "currentCourse": currentCourse, "vaultSummary": vaultSummary, "availableMinutes": availableMinutes, "usedMinutes": usedMinutes, "vaultEnabled": vaultEnabled, "checkoutStatus": checkoutStatus, "userRole": userRole, "locale": locale };
+  const inputs = { "authenticated": authenticated, "currentCourse": currentCourse, "availableMinutes": availableMinutes, "usedMinutes": usedMinutes, "recentCourses": recentCourses, "vaultSummary": vaultSummary, "vaultEnabled": vaultEnabled, "locale": locale, "usageSummary": usageSummary, "visitedCourseCount": visitedCourseCount, "checkoutStatus": checkoutStatus, "userRole": userRole };
+  const [dashboardSummary, set_dashboardSummary] = useState(() => structuredClone({}));
+  const [currentCourseData, set_currentCourseData] = useState(() => structuredClone({}));
+  const [dashboardLoaded, set_dashboardLoaded] = useState(() => structuredClone(false));
+  const [dashboardGuest, set_dashboardGuest] = useState(() => structuredClone(true));
   const [busy, set_busy] = useState(() => structuredClone(false));
   const [statusMessage, set_statusMessage] = useState(() => structuredClone(""));
-  const [recentCoursesData, set_recentCoursesData] = useState(() => structuredClone([{"id":"linear-algebra-foundations","lastVisitedAt":"Today","professorName":"Dr. Meera Iyer","progressPercent":42,"title":"Linear Algebra Foundations"},{"id":"calculus-one","lastVisitedAt":"Yesterday","professorName":"Prof. Arjun Rao","progressPercent":68,"title":"Calculus I"},{"id":"discrete-mathematics","lastVisitedAt":"3 days ago","professorName":"Dr. Kavitha N","progressPercent":25,"title":"Discrete Mathematics"}]));
-  const [dashboardSummary, set_dashboardSummary] = useState(() => structuredClone({"availableMinutes":20,"usedMinutes":0,"visitedCourseCount":3}));
-  const [currentCourseData, set_currentCourseData] = useState(() => structuredClone({"description":"Continue matrices, determinants, eigenvalues, and worked examples.","id":"linear-algebra-foundations","lastVisitedAt":"Today","professorName":"Dr. Meera Iyer","progressPercent":42,"section":"Matrices and Eigenvalues","title":"Linear Algebra Foundations"}));
-  const state = { "busy": busy, "statusMessage": statusMessage, "recentCoursesData": recentCoursesData, "dashboardSummary": dashboardSummary, "currentCourseData": currentCourseData };
+  const [recentCoursesData, set_recentCoursesData] = useState(() => structuredClone([]));
+  const state = { "dashboardSummary": dashboardSummary, "currentCourseData": currentCourseData, "dashboardLoaded": dashboardLoaded, "dashboardGuest": dashboardGuest, "busy": busy, "statusMessage": statusMessage, "recentCoursesData": recentCoursesData };
 
   const _setState = useCallback((name, value) => {
     switch (name) {
+      case "dashboardSummary": { const next = typeof value === 'function' ? value(state.dashboardSummary) : value; state.dashboardSummary = next; set_dashboardSummary(next); return next; }
+      case "currentCourseData": { const next = typeof value === 'function' ? value(state.currentCourseData) : value; state.currentCourseData = next; set_currentCourseData(next); return next; }
+      case "dashboardLoaded": { const next = typeof value === 'function' ? value(state.dashboardLoaded) : value; state.dashboardLoaded = next; set_dashboardLoaded(next); return next; }
+      case "dashboardGuest": { const next = typeof value === 'function' ? value(state.dashboardGuest) : value; state.dashboardGuest = next; set_dashboardGuest(next); return next; }
       case "busy": { const next = typeof value === 'function' ? value(state.busy) : value; state.busy = next; set_busy(next); return next; }
       case "statusMessage": { const next = typeof value === 'function' ? value(state.statusMessage) : value; state.statusMessage = next; set_statusMessage(next); return next; }
       case "recentCoursesData": { const next = typeof value === 'function' ? value(state.recentCoursesData) : value; state.recentCoursesData = next; set_recentCoursesData(next); return next; }
-      case "dashboardSummary": { const next = typeof value === 'function' ? value(state.dashboardSummary) : value; state.dashboardSummary = next; set_dashboardSummary(next); return next; }
-      case "currentCourseData": { const next = typeof value === 'function' ? value(state.currentCourseData) : value; state.currentCourseData = next; set_currentCourseData(next); return next; }
       default: return value;
     }
   }, [state]);
@@ -116,11 +129,13 @@ export default function CompiledModule(props) {
       return next;
     };
     switch (root) {
+      case "dashboardSummary": _setState("dashboardSummary", updateNested); return value;
+      case "currentCourseData": _setState("currentCourseData", updateNested); return value;
+      case "dashboardLoaded": _setState("dashboardLoaded", updateNested); return value;
+      case "dashboardGuest": _setState("dashboardGuest", updateNested); return value;
       case "busy": _setState("busy", updateNested); return value;
       case "statusMessage": _setState("statusMessage", updateNested); return value;
       case "recentCoursesData": _setState("recentCoursesData", updateNested); return value;
-      case "dashboardSummary": _setState("dashboardSummary", updateNested); return value;
-      case "currentCourseData": _setState("currentCourseData", updateNested); return value;
       default: return value;
     }
   }, [_setState]);
@@ -195,7 +210,7 @@ export default function CompiledModule(props) {
     const args = initialArgs || {};
     const vars = {};
     const stepResults = {};
-    void _emitOutput("checkoutRequested", { "idempotencyKey": 'checkout-' + Date.now() + '-' + Math.random().toString(36).slice(2), "planId": args.planId }, false).catch(error => console.error('Module output delivery failed', error));
+    await _emitOutput("checkoutRequested", { "idempotencyKey": 'checkout-' + Date.now() + '-' + Math.random().toString(36).slice(2), "planId": args.planId }, true);
     return { "planId": args.planId, "requested": true };
     return undefined;
   }
@@ -204,7 +219,7 @@ export default function CompiledModule(props) {
     const args = initialArgs || {};
     const vars = {};
     const stepResults = {};
-    void _emitOutput("signInRequested", { "source": "billing-and-usage" }, false).catch(error => console.error('Module output delivery failed', error));
+    await _emitOutput("signInRequested", { "source": "billing-and-usage" }, true);
     return undefined;
   }
 
@@ -212,60 +227,119 @@ export default function CompiledModule(props) {
     const args = initialArgs || {};
     const vars = {};
     const stepResults = {};
-    { const roots = { args, inputs, state, sharedState, applicationState, pageState, pageData, serverData, vars, stepResults };
-      const namedParameters = _resolveRuntimeValue({}, roots) || {};
-      delete namedParameters["email"];
-      const parameters = [undefined];
-      const queryExecutor = props.executeDatabaseQuery || props.runtime?.executeDatabaseQuery;
-      let result;
-      if (typeof queryExecutor === 'function') {
-        result = await queryExecutor({ moduleId: "cmtma366w000804jo287z6rlp", queryId: "scholarLoadLearningSummary", parameters, namedParameters, signal: args.signal });
+    if (state.busy) {
+      return { "busy": true, "ok": false };
+    } else {
+      _setState("dashboardGuest", inputs.authenticated !== true);
+      _setState("statusMessage", "");
+      _setState("dashboardLoaded", false);
+      _setState("dashboardSummary", {  });
+      _setState("currentCourseData", {  });
+      _setState("recentCoursesData", []);
+      if (inputs.authenticated === true) {
+        _setState("busy", true);
+        try {
+          { const roots = { args, inputs, state, sharedState, applicationState, pageState, pageData, serverData, vars, stepResults };
+            const namedParameters = _resolveRuntimeValue({}, roots) || {};
+            delete namedParameters["email"];
+            const parameters = [undefined];
+            const queryExecutor = props.executeDatabaseQuery || props.runtime?.executeDatabaseQuery;
+            let result;
+            if (typeof queryExecutor === 'function') {
+              result = await queryExecutor({ moduleId: "cmtma366w000804jo287z6rlp", queryId: "scholarLoadLearningSummary", parameters, namedParameters, signal: args.signal });
+            } else {
+              const queryResponse = await fetch("/api/modules/cmtma366w000804jo287z6rlp/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "scholarLoadLearningSummary", parameters, namedParameters }), signal: args.signal });
+              const queryPayload = await queryResponse.json().catch(() => ({}));
+              if (!queryResponse.ok || queryPayload.success === false) throw new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')');
+              result = queryPayload.data;
+            }
+            stepResults["load_summary"] = result; vars["queryResult"] = result; }
+        } catch (_caughtError) {
+          const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "load_summary" };
+          vars.error = error; stepResults["load_summary"] = { error };
+          _setState("busy", false);
+          _setState("statusMessage", "Usage could not be loaded. No balance has been assumed. Please retry.");
+          return { "ok": false };
+          return undefined;
+        }
+        try {
+          { const roots = { args, inputs, state, sharedState, applicationState, pageState, pageData, serverData, vars, stepResults };
+            const namedParameters = _resolveRuntimeValue({}, roots) || {};
+            delete namedParameters["email"];
+            const parameters = [undefined];
+            const queryExecutor = props.executeDatabaseQuery || props.runtime?.executeDatabaseQuery;
+            let result;
+            if (typeof queryExecutor === 'function') {
+              result = await queryExecutor({ moduleId: "cmtma366w000804jo287z6rlp", queryId: "scholarLoadCurrentCourse", parameters, namedParameters, signal: args.signal });
+            } else {
+              const queryResponse = await fetch("/api/modules/cmtma366w000804jo287z6rlp/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "scholarLoadCurrentCourse", parameters, namedParameters }), signal: args.signal });
+              const queryPayload = await queryResponse.json().catch(() => ({}));
+              if (!queryResponse.ok || queryPayload.success === false) throw new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')');
+              result = queryPayload.data;
+            }
+            stepResults["load_current"] = result; vars["queryResult"] = result; }
+        } catch (_caughtError) {
+          const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "load_current" };
+          vars.error = error; stepResults["load_current"] = { error };
+          _setState("busy", false);
+          _setState("statusMessage", "Usage could not be loaded. No balance has been assumed. Please retry.");
+          return { "ok": false };
+          return undefined;
+        }
+        try {
+          { const roots = { args, inputs, state, sharedState, applicationState, pageState, pageData, serverData, vars, stepResults };
+            const namedParameters = _resolveRuntimeValue({}, roots) || {};
+            delete namedParameters["email"];
+            const parameters = [undefined];
+            const queryExecutor = props.executeDatabaseQuery || props.runtime?.executeDatabaseQuery;
+            let result;
+            if (typeof queryExecutor === 'function') {
+              result = await queryExecutor({ moduleId: "cmtma366w000804jo287z6rlp", queryId: "scholarLoadRecentCourses", parameters, namedParameters, signal: args.signal });
+            } else {
+              const queryResponse = await fetch("/api/modules/cmtma366w000804jo287z6rlp/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "scholarLoadRecentCourses", parameters, namedParameters }), signal: args.signal });
+              const queryPayload = await queryResponse.json().catch(() => ({}));
+              if (!queryResponse.ok || queryPayload.success === false) throw new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')');
+              result = queryPayload.data;
+            }
+            stepResults["load_recent"] = result; vars["queryResult"] = result; }
+        } catch (_caughtError) {
+          const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "load_recent" };
+          vars.error = error; stepResults["load_recent"] = { error };
+          _setState("busy", false);
+          _setState("statusMessage", "Usage could not be loaded. No balance has been assumed. Please retry.");
+          return { "ok": false };
+          return undefined;
+        }
+        try {
+          { const event = args.event; const data = pageData; const globalState = state;
+            const customResult = await (async () => {
+return (function normalizeMetering(summaryRows, currentRows, recentRows) {
+  const first = x => Array.isArray(x) ? x[0] || {} : x || {};
+  const summary = first(summaryRows), current = first(currentRows), recent = first(recentRows);
+  const number = value => { const n = Number(value); return Number.isFinite(n) ? Math.max(0, Math.min(10000000, Math.floor(n))) : 0; };
+  const course = value => value && typeof value === 'object' && typeof value.id === 'string' && value.id && typeof value.title === 'string' && value.title.trim() ? { ...value, title: value.title.slice(0,180), progressPercent: Math.min(100, number(value.progressPercent)) } : null;
+  return { summary: { availableMinutes: number(summary.availableMinutes), usedMinutes: number(summary.usedMinutes), visitedCourseCount: number(summary.visitedCourseCount) }, currentCourse: course(current.currentCourse) || {}, recentCourses: (Array.isArray(recent.recentCourses) ? recent.recentCourses : []).map(course).filter(Boolean).slice(0,3) };
+})(stepResults.load_summary,stepResults.load_current,stepResults.load_recent);
+            })();
+            stepResults["normalize_dashboard"] = customResult; vars["customCodeResult"] = customResult; }
+        } catch (_caughtError) {
+          const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "normalize_dashboard" };
+          vars.error = error; stepResults["normalize_dashboard"] = { error };
+          _setState("busy", false);
+          _setState("statusMessage", "Usage could not be loaded. No balance has been assumed. Please retry.");
+          return { "ok": false };
+          return undefined;
+        }
+        _setState("dashboardSummary", stepResults.normalize_dashboard.summary);
+        _setState("currentCourseData", stepResults.normalize_dashboard.currentCourse);
+        _setState("recentCoursesData", stepResults.normalize_dashboard.recentCourses);
+        _setState("dashboardLoaded", true);
+        _setState("busy", false);
+        return stepResults.normalize_dashboard;
       } else {
-        const queryResponse = await fetch("/api/modules/cmtma366w000804jo287z6rlp/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "scholarLoadLearningSummary", parameters, namedParameters }), signal: args.signal });
-        const queryPayload = await queryResponse.json().catch(() => ({}));
-        if (!queryResponse.ok || queryPayload.success === false) throw new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')');
-        result = queryPayload.data;
+        return { "guest": true };
       }
-      stepResults["load_summary"] = result; vars["queryResult"] = result; }
-    { const roots = { args, inputs, state, sharedState, applicationState, pageState, pageData, serverData, vars, stepResults };
-      const namedParameters = _resolveRuntimeValue({}, roots) || {};
-      delete namedParameters["email"];
-      const parameters = [undefined];
-      const queryExecutor = props.executeDatabaseQuery || props.runtime?.executeDatabaseQuery;
-      let result;
-      if (typeof queryExecutor === 'function') {
-        result = await queryExecutor({ moduleId: "cmtma366w000804jo287z6rlp", queryId: "scholarLoadCurrentCourse", parameters, namedParameters, signal: args.signal });
-      } else {
-        const queryResponse = await fetch("/api/modules/cmtma366w000804jo287z6rlp/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "scholarLoadCurrentCourse", parameters, namedParameters }), signal: args.signal });
-        const queryPayload = await queryResponse.json().catch(() => ({}));
-        if (!queryResponse.ok || queryPayload.success === false) throw new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')');
-        result = queryPayload.data;
-      }
-      stepResults["load_current"] = result; vars["queryResult"] = result; }
-    { const roots = { args, inputs, state, sharedState, applicationState, pageState, pageData, serverData, vars, stepResults };
-      const namedParameters = _resolveRuntimeValue({}, roots) || {};
-      delete namedParameters["email"];
-      const parameters = [undefined];
-      const queryExecutor = props.executeDatabaseQuery || props.runtime?.executeDatabaseQuery;
-      let result;
-      if (typeof queryExecutor === 'function') {
-        result = await queryExecutor({ moduleId: "cmtma366w000804jo287z6rlp", queryId: "scholarLoadRecentCourses", parameters, namedParameters, signal: args.signal });
-      } else {
-        const queryResponse = await fetch("/api/modules/cmtma366w000804jo287z6rlp/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "scholarLoadRecentCourses", parameters, namedParameters }), signal: args.signal });
-        const queryPayload = await queryResponse.json().catch(() => ({}));
-        if (!queryResponse.ok || queryPayload.success === false) throw new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')');
-        result = queryPayload.data;
-      }
-      stepResults["load_recent"] = result; vars["queryResult"] = result; }
-    { const event = args.event; const data = pageData; const globalState = state;
-      const customResult = await (async () => {
-const first=x=>Array.isArray(x)?(x[0]||{}):(x||{});const summary=first(stepResults.load_summary);const current=first(stepResults.load_current);const recent=first(stepResults.load_recent);return{summary:{availableMinutes:Number(summary.availableMinutes||0),usedMinutes:Number(summary.usedMinutes||0),visitedCourseCount:Number(summary.visitedCourseCount||0)},currentCourse:current.currentCourse&&typeof current.currentCourse==='object'?current.currentCourse:{},recentCourses:Array.isArray(recent.recentCourses)?recent.recentCourses:[]};
-      })();
-      stepResults["normalize_dashboard"] = customResult; vars["customCodeResult"] = customResult; }
-    _setState("dashboardSummary", stepResults.normalize_dashboard.summary);
-    _setState("currentCourseData", stepResults.normalize_dashboard.currentCourse);
-    _setState("recentCoursesData", stepResults.normalize_dashboard.recentCourses);
-    return stepResults.normalize_dashboard;
+    }
     return undefined;
   }
 
@@ -315,16 +389,34 @@ const first=x=>Array.isArray(x)?(x[0]||{}):(x||{});const summary=first(stepResul
   useEffect(() => {
     void _runLifecycle("learning_dashboard_mountloadLearningDashboardSsr", "takeLatest", (signal) => loadLearningDashboard({ signal }), "Module mount lifecycle failed:");
   }, []);
+  const _inputLifecycleMounted0 = useRef(false);
+  useEffect(() => {
+    if (!_inputLifecycleMounted0.current) { _inputLifecycleMounted0.current = true; return; }
+    set_dashboardSummary(structuredClone({}));
+    set_currentCourseData(structuredClone({}));
+    set_recentCoursesData(structuredClone([]));
+    set_statusMessage(structuredClone(""));
+    set_dashboardLoaded(structuredClone(false));
+    void _runLifecycle("usage_identity_changeloadLearningDashboardSsr", "takeLatest", (signal) => loadLearningDashboard({ signal }), 'Module input lifecycle failed:');
+  }, [authenticated]);
 
   return (
     <div ref={wrapperRef} className="rudra-module-wrapper">
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutContainer id="root" className="rs-learning-dashboard" maxWidth="full" as="main">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="stack" className="flex flex-col rs-dashboard-stack">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="kicker" className="rs-kicker" as="p" content="Rudra Scholar" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutContainer id="root" className="rs-learning-dashboard" as="main" maxWidth="full">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="stack" className="flex flex-col rs-dashboard-stack">      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(dashboardGuest)) && (<>      <RudraCoreButton id="usage_signin" className="rs-usage-button" label="Sign in" onAction={(...eventArgs) => _callAction("signIn", {}, eventArgs)} />
+</>)}
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="kicker" className="rs-kicker" as="p" content="Rudra Scholar" />
+</>)}
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(statusMessage)) && (<>      <RudraCoreTypography id="usage_error" as="p" content={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(statusMessage)} aria-live="polite" />
+</>)}
+      {isVisibleValue((((value) => { return !value; })(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(dashboardGuest)))) && (<>      <RudraCoreButton id="usage_refresh" className="rs-usage-button" label="Refresh usage" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(busy)} disabled={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(busy)} onAction={(...eventArgs) => _callAction("loadLearningDashboardSsr", {}, eventArgs)} loadingText="Loading usage…" />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="title" className="rs-page-title" as="h2" content={((_bindingValue) => _bindingValue === undefined ? "Learning overview" : _bindingValue)(_scope?.i18n?.title)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="subtitle" className="rs-page-subtitle" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Track your available learning time and continue where you left off." : _bindingValue)(_scope?.i18n?.subtitle)} />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(dashboardGuest)) && (<>      <RudraCoreTypography id="usage_guest" as="p" content="Sign in to see your learning time and recent courses." aria-live="polite" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="summary_grid" className="grid rs-summary-grid">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreCard id="available_card" className="rs-stat-card rs-stat-card-accent" as="section" theme="auto">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="available_label" className="rs-stat-label" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Available time" : _bindingValue)(_scope?.i18n?.availableTime)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="subtitle" className="rs-page-subtitle" content={((_bindingValue) => _bindingValue === undefined ? "Track your available learning time and continue where you left off." : _bindingValue)(_scope?.i18n?.subtitle)} as="p" />
+</>)}
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(dashboardLoaded)) && (<>      <RudraLayoutBox id="summary_grid" className="grid rs-summary-grid">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreCard id="available_card" className="rs-stat-card rs-stat-card-accent" as="section" theme="auto">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="available_label" className="rs-stat-label" content={((_bindingValue) => _bindingValue === undefined ? "Available time" : _bindingValue)(_scope?.i18n?.availableTime)} as="p" />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="available_value" className="rs-stat-value rs-stat-value-minutes" as="p" content={((_bindingValue) => _bindingValue === undefined ? 0 : _bindingValue)(dashboardSummary?.availableMinutes)} />
 </>)}
@@ -334,9 +426,9 @@ const first=x=>Array.isArray(x)?(x[0]||{}):(x||{});const summary=first(stepResul
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreCard id="used_card" className="rs-stat-card" as="section" theme="auto">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="used_label" className="rs-stat-label" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Time used" : _bindingValue)(_scope?.i18n?.timeUsed)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="used_value" className="rs-stat-value rs-stat-value-minutes" as="p" content={undefined} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="used_value" className="rs-stat-value rs-stat-value-minutes" as="p" content={((_bindingValue) => _bindingValue === undefined ? 0 : _bindingValue)(dashboardSummary?.usedMinutes)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="used_note" className="rs-stat-note" content={((_bindingValue) => _bindingValue === undefined ? "Only active learning time is counted." : _bindingValue)(_scope?.i18n?.usedNote)} as="p" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="used_note" className="rs-stat-note" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Only active learning time is counted." : _bindingValue)(_scope?.i18n?.usedNote)} />
 </>)}
 </RudraCoreCard>
 </>)}
@@ -350,7 +442,7 @@ const first=x=>Array.isArray(x)?(x[0]||{}):(x||{});const summary=first(stepResul
 </>)}
 </RudraLayoutBox>
 </>)}
-      {isVisibleValue(undefined) && (<>      <RudraCoreCard id="current_card" className="rs-current-card" theme="auto" as="section">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="current_eyebrow" className="rs-section-label" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Continue learning" : _bindingValue)(_scope?.i18n?.continueLearning)} />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(currentCourseData?.id)) && (<>      <RudraCoreCard id="current_card" className="rs-current-card" theme="auto" as="section">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="current_eyebrow" className="rs-section-label" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Continue learning" : _bindingValue)(_scope?.i18n?.continueLearning)} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="current_title" className="rs-current-title" as="h3" content={((_bindingValue) => _bindingValue === undefined ? "Select a course" : _bindingValue)(currentCourseData?.title)} />
 </>)}
@@ -358,53 +450,55 @@ const first=x=>Array.isArray(x)?(x[0]||{}):(x||{});const summary=first(stepResul
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="current_meta" className="rs-course-meta" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Professor" : _bindingValue)(currentCourseData?.professorName)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="current_progress" className="rs-progress-pill rs-progress-value" as="p" content={((_bindingValue) => _bindingValue === undefined ? 0 : _bindingValue)(currentCourseData?.progressPercent)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="current_progress" className="rs-progress-pill rs-progress-value" as="p" content={(((value) => { return String(Math.max(0,Math.min(100,Number(value)||0))) + "%"; })(((_bindingValue) => _bindingValue === undefined ? 0 : _bindingValue)(currentCourseData?.progressPercent)))} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="current_last_visit" className="rs-last-visit rs-last-visit-value" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Recently" : _bindingValue)(currentCourseData?.lastVisitedAt)} />
 </>)}
 </RudraCoreCard>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="recent_section" className="flex flex-col rs-recent-section">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_heading" className="rs-section-title" as="h3" content={((_bindingValue) => _bindingValue === undefined ? "Recently visited" : _bindingValue)(_scope?.i18n?.recentCourses)} />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(dashboardLoaded)) && (<>      <RudraLayoutBox id="recent_section" className="flex flex-col rs-recent-section">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_heading" className="rs-section-title" as="h3" content={((_bindingValue) => _bindingValue === undefined ? "Recently visited" : _bindingValue)(_scope?.i18n?.recentCourses)} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_description" className="rs-section-copy" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Pick up a course from your recent activity." : _bindingValue)(_scope?.i18n?.recentDescription)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="recent_grid" className="grid rs-course-grid">      {isVisibleValue(undefined) && (<>      <RudraCoreCard id="recent_course_1" className="rs-course-card" as="article" theme="auto">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_1_label" className="rs-course-index" as="p" content="01" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="recent_grid" className="grid rs-course-grid">      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(recentCoursesData?.[0]?.id)) && (<>      <RudraCoreCard id="recent_course_1" className="rs-course-card" as="article" theme="auto">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_1_label" className="rs-course-index" as="p" content="01" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_1_title" className="rs-course-title" content={((_bindingValue) => _bindingValue === undefined ? "Course unavailable" : _bindingValue)(recentCoursesData?.[0]?.title)} as="h4" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_1_title" className="rs-course-title" as="h4" content={((_bindingValue) => _bindingValue === undefined ? "Course unavailable" : _bindingValue)(recentCoursesData?.[0]?.title)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_1_professor" className="rs-course-meta" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Professor" : _bindingValue)(recentCoursesData?.[0]?.professorName)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_1_professor" className="rs-course-meta" content={((_bindingValue) => _bindingValue === undefined ? "Professor" : _bindingValue)(recentCoursesData?.[0]?.professorName)} as="p" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_1_progress" className="rs-course-progress rs-progress-value" as="p" content={((_bindingValue) => _bindingValue === undefined ? 0 : _bindingValue)(recentCoursesData?.[0]?.progressPercent)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_1_progress" className="rs-course-progress rs-progress-value" as="p" content={(((value) => { return String(Math.max(0,Math.min(100,Number(value)||0))) + "%"; })(((_bindingValue) => _bindingValue === undefined ? 0 : _bindingValue)(recentCoursesData?.[0]?.progressPercent)))} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_1_visited" className="rs-last-visit rs-visited-value" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Recently" : _bindingValue)(recentCoursesData?.[0]?.lastVisitedAt)} />
 </>)}
 </RudraCoreCard>
 </>)}
-      {isVisibleValue(undefined) && (<>      <RudraCoreCard id="recent_course_2" className="rs-course-card" as="article" theme="auto">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_2_label" className="rs-course-index" as="p" content="02" />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(recentCoursesData?.[1]?.id)) && (<>      <RudraCoreCard id="recent_course_2" className="rs-course-card" as="article" theme="auto">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_2_label" className="rs-course-index" as="p" content="02" />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_2_title" className="rs-course-title" as="h4" content={((_bindingValue) => _bindingValue === undefined ? "Course unavailable" : _bindingValue)(recentCoursesData?.[1]?.title)} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_2_professor" className="rs-course-meta" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Professor" : _bindingValue)(recentCoursesData?.[1]?.professorName)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_2_progress" className="rs-course-progress rs-progress-value" as="p" content={((_bindingValue) => _bindingValue === undefined ? 0 : _bindingValue)(recentCoursesData?.[1]?.progressPercent)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_2_progress" className="rs-course-progress rs-progress-value" as="p" content={(((value) => { return String(Math.max(0,Math.min(100,Number(value)||0))) + "%"; })(((_bindingValue) => _bindingValue === undefined ? 0 : _bindingValue)(recentCoursesData?.[1]?.progressPercent)))} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_2_visited" className="rs-last-visit rs-visited-value" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Recently" : _bindingValue)(recentCoursesData?.[1]?.lastVisitedAt)} />
 </>)}
 </RudraCoreCard>
 </>)}
-      {isVisibleValue(undefined) && (<>      <RudraCoreCard id="recent_course_3" className="rs-course-card" as="article" theme="auto">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_3_label" className="rs-course-index" as="p" content="03" />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(recentCoursesData?.[2]?.id)) && (<>      <RudraCoreCard id="recent_course_3" className="rs-course-card" as="article" theme="auto">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_3_label" className="rs-course-index" as="p" content="03" />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_3_title" className="rs-course-title" as="h4" content={((_bindingValue) => _bindingValue === undefined ? "Course unavailable" : _bindingValue)(recentCoursesData?.[2]?.title)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_3_professor" className="rs-course-meta" content={((_bindingValue) => _bindingValue === undefined ? "Professor" : _bindingValue)(recentCoursesData?.[2]?.professorName)} as="p" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_3_professor" className="rs-course-meta" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Professor" : _bindingValue)(recentCoursesData?.[2]?.professorName)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_3_progress" className="rs-course-progress rs-progress-value" as="p" content={((_bindingValue) => _bindingValue === undefined ? 0 : _bindingValue)(recentCoursesData?.[2]?.progressPercent)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_3_progress" className="rs-course-progress rs-progress-value" as="p" content={(((value) => { return String(Math.max(0,Math.min(100,Number(value)||0))) + "%"; })(((_bindingValue) => _bindingValue === undefined ? 0 : _bindingValue)(recentCoursesData?.[2]?.progressPercent)))} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="recent_course_3_visited" className="rs-last-visit rs-visited-value" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Recently" : _bindingValue)(recentCoursesData?.[2]?.lastVisitedAt)} />
 </>)}
 </RudraCoreCard>
 </>)}
 </RudraLayoutBox>
+</>)}
+      {isVisibleValue((((value) => { return Array.isArray(value) && !value.length; })(((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(recentCoursesData)))) && (<>      <RudraCoreTypography id="usage_empty" as="p" content="No recent courses yet. Open Course Explorer to begin." />
 </>)}
 </RudraLayoutBox>
 </>)}
