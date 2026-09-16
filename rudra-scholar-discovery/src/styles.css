@@ -186,3 +186,4 @@
 .rs-discovery .rs-subject-card--locked button svg{display:block;flex-shrink:0}
 /* scholar-compact-lock:end */
 
+.rs-content-preview{width:100%;gap:.8rem;padding:clamp(.75rem,2vw,1.5rem)}.rs-content-preview-notice{padding:.8rem 1rem;border:1px solid #94a3b8;border-radius:.8rem;line-height:1.5;overflow-wrap:anywhere}
