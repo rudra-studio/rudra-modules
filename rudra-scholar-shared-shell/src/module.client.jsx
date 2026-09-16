@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './styles.css';
 
-import { Repeater as RudraLayoutRepeater, Box as RudraLayoutBox } from '@rudra-studio/rudra-layout';
-import { Avatar as RudraCoreAvatar, Button as RudraCoreButton, Typography as RudraCoreTypography, Link as RudraCoreLink } from '@rudra-studio/rudra-core';
+import { Link as RudraCoreLink, Button as RudraCoreButton, Typography as RudraCoreTypography, Avatar as RudraCoreAvatar } from '@rudra-studio/rudra-core';
+import { Box as RudraLayoutBox, Repeater as RudraLayoutRepeater } from '@rudra-studio/rudra-layout';
 
 export default function CompiledModule(props) {
   const _scope = {};
@@ -19,6 +19,15 @@ export default function CompiledModule(props) {
     ...(props.functions || {}),
     ...(props.actions || {}),
   };
+  const $route = props.$route ?? props.route ?? props.data?.$route ?? props.data?.route ?? props.runtime?.data?.$route ?? props.runtime?.route ?? serverData?.$route ?? serverData?.route ?? null;
+  const $params = props.$params ?? props.routeParams ?? props.params ?? props.data?.$params ?? props.data?.routeParams ?? props.data?.params ?? props.runtime?.data?.$params ?? props.runtime?.route?.params ?? props.runtime?.routeParams ?? props.runtime?.params ?? serverData?.$params ?? serverData?.routeParams ?? serverData?.params ?? {};
+  const $query = props.$query ?? props.queryParams ?? props.query ?? props.data?.$query ?? props.data?.queryParams ?? props.data?.query ?? props.runtime?.data?.$query ?? props.runtime?.route?.query ?? props.runtime?.queryParams ?? props.runtime?.query ?? serverData?.$query ?? serverData?.queryParams ?? serverData?.query ?? {};
+  const $auth = props.$auth ?? props.auth ?? props.data?.$auth ?? props.data?.auth ?? props.runtime?.data?.$auth ?? props.runtime?.authInfo ?? props.runtime?.auth ?? serverData?.$auth ?? serverData?.auth ?? null;
+  const $config = props.$config ?? props.config ?? props.data?.$config ?? props.data?.config ?? props.runtime?.data?.$config ?? props.runtime?.config ?? serverData?.$config ?? serverData?.config ?? {};
+  const $env = props.$env ?? props.env ?? props.data?.$env ?? props.data?.env ?? props.runtime?.data?.$env ?? props.runtime?.env ?? serverData?.$env ?? serverData?.env ?? {};
+  const $locale = props.$locale ?? props.locale ?? props.data?.$locale ?? props.data?.locale ?? props.runtime?.data?.$locale ?? props.runtime?.locale ?? serverData?.$locale ?? serverData?.locale ?? 'en';
+  const $translations = props.$translations ?? props.translations ?? props.data?.$translations ?? props.data?.translations ?? props.runtime?.data?.$translations ?? props.runtime?.translations ?? serverData?.$translations ?? serverData?.translations ?? {};
+  const $i18n = props.$i18n ?? props.i18n ?? props.data?.$i18n ?? props.data?.i18n ?? props.runtime?.data?.$i18n ?? props.runtime?.i18n ?? serverData?.$i18n ?? serverData?.i18n ?? { locale: $locale, translations: $translations };
   const _explicitTheme = props.$theme ?? props.theme ?? props.data?.$theme ?? props.runtime?.data?.$theme ?? props.runtime?.theme;
   const _getDocumentTheme = () => {
     if (typeof document === 'undefined') return 'light';
@@ -68,25 +77,27 @@ export default function CompiledModule(props) {
 
   const isVisibleValue = (value) => Array.isArray(value) ? value.length > 0 : (typeof value === 'string' ? value.trim() !== '' && value.trim().toLowerCase() !== 'false' : Boolean(value));
 
-  const linkedinUrl = props.linkedinUrl !== undefined ? props.linkedinUrl : (props.data?.linkedinUrl !== undefined ? props.data.linkedinUrl : "https://www.linkedin.com");
-  const xUrl = props.xUrl !== undefined ? props.xUrl : (props.data?.xUrl !== undefined ? props.data.xUrl : "https://x.com");
-  const displayName = props.displayName !== undefined ? props.displayName : (props.data?.displayName !== undefined ? props.data.displayName : "My account");
-  const locale = props.locale !== undefined ? props.locale : (props.data?.locale !== undefined ? props.data.locale : "en");
   const children = props.children !== undefined ? props.children : (props.data?.children !== undefined ? props.data.children : undefined);
   const navOptions = props.navOptions !== undefined ? props.navOptions : (props.data?.navOptions !== undefined ? props.data.navOptions : [{"href":"/","label":"Explore"},{"href":"/browse","label":"Browse"},{"href":"/professor/context","label":"Professor"}]);
   const avatarUrl = props.avatarUrl !== undefined ? props.avatarUrl : (props.data?.avatarUrl !== undefined ? props.data.avatarUrl : "");
-  const authenticated = props.authenticated !== undefined ? props.authenticated : (props.data?.authenticated !== undefined ? props.data.authenticated : false);
   const title = props.title !== undefined ? props.title : (props.data?.title !== undefined ? props.data.title : "Rudra Scholar");
+  const displayName = props.displayName !== undefined ? props.displayName : (props.data?.displayName !== undefined ? props.data.displayName : "My account");
+  const authenticated = props.authenticated !== undefined ? props.authenticated : (props.data?.authenticated !== undefined ? props.data.authenticated : false);
   const copyrightText = props.copyrightText !== undefined ? props.copyrightText : (props.data?.copyrightText !== undefined ? props.data.copyrightText : "© 2026 Rudra Scholar");
-  const inputs = { "linkedinUrl": linkedinUrl, "xUrl": xUrl, "displayName": displayName, "locale": locale, "children": children, "navOptions": navOptions, "avatarUrl": avatarUrl, "authenticated": authenticated, "title": title, "copyrightText": copyrightText };
-  const [accountMenuOpen, set_accountMenuOpen] = useState(() => structuredClone(false));
+  const linkedinUrl = props.linkedinUrl !== undefined ? props.linkedinUrl : (props.data?.linkedinUrl !== undefined ? props.data.linkedinUrl : "https://www.linkedin.com");
+  const xUrl = props.xUrl !== undefined ? props.xUrl : (props.data?.xUrl !== undefined ? props.data.xUrl : "https://x.com");
+  const locale = props.locale !== undefined ? props.locale : (props.data?.locale !== undefined ? props.data.locale : "en");
+  const inputs = { "children": children, "navOptions": navOptions, "avatarUrl": avatarUrl, "title": title, "displayName": displayName, "authenticated": authenticated, "copyrightText": copyrightText, "linkedinUrl": linkedinUrl, "xUrl": xUrl, "locale": locale };
   const [languageMenuOpen, set_languageMenuOpen] = useState(() => structuredClone(false));
-  const state = { "accountMenuOpen": accountMenuOpen, "languageMenuOpen": languageMenuOpen };
+  const [mobileNavOpen, set_mobileNavOpen] = useState(() => structuredClone(false));
+  const [accountMenuOpen, set_accountMenuOpen] = useState(() => structuredClone(false));
+  const state = { "languageMenuOpen": languageMenuOpen, "mobileNavOpen": mobileNavOpen, "accountMenuOpen": accountMenuOpen };
 
   const _setState = useCallback((name, value) => {
     switch (name) {
-      case "accountMenuOpen": { const next = typeof value === 'function' ? value(state.accountMenuOpen) : value; state.accountMenuOpen = next; set_accountMenuOpen(next); return next; }
       case "languageMenuOpen": { const next = typeof value === 'function' ? value(state.languageMenuOpen) : value; state.languageMenuOpen = next; set_languageMenuOpen(next); return next; }
+      case "mobileNavOpen": { const next = typeof value === 'function' ? value(state.mobileNavOpen) : value; state.mobileNavOpen = next; set_mobileNavOpen(next); return next; }
+      case "accountMenuOpen": { const next = typeof value === 'function' ? value(state.accountMenuOpen) : value; state.accountMenuOpen = next; set_accountMenuOpen(next); return next; }
       default: return value;
     }
   }, [state]);
@@ -108,8 +119,9 @@ export default function CompiledModule(props) {
       return next;
     };
     switch (root) {
-      case "accountMenuOpen": _setState("accountMenuOpen", updateNested); return value;
       case "languageMenuOpen": _setState("languageMenuOpen", updateNested); return value;
+      case "mobileNavOpen": _setState("mobileNavOpen", updateNested); return value;
+      case "accountMenuOpen": _setState("accountMenuOpen", updateNested); return value;
       default: return value;
     }
   }, [_setState]);
@@ -180,10 +192,31 @@ export default function CompiledModule(props) {
     return !(value && typeof value === 'object' && !Array.isArray(value) && Object.keys(value).length === 0);
   };
 
+  async function signOut(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    await closeShellMenus({});
+    _setState("accountMenuOpen", false);
+    await _emitOutput("signOutRequested", { "source": "shared-shell" }, true);
+    return undefined;
+  }
+
+  async function selectLanguage(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    await closeShellMenus({});
+    _setState("languageMenuOpen", false);
+    await _emitOutput("localeChanged", { "locale": args.locale }, true);
+    return undefined;
+  }
+
   async function toggleLanguageMenu(initialArgs = {}) {
     const args = initialArgs || {};
     const vars = {};
     const stepResults = {};
+    _setState("mobileNavOpen", false);
     { const event = args.event; const data = pageData; const globalState = state;
       const customResult = await (async () => {
 return !Boolean(state.languageMenuOpen);
@@ -198,6 +231,7 @@ return !Boolean(state.languageMenuOpen);
     const args = initialArgs || {};
     const vars = {};
     const stepResults = {};
+    _setState("mobileNavOpen", false);
     { const event = args.event; const data = pageData; const globalState = state;
       const customResult = await (async () => {
 return !Boolean(state.accountMenuOpen);
@@ -208,46 +242,135 @@ return !Boolean(state.accountMenuOpen);
     return undefined;
   }
 
+  async function navigateFromButton(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    let navigationPath;
+    _setState("mobileNavOpen", false);
+    _setState("accountMenuOpen", false);
+    _setState("languageMenuOpen", false);
+    { const event = args.event; const data = pageData; const globalState = state;
+      const customResult = await (async () => {
+const value = args.event?.value; return typeof value === 'string' && value.startsWith('/') ? value : '/';
+      })();
+      stepResults["nav_button_path"] = customResult; vars["navigationPath"] = customResult; }
+    await _emitOutput("navigationRequested", { "path": stepResults.nav_button_path }, true);
+    return undefined;
+  }
+
+  async function handleShellMenuEvent(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    { const event = args.event; const data = pageData; const globalState = state;
+      const customResult = await (async () => {
+return (function handleScholarShellMenuEvent(args, state) {
+  const event = args.event;
+  const next = { account: Boolean(state.accountMenuOpen), language: Boolean(state.languageMenuOpen), navigation: Boolean(state.mobileNavOpen) };
+  const target = event?.target;
+  const root = target?.closest?.('.rs-shell');
+  if (!root) return next;
+  const region = (node) => {
+    if (node?.closest?.('.rs-mobile-navigation, .rs-mobile-nav-toggle')) return 'navigation';
+    const dropdown = node?.closest?.('.rs-dropdown');
+    const id = dropdown?.querySelector('[aria-haspopup="menu"]')?.id;
+    return id === 'rs-account-trigger' ? 'account' : id === 'rs-language-trigger' ? 'language' : null;
+  };
+  const keepOnly = (key) => ({ account: key === 'account' && next.account, language: key === 'language' && next.language, navigation: key === 'navigation' && next.navigation });
+  if (event.type === 'pointerdown') return keepOnly(region(target));
+  if (event.type === 'blur') return keepOnly(root.contains(event.relatedTarget) ? region(event.relatedTarget) : null);
+  const activeRegion = region(target);
+  if (event.key === 'Escape' && (next.account || next.language || next.navigation)) {
+    event.preventDefault();
+    const focusedRegion = activeRegion || (next.navigation ? 'navigation' : next.account ? 'account' : 'language');
+    root.querySelector(focusedRegion === 'navigation' ? '#rs-mobile-nav-trigger' : focusedRegion === 'account' ? '#rs-account-trigger' : '#rs-language-trigger')?.focus();
+    return keepOnly(null);
+  }
+  // Arrow handling belongs to the existing account/language menus only.
+  if (!['account', 'language'].includes(activeRegion) || !['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return next;
+  const control = target.closest('.rs-dropdown');
+  const trigger = control.querySelector('[aria-haspopup="menu"]');
+  event.preventDefault();
+  const items = Array.from(control.querySelectorAll('[role="menuitem"]:not(:disabled)'));
+  if (target === trigger) {
+    next.account = activeRegion === 'account'; next.language = activeRegion === 'language'; next.navigation = false;
+    const key = event.key;
+    requestAnimationFrame(() => {
+      const available = Array.from(control.querySelectorAll('[role="menuitem"]:not(:disabled)'));
+      (key === 'ArrowUp' ? available[available.length - 1] : available[0])?.focus();
+    });
+  } else if (items.length) {
+    const current = items.indexOf(target.closest('[role="menuitem"]'));
+    const index = event.key === 'Home' ? 0 : event.key === 'End' ? items.length - 1 : (current + (event.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length;
+    items[index]?.focus();
+  }
+  return next;
+})(args, state);
+      })();
+      stepResults["menu_event"] = customResult; vars["customCodeResult"] = customResult; }
+    _setState("accountMenuOpen", stepResults.menu_event.account);
+    _setState("languageMenuOpen", stepResults.menu_event.language);
+    _setState("mobileNavOpen", stepResults.menu_event.navigation);
+    return undefined;
+  }
+
+  async function closeShellMenus(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    _setState("mobileNavOpen", false);
+    _setState("accountMenuOpen", false);
+    _setState("languageMenuOpen", false);
+    return undefined;
+  }
+
+  async function toggleMobileNavigation(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    { const event = args.event; const data = pageData; const globalState = state;
+      const customResult = await (async () => {
+return !Boolean(state.mobileNavOpen);
+      })();
+      stepResults["mobile_next"] = customResult; vars["customCodeResult"] = customResult; }
+    _setState("accountMenuOpen", false);
+    _setState("languageMenuOpen", false);
+    _setState("mobileNavOpen", stepResults.mobile_next);
+    return undefined;
+  }
+
   async function navigate(initialArgs = {}) {
     const args = initialArgs || {};
     const vars = {};
     const stepResults = {};
+    await closeShellMenus({});
     _setState("accountMenuOpen", false);
-    void _emitOutput("navigationRequested", { "path": args.path }, false).catch(error => console.error('Module output delivery failed', error));
-    return undefined;
-  }
-
-  async function signOut(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    _setState("accountMenuOpen", false);
-    void _emitOutput("signOutRequested", { "source": "shared-shell" }, false).catch(error => console.error('Module output delivery failed', error));
-    return undefined;
-  }
-
-  async function selectLanguage(initialArgs = {}) {
-    const args = initialArgs || {};
-    const vars = {};
-    const stepResults = {};
-    _setState("languageMenuOpen", false);
-    void _emitOutput("localeChanged", { "locale": args.locale }, false).catch(error => console.error('Module output delivery failed', error));
+    await _emitOutput("navigationRequested", { "path": args.path }, true);
     return undefined;
   }
 
   const _localActions = {
-    "toggleLanguageMenu": toggleLanguageMenu,
-    "toggleAccountMenu": toggleAccountMenu,
-    "navigate": navigate,
     "signOut": signOut,
     "selectLanguage": selectLanguage,
+    "toggleLanguageMenu": toggleLanguageMenu,
+    "toggleAccountMenu": toggleAccountMenu,
+    "navigateFromButton": navigateFromButton,
+    "handleShellMenuEvent": handleShellMenuEvent,
+    "closeShellMenus": closeShellMenus,
+    "toggleMobileNavigation": toggleMobileNavigation,
+    "navigate": navigate,
   };
   const _localActionArguments = {
-    "toggleLanguageMenu": [],
-    "toggleAccountMenu": [],
-    "navigate": ["path"],
     "signOut": [],
     "selectLanguage": ["locale"],
+    "toggleLanguageMenu": [],
+    "toggleAccountMenu": [],
+    "navigateFromButton": ["event"],
+    "handleShellMenuEvent": ["event"],
+    "closeShellMenus": [],
+    "toggleMobileNavigation": [],
+    "navigate": ["path"],
   };
   const _callAction = (name, configuredArgs = {}, eventArgs = []) => {
     const localAction = _localActions[name];
@@ -269,42 +392,68 @@ return !Boolean(state.accountMenuOpen);
     return undefined;
   };
 
+  const _lifecycleRuns = useRef(new Map());
+  const _runLifecycle = useCallback((key, mode, task, label) => {
+    const prior = _lifecycleRuns.current.get(key);
+    if (mode === 'exhaust' && prior?.promise) return prior.promise;
+    if (mode === 'takeLatest') prior?.controller?.abort();
+    const controller = new AbortController();
+    const execute = () => Promise.resolve().then(() => task(controller.signal));
+    const promise = mode === 'queue' && prior?.promise ? prior.promise.catch(() => undefined).then(execute) : execute();
+    _lifecycleRuns.current.set(key, { controller, promise });
+    promise.catch(error => { if (error?.name !== 'AbortError') console.error(label, error); }).finally(() => { if (_lifecycleRuns.current.get(key)?.promise === promise) _lifecycleRuns.current.delete(key); });
+    return promise;
+  }, []);
+  useEffect(() => () => { for (const run of _lifecycleRuns.current.values()) run.controller?.abort(); _lifecycleRuns.current.clear(); }, []);
+  const _inputLifecycleMounted0 = useRef(false);
+  useEffect(() => {
+    if (!_inputLifecycleMounted0.current) { _inputLifecycleMounted0.current = true; return; }
+    void _runLifecycle("shell_auth_changedcloseShellMenus", "takeLatest", (signal) => closeShellMenus({ signal }), 'Module input lifecycle failed:');
+  }, [authenticated]);
 
   return (
     <div ref={wrapperRef} className="rudra-module-wrapper">
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="shell" data-theme={((_bindingValue) => _bindingValue === undefined ? "light" : _bindingValue)($theme)} className="block rs-shell">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="header" role="banner" className="block rs-header">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="header_inner" className="grid rs-header-inner">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="brand" className="rs-brand" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Rudra Scholar" : _bindingValue)(inputs?.title)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="shell" data-theme={((_bindingValue) => _bindingValue === undefined ? "light" : _bindingValue)($theme)} className="block rs-shell" onBlur={(...eventArgs) => _callAction("handleShellMenuEvent", {}, eventArgs)} onKeyDown={(...eventArgs) => _callAction("handleShellMenuEvent", {}, eventArgs)} onPointerDownCapture={(...eventArgs) => _callAction("handleShellMenuEvent", {}, eventArgs)}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="header" role="banner" className="block rs-header">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="header_inner" className="grid rs-header-inner">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="brand" className="rs-brand" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Rudra Scholar" : _bindingValue)(inputs?.title)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutRepeater id="nav" aria-label="Primary navigation" className="flex flex-wrap items-center gap-2 rs-nav" items={((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(inputs?.navOptions)}>{(_payload) => { const _parentScope = _scope || {}; return (() => { const _scope = { ..._parentScope, ...(_payload || {}), item: _payload?.item ?? _payload, index: _payload?.index ?? _payload?.i ?? 0, parent: _parentScope }; return (<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="nav_item" className="rs-nav-button" size="sm" label={((_bindingValue) => _bindingValue === undefined ? "Link" : _bindingValue)(_scope?.item?.label)} theme="auto" variant="ghost" leftIcon={false} onAction={(...eventArgs) => _callAction("navigate", {}, eventArgs)} rightIcon={false} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutRepeater id="nav" aria-label="Primary navigation" className="flex flex-wrap items-center gap-2 rs-nav" role="navigation" items={((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(inputs?.navOptions)}>{(_payload) => { const _parentScope = _scope || {}; return (() => { const _scope = { ..._parentScope, ...(_payload || {}), item: _payload?.item ?? _payload, index: _payload?.index ?? _payload?.i ?? 0, parent: _parentScope }; return (<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="nav_item" className="rs-nav-button" theme="auto" value={((_bindingValue) => _bindingValue === undefined ? "/" : _bindingValue)(_scope?.item?.href)} variant="ghost" leftIcon={false} size="sm" onAction={(...eventArgs) => _callAction("navigateFromButton", {}, eventArgs)} rightIcon={false} label={((_bindingValue) => _bindingValue === undefined ? "Link" : _bindingValue)(_scope?.item?.label)} />
 </>)}
 </>); })(); }}</RudraLayoutRepeater>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="header_actions" className="flex items-center rs-header-actions">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="language_control" className="block rs-dropdown">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="language_trigger" className="rs-control-button" theme="auto" onAction={(...eventArgs) => _callAction("toggleLanguageMenu", {}, eventArgs)} ariaLabel="Choose language" rightIcon={false} size="sm" label={undefined} variant="ghost" leftIcon={false} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="header_actions" className="flex items-center rs-header-actions">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="language_control" className="block rs-dropdown">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="language_trigger" className="rs-control-button" rightIcon={false} aria-expanded={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(languageMenuOpen)} additionalAttributes={{"aria-controls":"rs-language-menu","aria-haspopup":"menu","id":"rs-language-trigger"}} theme="auto" variant="ghost" leftIcon={false} id="rs-language-trigger" size="sm" label={(((value) => { return ({en:'English',hi:'हिन्दी',ta:'தமிழ்'})[value] || 'English'; })(((_bindingValue) => _bindingValue === undefined ? "en" : _bindingValue)(inputs?.locale)))} onAction={(...eventArgs) => _callAction("toggleLanguageMenu", {}, eventArgs)} ariaLabel="Choose language" />
 </>)}
-      {isVisibleValue(languageMenuOpen) && (<>      <RudraLayoutBox id="language_menu" role="menu" aria-label="Language" className="block rs-menu rs-language-menu">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="lang_en" className="rs-menu-button" leftIcon={false} onAction={(...eventArgs) => _callAction("selectLanguage", {}, eventArgs)} fullWidth={true} size="sm" label="English" theme="auto" variant="ghost" rightIcon={false} />
+      {isVisibleValue(languageMenuOpen) && (<>      <RudraLayoutBox id="language_menu" id="rs-language-menu" role="menu" aria-label="Language" aria-labelledby="rs-language-trigger" className="block rs-menu rs-language-menu">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="lang_en" className="rs-menu-button" variant="ghost" leftIcon={false} fullWidth={true} additionalAttributes={{"role":"menuitem"}} label="English" onAction={(...eventArgs) => _callAction("selectLanguage", {"locale": "en"}, eventArgs)} rightIcon={false} size="sm" theme="auto" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="lang_hi" className="rs-menu-button" label="हिन्दी" variant="ghost" onAction={(...eventArgs) => _callAction("selectLanguage", {}, eventArgs)} fullWidth={true} rightIcon={false} size="sm" theme="auto" leftIcon={false} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="lang_hi" className="rs-menu-button" variant="ghost" fullWidth={true} rightIcon={false} additionalAttributes={{"role":"menuitem"}} label="हिन्दी" theme="auto" leftIcon={false} onAction={(...eventArgs) => _callAction("selectLanguage", {"locale": "hi"}, eventArgs)} size="sm" />
+</>)}
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="lang_ta" className="rs-menu-button" size="sm" theme="auto" variant="ghost" leftIcon={false} onAction={(...eventArgs) => _callAction("selectLanguage", {"locale": "ta"}, eventArgs)} fullWidth={true} rightIcon={false} label="தமிழ்" additionalAttributes={{"role":"menuitem"}} />
 </>)}
 </RudraLayoutBox>
 </>)}
 </RudraLayoutBox>
 </>)}
-      {isVisibleValue(undefined) && (<>      <RudraCoreButton id="sign_in" className="rs-nav-button rs-sign-in" label="Sign in" theme="auto" variant="outline" leftIcon={false} onAction={(...eventArgs) => _callAction("navigate", {}, eventArgs)} rightIcon={false} size="sm" />
-</>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(_scope?.$auth?.isAuthenticated)) && (<>      <RudraLayoutBox id="account_control" className="block rs-dropdown">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="account_trigger" className="rs-avatar-button" theme="auto" onAction={(...eventArgs) => _callAction("toggleAccountMenu", {}, eventArgs)} size="sm" variant="ghost" leftIcon={false} ariaLabel="Open account menu" rightIcon={false}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreAvatar id="avatar" shape="circle" theme="auto" status="none" loading="lazy" alt={((_bindingValue) => _bindingValue === undefined ? "My account" : _bindingValue)(_scope?.$auth?.user?.profile?.name)} src={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(_scope?.$auth?.user?.profile?.avatar)} name={((_bindingValue) => _bindingValue === undefined ? "My account" : _bindingValue)(_scope?.$auth?.user?.profile?.name)} size="md" />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(inputs?.authenticated)) && (<>      <RudraLayoutBox id="account_control" className="block rs-dropdown">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="account_trigger" className="rs-avatar-button" theme="auto" variant="ghost" leftIcon={false} ariaLabel="Account menu" rightIcon={false} onAction={(...eventArgs) => _callAction("toggleAccountMenu", {}, eventArgs)} aria-expanded={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(accountMenuOpen)} additionalAttributes={{"aria-controls":"rs-account-menu","aria-haspopup":"menu","id":"rs-account-trigger"}} id="rs-account-trigger" size="sm">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreAvatar id="avatar" alt={((_bindingValue) => _bindingValue === undefined ? "My account" : _bindingValue)(inputs?.displayName)} src={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(inputs?.avatarUrl)} name={((_bindingValue) => _bindingValue === undefined ? "My account" : _bindingValue)(inputs?.displayName)} shape="circle" status="none" loading="lazy" size="md" theme="auto" referrerPolicy="no-referrer" />
 </>)}
 </RudraCoreButton>
 </>)}
-      {isVisibleValue(accountMenuOpen) && (<>      <RudraLayoutBox id="account_menu" role="menu" aria-label="Account" className="block rs-menu rs-account-menu">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="metrics" className="rs-menu-button" rightIcon={false} label="Usage \u0026 metrics" theme="auto" size="sm" variant="ghost" leftIcon={false} onAction={(...eventArgs) => _callAction("navigate", {}, eventArgs)} fullWidth={true} />
+      {isVisibleValue(accountMenuOpen) && (<>      <RudraLayoutBox id="account_menu" id="rs-account-menu" role="menu" aria-label="Account" aria-labelledby="rs-account-trigger" className="block rs-menu rs-account-menu">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="metrics" className="rs-menu-button" size="sm" variant="ghost" leftIcon={false} fullWidth={true} additionalAttributes={{"role":"menuitem"}} label="Usage \u0026 metrics" theme="auto" onAction={(...eventArgs) => _callAction("navigate", {"path": "/account/usage"}, eventArgs)} rightIcon={false} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="logout" className="rs-menu-button rs-danger" fullWidth={true} rightIcon={false} size="sm" theme="auto" label="Sign out" variant="ghost" leftIcon={false} onAction={(...eventArgs) => _callAction("signOut", {}, eventArgs)} />
-</>)}
-</RudraLayoutBox>
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="logout" className="rs-menu-button rs-danger" ariaLabel="Sign out of Rudra Scholar" fullWidth={true} label="Sign out" rightIcon={false} additionalAttributes={{"role":"menuitem"}} size="sm" theme="auto" variant="ghost" leftIcon={false} onAction={(...eventArgs) => _callAction("signOut", {}, eventArgs)} />
 </>)}
 </RudraLayoutBox>
 </>)}
 </RudraLayoutBox>
 </>)}
+      {isVisibleValue((((value) => { return !Boolean(value); })(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(inputs?.authenticated)))) && (<>      <RudraCoreButton id="sign_in" className="rs-nav-button rs-sign-in" rightIcon={false} size="sm" theme="auto" leftIcon={false} label="Sign in" variant="outline" onAction={(...eventArgs) => _callAction("navigate", {"path": "/access"}, eventArgs)} ariaLabel="Sign in to Rudra Scholar" />
+</>)}
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="mobile_nav_trigger" className="rs-mobile-nav-toggle" rightIcon={false} aria-expanded={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(mobileNavOpen)} additionalAttributes={{"aria-controls":"rs-mobile-navigation"}} id="rs-mobile-nav-trigger" label={(((value) => { return value ? '×' : '☰'; })(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(mobileNavOpen)))} leftIcon={false} onAction={(...eventArgs) => _callAction("toggleMobileNavigation", {}, eventArgs)} ariaLabel={(((value) => { return value ? 'Close navigation' : 'Open navigation'; })(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(mobileNavOpen)))} type="button" />
+</>)}
 </RudraLayoutBox>
+</>)}
+</RudraLayoutBox>
+</>)}
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(mobileNavOpen)) && (<>      <RudraLayoutRepeater id="mobile_navigation" className="rs-mobile-navigation" id="rs-mobile-navigation" role="navigation" items={((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(inputs?.navOptions)} aria-label="Mobile primary navigation">{(_payload) => { const _parentScope = _scope || {}; return (() => { const _scope = { ..._parentScope, ...(_payload || {}), item: _payload?.item ?? _payload, index: _payload?.index ?? _payload?.i ?? 0, parent: _parentScope }; return (<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="mobile_nav_item" className="rs-nav-button" size="sm" label={((_bindingValue) => _bindingValue === undefined ? "Link" : _bindingValue)(_scope?.item?.label)} variant="ghost" leftIcon={false} theme="auto" value={((_bindingValue) => _bindingValue === undefined ? "/" : _bindingValue)(_scope?.item?.href)} onAction={(...eventArgs) => _callAction("navigateFromButton", {}, eventArgs)} rightIcon={false} />
+</>)}
+</>); })(); }}</RudraLayoutRepeater>
 </>)}
 </RudraLayoutBox>
 </>)}
@@ -320,7 +469,7 @@ return !Boolean(state.accountMenuOpen);
 </>)}
 </RudraCoreLink>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreLink id="x" className="rs-social-link" target="_blank" rel="noopener noreferrer" href={((_bindingValue) => _bindingValue === undefined ? "https://x.com" : _bindingValue)(inputs?.xUrl)}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="x_text" className="rs-social-mark" as="span" content="X" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreLink id="x" className="rs-social-link" rel="noopener noreferrer" href={((_bindingValue) => _bindingValue === undefined ? "https://x.com" : _bindingValue)(inputs?.xUrl)} target="_blank">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="x_text" className="rs-social-mark" as="span" content="X" />
 </>)}
 </RudraCoreLink>
 </>)}
