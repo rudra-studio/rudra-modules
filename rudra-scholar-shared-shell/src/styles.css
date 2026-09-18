@@ -36,3 +36,8 @@
 }
 /* rudra-scholar-mobile-navigation:end */
 
+/* rudra-scholar-page-slot:start */
+.rs-page-slot{display:flex;width:100%;min-width:0;margin-inline:auto}
+.rs-page-slot>.element-wrapper{width:100%;min-width:0;margin-inline:auto}
+/* rudra-scholar-page-slot:end */
+
