@@ -1,18 +1,18 @@
 import { jsx as g, jsxs as c, Fragment as l } from "react/jsx-runtime";
-import ce, { useState as R, useEffect as Z, useRef as de, useCallback as Y } from "react";
-import { Typography as x, Alert as ee, Button as le } from "@rudra-studio/rudra-core";
-import { Form as wt, Input as q, Select as Ee, Textarea as vt, Checkbox as ue } from "@rudra-studio/rudra-form";
+import de, { useState as R, useEffect as Y, useRef as le, useCallback as K } from "react";
+import { Typography as x, Alert as ee, Button as ue } from "@rudra-studio/rudra-core";
+import { Form as wt, Input as q, Select as ke, Textarea as vt, Checkbox as me } from "@rudra-studio/rudra-form";
 import { Box as Q } from "@rudra-studio/rudra-layout";
 import * as te from "lucide-react";
-const ke = (i) => String(i || "").replace(/<script[\s\S]*?<\/script>/gi, "").replace(/<foreignObject[\s\S]*?<\/foreignObject>/gi, "").replace(/\son\w+\s*=\s*(?:"[^"]*"|'[^']*')/gi, "").replace(/\s(?:href|xlink:href)\s*=\s*(?:"javascript:[^"]*"|'javascript:[^']*')/gi, ""), _t = (i) => {
+const Ee = (i) => String(i || "").replace(/<script[\s\S]*?<\/script>/gi, "").replace(/<foreignObject[\s\S]*?<\/foreignObject>/gi, "").replace(/\son\w+\s*=\s*(?:"[^"]*"|'[^']*')/gi, "").replace(/\s(?:href|xlink:href)\s*=\s*(?:"javascript:[^"]*"|'javascript:[^']*')/gi, ""), _t = (i) => {
   let b = i;
   for (; b && typeof b == "object" && "type" in b && "value" in b; )
     b = b.value;
   return b;
 };
-function P({ icon: i, size: b, color: _, strokeWidth: X, className: W = "", style: T, ...E }) {
-  const v = _t(i), [A, B] = R(null), me = v && typeof v == "object" ? JSON.stringify(v) : String(v || "");
-  Z(() => {
+function P({ icon: i, size: b, color: _, strokeWidth: X, className: W = "", style: T, ...k }) {
+  const v = _t(i), [A, B] = R(null), ge = v && typeof v == "object" ? JSON.stringify(v) : String(v || "");
+  Y(() => {
     const F = new AbortController();
     let j = "", N = "";
     if (B(null), typeof v == "string") {
@@ -20,36 +20,36 @@ function P({ icon: i, size: b, color: _, strokeWidth: X, className: W = "", styl
       if (te[S]) return () => F.abort();
       S.startsWith("<svg") ? N = S : (/^https?:\/\//.test(S) || S.startsWith("/") || S.startsWith("data:image/svg")) && (j = S);
     } else v && typeof v == "object" && (v.iconType === "svg" && v.svgContent ? N = v.svgContent : v.iconType === "url" && v.url && (j = v.url));
-    return N ? B(ke(N)) : j && fetch(j, { signal: F.signal }).then((S) => {
+    return N ? B(Ee(N)) : j && fetch(j, { signal: F.signal }).then((S) => {
       if (!S.ok) throw new Error("Icon request failed (" + S.status + ")");
       return S.text();
     }).then((S) => {
-      S.trim().startsWith("<svg") && B(ke(S));
+      S.trim().startsWith("<svg") && B(Ee(S));
     }).catch((S) => {
       S.name !== "AbortError" && console.warn("Failed to load custom SVG icon:", S);
     }), () => F.abort();
-  }, [me]);
-  const L = v && typeof v == "object" ? v.props || {} : {}, k = { ...L };
-  delete k.size, delete k.color, delete k.strokeWidth;
+  }, [ge]);
+  const L = v && typeof v == "object" ? v.props || {} : {}, E = { ...L };
+  delete E.size, delete E.color, delete E.strokeWidth;
   const C = b ?? L.size ?? 24, $ = _ ?? L.color ?? "currentColor", w = X ?? L.strokeWidth ?? 1.5;
   let m = "";
   if (typeof v == "string" && te[v] ? m = v : v && typeof v == "object" && v.name && (!v.iconType || v.iconType === "lucide") && (m = v.name), m) {
     const F = te[m];
     if (F)
-      return ce.createElement(F, {
+      return de.createElement(F, {
         size: C,
         color: $,
         strokeWidth: w,
         className: W,
         style: T,
-        ...k,
-        ...E
+        ...E,
+        ...k
       });
   }
   if (A)
-    return ce.createElement("span", {
-      ...k,
+    return de.createElement("span", {
       ...E,
+      ...k,
       className: ("rudra-universal-icon " + W).trim(),
       style: {
         display: "inline-flex",
@@ -65,46 +65,46 @@ function P({ icon: i, size: b, color: _, strokeWidth: X, className: W = "", styl
       }
     });
   const re = te.LayoutGrid;
-  return ce.createElement(re, {
+  return de.createElement(re, {
     size: C,
     color: $,
     strokeWidth: w,
     className: W,
     style: T,
-    ...k,
-    ...E
+    ...E,
+    ...k
   });
 }
 function zt(i) {
-  const b = {}, _ = i.serverData || i.serverState || {}, X = i.sharedState || {}, W = i.applicationState || _.applicationState || {}, T = i.pageState || _.pageState || {}, E = i.pageData || _.pageData || {}, v = {
+  const b = {}, _ = i.serverData || i.serverState || {}, X = i.sharedState || {}, W = i.applicationState || _.applicationState || {}, T = i.pageState || _.pageState || {}, k = i.pageData || _.pageData || {}, v = {
     ...i.runtime?.functions || {},
     ...i.runtime?.actions || {},
     ...i.functions || {},
     ...i.actions || {}
   };
   i.$route ?? i.route ?? i.data?.$route ?? i.data?.route ?? i.runtime?.data?.$route ?? i.runtime?.route ?? _?.$route ?? _?.route, i.$params ?? i.routeParams ?? i.params ?? i.data?.$params ?? i.data?.routeParams ?? i.data?.params ?? i.runtime?.data?.$params ?? i.runtime?.route?.params ?? i.runtime?.routeParams ?? i.runtime?.params ?? _?.$params ?? _?.routeParams ?? _?.params, i.$query ?? i.queryParams ?? i.query ?? i.data?.$query ?? i.data?.queryParams ?? i.data?.query ?? i.runtime?.data?.$query ?? i.runtime?.route?.query ?? i.runtime?.queryParams ?? i.runtime?.query ?? _?.$query ?? _?.queryParams ?? _?.query, i.$auth ?? i.auth ?? i.data?.$auth ?? i.data?.auth ?? i.runtime?.data?.$auth ?? i.runtime?.authInfo ?? i.runtime?.auth ?? _?.$auth ?? _?.auth, i.$config ?? i.config ?? i.data?.$config ?? i.data?.config ?? i.runtime?.data?.$config ?? i.runtime?.config ?? _?.$config ?? _?.config, i.$env ?? i.env ?? i.data?.$env ?? i.data?.env ?? i.runtime?.data?.$env ?? i.runtime?.env ?? _?.$env ?? _?.env, i.$locale ?? i.locale ?? i.data?.$locale ?? i.data?.locale ?? i.runtime?.data?.$locale ?? i.runtime?.locale ?? _?.$locale ?? _?.locale, i.$translations ?? i.translations ?? i.data?.$translations ?? i.data?.translations ?? i.runtime?.data?.$translations ?? i.runtime?.translations ?? _?.$translations ?? _?.translations, i.$i18n ?? i.i18n ?? i.data?.$i18n ?? i.data?.i18n ?? i.runtime?.data?.$i18n ?? i.runtime?.i18n ?? _?.$i18n ?? _?.i18n;
-  const A = i.$theme ?? i.theme ?? i.data?.$theme ?? i.runtime?.data?.$theme ?? i.runtime?.theme, B = () => typeof document > "u" ? "light" : document.documentElement.dataset.theme || (document.documentElement.classList.contains("dark") ? "dark" : "light"), [me, L] = R(() => A ?? B());
-  Z(() => {
+  const A = i.$theme ?? i.theme ?? i.data?.$theme ?? i.runtime?.data?.$theme ?? i.runtime?.theme, B = () => typeof document > "u" ? "light" : document.documentElement.dataset.theme || (document.documentElement.classList.contains("dark") ? "dark" : "light"), [ge, L] = R(() => A ?? B());
+  Y(() => {
     A != null && L(A);
-  }, [A]), Z(() => {
+  }, [A]), Y(() => {
     if (A != null || typeof document > "u") return;
     const e = document.documentElement, r = (n) => L(n?.detail?.theme ?? B()), t = new MutationObserver(r);
     return t.observe(e, { attributes: !0, attributeFilter: ["class", "data-theme"] }), window.addEventListener("rudra:theme-change", r), r(), () => {
       t.disconnect(), window.removeEventListener("rudra:theme-change", r);
     };
   }, [A]);
-  const k = de(null), [C, $] = R("lg");
-  Z(() => {
-    if (!k.current) return;
+  const E = le(null), [C, $] = R("lg");
+  Y(() => {
+    if (!E.current) return;
     const e = new ResizeObserver((r) => {
       for (let t of r) {
         const n = t.contentRect.width;
         n < 768 ? $("sm") : n < 1024 ? $("md") : $("lg");
       }
     });
-    return e.observe(k.current), () => e.disconnect();
+    return e.observe(E.current), () => e.disconnect();
   }, []);
-  const w = Y((e) => typeof e != "object" || e === null ? e : C === "sm" ? e.sm !== void 0 ? e.sm : e.md !== void 0 ? e.md : e.lg : C === "md" ? e.md !== void 0 ? e.md : e.sm !== void 0 ? e.sm : e.lg : e.lg !== void 0 ? e.lg : e.md !== void 0 ? e.md : e.sm, [C]), m = (e) => Array.isArray(e) ? e.length > 0 : typeof e == "string" ? e.trim() !== "" && e.trim().toLowerCase() !== "false" : !!e, re = i.profileServiceEnabled !== void 0 ? i.profileServiceEnabled : i.data?.profileServiceEnabled !== void 0 ? i.data.profileServiceEnabled : !1, F = i.locale !== void 0 ? i.locale : i.data?.locale !== void 0 ? i.data.locale : "en", j = i.authenticated !== void 0 ? i.authenticated : i.data?.authenticated !== void 0 ? i.data.authenticated : !1, N = i.mode !== void 0 ? i.mode : i.data?.mode !== void 0 ? i.data.mode : "login", S = i.authProvider !== void 0 ? i.authProvider : i.data?.authProvider !== void 0 ? i.data.authProvider : "firebase-google", xe = i.returnPath !== void 0 ? i.returnPath : i.data?.returnPath !== void 0 ? i.data.returnPath : "/learn", ge = i.profile !== void 0 ? i.profile : i.data?.profile !== void 0 ? i.data.profile : {}, I = { profileServiceEnabled: re, locale: F, authenticated: j, mode: N, authProvider: S, returnPath: xe, profile: ge }, [he, Ce] = R(() => structuredClone(!1)), [H, Fe] = R(() => structuredClone(!0)), [ie, Le] = R(() => structuredClone(!1)), [se, $e] = R(() => structuredClone(!1)), [fe, je] = R(() => structuredClone(!1)), [ne, Ne] = R(() => structuredClone(!1)), [Me, Oe] = R(() => structuredClone(1)), [We, Te] = R(() => structuredClone(!0)), [ye, Be] = R(() => structuredClone({})), [pe, De] = R(() => structuredClone("Next")), [D, Ge] = R(() => structuredClone(!0)), [Ue, Je] = R(() => structuredClone("login")), [G, Qe] = R(() => structuredClone(!1)), [we, Ze] = R(() => structuredClone("Step 1 of 3 · Profile")), [ve, He] = R(() => structuredClone(!0)), [_e, Ke] = R(() => structuredClone(!1)), [Re, Ye] = R(() => structuredClone({ privacyAccepted: !1, requestedRole: "student", termsAccepted: !1, verifiedEmail: "" })), [M, Xe] = R(() => structuredClone(!1)), [Se, Ve] = R(() => structuredClone(!1)), [be, et] = R(() => structuredClone("")), [tt, rt] = R(() => structuredClone(!1)), [oe, it] = R(() => structuredClone(!1)), [st, nt] = R(() => structuredClone("student")), [Pe, ot] = R(() => structuredClone(!1)), u = { showRegistrationBack: he, showRegistrationStep1: H, busy: ie, showVerifiedRoleFields: se, termsAccepted: fe, showRegistrationStep3: ne, registrationStep: Me, showStudentFields: We, authenticatedProfile: ye, registrationPrimaryLabel: pe, showLogin: D, accessMode: Ue, showEducatorFields: G, registrationProgress: we, showStudentInvitation: ve, showPending: _e, registrationInitialValues: Re, showInstitutionFields: M, privacyAccepted: Se, message: be, consentReady: tt, showRegistration: oe, requestedRole: st, consentRequired: Pe }, o = Y((e, r) => {
+  const w = K((e) => typeof e != "object" || e === null ? e : C === "sm" ? e.sm !== void 0 ? e.sm : e.md !== void 0 ? e.md : e.lg : C === "md" ? e.md !== void 0 ? e.md : e.sm !== void 0 ? e.sm : e.lg : e.lg !== void 0 ? e.lg : e.md !== void 0 ? e.md : e.sm, [C]), m = (e) => Array.isArray(e) ? e.length > 0 : typeof e == "string" ? e.trim() !== "" && e.trim().toLowerCase() !== "false" : !!e, re = i.profileServiceEnabled !== void 0 ? i.profileServiceEnabled : i.data?.profileServiceEnabled !== void 0 ? i.data.profileServiceEnabled : !1, F = i.locale !== void 0 ? i.locale : i.data?.locale !== void 0 ? i.data.locale : "en", j = i.authenticated !== void 0 ? i.authenticated : i.data?.authenticated !== void 0 ? i.data.authenticated : !1, N = i.mode !== void 0 ? i.mode : i.data?.mode !== void 0 ? i.data.mode : "login", S = i.authProvider !== void 0 ? i.authProvider : i.data?.authProvider !== void 0 ? i.data.authProvider : "firebase-google", xe = i.returnPath !== void 0 ? i.returnPath : i.data?.returnPath !== void 0 ? i.data.returnPath : "/learn", he = i.profile !== void 0 ? i.profile : i.data?.profile !== void 0 ? i.data.profile : {}, I = { profileServiceEnabled: re, locale: F, authenticated: j, mode: N, authProvider: S, returnPath: xe, profile: he }, [fe, Ce] = R(() => structuredClone(!1)), [Z, Fe] = R(() => structuredClone(!0)), [ie, Le] = R(() => structuredClone(!1)), [se, $e] = R(() => structuredClone(!1)), [ye, je] = R(() => structuredClone(!1)), [ne, Ne] = R(() => structuredClone(!1)), [Me, Oe] = R(() => structuredClone(1)), [We, Te] = R(() => structuredClone(!0)), [pe, Be] = R(() => structuredClone({})), [we, De] = R(() => structuredClone("Next")), [D, Ge] = R(() => structuredClone(!0)), [Ue, Je] = R(() => structuredClone("login")), [G, Qe] = R(() => structuredClone(!1)), [ve, Ye] = R(() => structuredClone("Step 1 of 3 · Profile")), [_e, Ze] = R(() => structuredClone(!0)), [Re, He] = R(() => structuredClone(!1)), [Se, Ke] = R(() => structuredClone({ privacyAccepted: !1, requestedRole: "student", termsAccepted: !1, verifiedEmail: "" })), [M, Xe] = R(() => structuredClone(!1)), [be, Ve] = R(() => structuredClone(!1)), [oe, et] = R(() => structuredClone("")), [tt, rt] = R(() => structuredClone(!1)), [ae, it] = R(() => structuredClone(!1)), [st, nt] = R(() => structuredClone("student")), [Pe, ot] = R(() => structuredClone(!1)), u = { showRegistrationBack: fe, showRegistrationStep1: Z, busy: ie, showVerifiedRoleFields: se, termsAccepted: ye, showRegistrationStep3: ne, registrationStep: Me, showStudentFields: We, authenticatedProfile: pe, registrationPrimaryLabel: we, showLogin: D, accessMode: Ue, showEducatorFields: G, registrationProgress: ve, showStudentInvitation: _e, showPending: Re, registrationInitialValues: Se, showInstitutionFields: M, privacyAccepted: be, message: oe, consentReady: tt, showRegistration: ae, requestedRole: st, consentRequired: Pe }, o = K((e, r) => {
     switch (e) {
       case "showRegistrationBack": {
         const t = typeof r == "function" ? r(u.showRegistrationBack) : r;
@@ -160,19 +160,19 @@ function zt(i) {
       }
       case "registrationProgress": {
         const t = typeof r == "function" ? r(u.registrationProgress) : r;
-        return u.registrationProgress = t, Ze(t), t;
+        return u.registrationProgress = t, Ye(t), t;
       }
       case "showStudentInvitation": {
         const t = typeof r == "function" ? r(u.showStudentInvitation) : r;
-        return u.showStudentInvitation = t, He(t), t;
+        return u.showStudentInvitation = t, Ze(t), t;
       }
       case "showPending": {
         const t = typeof r == "function" ? r(u.showPending) : r;
-        return u.showPending = t, Ke(t), t;
+        return u.showPending = t, He(t), t;
       }
       case "registrationInitialValues": {
         const t = typeof r == "function" ? r(u.registrationInitialValues) : r;
-        return u.registrationInitialValues = t, Ye(t), t;
+        return u.registrationInitialValues = t, Ke(t), t;
       }
       case "showInstitutionFields": {
         const t = typeof r == "function" ? r(u.showInstitutionFields) : r;
@@ -206,7 +206,7 @@ function zt(i) {
         return r;
     }
   }, [u]);
-  Y((e, r) => {
+  K((e, r) => {
     const [t, ...n] = String(e || "").split(".");
     if (!t) return r;
     if (n.length === 0) return o(t, r);
@@ -270,7 +270,7 @@ function zt(i) {
         return r;
     }
   }, [o]);
-  const at = { googleSignInRequested: { properties: { returnPath: { type: "string" } }, required: ["returnPath"], type: "object" }, navigationRequested: { properties: { path: { type: "string" } }, required: ["path"], type: "object" }, registrationCompleted: { properties: { isRegistered: { type: "boolean" }, onboardingStatus: { type: "string" }, redirectPath: { type: "string" }, requestedRole: { type: "string" }, roles: { items: { type: "string" }, type: "array" }, verificationStatus: { type: "string" } }, type: "object" } }, ae = (e, r, t) => {
+  const at = { googleSignInRequested: { properties: { returnPath: { type: "string" } }, required: ["returnPath"], type: "object" }, navigationRequested: { properties: { path: { type: "string" } }, required: ["path"], type: "object" }, registrationCompleted: { properties: { isRegistered: { type: "boolean" }, onboardingStatus: { type: "string" }, redirectPath: { type: "string" }, requestedRole: { type: "string" }, roles: { items: { type: "string" }, type: "array" }, verificationStatus: { type: "string" } }, type: "object" } }, ce = (e, r, t) => {
     if (!r || typeof r != "object") return "";
     const n = Array.isArray(r.type) ? r.type : r.type ? [r.type] : [], s = e === null ? "null" : Array.isArray(e) ? "array" : Number.isInteger(e) ? "integer" : typeof e;
     if (n.length && !n.includes(s) && !(s === "integer" && n.includes("number"))) return t + " must be " + n.join(" or ") + ".";
@@ -278,19 +278,19 @@ function zt(i) {
     if (e && typeof e == "object" && !Array.isArray(e)) {
       for (const a of r.required || []) if (!Object.prototype.hasOwnProperty.call(e, a)) return t + "." + a + " is required.";
       for (const [a, d] of Object.entries(r.properties || {})) if (Object.prototype.hasOwnProperty.call(e, a)) {
-        const f = ae(e[a], d, t + "." + a);
+        const f = ce(e[a], d, t + "." + a);
         if (f) return f;
       }
     }
     if (Array.isArray(e) && r.items) for (let a = 0; a < e.length; a++) {
-      const d = ae(e[a], r.items, t + "[" + a + "]");
+      const d = ce(e[a], r.items, t + "[" + a + "]");
       if (d) return d;
     }
     return "";
-  }, V = Y(async (e, r, t = !1) => {
+  }, V = K(async (e, r, t = !1) => {
     const n = at[e];
     if (!n) throw new Error("Module output '" + e + "' is not declared.");
-    const s = ae(r, n, "output." + e);
+    const s = ce(r, n, "output." + e);
     if (s) throw new Error(s);
     const a = i.onOutput || i.onModuleOutput || i.runtime?.onOutput;
     if (typeof a != "function") return r;
@@ -303,9 +303,9 @@ function zt(i) {
         if (!(!n || typeof n != "object"))
           return typeof n.get == "function" && !(s in n) ? n.get(s) : n[s];
       }, e);
-  }, K = (e, r) => {
-    if (Array.isArray(e)) return e.map((n) => K(n, r));
-    if (e && typeof e == "object") return Object.fromEntries(Object.entries(e).map(([n, s]) => [K(n, r), K(s, r)]));
+  }, H = (e, r) => {
+    if (Array.isArray(e)) return e.map((n) => H(n, r));
+    if (e && typeof e == "object") return Object.fromEntries(Object.entries(e).map(([n, s]) => [H(n, r), H(s, r)]));
     if (typeof e != "string") return e;
     const t = e.match(/^\{\{\s*([A-Za-z_$][A-Za-z0-9_$.]*)\s*\}\}$/);
     return t ? qe(r, t[1]) : e.replace(/\{\{\s*([A-Za-z_$][A-Za-z0-9_$.]*)\s*\}\}/g, (n, s) => {
@@ -317,7 +317,7 @@ function zt(i) {
     const r = e || {}, t = {}, n = {};
     try {
       {
-        const s = r.event, a = E, d = u, f = await (async () => {
+        const s = r.event, a = k, d = u, f = await (async () => {
           const h = r.values && typeof r.values == "object" ? r.values : {}, y = u.authenticatedProfile && typeof u.authenticatedProfile == "object" ? u.authenticatedProfile : {}, p = (pt) => String(h[pt] || "").trim(), z = p("requestedRole") || String(u.requestedRole || "student"), J = String(y.email || p("verifiedEmail")).trim();
           if (!J) throw new Error("Your verified Google email is missing. Please sign in again.");
           if (!p("firstName") || !p("lastName")) throw new Error("First name and last name are required.");
@@ -342,7 +342,7 @@ function zt(i) {
     o("busy", !0), o("message", "");
     try {
       {
-        const a = K({ profile: "{{ stepResults.reg_validate }}" }, { args: r, inputs: I, state: u, sharedState: X, applicationState: W, pageState: T, pageData: E, serverData: _, vars: t, stepResults: n }) || {};
+        const a = H({ profile: "{{ stepResults.reg_validate }}" }, { args: r, inputs: I, state: u, sharedState: X, applicationState: W, pageState: T, pageData: k, serverData: _, vars: t, stepResults: n }) || {};
         delete a.userIdentity, delete a.verifiedEmail, delete a.emailVerified, delete a.providerId;
         const d = [void 0, void 0, void 0, void 0, a.profile], f = i.executeDatabaseQuery || i.runtime?.executeDatabaseQuery;
         let h;
@@ -367,7 +367,7 @@ function zt(i) {
     }
     try {
       {
-        const s = r.event, a = E, d = u, f = await (async () => {
+        const s = r.event, a = k, d = u, f = await (async () => {
           const h = n.reg_call, y = Array.isArray(h) ? h[0] : h, p = y && y.result ? y.result : y;
           if (!p || p.isRegistered !== !0) throw new Error(p && p.message || "Registration did not complete.");
           return p;
@@ -439,7 +439,7 @@ function zt(i) {
     await V("googleSignInRequested", { returnPath: I.returnPath }, !0);
     try {
       {
-        const s = r.event, a = E, d = u, f = await (async () => {
+        const s = r.event, a = k, d = u, f = await (async () => {
           const h = n.google_auth || {}, y = h.user || h.currentUser || h.profile || h;
           if (h.success === !1 || !y || !(y.uid || y.id || y.userId) || !y.email)
             throw new Error(h.error || "Google sign-in did not return a verified user.");
@@ -466,7 +466,7 @@ function zt(i) {
     o("authenticatedProfile", n.normalize_auth), o("accessMode", "resolving");
     try {
       {
-        const a = K({}, { args: r, inputs: I, state: u, sharedState: X, applicationState: W, pageState: T, pageData: E, serverData: _, vars: t, stepResults: n }) || {};
+        const a = H({}, { args: r, inputs: I, state: u, sharedState: X, applicationState: W, pageState: T, pageData: k, serverData: _, vars: t, stepResults: n }) || {};
         delete a.userIdentity, delete a.verifiedEmail, delete a.emailVerified;
         const d = [void 0, void 0, void 0], f = i.executeDatabaseQuery || i.runtime?.executeDatabaseQuery;
         let h;
@@ -491,7 +491,7 @@ function zt(i) {
     }
     try {
       {
-        const s = r.event, a = E, d = u, f = await (async () => {
+        const s = r.event, a = k, d = u, f = await (async () => {
           const h = n.resolve_access, y = Array.isArray(h) ? h[0] : h, p = y && y.result ? y.result : y, z = !!(p && p.isRegistered === !0), J = z ? p : { ...u.authenticatedProfile, isRegistered: !1 };
           return {
             isRegistered: z,
@@ -648,7 +648,7 @@ function zt(i) {
     const [a, d] = String(e).split("."), f = typeof globalThis < "u" ? globalThis[a]?.[d] : void 0;
     if (typeof f == "function") return f(...Object.values(r));
     console.warn("Rudra action '" + e + "' is not available in this runtime.");
-  }, U = de(/* @__PURE__ */ new Map()), yt = Y((e, r, t, n) => {
+  }, U = le(/* @__PURE__ */ new Map()), yt = K((e, r, t, n) => {
     const s = U.current.get(e);
     if (r === "exhaust" && s?.promise) return s.promise;
     r === "takeLatest" && s?.controller?.abort();
@@ -660,14 +660,14 @@ function zt(i) {
       U.current.get(e)?.promise === f && U.current.delete(e);
     }), f;
   }, []);
-  Z(() => () => {
+  Y(() => () => {
     for (const e of U.current.values()) e.controller?.abort();
     U.current.clear();
   }, []);
-  const Ae = de(!1);
-  return Z(() => {
+  const Ae = le(!1);
+  return Y(() => {
     Ae.current || (Ae.current = !0), yt("initialize_access_from_inputsinitializeAccessFlow", "takeLatest", (e) => Ie({}), "Module input lifecycle failed:");
-  }, [j, N, ge]), /* @__PURE__ */ g("div", { ref: k, className: "rudra-module-wrapper", children: m(w({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ c(l, { children: [
+  }, [j, N, he]), /* @__PURE__ */ g("div", { ref: E, className: "rudra-module-wrapper", children: m(w({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ c(l, { children: [
     "      ",
     /* @__PURE__ */ c(Q, { id: "root", className: "rs-access", children: [
       "      ",
@@ -685,17 +685,17 @@ function zt(i) {
                   "      ",
                   m(w({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ c(l, { children: [
                     "      ",
-                    /* @__PURE__ */ g(P, { icon: "GraduationCap", id: "story_badge_icon", color: "#b8f7e7", strokeWidth: 2, size: 14 })
+                    /* @__PURE__ */ g(P, { icon: "GraduationCap", id: "story_badge_icon", size: 14, color: "#b8f7e7", strokeWidth: 2 })
                   ] }),
                   m(w({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ c(l, { children: [
                     "      ",
-                    /* @__PURE__ */ g(x, { id: "story_badge_label", className: "rs-badge-label", customColor: "#eafff8", as: "span", content: "College mathematics · POC" })
+                    /* @__PURE__ */ g(x, { id: "story_badge_label", className: "rs-badge-label", as: "span", content: "College mathematics · POC", customColor: "#eafff8" })
                   ] })
                 ] })
               ] }),
               m(w({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ c(l, { children: [
                 "      ",
-                /* @__PURE__ */ g(x, { id: "title", className: "rs-access-title", customColor: "#eafff8", as: "h2", content: /* @__PURE__ */ ((e) => e === void 0 ? "Learn mathematics with context, not shortcuts." : e)(b?.i18n?.title) })
+                /* @__PURE__ */ g(x, { id: "title", className: "rs-access-title", as: "h2", content: /* @__PURE__ */ ((e) => e === void 0 ? "Learn mathematics with context, not shortcuts." : e)(b?.i18n?.title), customColor: "#eafff8" })
               ] }),
               m(w({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ c(l, { children: [
                 "      ",
@@ -703,7 +703,7 @@ function zt(i) {
               ] }),
               m(w({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ c(l, { children: [
                 "      ",
-                /* @__PURE__ */ g(ee, { id: "trust", appearance: "outlined", live: "off", title: "SQL is the authority", variant: "neutral" })
+                /* @__PURE__ */ g(ee, { id: "trust", live: "off", title: "SQL is the authority", variant: "neutral", appearance: "outlined", children: "Google verifies identity. Roles, approval status, and permissions are loaded from the Scholar SQL database on every protected operation. Students start after onboarding; educators and institution administrators remain pending until approval." })
               ] })
             ] })
           ] }),
@@ -721,35 +721,35 @@ function zt(i) {
               ] }),
               m(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(D)) && /* @__PURE__ */ c(l, { children: [
                 "      ",
-                /* @__PURE__ */ g(x, { id: "signin_intro", className: "rs-signin-intro", content: /* @__PURE__ */ ((e) => e === void 0 ? "Sign in to continue your lessons, saved work, and learning progress." : e)(b?.i18n?.signInIntro), as: "p" })
+                /* @__PURE__ */ g(x, { id: "signin_intro", className: "rs-signin-intro", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "Sign in to continue your lessons, saved work, and learning progress." : e)(b?.i18n?.signInIntro) })
               ] }),
               m(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(D)) && /* @__PURE__ */ c(l, { children: [
                 "      ",
-                /* @__PURE__ */ g(le, { id: "google", leftIcon: /* @__PURE__ */ c(l, { children: [
+                /* @__PURE__ */ g(ue, { id: "google", leftIcon: /* @__PURE__ */ c(l, { children: [
                   "      ",
                   m(w({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ c(l, { children: [
                     "      ",
                     /* @__PURE__ */ g(P, { icon: { iconType: "url", url: "https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" }, id: "google_logo", size: 20, strokeWidth: 1.2 })
                   ] })
-                ] }), variant: "outline", onAction: (...e) => O("requestGoogleSignIn", {}, e), ariaLabel: "Sign in with Google", label: /* @__PURE__ */ ((e) => e === void 0 ? "Sign in with Google" : e)(b?.i18n?.google), fullWidth: !0, rightIcon: !1, id: "scholar-google-signin", size: "lg", theme: "auto", loading: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(ie) })
+                ] }), id: "scholar-google-signin", label: /* @__PURE__ */ ((e) => e === void 0 ? "Sign in with Google" : e)(b?.i18n?.google), variant: "outline", onAction: (...e) => O("requestGoogleSignIn", {}, e), rightIcon: !1, size: "lg", theme: "auto", loading: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(ie), ariaLabel: "Sign in with Google", fullWidth: !0 })
               ] }),
               m(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(D)) && /* @__PURE__ */ c(l, { children: [
                 "      ",
                 /* @__PURE__ */ g(x, { id: "notice", className: "rs-signin-note", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "First time here? After Google confirms your email, choose Student, Professor, or Institution administrator. Account setup takes about a minute." : e)(b?.i18n?.signInHelp) })
               ] }),
-              m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(oe)) && /* @__PURE__ */ c(l, { children: [
+              m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(ae)) && /* @__PURE__ */ c(l, { children: [
                 "      ",
                 /* @__PURE__ */ g(x, { id: "heading", as: "h3", content: /* @__PURE__ */ ((e) => e === void 0 ? "Create your Scholar account" : e)(b?.i18n?.profile) })
               ] }),
-              m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(oe)) && /* @__PURE__ */ c(l, { children: [
+              m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(ae)) && /* @__PURE__ */ c(l, { children: [
                 "      ",
-                /* @__PURE__ */ c(wt, { id: "profile_form", className: "rs-form", onSubmit: (...e) => O("handleRegistrationSubmit", {}, e), initialValues: /* @__PURE__ */ ((e) => e === void 0 ? { privacyAccepted: !1, requestedRole: "student", termsAccepted: !1, verifiedEmail: "" } : e)(Re), children: [
+                /* @__PURE__ */ c(wt, { id: "profile_form", className: "rs-form", onSubmit: (...e) => O("handleRegistrationSubmit", {}, e), initialValues: /* @__PURE__ */ ((e) => e === void 0 ? { privacyAccepted: !1, requestedRole: "student", termsAccepted: !1, verifiedEmail: "" } : e)(Se), children: [
                   "      ",
                   m(w({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ c(l, { children: [
                     "      ",
-                    /* @__PURE__ */ g(x, { id: "registration_progress", className: "rs-registration-progress", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "Step 1 of 3 · Profile" : e)(we) })
+                    /* @__PURE__ */ g(x, { id: "registration_progress", className: "rs-registration-progress", as: "p", content: /* @__PURE__ */ ((e) => e === void 0 ? "Step 1 of 3 · Profile" : e)(ve) })
                   ] }),
-                  m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(H)) && /* @__PURE__ */ c(l, { children: [
+                  m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(Z)) && /* @__PURE__ */ c(l, { children: [
                     "      ",
                     /* @__PURE__ */ g(q, { id: "email", icon: /* @__PURE__ */ c(l, { children: [
                       "      ",
@@ -757,31 +757,31 @@ function zt(i) {
                         "      ",
                         /* @__PURE__ */ g(P, { icon: "Mail", id: "email_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), type: "email", label: "Verified Google email", value: /* @__PURE__ */ ((e) => e === void 0 ? "Signed-in Google account" : e)(ye?.email), disabled: !0, name: "verifiedEmail", size: "md" })
+                    ] }), name: "verifiedEmail", size: "md", type: "email", label: "Verified Google email", value: /* @__PURE__ */ ((e) => e === void 0 ? "Signed-in Google account" : e)(pe?.email), disabled: !0 })
                   ] }),
-                  m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(H)) && /* @__PURE__ */ c(l, { children: [
+                  m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(Z)) && /* @__PURE__ */ c(l, { children: [
                     "      ",
                     /* @__PURE__ */ g(q, { id: "first_name", icon: /* @__PURE__ */ c(l, { children: [
                       "      ",
                       m(w({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ c(l, { children: [
                         "      ",
-                        /* @__PURE__ */ g(P, { icon: "UserRound", id: "first_name_field_icon", strokeWidth: 1.8, size: 18 })
+                        /* @__PURE__ */ g(P, { icon: "UserRound", id: "first_name_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
                     ] }), name: "firstName", size: "md", type: "text", label: "First name", required: !0 })
                   ] }),
-                  m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(H)) && /* @__PURE__ */ c(l, { children: [
+                  m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(Z)) && /* @__PURE__ */ c(l, { children: [
                     "      ",
                     /* @__PURE__ */ g(q, { id: "last_name", icon: /* @__PURE__ */ c(l, { children: [
                       "      ",
                       m(w({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ c(l, { children: [
                         "      ",
-                        /* @__PURE__ */ g(P, { icon: "UserRound", id: "last_name_field_icon", strokeWidth: 1.8, size: 18 })
+                        /* @__PURE__ */ g(P, { icon: "UserRound", id: "last_name_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
                     ] }), name: "lastName", size: "md", type: "text", label: "Last name", required: !0 })
                   ] }),
-                  m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(H)) && /* @__PURE__ */ c(l, { children: [
+                  m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(Z)) && /* @__PURE__ */ c(l, { children: [
                     "      ",
-                    /* @__PURE__ */ g(Ee, { id: "role", label: "Create account as", value: "student", radius: "md", options: [{ label: "Student", value: "student" }, { label: "Professor / teacher", value: "educator" }, { label: "Institution administrator", value: "institution_admin" }], required: !0, onChangeValue: (...e) => O("setRequestedRole", {}, e), name: "requestedRole" })
+                    /* @__PURE__ */ g(ke, { id: "role", name: "requestedRole", label: "Create account as", value: "student", radius: "md", options: [{ label: "Student", value: "student" }, { label: "Professor / teacher", value: "educator" }, { label: "Institution administrator", value: "institution_admin" }], required: !0, onChangeValue: (...e) => O("setRequestedRole", {}, e) })
                   ] }),
                   m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(G)) && /* @__PURE__ */ c(l, { children: [
                     "      ",
@@ -791,9 +791,9 @@ function zt(i) {
                         "      ",
                         /* @__PURE__ */ g(P, { icon: "GraduationCap", id: "qualification_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), name: "qualification", size: "md", type: "text", label: "Highest relevant qualification", required: !0, placeholder: "For example, M.Sc. Mathematics" })
+                    ] }), size: "md", type: "text", label: "Highest relevant qualification", required: !0, placeholder: "For example, M.Sc. Mathematics", name: "qualification" })
                   ] }),
-                  m(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(ve)) && /* @__PURE__ */ c(l, { children: [
+                  m(/* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(_e)) && /* @__PURE__ */ c(l, { children: [
                     "      ",
                     /* @__PURE__ */ g(q, { id: "institution", icon: /* @__PURE__ */ c(l, { children: [
                       "      ",
@@ -805,7 +805,7 @@ function zt(i) {
                   ] }),
                   m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(se)) && /* @__PURE__ */ c(l, { children: [
                     "      ",
-                    /* @__PURE__ */ g(ee, { id: "kyc_intro", variant: "neutral", appearance: "outlined", live: "off", title: "Role verification required" })
+                    /* @__PURE__ */ g(ee, { id: "kyc_intro", live: "off", title: "Role verification required", variant: "neutral", appearance: "outlined", children: "Student access starts after onboarding. Professor tools and institution administration stay locked until a platform administrator approves the submitted verification details." })
                   ] }),
                   m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(G)) && /* @__PURE__ */ c(l, { children: [
                     "      ",
@@ -813,13 +813,13 @@ function zt(i) {
                       "      ",
                       m(w({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ c(l, { children: [
                         "      ",
-                        /* @__PURE__ */ g(P, { icon: "Sigma", id: "expertise_field_icon", strokeWidth: 1.8, size: 18 })
+                        /* @__PURE__ */ g(P, { icon: "Sigma", id: "expertise_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), type: "text", label: "Mathematics expertise", required: !0, placeholder: "For example, Linear Algebra, Calculus", name: "subjectExpertise", size: "md" })
+                    ] }), name: "subjectExpertise", size: "md", type: "text", label: "Mathematics expertise", required: !0, placeholder: "For example, Linear Algebra, Calculus" })
                   ] }),
                   m(w({ lg: !1, md: !1, sm: !1 })) && /* @__PURE__ */ c(l, { children: [
                     "      ",
-                    /* @__PURE__ */ g(q, { id: "kyc", required: !1, placeholder: "Secure upload reference — do not paste document data", name: "kycReference", size: "md", type: "text", label: "Legacy verification field disabled" })
+                    /* @__PURE__ */ g(q, { id: "kyc", name: "kycReference", size: "md", type: "text", label: "Legacy verification field disabled", required: !1, placeholder: "Secure upload reference — do not paste document data" })
                   ] }),
                   m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(G)) && /* @__PURE__ */ c(l, { children: [
                     "      ",
@@ -833,7 +833,7 @@ function zt(i) {
                         "      ",
                         /* @__PURE__ */ g(P, { icon: "School", id: "educator_institution_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), required: !0, name: "institutionName", size: "md", type: "text", label: "College or university" })
+                    ] }), name: "institutionName", size: "md", type: "text", label: "College or university", required: !0 })
                   ] }),
                   m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(G)) && /* @__PURE__ */ c(l, { children: [
                     "      ",
@@ -841,7 +841,7 @@ function zt(i) {
                       "      ",
                       m(w({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ c(l, { children: [
                         "      ",
-                        /* @__PURE__ */ g(P, { icon: "BadgeCheck", id: "evidence_field_icon", size: 18, strokeWidth: 1.8 })
+                        /* @__PURE__ */ g(P, { icon: "BadgeCheck", id: "evidence_field_icon", strokeWidth: 1.8, size: 18 })
                       ] })
                     ] }), name: "kycEvidence", size: "md", type: "text", label: "KYC verification evidence", required: !0, placeholder: "Use an institution email or public staff-profile URL" })
                   ] }),
@@ -857,11 +857,11 @@ function zt(i) {
                   ] }),
                   m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(M)) && /* @__PURE__ */ c(l, { children: [
                     "      ",
-                    /* @__PURE__ */ g(q, { id: "institution_display_name", required: !0, name: "institutionDisplayName", size: "md", type: "text", label: "Display name" })
+                    /* @__PURE__ */ g(q, { id: "institution_display_name", type: "text", label: "Display name", required: !0, name: "institutionDisplayName", size: "md" })
                   ] }),
                   m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(M)) && /* @__PURE__ */ c(l, { children: [
                     "      ",
-                    /* @__PURE__ */ g(Ee, { id: "institution_type", name: "institutionType", label: "Institution type", value: "college", options: [{ label: "College", value: "college" }, { label: "University", value: "university" }], required: !0 })
+                    /* @__PURE__ */ g(ke, { id: "institution_type", name: "institutionType", label: "Institution type", value: "college", options: [{ label: "College", value: "college" }, { label: "University", value: "university" }], required: !0 })
                   ] }),
                   m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(M)) && /* @__PURE__ */ c(l, { children: [
                     "      ",
@@ -869,9 +869,9 @@ function zt(i) {
                       "      ",
                       m(w({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ c(l, { children: [
                         "      ",
-                        /* @__PURE__ */ g(P, { icon: "Globe", id: "institution_website_field_icon", strokeWidth: 1.8, size: 18 })
+                        /* @__PURE__ */ g(P, { icon: "Globe", id: "institution_website_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), name: "institutionWebsite", size: "md", type: "url", label: "Official website", required: !0, placeholder: "https://example.edu" })
+                    ] }), placeholder: "https://example.edu", name: "institutionWebsite", size: "md", type: "url", label: "Official website", required: !0 })
                   ] }),
                   m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(M)) && /* @__PURE__ */ c(l, { children: [
                     "      ",
@@ -881,7 +881,7 @@ function zt(i) {
                         "      ",
                         /* @__PURE__ */ g(P, { icon: "AtSign", id: "institution_domain_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), name: "institutionEmailDomain", size: "md", type: "text", label: "Institutional email domain", required: !0, placeholder: "example.edu" })
+                    ] }), type: "text", label: "Institutional email domain", required: !0, placeholder: "example.edu", name: "institutionEmailDomain", size: "md" })
                   ] }),
                   m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(M)) && /* @__PURE__ */ c(l, { children: [
                     "      ",
@@ -891,7 +891,7 @@ function zt(i) {
                         "      ",
                         /* @__PURE__ */ g(P, { icon: "Contact", id: "institution_contact_field_icon", size: 18, strokeWidth: 1.8 })
                       ] })
-                    ] }), type: "text", label: "Administrative contact", required: !0, name: "institutionContact", size: "md" })
+                    ] }), size: "md", type: "text", label: "Administrative contact", required: !0, name: "institutionContact" })
                   ] }),
                   m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(se)) && /* @__PURE__ */ c(l, { children: [
                     "      ",
@@ -905,45 +905,45 @@ function zt(i) {
                   ] }),
                   m(w({ lg: !1, md: !1, sm: !1 })) && /* @__PURE__ */ c(l, { children: [
                     "      ",
-                    /* @__PURE__ */ g(ue, { id: "age_confirmed", colorScheme: "emerald", description: "The initial proof of concept is limited to college learners and adult educators.", name: "ageConfirmed", label: "I confirm I am 18 or older.", required: !1 })
+                    /* @__PURE__ */ g(me, { id: "age_confirmed", description: "The initial proof of concept is limited to college learners and adult educators.", name: "ageConfirmed", label: "I confirm I am 18 or older.", required: !1, colorScheme: "emerald" })
                   ] }),
                   m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(ne)) && /* @__PURE__ */ c(l, { children: [
                     "      ",
-                    /* @__PURE__ */ g(ue, { id: "terms", onChangeValue: (...e) => O("setTermsAccepted", {}, e), name: "termsAccepted", label: "I accept the Terms of Service.", value: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(fe), required: !0, colorScheme: "emerald", description: "Required before an account can be created." })
+                    /* @__PURE__ */ g(me, { id: "terms", colorScheme: "emerald", description: "Required before an account can be created.", onChangeValue: (...e) => O("setTermsAccepted", {}, e), name: "termsAccepted", label: "I accept the Terms of Service.", value: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(ye), required: !0 })
                   ] }),
                   m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(ne)) && /* @__PURE__ */ c(l, { children: [
                     "      ",
-                    /* @__PURE__ */ g(ue, { id: "privacy", required: !0, colorScheme: "emerald", description: "Required before an account can be created.", onChangeValue: (...e) => O("setPrivacyAccepted", {}, e), name: "privacyAccepted", label: "I have read and accept the Privacy Notice.", value: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(Se) })
+                    /* @__PURE__ */ g(me, { id: "privacy", description: "Required before an account can be created.", onChangeValue: (...e) => O("setPrivacyAccepted", {}, e), name: "privacyAccepted", label: "I have read and accept the Privacy Notice.", value: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(be), required: !0, colorScheme: "emerald" })
                   ] }),
                   m(w({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ c(l, { children: [
                     "      ",
                     /* @__PURE__ */ c(Q, { id: "registration_actions", className: "rs-registration-actions", children: [
                       "      ",
-                      m(he) && /* @__PURE__ */ c(l, { children: [
+                      m(fe) && /* @__PURE__ */ c(l, { children: [
                         "      ",
-                        /* @__PURE__ */ g(le, { id: "registration_back", leftIcon: /* @__PURE__ */ c(l, { children: [
+                        /* @__PURE__ */ g(ue, { id: "registration_back", leftIcon: /* @__PURE__ */ c(l, { children: [
                           "      ",
                           m(w({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ c(l, { children: [
                             "      ",
-                            /* @__PURE__ */ g(P, { icon: "ArrowLeft", id: "registration_back_icon", strokeWidth: 2, size: 18 })
+                            /* @__PURE__ */ g(P, { icon: "ArrowLeft", id: "registration_back_icon", size: 18, strokeWidth: 2 })
                           ] })
-                        ] }), type: "button", theme: "auto", variant: "secondary", onAction: (...e) => O("goBackRegistrationStep", {}, e), fullWidth: !0, additionalAttributes: {}, id: "scholar-registration-back", label: "Back", rightIcon: !1, size: "lg" })
+                        ] }), additionalAttributes: {}, size: "lg", type: "button", label: "Back", variant: "secondary", onAction: (...e) => O("goBackRegistrationStep", {}, e), fullWidth: !0, rightIcon: !1, id: "scholar-registration-back", theme: "auto" })
                       ] }),
                       m(w({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ c(l, { children: [
                         "      ",
-                        /* @__PURE__ */ g(le, { id: "submit", id: "scholar-registration-primary", size: "lg", theme: "auto", loading: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(ie), leftIcon: !1, fullWidth: !0, rightIcon: !1, type: "submit", label: /* @__PURE__ */ ((e) => e === void 0 ? "Next" : e)(pe), variant: "primary", disabled: /* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(Pe) })
+                        /* @__PURE__ */ g(ue, { id: "submit", fullWidth: !0, rightIcon: !1, id: "scholar-registration-primary", loading: /* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(ie), variant: "primary", disabled: /* @__PURE__ */ ((e) => e === void 0 ? !0 : e)(Pe), size: "lg", type: "submit", label: /* @__PURE__ */ ((e) => e === void 0 ? "Next" : e)(we), theme: "auto", leftIcon: !1 })
                       ] })
                     ] })
                   ] })
                 ] })
               ] }),
-              m(be) && /* @__PURE__ */ c(l, { children: [
+              m(oe) && /* @__PURE__ */ c(l, { children: [
                 "      ",
-                /* @__PURE__ */ g(ee, { id: "message", live: "polite", title: "Scholar access", variant: "neutral", appearance: "outlined" })
+                /* @__PURE__ */ g(ee, { id: "message", live: "polite", title: "Scholar access", variant: "neutral", appearance: "outlined", children: /* @__PURE__ */ ((e) => e === void 0 ? "" : e)(oe) })
               ] }),
-              m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(_e)) && /* @__PURE__ */ c(l, { children: [
+              m(/* @__PURE__ */ ((e) => e === void 0 ? !1 : e)(Re)) && /* @__PURE__ */ c(l, { children: [
                 "      ",
-                /* @__PURE__ */ g(ee, { id: "pending_notice", appearance: "outlined", live: "polite", title: "Professor verification pending", variant: "warning" })
+                /* @__PURE__ */ g(ee, { id: "pending_notice", live: "polite", title: "Professor verification pending", variant: "warning", appearance: "outlined", children: "You can continue using every student learning page. Professor-only tools remain locked until an administrator approves your KYC." })
               ] })
             ] })
           ] })
