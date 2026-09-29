@@ -1196,7 +1196,7 @@ Teaching notes
     }
     try {
       {
-        const t = { args: r, inputs: Q, state: i, sharedState: re, applicationState: se, pageState: ae, pageData: F, serverData: M, vars: e, stepResults: n }, a = Z({ model: "gemini-2.5-flash", prompt: "{{ stepResults.structure_prompt }}" }, t) || {}, c = await fetch("/api/rudra/protected", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ moduleId: "cmtma35xb000604jo2mif8zbl", apiId: "geminiCurriculumStructure", argumentValues: a, context: t }), signal: r.signal || AbortSignal.timeout(6e4) }), l = await c.json().catch(() => ({}));
+        const t = { args: r, inputs: Q, state: i, sharedState: re, applicationState: se, pageState: ae, pageData: F, serverData: M, vars: e, stepResults: n }, a = Z({ model: "gemini-3.8-flash", prompt: "{{ stepResults.structure_prompt }}" }, t) || {}, c = await fetch("/api/rudra/protected", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ moduleId: "cmtma35xb000604jo2mif8zbl", apiId: "geminiCurriculumStructure", argumentValues: a, context: t }), signal: r.signal || AbortSignal.timeout(6e4) }), l = await c.json().catch(() => ({}));
         if (!c.ok) throw new Error(l.error || "Protected API request failed (" + c.status + ")");
         const u = l.data;
         n.structure_api = u, e.apiResult = u;
@@ -1206,7 +1206,7 @@ Teaching notes
       if (e.error = a, n.structure_api = { error: a }, [429, 500, 502, 503, 504].includes(Number(a.status))) {
         try {
           {
-            const c = { args: r, inputs: Q, state: i, sharedState: re, applicationState: se, pageState: ae, pageData: F, serverData: M, vars: e, stepResults: n }, l = Z({ model: "gemini-2.5-flash-lite", prompt: "{{ stepResults.structure_prompt }}" }, c) || {}, u = await fetch("/api/rudra/protected", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ moduleId: "cmtma35xb000604jo2mif8zbl", apiId: "geminiCurriculumStructure", argumentValues: l, context: c }), signal: r.signal || AbortSignal.timeout(6e4) }), p = await u.json().catch(() => ({}));
+            const c = { args: r, inputs: Q, state: i, sharedState: re, applicationState: se, pageState: ae, pageData: F, serverData: M, vars: e, stepResults: n }, l = Z({ model: "gemini-3.7-flash", prompt: "{{ stepResults.structure_prompt }}" }, c) || {}, u = await fetch("/api/rudra/protected", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ moduleId: "cmtma35xb000604jo2mif8zbl", apiId: "geminiCurriculumStructure", argumentValues: l, context: c }), signal: r.signal || AbortSignal.timeout(6e4) }), p = await u.json().catch(() => ({}));
             if (!u.ok) throw new Error(p.error || "Protected API request failed (" + u.status + ")");
             const d = p.data;
             n.structure_api_fallback = d, e.apiResult = d;
@@ -1231,8 +1231,8 @@ Teaching notes
               const P = (g, z = []) => {
                 const T = [...z, g.id];
                 return { id: g.id, label: g.type[0].toUpperCase() + g.type.slice(1) + " · " + g.title, data: { type: g.type, title: g.title, path: T.join("/"), problems: g.problems || [] }, children: g.children.map((G) => P(G, T)) };
-              }, L = d ? "gemini-2.5-flash-lite" : "gemini-2.5-flash";
-              return { hierarchy: k, items: [P(k)], model: L, fallback: d, status: d ? "Hierarchy ready using Gemini 2.5 Flash-Lite fallback. Select a Topic to view its problems." : "Hierarchy ready using Gemini 2.5 Flash. Select a Topic to view its problems." };
+              }, L = d ? "gemini-3.7-flash" : "gemini-3.8-flash";
+              return { hierarchy: k, items: [P(k)], model: L, fallback: d, status: d ? "Hierarchy ready using Gemini 3.7 Flash fallback. Select a Topic to view its problems." : "Hierarchy ready using Gemini 3.8 Flash. Select a Topic to view its problems." };
             })();
             n.structure_parse = p, e.customCodeResult = p;
           }
@@ -1254,7 +1254,7 @@ Teaching notes
     if ([429, 500, 502, 503, 504].includes(Number(error.status))) {
       try {
         {
-          const t = { args: r, inputs: Q, state: i, sharedState: re, applicationState: se, pageState: ae, pageData: F, serverData: M, vars: e, stepResults: n }, a = Z({ model: "gemini-2.5-flash-lite", prompt: "{{ stepResults.structure_prompt }}" }, t) || {}, c = await fetch("/api/rudra/protected", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ moduleId: "cmtma35xb000604jo2mif8zbl", apiId: "geminiCurriculumStructure", argumentValues: a, context: t }), signal: r.signal || AbortSignal.timeout(6e4) }), l = await c.json().catch(() => ({}));
+          const t = { args: r, inputs: Q, state: i, sharedState: re, applicationState: se, pageState: ae, pageData: F, serverData: M, vars: e, stepResults: n }, a = Z({ model: "gemini-3.7-flash", prompt: "{{ stepResults.structure_prompt }}" }, t) || {}, c = await fetch("/api/rudra/protected", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ moduleId: "cmtma35xb000604jo2mif8zbl", apiId: "geminiCurriculumStructure", argumentValues: a, context: t }), signal: r.signal || AbortSignal.timeout(6e4) }), l = await c.json().catch(() => ({}));
           if (!c.ok) throw new Error(l.error || "Protected API request failed (" + c.status + ")");
           const u = l.data;
           n.structure_api_fallback = u, e.apiResult = u;
@@ -1279,8 +1279,8 @@ Teaching notes
             const S = (P, L = []) => {
               const g = [...L, P.id];
               return { id: P.id, label: P.type[0].toUpperCase() + P.type.slice(1) + " · " + P.title, data: { type: P.type, title: P.title, path: g.join("/"), problems: P.problems || [] }, children: P.children.map((z) => S(z, g)) };
-            }, k = u ? "gemini-2.5-flash-lite" : "gemini-2.5-flash";
-            return { hierarchy: V, items: [S(V)], model: k, fallback: u, status: u ? "Hierarchy ready using Gemini 2.5 Flash-Lite fallback. Select a Topic to view its problems." : "Hierarchy ready using Gemini 2.5 Flash. Select a Topic to view its problems." };
+            }, k = u ? "gemini-3.7-flash" : "gemini-3.8-flash";
+            return { hierarchy: V, items: [S(V)], model: k, fallback: u, status: u ? "Hierarchy ready using Gemini 3.7 Flash fallback. Select a Topic to view its problems." : "Hierarchy ready using Gemini 3.8 Flash. Select a Topic to view its problems." };
           })();
           n.structure_parse = l, e.customCodeResult = l;
         }
@@ -1558,7 +1558,7 @@ Teaching notes
       }
       try {
         {
-          const t = { args: r, inputs: Q, state: i, sharedState: re, applicationState: se, pageState: ae, pageData: F, serverData: M, vars: e, stepResults: n }, a = Z({ model: "gemini-2.5-flash", prompt: "{{ stepResults.problem_ai_prompt }}" }, t) || {}, c = await fetch("/api/rudra/protected", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ moduleId: "cmtma35xb000604jo2mif8zbl", apiId: "geminiProblemSolution", argumentValues: a, context: t }), signal: r.signal || AbortSignal.timeout(6e4) }), l = await c.json().catch(() => ({}));
+          const t = { args: r, inputs: Q, state: i, sharedState: re, applicationState: se, pageState: ae, pageData: F, serverData: M, vars: e, stepResults: n }, a = Z({ model: "gemini-3.8-flash", prompt: "{{ stepResults.problem_ai_prompt }}" }, t) || {}, c = await fetch("/api/rudra/protected", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ moduleId: "cmtma35xb000604jo2mif8zbl", apiId: "geminiProblemSolution", argumentValues: a, context: t }), signal: r.signal || AbortSignal.timeout(6e4) }), l = await c.json().catch(() => ({}));
           if (!c.ok) throw new Error(l.error || "Protected API request failed (" + c.status + ")");
           const u = l.data;
           n.problem_ai_call = u, e.apiResult = u;
@@ -1568,7 +1568,7 @@ Teaching notes
         if (e.error = a, n.problem_ai_call = { error: a }, [429, 500, 502, 503, 504].includes(Number(a.status))) {
           try {
             {
-              const c = { args: r, inputs: Q, state: i, sharedState: re, applicationState: se, pageState: ae, pageData: F, serverData: M, vars: e, stepResults: n }, l = Z({ model: "gemini-2.5-flash-lite", prompt: "{{ stepResults.problem_ai_prompt }}" }, c) || {}, u = await fetch("/api/rudra/protected", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ moduleId: "cmtma35xb000604jo2mif8zbl", apiId: "geminiProblemSolution", argumentValues: l, context: c }), signal: r.signal || AbortSignal.timeout(6e4) }), p = await u.json().catch(() => ({}));
+              const c = { args: r, inputs: Q, state: i, sharedState: re, applicationState: se, pageState: ae, pageData: F, serverData: M, vars: e, stepResults: n }, l = Z({ model: "gemini-3.7-flash", prompt: "{{ stepResults.problem_ai_prompt }}" }, c) || {}, u = await fetch("/api/rudra/protected", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ moduleId: "cmtma35xb000604jo2mif8zbl", apiId: "geminiProblemSolution", argumentValues: l, context: c }), signal: r.signal || AbortSignal.timeout(6e4) }), p = await u.json().catch(() => ({}));
               if (!u.ok) throw new Error(p.error || "Protected API request failed (" + u.status + ")");
               const d = p.data;
               n.problem_ai_fallback = d, e.apiResult = d;
@@ -1665,12 +1665,12 @@ Teaching notes
                   };
                 }, b = n.problem_ai_fallback?.candidates ? n.problem_ai_fallback : null, q = (b || n.problem_ai_call)?.candidates?.[0]?.content?.parts, C = Array.isArray(q) ? q.map((L) => typeof L?.text == "string" ? L.text : "").join("") : "";
                 if (!C.trim() || C.length > 2e5) throw new Error("Invalid AI lesson response.");
-                const _ = JSON.parse(C.trim().replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "")), V = d(_, n.problem_prepare.statement), S = { ...V, summary: typeof _.summary == "string" ? _.summary : "", answer: typeof _.answer == "string" ? _.answer : "", checks: Array.isArray(_.checks) ? _.checks.filter((L) => typeof L == "string") : [] }, k = !!b, P = k ? "gemini-2.5-flash-lite" : "gemini-2.5-flash";
+                const _ = JSON.parse(C.trim().replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "")), V = d(_, n.problem_prepare.statement), S = { ...V, summary: typeof _.summary == "string" ? _.summary : "", answer: typeof _.answer == "string" ? _.answer : "", checks: Array.isArray(_.checks) ? _.checks.filter((L) => typeof L == "string") : [] }, k = !!b, P = k ? "gemini-3.7-flash" : "gemini-3.8-flash";
                 return { solution: S, board: V, question: V.steps[0].teacherQuestion, text: [S.summary, V.steps.map((L, g) => g + 1 + ". " + L.title).join(`
 `), S.answer, S.checks.join(`
 `)].filter(Boolean).join(`
 
-`), model: P, fallback: k, status: k ? "AI lesson prepared with Gemini 2.5 Flash-Lite fallback · review every step; mathematical correctness is not independently verified." : "AI lesson prepared with Gemini 2.5 Flash · review every step; mathematical correctness is not independently verified." };
+`), model: P, fallback: k, status: k ? "AI lesson prepared with Gemini 3.7 Flash fallback · review every step; mathematical correctness is not independently verified." : "AI lesson prepared with Gemini 3.8 Flash · review every step; mathematical correctness is not independently verified." };
               })();
               n.problem_ai_parse = p, e.customCodeResult = p;
             }
@@ -1720,7 +1720,7 @@ Teaching notes
       if ([429, 500, 502, 503, 504].includes(Number(error.status))) {
         try {
           {
-            const t = { args: r, inputs: Q, state: i, sharedState: re, applicationState: se, pageState: ae, pageData: F, serverData: M, vars: e, stepResults: n }, a = Z({ model: "gemini-2.5-flash-lite", prompt: "{{ stepResults.problem_ai_prompt }}" }, t) || {}, c = await fetch("/api/rudra/protected", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ moduleId: "cmtma35xb000604jo2mif8zbl", apiId: "geminiProblemSolution", argumentValues: a, context: t }), signal: r.signal || AbortSignal.timeout(6e4) }), l = await c.json().catch(() => ({}));
+            const t = { args: r, inputs: Q, state: i, sharedState: re, applicationState: se, pageState: ae, pageData: F, serverData: M, vars: e, stepResults: n }, a = Z({ model: "gemini-3.7-flash", prompt: "{{ stepResults.problem_ai_prompt }}" }, t) || {}, c = await fetch("/api/rudra/protected", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ moduleId: "cmtma35xb000604jo2mif8zbl", apiId: "geminiProblemSolution", argumentValues: a, context: t }), signal: r.signal || AbortSignal.timeout(6e4) }), l = await c.json().catch(() => ({}));
             if (!c.ok) throw new Error(l.error || "Protected API request failed (" + c.status + ")");
             const u = l.data;
             n.problem_ai_fallback = u, e.apiResult = u;
@@ -1817,12 +1817,12 @@ Teaching notes
                 };
               }, p = n.problem_ai_fallback?.candidates ? n.problem_ai_fallback : null, b = (p || n.problem_ai_call)?.candidates?.[0]?.content?.parts, h = Array.isArray(b) ? b.map((k) => typeof k?.text == "string" ? k.text : "").join("") : "";
               if (!h.trim() || h.length > 2e5) throw new Error("Invalid AI lesson response.");
-              const q = JSON.parse(h.trim().replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "")), C = u(q, n.problem_prepare.statement), _ = { ...C, summary: typeof q.summary == "string" ? q.summary : "", answer: typeof q.answer == "string" ? q.answer : "", checks: Array.isArray(q.checks) ? q.checks.filter((k) => typeof k == "string") : [] }, V = !!p, S = V ? "gemini-2.5-flash-lite" : "gemini-2.5-flash";
+              const q = JSON.parse(h.trim().replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "")), C = u(q, n.problem_prepare.statement), _ = { ...C, summary: typeof q.summary == "string" ? q.summary : "", answer: typeof q.answer == "string" ? q.answer : "", checks: Array.isArray(q.checks) ? q.checks.filter((k) => typeof k == "string") : [] }, V = !!p, S = V ? "gemini-3.7-flash" : "gemini-3.8-flash";
               return { solution: _, board: C, question: C.steps[0].teacherQuestion, text: [_.summary, C.steps.map((k, P) => P + 1 + ". " + k.title).join(`
 `), _.answer, _.checks.join(`
 `)].filter(Boolean).join(`
 
-`), model: S, fallback: V, status: V ? "AI lesson prepared with Gemini 2.5 Flash-Lite fallback · review every step; mathematical correctness is not independently verified." : "AI lesson prepared with Gemini 2.5 Flash · review every step; mathematical correctness is not independently verified." };
+`), model: S, fallback: V, status: V ? "AI lesson prepared with Gemini 3.7 Flash fallback · review every step; mathematical correctness is not independently verified." : "AI lesson prepared with Gemini 3.8 Flash · review every step; mathematical correctness is not independently verified." };
             })();
             n.problem_ai_parse = l, e.customCodeResult = l;
           }
@@ -2015,7 +2015,7 @@ Unit 3: Eigenvalues and diagonalisation`)), Rt(structuredClone("")), Qt(structur
                     "      ",
                     v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                       "      ",
-                      /* @__PURE__ */ R(Us, { id: "badge", label: /* @__PURE__ */ ((s) => s === void 0 ? "Verification pending" : s)(er), ariaLabel: "Professor verification status" })
+                      /* @__PURE__ */ R(Us, { id: "badge", ariaLabel: "Professor verification status", label: /* @__PURE__ */ ((s) => s === void 0 ? "Verification pending" : s)(er) })
                     ] }),
                     v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                       "      ",
@@ -2023,13 +2023,13 @@ Unit 3: Eigenvalues and diagonalisation`)), Rt(structuredClone("")), Qt(structur
                     ] }),
                     v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                       "      ",
-                      /* @__PURE__ */ R($, { id: "subtitle", className: "rs-muted", as: "p", content: /* @__PURE__ */ ((s) => s === void 0 ? "Import a semester and steer representative solutions." : s)(te?.i18n?.subtitle) })
+                      /* @__PURE__ */ R($, { id: "subtitle", className: "rs-muted", content: /* @__PURE__ */ ((s) => s === void 0 ? "Import a semester and steer representative solutions." : s)(te?.i18n?.subtitle), as: "p" })
                     ] })
                   ] })
                 ] }),
                 v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                   "      ",
-                  /* @__PURE__ */ R(X, { id: "sidebar_toggle", className: "rs-studio-action rs-sidebar-toggle", "aria-controls": "left", "aria-expanded": /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(Ee), label: /* @__PURE__ */ ((s) => s === void 0 ? "Hide syllabus panel" : s)(or), theme: "auto", variant: "outline", onAction: (...s) => B("toggleStudioSidebar", {}, s) })
+                  /* @__PURE__ */ R(X, { id: "sidebar_toggle", className: "rs-studio-action rs-sidebar-toggle", variant: "outline", onAction: (...s) => B("toggleStudioSidebar", {}, s), "aria-controls": "left", "aria-expanded": /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(Ee), label: /* @__PURE__ */ ((s) => s === void 0 ? "Hide syllabus panel" : s)(or), theme: "auto" })
                 ] })
               ] })
             ] }),
@@ -2047,7 +2047,7 @@ Unit 3: Eigenvalues and diagonalisation`)), Rt(structuredClone("")), Qt(structur
                   "      ",
                   /* @__PURE__ */ R($, { id: "verification_icon", className: "rs-verification-icon", as: "span", content: "!" })
                 ] })
-              ] }), live: "polite", variant: "warning", appearance: "soft", children: [
+              ] }), variant: "warning", appearance: "soft", live: "polite", children: [
                 "      ",
                 v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                   "      ",
@@ -2069,19 +2069,19 @@ Unit 3: Eigenvalues and diagonalisation`)), Rt(structuredClone("")), Qt(structur
                         "      ",
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ R(hr, { id: "saved_syllabus_select", name: "savedSyllabus", size: "md", label: "Continue with a saved syllabus", radius: "md", options: /* @__PURE__ */ ((s) => s === void 0 ? [] : s)(yt), value: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(Ct), disabled: /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(te?.studioControls?.unavailable), placeholder: "Select a syllabus", onChangeValue: (...s) => B("selectSavedSyllabus", {}, s) })
+                          /* @__PURE__ */ R(hr, { id: "saved_syllabus_select", name: "savedSyllabus", size: "md", label: "Continue with a saved syllabus", value: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(Ct), radius: "md", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(te?.studioControls?.unavailable), placeholder: "Select a syllabus", onChangeValue: (...s) => B("selectSavedSyllabus", {}, s), options: /* @__PURE__ */ ((s) => s === void 0 ? [] : s)(yt) })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ R(X, { id: "refresh_syllabi", className: "rs-studio-action", loadingText: "Loading syllabi…", label: "Refresh syllabi", theme: "auto", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(qe), variant: "ghost", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(qe), onAction: (...s) => B("loadProfessorSyllabi", {}, s) })
+                          /* @__PURE__ */ R(X, { id: "refresh_syllabi", className: "rs-studio-action", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(qe), variant: "ghost", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(qe), onAction: (...s) => B("loadProfessorSyllabi", {}, s), loadingText: "Loading syllabi…", label: "Refresh syllabi", theme: "auto" })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ R(X, { id: "save_syllabus_draft", className: "rs-studio-action", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(te?.studioControls?.unavailable), onAction: (...s) => B("saveProfessorSyllabus", { status: "draft" }, s), loadingText: "Saving syllabus…", label: "Save current syllabus", theme: "auto", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Te), variant: "outline" })
+                          /* @__PURE__ */ R(X, { id: "save_syllabus_draft", className: "rs-studio-action", variant: "outline", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(te?.studioControls?.unavailable), onAction: (...s) => B("saveProfessorSyllabus", { status: "draft" }, s), loadingText: "Saving syllabus…", label: "Save current syllabus", theme: "auto", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Te) })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ R(X, { id: "publish_syllabus_students", className: "rs-studio-action", onAction: (...s) => B("saveProfessorSyllabus", { status: "published" }, s), loadingText: "Publishing syllabus…", label: "Publish current syllabus for students", theme: "auto", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Te), variant: "primary", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(te?.studioControls?.unavailable) })
+                          /* @__PURE__ */ R(X, { id: "publish_syllabus_students", className: "rs-studio-action", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(te?.studioControls?.unavailable), onAction: (...s) => B("saveProfessorSyllabus", { status: "published" }, s), loadingText: "Publishing syllabus…", label: "Publish current syllabus for students", theme: "auto", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Te), variant: "primary" })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
@@ -2095,11 +2095,11 @@ Unit 3: Eigenvalues and diagonalisation`)), Rt(structuredClone("")), Qt(structur
                         "      ",
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ R(zs, { id: "syllabus_title_input", onChangeValue: (...s) => B("setSyllabusTitle", {}, s), name: "syllabusTitle", size: "md", label: "Syllabus title", value: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(nr), disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(te?.studioControls?.busy), required: !0, placeholder: "Engineering Mathematics I" })
+                          /* @__PURE__ */ R(zs, { id: "syllabus_title_input", size: "md", label: "Syllabus title", value: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(nr), disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(te?.studioControls?.busy), required: !0, placeholder: "Engineering Mathematics I", onChangeValue: (...s) => B("setSyllabusTitle", {}, s), name: "syllabusTitle" })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ R(De, { id: "syllabus_description_input", label: "Description", value: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(Ye), disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(te?.studioControls?.busy), placeholder: "What students will learn", onChangeValue: (...s) => B("setSyllabusDescription", {}, s), name: "syllabusDescription", rows: 3 })
+                          /* @__PURE__ */ R(De, { id: "syllabus_description_input", name: "syllabusDescription", rows: 3, label: "Description", value: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(Ye), disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(te?.studioControls?.busy), placeholder: "What students will learn", onChangeValue: (...s) => B("setSyllabusDescription", {}, s) })
                         ] })
                       ] })
                     ] }),
@@ -2109,7 +2109,7 @@ Unit 3: Eigenvalues and diagonalisation`)), Rt(structuredClone("")), Qt(structur
                     ] }),
                     v(mt) && /* @__PURE__ */ y(f, { children: [
                       "      ",
-                      /* @__PURE__ */ R(X, { id: "edit_syllabus_setup", className: "rs-studio-action", label: "Edit syllabus / Regenerate", theme: "auto", variant: "outline", onAction: (...s) => B("expandSyllabusSetup", {}, s) })
+                      /* @__PURE__ */ R(X, { id: "edit_syllabus_setup", className: "rs-studio-action", theme: "auto", variant: "outline", onAction: (...s) => B("expandSyllabusSetup", {}, s), label: "Edit syllabus / Regenerate" })
                     ] }),
                     v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                       "      ",
@@ -2117,10 +2117,10 @@ Unit 3: Eigenvalues and diagonalisation`)), Rt(structuredClone("")), Qt(structur
                     ] }),
                     v(me) && /* @__PURE__ */ y(f, { children: [
                       "      ",
-                      /* @__PURE__ */ R(De, { id: "syllabus", name: "syllabus", rows: 10, label: "Paste one section or a complete semester", value: /* @__PURE__ */ ((s) => s === void 0 ? `Semester 1 · Linear Algebra
+                      /* @__PURE__ */ R(De, { id: "syllabus", label: "Paste one section or a complete semester", value: /* @__PURE__ */ ((s) => s === void 0 ? `Semester 1 · Linear Algebra
 Unit 1: Matrices and systems
 Unit 2: Vector spaces
-Unit 3: Eigenvalues and diagonalisation` : s)(ut), disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(te?.studioControls?.busy), helperText: "AI proposes programme → semester → subject → unit → topic. You approve before anything is saved.", onChangeValue: (...s) => B("setSyllabusText", {}, s) })
+Unit 3: Eigenvalues and diagonalisation` : s)(ut), disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(te?.studioControls?.busy), helperText: "AI proposes programme → semester → subject → unit → topic. You approve before anything is saved.", onChangeValue: (...s) => B("setSyllabusText", {}, s), name: "syllabus", rows: 10 })
                     ] }),
                     v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                       "      ",
@@ -2132,17 +2132,17 @@ Unit 3: Eigenvalues and diagonalisation` : s)(ut), disabled: /* @__PURE__ */ ((s
                         "      ",
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ R(X, { id: "structure", className: "rs-studio-action", label: "Propose structure with AI", theme: "auto", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(qt), variant: "primary", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(te?.studioControls?.unavailable), onAction: (...s) => B("requestStructure", {}, s), loadingText: "Generating hierarchy…" })
+                          /* @__PURE__ */ R(X, { id: "structure", className: "rs-studio-action", loadingText: "Generating hierarchy…", label: "Propose structure with AI", theme: "auto", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(qt), variant: "primary", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(te?.studioControls?.unavailable), onAction: (...s) => B("requestStructure", {}, s) })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ R(X, { id: "collapse_syllabus_setup", className: "rs-studio-action", onAction: (...s) => B("collapseSyllabusSetup", {}, s), label: "Hide setup", theme: "auto", variant: "ghost" })
+                          /* @__PURE__ */ R(X, { id: "collapse_syllabus_setup", className: "rs-studio-action", label: "Hide setup", theme: "auto", variant: "ghost", onAction: (...s) => B("collapseSyllabusSetup", {}, s) })
                         ] })
                       ] })
                     ] }),
                     v(ye) && /* @__PURE__ */ y(f, { children: [
                       "      ",
-                      /* @__PURE__ */ R(Bs, { id: "problems_text", className: "rs-problem-list", items: /* @__PURE__ */ ((s) => s === void 0 ? [] : s)(Zt), indent: 20, emptyText: "No problems yet. Use Add problems to create examples.", onItemClick: (...s) => B("selectProblem", { depth: "", index: "", item: "" }, s), selectedIds: /* @__PURE__ */ ((s) => s === void 0 ? [] : s)($t), selectionMode: "single", defaultExpandAll: !0, showDefaultIcons: !0, showLines: !1, expandOnItemClick: !0, children: (s) => (() => {
+                      /* @__PURE__ */ R(Bs, { id: "problems_text", className: "rs-problem-list", indent: 20, emptyText: "No problems yet. Use Add problems to create examples.", showLines: !1, onItemClick: (...s) => B("selectProblem", { depth: "", index: "", item: "" }, s), selectedIds: /* @__PURE__ */ ((s) => s === void 0 ? [] : s)($t), selectionMode: "single", defaultExpandAll: !0, items: /* @__PURE__ */ ((s) => s === void 0 ? [] : s)(Zt), showDefaultIcons: !0, expandOnItemClick: !0, children: (s) => (() => {
                         const r = { ...s || {}, item: s?.item ?? s, index: s?.index ?? s?.i ?? 0 };
                         return /* @__PURE__ */ y(f, { children: [
                           "      ",
@@ -2161,7 +2161,7 @@ Unit 3: Eigenvalues and diagonalisation` : s)(ut), disabled: /* @__PURE__ */ ((s
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ R(De, { id: "new_problem_input", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(te?.studioControls?.busy), placeholder: "Enter a new problem for the selected topic", rows: 5, label: "Problem statement", value: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(Ue), required: !0, autoResize: !0, onChangeValue: (...s) => B("setNewProblemText", {}, s), name: "newProblem" })
+                          /* @__PURE__ */ R(De, { id: "new_problem_input", autoResize: !0, name: "newProblem", rows: 5, value: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(Ue), disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(te?.studioControls?.busy), placeholder: "Enter a new problem for the selected topic", onChangeValue: (...s) => B("setNewProblemText", {}, s), label: "Problem statement", required: !0 })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
@@ -2173,7 +2173,7 @@ Unit 3: Eigenvalues and diagonalisation` : s)(ut), disabled: /* @__PURE__ */ ((s
                             "      ",
                             v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                               "      ",
-                              /* @__PURE__ */ R(X, { id: "save_new_problem", className: "rs-studio-action", loadingText: "Checking saved solutions…", label: "Find or generate solution", theme: "auto", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(be), variant: "primary", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(be), onAction: (...s) => B("submitNewProblem", {}, s) })
+                              /* @__PURE__ */ R(X, { id: "save_new_problem", className: "rs-studio-action", label: "Find or generate solution", theme: "auto", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(be), variant: "primary", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(be), onAction: (...s) => B("submitNewProblem", {}, s), loadingText: "Checking saved solutions…" })
                             ] }),
                             v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                               "      ",
@@ -2199,7 +2199,7 @@ Unit 3: Eigenvalues and diagonalisation` : s)(ut), disabled: /* @__PURE__ */ ((s
                         "      ",
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ R(X, { id: "add_problems", className: "rs-studio-action", label: "Add new problem", theme: "auto", variant: "outline", onAction: (...s) => B("openNewProblemForm", {}, s) })
+                          /* @__PURE__ */ R(X, { id: "add_problems", className: "rs-studio-action", theme: "auto", variant: "outline", onAction: (...s) => B("openNewProblemForm", {}, s), label: "Add new problem" })
                         ] })
                       ] })
                     ] })
@@ -2211,7 +2211,7 @@ Unit 3: Eigenvalues and diagonalisation` : s)(ut), disabled: /* @__PURE__ */ ((s
                     "      ",
                     v(/* @__PURE__ */ ((s) => s === void 0 ? "" : s)(Ie)) && /* @__PURE__ */ y(f, { children: [
                       "      ",
-                      /* @__PURE__ */ R($, { id: "problem_solution_status", className: "rs-solution-source", as: "p", role: "status", content: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(Ie), "aria-live": "polite" })
+                      /* @__PURE__ */ R($, { id: "problem_solution_status", className: "rs-solution-source", "aria-live": "polite", as: "p", role: "status", content: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(Ie) })
                     ] }),
                     v(/* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(te?.studioControls?.lessonEmpty)) && /* @__PURE__ */ y(f, { children: [
                       "      ",
@@ -2237,7 +2237,7 @@ Unit 3: Eigenvalues and diagonalisation` : s)(ut), disabled: /* @__PURE__ */ ((s
                     ] }),
                     v(/* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(de)) && /* @__PURE__ */ y(f, { children: [
                       "      ",
-                      /* @__PURE__ */ R($s, { id: "board", onNext: (...s) => B("selectStep", {}, s), boardOptions: { animateCurrentStepOnly: !0, clearFutureSteps: !1, preserveRevealedSteps: !0, writingEffect: !0 }, editOperations: [], captionsEnabled: !0, speedLabel: "Normal", onStepSelect: (...s) => B("selectStep", {}, s), showStepPopup: !0, popupInitiallyOpen: !1, steps: /* @__PURE__ */ ((s) => s === void 0 ? [{ content: [{ label: "Given", latex: "A=\\begin{bmatrix}2&1\\\\1&2\\end{bmatrix}", type: "equation", visualText: "A = [[2, 1], [1, 2]]" }, { term: "Eigenvalue", text: "A scalar λ for which Av = λv for some non-zero vector v.", type: "definition" }], explanation: "For a square matrix A, eigenvalues satisfy det(A minus lambda I) equals zero.", id: "classify", narration: "First identify the matrix and the required eigenvalue equation.", teacherPrompt: "What size identity matrix is required here?", teacherQuestion: { correctValue: "b", explanation: "A is a 2 × 2 matrix, so I must have the same dimensions.", options: [{ label: "1 × 1", value: "a" }, { label: "2 × 2", value: "b" }, { label: "2 × 3", value: "c" }, { label: "3 × 3", value: "d" }], prompt: "What size identity matrix is required here?" }, title: "Classify the system", why: "This converts a matrix question into a polynomial equation." }, { content: [{ label: "Characteristic determinant", latex: "\\det(A-\\lambda I)=(2-\\lambda)^2-1=0", type: "equation", visualText: "det(A − λI) = (2 − λ)² − 1 = 0" }, { latex: "\\lambda^2-4\\lambda+3=0", type: "equation", visualText: "λ² − 4λ + 3 = 0" }], explanation: "The determinant is (2 minus lambda) squared minus one.", id: "determinant", narration: "Subtract lambda on the diagonal, then compute the determinant.", teacherPrompt: "Why is the off-diagonal product equal to one?", teacherQuestion: { correctValue: "a", explanation: "The off-diagonal entries are both 1, so their product is 1.", options: [{ label: "Because 1 × 1 = 1", value: "a" }, { label: "Because 2 − λ = 1", value: "b" }, { label: "Because det(A) = 1", value: "c" }, { label: "Because λ is always 1", value: "d" }], prompt: "Why is the off-diagonal product equal to one?" }, title: "Form the characteristic equation", why: "A non-zero eigenvector exists only when A minus lambda I is singular." }, { content: [{ label: "Eigenvalues", latex: "(\\lambda-1)(\\lambda-3)=0\\Rightarrow\\lambda=1,3", type: "equation", visualText: "(λ − 1)(λ − 3) = 0, so λ = 1 or 3" }, { text: "Both values make det(A − λI) equal zero.", tone: "success", type: "note" }], explanation: "The characteristic polynomial factors into lambda minus one times lambda minus three.", id: "solve", narration: "Factor the polynomial and verify each value.", teacherPrompt: "Which eigenvalue corresponds to [1, 1]?", teacherQuestion: { correctValue: "d", explanation: "A[1,1]ᵀ = [3,3]ᵀ = 3[1,1]ᵀ.", options: [{ label: "−1", value: "a" }, { label: 0, value: "b" }, { label: 1, value: "c" }, { label: 3, value: "d" }], prompt: "Which eigenvalue corresponds to [1, 1]?" }, title: "Solve and verify", why: "Substitution verifies both determinant values are zero." }] : s)(Nt), playing: !1, activeStep: /* @__PURE__ */ ((s) => s === void 0 ? 0 : s)(Mt), autoAdvance: !0, learningGoal: /* @__PURE__ */ ((s) => s === void 0 ? "Form the characteristic equation, solve it and verify the eigenvalues." : s)(Ze), problemStatement: /* @__PURE__ */ ((s) => s === void 0 ? "Find the eigenvalues of A = [[2, 1], [1, 2]]." : s)(Yt), title: /* @__PURE__ */ ((s) => s === void 0 ? "Find the eigenvalues of a 2 × 2 matrix" : s)(ft), lessonKind: /* @__PURE__ */ ((s) => s === void 0 ? "worked-example" : s)(jt?.lessonKind), problemLabel: /* @__PURE__ */ ((s) => s === void 0 ? "Representative problem · Linear algebra" : s)(xt), reducedMotion: !1, stepDurationMs: 5500 })
+                      /* @__PURE__ */ R($s, { id: "board", stepDurationMs: 5500, steps: /* @__PURE__ */ ((s) => s === void 0 ? [{ content: [{ label: "Given", latex: "A=\\begin{bmatrix}2&1\\\\1&2\\end{bmatrix}", type: "equation", visualText: "A = [[2, 1], [1, 2]]" }, { term: "Eigenvalue", text: "A scalar λ for which Av = λv for some non-zero vector v.", type: "definition" }], explanation: "For a square matrix A, eigenvalues satisfy det(A minus lambda I) equals zero.", id: "classify", narration: "First identify the matrix and the required eigenvalue equation.", teacherPrompt: "What size identity matrix is required here?", teacherQuestion: { correctValue: "b", explanation: "A is a 2 × 2 matrix, so I must have the same dimensions.", options: [{ label: "1 × 1", value: "a" }, { label: "2 × 2", value: "b" }, { label: "2 × 3", value: "c" }, { label: "3 × 3", value: "d" }], prompt: "What size identity matrix is required here?" }, title: "Classify the system", why: "This converts a matrix question into a polynomial equation." }, { content: [{ label: "Characteristic determinant", latex: "\\det(A-\\lambda I)=(2-\\lambda)^2-1=0", type: "equation", visualText: "det(A − λI) = (2 − λ)² − 1 = 0" }, { latex: "\\lambda^2-4\\lambda+3=0", type: "equation", visualText: "λ² − 4λ + 3 = 0" }], explanation: "The determinant is (2 minus lambda) squared minus one.", id: "determinant", narration: "Subtract lambda on the diagonal, then compute the determinant.", teacherPrompt: "Why is the off-diagonal product equal to one?", teacherQuestion: { correctValue: "a", explanation: "The off-diagonal entries are both 1, so their product is 1.", options: [{ label: "Because 1 × 1 = 1", value: "a" }, { label: "Because 2 − λ = 1", value: "b" }, { label: "Because det(A) = 1", value: "c" }, { label: "Because λ is always 1", value: "d" }], prompt: "Why is the off-diagonal product equal to one?" }, title: "Form the characteristic equation", why: "A non-zero eigenvector exists only when A minus lambda I is singular." }, { content: [{ label: "Eigenvalues", latex: "(\\lambda-1)(\\lambda-3)=0\\Rightarrow\\lambda=1,3", type: "equation", visualText: "(λ − 1)(λ − 3) = 0, so λ = 1 or 3" }, { text: "Both values make det(A − λI) equal zero.", tone: "success", type: "note" }], explanation: "The characteristic polynomial factors into lambda minus one times lambda minus three.", id: "solve", narration: "Factor the polynomial and verify each value.", teacherPrompt: "Which eigenvalue corresponds to [1, 1]?", teacherQuestion: { correctValue: "d", explanation: "A[1,1]ᵀ = [3,3]ᵀ = 3[1,1]ᵀ.", options: [{ label: "−1", value: "a" }, { label: 0, value: "b" }, { label: 1, value: "c" }, { label: 3, value: "d" }], prompt: "Which eigenvalue corresponds to [1, 1]?" }, title: "Solve and verify", why: "Substitution verifies both determinant values are zero." }] : s)(Nt), title: /* @__PURE__ */ ((s) => s === void 0 ? "Find the eigenvalues of a 2 × 2 matrix" : s)(ft), activeStep: /* @__PURE__ */ ((s) => s === void 0 ? 0 : s)(Mt), problemLabel: /* @__PURE__ */ ((s) => s === void 0 ? "Representative problem · Linear algebra" : s)(xt), popupInitiallyOpen: !1, lessonKind: /* @__PURE__ */ ((s) => s === void 0 ? "worked-example" : s)(jt?.lessonKind), onStepSelect: (...s) => B("selectStep", {}, s), reducedMotion: !1, problemStatement: /* @__PURE__ */ ((s) => s === void 0 ? "Find the eigenvalues of A = [[2, 1], [1, 2]]." : s)(Yt), onNext: (...s) => B("selectStep", {}, s), playing: !1, autoAdvance: !0, learningGoal: /* @__PURE__ */ ((s) => s === void 0 ? "Form the characteristic equation, solve it and verify the eigenvalues." : s)(Ze), captionsEnabled: !0, speedLabel: "Normal", boardOptions: { animateCurrentStepOnly: !0, clearFutureSteps: !1, preserveRevealedSteps: !0, writingEffect: !0 }, showStepPopup: !0, editOperations: [] })
                     ] }),
                     v(/* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(de)) && /* @__PURE__ */ y(f, { children: [
                       "      ",
@@ -2249,7 +2249,7 @@ Unit 3: Eigenvalues and diagonalisation` : s)(ut), disabled: /* @__PURE__ */ ((s
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ R(Ks, { id: "teacher_question_choices", label: "Choose one answer", value: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(et), layout: "vertical", options: /* @__PURE__ */ ((s) => s === void 0 ? [{ label: "1 × 1", value: "a" }, { label: "2 × 2", value: "b" }, { label: "2 × 3", value: "c" }, { label: "3 × 3", value: "d" }] : s)(Vt), colorScheme: "emerald", onChangeValue: (...s) => B("selectTeacherAnswer", {}, s), name: "teacherAnswer", size: "md" })
+                          /* @__PURE__ */ R(Ks, { id: "teacher_question_choices", value: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(et), layout: "vertical", options: /* @__PURE__ */ ((s) => s === void 0 ? [{ label: "1 × 1", value: "a" }, { label: "2 × 2", value: "b" }, { label: "2 × 3", value: "c" }, { label: "3 × 3", value: "d" }] : s)(Vt), colorScheme: "emerald", onChangeValue: (...s) => B("selectTeacherAnswer", {}, s), name: "teacherAnswer", size: "md", label: "Choose one answer" })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
@@ -2263,7 +2263,7 @@ Unit 3: Eigenvalues and diagonalisation` : s)(ut), disabled: /* @__PURE__ */ ((s
                         "      ",
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ R(X, { id: "keep", className: "rs-studio-action", onAction: (...s) => B("editStep", { operation: "keep" }, s), label: "Keep", theme: "auto", variant: "primary" })
+                          /* @__PURE__ */ R(X, { id: "keep", className: "rs-studio-action", label: "Keep", theme: "auto", variant: "primary", onAction: (...s) => B("editStep", { operation: "keep" }, s) })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
@@ -2285,11 +2285,11 @@ Unit 3: Eigenvalues and diagonalisation` : s)(ut), disabled: /* @__PURE__ */ ((s
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ R($, { id: "studio_rules_body", content: /* @__PURE__ */ ((s) => s === void 0 ? "Save your syllabus, review a lesson, and approve the teaching strategy before publishing." : s)(Ae), as: "p" })
+                          /* @__PURE__ */ R($, { id: "studio_rules_body", as: "p", content: /* @__PURE__ */ ((s) => s === void 0 ? "Save your syllabus, review a lesson, and approve the teaching strategy before publishing." : s)(Ae) })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ R($, { id: "strategy_status", className: "rs-strategy-status", as: "p", content: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(Bt) })
+                          /* @__PURE__ */ R($, { id: "strategy_status", className: "rs-strategy-status", content: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(Bt), as: "p" })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
@@ -2297,7 +2297,7 @@ Unit 3: Eigenvalues and diagonalisation` : s)(ut), disabled: /* @__PURE__ */ ((s
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ R(X, { id: "set_context", className: "rs-studio-action", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Ce), onAction: (...s) => B("setHierarchyContext", {}, s), loadingText: "Saving strategy…", label: "Approve strategy as context", theme: "auto", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Ce), variant: "primary" })
+                          /* @__PURE__ */ R(X, { id: "set_context", className: "rs-studio-action", loadingText: "Saving strategy…", label: "Approve strategy as context", theme: "auto", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Ce), variant: "primary", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Ce), onAction: (...s) => B("setHierarchyContext", {}, s) })
                         ] })
                       ] })
                     ] }),
@@ -2311,7 +2311,7 @@ Unit 3: Eigenvalues and diagonalisation` : s)(ut), disabled: /* @__PURE__ */ ((s
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ R(X, { id: "next_syllabus_version", className: "rs-studio-action", variant: "outline", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(te?.studioControls?.versionDisabled), onAction: (...s) => B("startNextSyllabusVersion", {}, s), label: "Start next version", theme: "auto" })
+                          /* @__PURE__ */ R(X, { id: "next_syllabus_version", className: "rs-studio-action", theme: "auto", variant: "outline", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(te?.studioControls?.versionDisabled), onAction: (...s) => B("startNextSyllabusVersion", {}, s), label: "Start next version" })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
@@ -2319,7 +2319,7 @@ Unit 3: Eigenvalues and diagonalisation` : s)(ut), disabled: /* @__PURE__ */ ((s
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ R(X, { id: "preview_content", className: "rs-studio-action", theme: "auto", variant: "outline", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(te?.studioControls?.previewDisabled), onAction: (...s) => B("prepareContentPreview", {}, s), label: "Prepare student preview" })
+                          /* @__PURE__ */ R(X, { id: "preview_content", className: "rs-studio-action", label: "Prepare student preview", theme: "auto", variant: "outline", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(te?.studioControls?.previewDisabled), onAction: (...s) => B("prepareContentPreview", {}, s) })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
