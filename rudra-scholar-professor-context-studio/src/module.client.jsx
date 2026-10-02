@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './styles.css';
 
-import { TreeView as RudraWidgetsTreeView } from '@rudra-studio/rudra-widgets';
-import { Card as RudraCoreCard, Button as RudraCoreButton, Typography as RudraCoreTypography, Alert as RudraCoreAlert, Badge as RudraCoreBadge } from '@rudra-studio/rudra-core';
+import { Typography as RudraCoreTypography, Alert as RudraCoreAlert, Badge as RudraCoreBadge, Card as RudraCoreCard, Button as RudraCoreButton } from '@rudra-studio/rudra-core';
 import { Box as RudraLayoutBox } from '@rudra-studio/rudra-layout';
-import { Select as RudraFormSelect, RadioGroup as RudraFormRadioGroup, Textarea as RudraFormTextarea, Input as RudraFormInput } from '@rudra-studio/rudra-form';
+import { RadioGroup as RudraFormRadioGroup, Textarea as RudraFormTextarea, Input as RudraFormInput, Select as RudraFormSelect } from '@rudra-studio/rudra-form';
 import { BlackboardLesson as ChalkmindMathBlackboardLesson } from '@rudra-studio/chalkmind-math';
+import { TreeView as RudraWidgetsTreeView } from '@rudra-studio/rudra-widgets';
 
 export default function CompiledModule(props) {
   const _scope = {};
@@ -446,7 +446,7 @@ if(!state.selectedTopicId)throw new Error('Select a Topic before approving a str
         } else {
           const queryResponse = await fetch("/api/modules/cmtma35xb000604jo2mif8zbl/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "scholarSaveContextStrategy", parameters, namedParameters }), signal: args.signal });
           const queryPayload = await queryResponse.json().catch(() => ({}));
-          if (!queryResponse.ok || queryPayload.success === false) throw new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')');
+          if (!queryResponse.ok || queryPayload.success === false) { const requestError = new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')'); requestError.status = queryResponse.status; throw requestError; }
           result = queryPayload.data;
         }
         stepResults["context_save_query"] = result; vars["queryResult"] = result; }
@@ -685,7 +685,7 @@ const root=state.finalHierarchy&&state.finalHierarchy.id?String(state.finalHiera
         } else {
           const queryResponse = await fetch("/api/modules/cmtma35xb000604jo2mif8zbl/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "scholarListTopicProblems", parameters, namedParameters }), signal: args.signal });
           const queryPayload = await queryResponse.json().catch(() => ({}));
-          if (!queryResponse.ok || queryPayload.success === false) throw new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')');
+          if (!queryResponse.ok || queryPayload.success === false) { const requestError = new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')'); requestError.status = queryResponse.status; throw requestError; }
           result = queryPayload.data;
         }
         stepResults["topic_problem_query"] = result; vars["queryResult"] = result; }
@@ -750,7 +750,7 @@ const show = state.showStudioSidebar === false; return { show, label: show ? 'Hi
         } else {
           const queryResponse = await fetch("/api/modules/cmtma35xb000604jo2mif8zbl/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "scholarListProfessorSyllabi", parameters, namedParameters }), signal: args.signal });
           const queryPayload = await queryResponse.json().catch(() => ({}));
-          if (!queryResponse.ok || queryPayload.success === false) throw new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')');
+          if (!queryResponse.ok || queryPayload.success === false) { const requestError = new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')'); requestError.status = queryResponse.status; throw requestError; }
           result = queryPayload.data;
         }
         stepResults["syllabi_query"] = result; vars["queryResult"] = result; }
@@ -1006,7 +1006,7 @@ return {statement,normalized,contextKey,versionNumber,canPersist,mode,topicPath,
         } else {
           const queryResponse = await fetch("/api/modules/cmtma35xb000604jo2mif8zbl/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "scholarResolveContextStrategy", parameters, namedParameters }), signal: args.signal });
           const queryPayload = await queryResponse.json().catch(() => ({}));
-          if (!queryResponse.ok || queryPayload.success === false) throw new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')');
+          if (!queryResponse.ok || queryPayload.success === false) { const requestError = new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')'); requestError.status = queryResponse.status; throw requestError; }
           result = queryPayload.data;
         }
         stepResults["problem_strategy_lookup"] = result; vars["queryResult"] = result; }
@@ -1044,7 +1044,7 @@ const rows=Array.isArray(stepResults.problem_strategy_lookup)?stepResults.proble
         } else {
           const queryResponse = await fetch("/api/modules/cmtma35xb000604jo2mif8zbl/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "scholarFindProblemSolution", parameters, namedParameters }), signal: args.signal });
           const queryPayload = await queryResponse.json().catch(() => ({}));
-          if (!queryResponse.ok || queryPayload.success === false) throw new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')');
+          if (!queryResponse.ok || queryPayload.success === false) { const requestError = new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')'); requestError.status = queryResponse.status; throw requestError; }
           result = queryPayload.data;
         }
         stepResults["problem_lookup"] = result; vars["queryResult"] = result; }
@@ -1175,7 +1175,7 @@ return ['You are a college mathematics professor creating an interactive blackbo
         { const roots = { args, inputs, state, sharedState, applicationState, pageState, pageData, serverData, vars, stepResults };
           const argumentValues = _resolveRuntimeValue({"model":"gemini-3.5-flash-lite","prompt":"{{ stepResults.problem_ai_prompt }}"}, roots) || {};
           const protectedResponse = await fetch('/api/rudra/protected', { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ moduleId: "cmtma35xb000604jo2mif8zbl", apiId: "geminiProblemSolution", argumentValues, context: roots }), signal: args.signal || AbortSignal.timeout(60000) });
-          const protectedPayload = await protectedResponse.json().catch(() => ({})); if (!protectedResponse.ok) throw new Error(protectedPayload.error || 'Protected API request failed (' + protectedResponse.status + ')'); const result = protectedPayload.data; stepResults["problem_ai_call"] = result; vars["apiResult"] = result; }
+          const protectedPayload = await protectedResponse.json().catch(() => ({})); if (!protectedResponse.ok) { const requestError = new Error(protectedPayload.error || 'Protected API request failed (' + protectedResponse.status + ')'); requestError.status = protectedResponse.status; throw requestError; } const result = protectedPayload.data; stepResults["problem_ai_call"] = result; vars["apiResult"] = result; }
       } catch (_caughtError) {
         const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "problem_ai_call" };
         vars.error = error; stepResults["problem_ai_call"] = { error };
@@ -1184,7 +1184,7 @@ return ['You are a college mathematics professor creating an interactive blackbo
             { const roots = { args, inputs, state, sharedState, applicationState, pageState, pageData, serverData, vars, stepResults };
               const argumentValues = _resolveRuntimeValue({"model":"gemini-3.6-flash","prompt":"{{ stepResults.problem_ai_prompt }}"}, roots) || {};
               const protectedResponse = await fetch('/api/rudra/protected', { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ moduleId: "cmtma35xb000604jo2mif8zbl", apiId: "geminiProblemSolution", argumentValues, context: roots }), signal: args.signal || AbortSignal.timeout(60000) });
-              const protectedPayload = await protectedResponse.json().catch(() => ({})); if (!protectedResponse.ok) throw new Error(protectedPayload.error || 'Protected API request failed (' + protectedResponse.status + ')'); const result = protectedPayload.data; stepResults["problem_ai_fallback"] = result; vars["apiResult"] = result; }
+              const protectedPayload = await protectedResponse.json().catch(() => ({})); if (!protectedResponse.ok) { const requestError = new Error(protectedPayload.error || 'Protected API request failed (' + protectedResponse.status + ')'); requestError.status = protectedResponse.status; throw requestError; } const result = protectedPayload.data; stepResults["problem_ai_fallback"] = result; vars["apiResult"] = result; }
           } catch (_caughtError) {
             const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "problem_ai_fallback" };
             vars.error = error; stepResults["problem_ai_fallback"] = { error };
@@ -1306,7 +1306,7 @@ const fallback=Boolean(fallbackResponse); const model=fallback?'gemini-3.6-flash
                 } else {
                   const queryResponse = await fetch("/api/modules/cmtma35xb000604jo2mif8zbl/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "scholarStoreProblemSolution", parameters, namedParameters }), signal: args.signal });
                   const queryPayload = await queryResponse.json().catch(() => ({}));
-                  if (!queryResponse.ok || queryPayload.success === false) throw new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')');
+                  if (!queryResponse.ok || queryPayload.success === false) { const requestError = new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')'); requestError.status = queryResponse.status; throw requestError; }
                   result = queryPayload.data;
                 }
                 stepResults["problem_store"] = result; vars["queryResult"] = result; }
@@ -1379,23 +1379,9 @@ const result=Array.isArray(stepResults.problem_store)?stepResults.problem_store[
         }
         return undefined;
       }
-      if ([429,500,502,503,504].includes(Number(error.status))) {
-        try {
-          { const roots = { args, inputs, state, sharedState, applicationState, pageState, pageData, serverData, vars, stepResults };
-            const argumentValues = _resolveRuntimeValue({"model":"gemini-3.6-flash","prompt":"{{ stepResults.problem_ai_prompt }}"}, roots) || {};
-            const protectedResponse = await fetch('/api/rudra/protected', { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ moduleId: "cmtma35xb000604jo2mif8zbl", apiId: "geminiProblemSolution", argumentValues, context: roots }), signal: args.signal || AbortSignal.timeout(60000) });
-            const protectedPayload = await protectedResponse.json().catch(() => ({})); if (!protectedResponse.ok) throw new Error(protectedPayload.error || 'Protected API request failed (' + protectedResponse.status + ')'); const result = protectedPayload.data; stepResults["problem_ai_fallback"] = result; vars["apiResult"] = result; }
-        } catch (_caughtError) {
-          const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "problem_ai_fallback" };
-          vars.error = error; stepResults["problem_ai_fallback"] = { error };
-          _setState("isResolvingProblem", false);
-          _setState("problemResolutionStatus", "Unable to prepare a valid lesson. Your problem is preserved; please retry. AI content requires independent review.");
-          return { "ok": false };
-          return undefined;
-        }
-        try {
-          { const event = args.event; const data = pageData; const globalState = state;
-            const customResult = await (async () => {
+      try {
+        { const event = args.event; const data = pageData; const globalState = state;
+          const customResult = await (async () => {
 const normalize = function normalizeScholarLesson(value, fallbackStatement = '') {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('A lesson object is required.');
   const string = (value, field, required = false) => {
@@ -1483,99 +1469,94 @@ const source = JSON.parse(raw.trim().replace(/^```(?:json)?\s*/i, '').replace(/\
 const board = normalize(source, stepResults.problem_prepare.statement);
 const solution = { ...board, summary: typeof source.summary === 'string' ? source.summary : '', answer: typeof source.answer === 'string' ? source.answer : '', checks: Array.isArray(source.checks) ? source.checks.filter((value) => typeof value === 'string') : [] };
 const fallback=Boolean(fallbackResponse); const model=fallback?'gemini-3.6-flash':'gemini-3.5-flash-lite'; return { solution, board, question: board.steps[0].teacherQuestion, text: [solution.summary,board.steps.map((step,index)=>(index+1)+'. '+step.title).join('\n'),solution.answer,solution.checks.join('\n')].filter(Boolean).join('\n\n'), model, fallback, status: fallback ? 'AI lesson prepared with Gemini 3.6 Flash fallback · review every step; mathematical correctness is not independently verified.' : 'AI lesson prepared with Gemini 3.5 Flash-Lite · review every step; mathematical correctness is not independently verified.' };
-            })();
-            stepResults["problem_ai_parse"] = customResult; vars["customCodeResult"] = customResult; }
+          })();
+          stepResults["problem_ai_parse"] = customResult; vars["customCodeResult"] = customResult; }
+      } catch (_caughtError) {
+        const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "problem_ai_parse" };
+        vars.error = error; stepResults["problem_ai_parse"] = { error };
+        _setState("isResolvingProblem", false);
+        _setState("problemResolutionStatus", "Unable to prepare a valid lesson. Your problem is preserved; please retry. AI content requires independent review.");
+        return { "ok": false };
+        return undefined;
+      }
+      if (stepResults.problem_prepare.canPersist) {
+        try {
+          { const roots = { args, inputs, state, sharedState, applicationState, pageState, pageData, serverData, vars, stepResults };
+            const namedParameters = _resolveRuntimeValue({"contextKey":"{{ stepResults.problem_prepare.contextKey }}","hierarchy":"{{ state.finalHierarchy }}","locale":"{{ stepResults.problem_prepare.locale }}","model":"{{ stepResults.problem_ai_parse.model }}","normalizedProblem":"{{ stepResults.problem_prepare.normalized }}","promptVersion":"{{ stepResults.problem_prepare.promptVersion }}","provider":"gemini","solution":"{{ stepResults.problem_ai_parse.solution }}","solutionMode":"{{ stepResults.problem_prepare.mode }}","statement":"{{ stepResults.problem_prepare.statement }}","strategyId":"{{ stepResults.problem_strategy_result.id }}","strategySnapshot":"{{ stepResults.problem_strategy_result.strategy }}","strategyVersion":"{{ stepResults.problem_strategy_result.version }}","topicId":"{{ state.selectedTopicId }}","topicPath":"{{ stepResults.problem_prepare.topicPath }}","userIdentity":"","versionNumber":"{{ stepResults.problem_prepare.versionNumber }}"}, roots) || {};
+            delete namedParameters["userIdentity"];
+            const parameters = [undefined, namedParameters["contextKey"], namedParameters["versionNumber"], namedParameters["hierarchy"], namedParameters["locale"], namedParameters["topicPath"], namedParameters["topicId"], namedParameters["statement"], namedParameters["normalizedProblem"], namedParameters["solutionMode"], namedParameters["promptVersion"], namedParameters["solution"], namedParameters["provider"], namedParameters["model"], namedParameters["strategyId"], namedParameters["strategyVersion"], namedParameters["strategySnapshot"]];
+            const queryExecutor = props.executeDatabaseQuery || props.runtime?.executeDatabaseQuery;
+            let result;
+            if (typeof queryExecutor === 'function') {
+              result = await queryExecutor({ moduleId: "cmtma35xb000604jo2mif8zbl", queryId: "scholarStoreProblemSolution", parameters, namedParameters, signal: args.signal });
+            } else {
+              const queryResponse = await fetch("/api/modules/cmtma35xb000604jo2mif8zbl/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "scholarStoreProblemSolution", parameters, namedParameters }), signal: args.signal });
+              const queryPayload = await queryResponse.json().catch(() => ({}));
+              if (!queryResponse.ok || queryPayload.success === false) { const requestError = new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')'); requestError.status = queryResponse.status; throw requestError; }
+              result = queryPayload.data;
+            }
+            stepResults["problem_store"] = result; vars["queryResult"] = result; }
         } catch (_caughtError) {
-          const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "problem_ai_parse" };
-          vars.error = error; stepResults["problem_ai_parse"] = { error };
+          const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "problem_store" };
+          vars.error = error; stepResults["problem_store"] = { error };
           _setState("isResolvingProblem", false);
           _setState("problemResolutionStatus", "Unable to prepare a valid lesson. Your problem is preserved; please retry. AI content requires independent review.");
           return { "ok": false };
           return undefined;
         }
-        if (stepResults.problem_prepare.canPersist) {
-          try {
-            { const roots = { args, inputs, state, sharedState, applicationState, pageState, pageData, serverData, vars, stepResults };
-              const namedParameters = _resolveRuntimeValue({"contextKey":"{{ stepResults.problem_prepare.contextKey }}","hierarchy":"{{ state.finalHierarchy }}","locale":"{{ stepResults.problem_prepare.locale }}","model":"{{ stepResults.problem_ai_parse.model }}","normalizedProblem":"{{ stepResults.problem_prepare.normalized }}","promptVersion":"{{ stepResults.problem_prepare.promptVersion }}","provider":"gemini","solution":"{{ stepResults.problem_ai_parse.solution }}","solutionMode":"{{ stepResults.problem_prepare.mode }}","statement":"{{ stepResults.problem_prepare.statement }}","strategyId":"{{ stepResults.problem_strategy_result.id }}","strategySnapshot":"{{ stepResults.problem_strategy_result.strategy }}","strategyVersion":"{{ stepResults.problem_strategy_result.version }}","topicId":"{{ state.selectedTopicId }}","topicPath":"{{ stepResults.problem_prepare.topicPath }}","userIdentity":"","versionNumber":"{{ stepResults.problem_prepare.versionNumber }}"}, roots) || {};
-              delete namedParameters["userIdentity"];
-              const parameters = [undefined, namedParameters["contextKey"], namedParameters["versionNumber"], namedParameters["hierarchy"], namedParameters["locale"], namedParameters["topicPath"], namedParameters["topicId"], namedParameters["statement"], namedParameters["normalizedProblem"], namedParameters["solutionMode"], namedParameters["promptVersion"], namedParameters["solution"], namedParameters["provider"], namedParameters["model"], namedParameters["strategyId"], namedParameters["strategyVersion"], namedParameters["strategySnapshot"]];
-              const queryExecutor = props.executeDatabaseQuery || props.runtime?.executeDatabaseQuery;
-              let result;
-              if (typeof queryExecutor === 'function') {
-                result = await queryExecutor({ moduleId: "cmtma35xb000604jo2mif8zbl", queryId: "scholarStoreProblemSolution", parameters, namedParameters, signal: args.signal });
-              } else {
-                const queryResponse = await fetch("/api/modules/cmtma35xb000604jo2mif8zbl/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "scholarStoreProblemSolution", parameters, namedParameters }), signal: args.signal });
-                const queryPayload = await queryResponse.json().catch(() => ({}));
-                if (!queryResponse.ok || queryPayload.success === false) throw new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')');
-                result = queryPayload.data;
-              }
-              stepResults["problem_store"] = result; vars["queryResult"] = result; }
-          } catch (_caughtError) {
-            const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "problem_store" };
-            vars.error = error; stepResults["problem_store"] = { error };
-            _setState("isResolvingProblem", false);
-            _setState("problemResolutionStatus", "Unable to prepare a valid lesson. Your problem is preserved; please retry. AI content requires independent review.");
-            return { "ok": false };
-            return undefined;
-          }
-          try {
-            { const event = args.event; const data = pageData; const globalState = state;
-              const customResult = await (async () => {
+        try {
+          { const event = args.event; const data = pageData; const globalState = state;
+            const customResult = await (async () => {
 const result=Array.isArray(stepResults.problem_store)?stepResults.problem_store[0]?.result:null; if(!result?.problemId) throw new Error('Lesson was not saved. Use an owned draft version.'); return result;
-              })();
-              stepResults["stored_problem_check"] = customResult; vars["customCodeResult"] = customResult; }
-          } catch (_caughtError) {
-            const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "stored_problem_check" };
-            vars.error = error; stepResults["stored_problem_check"] = { error };
-            _setState("isResolvingProblem", false);
-            _setState("problemResolutionStatus", "Unable to prepare a valid lesson. Your problem is preserved; please retry. AI content requires independent review.");
-            return { "ok": false };
-            return undefined;
-          }
-          _setState("problemSolution", stepResults.problem_ai_parse.solution);
-          _setState("problemSolutionText", stepResults.problem_ai_parse.text);
-          _setState("blackboardLesson", stepResults.problem_ai_parse.board);
-          _setState("blackboardTitle", stepResults.problem_ai_parse.board.title);
-          _setState("blackboardProblemLabel", stepResults.problem_ai_parse.board.problemLabel);
-          _setState("blackboardProblemStatement", stepResults.problem_ai_parse.board.problemStatement);
-          _setState("blackboardLearningGoal", stepResults.problem_ai_parse.board.learningGoal);
-          _setState("blackboardSteps", stepResults.problem_ai_parse.board.steps);
-          _setState("activeStep", 0);
-          _setState("teacherQuestionPrompt", stepResults.problem_ai_parse.question.prompt);
-          _setState("teacherQuestionOptions", stepResults.problem_ai_parse.question.options);
-          _setState("teacherQuestionCorrectValue", stepResults.problem_ai_parse.question.correctValue);
-          _setState("teacherQuestionExplanation", stepResults.problem_ai_parse.question.explanation);
-          _setState("selectedTeacherAnswer", "");
-          _setState("teacherAnswerFeedback", "");
-          _setState("problemResolutionStatus", stepResults.problem_ai_parse.status);
+            })();
+            stepResults["stored_problem_check"] = customResult; vars["customCodeResult"] = customResult; }
+        } catch (_caughtError) {
+          const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "stored_problem_check" };
+          vars.error = error; stepResults["stored_problem_check"] = { error };
           _setState("isResolvingProblem", false);
-          _setState("hasProblemSolution", true);
-          return state.problemSolution;
-        } else {
-          _setState("problemSolution", stepResults.problem_ai_parse.solution);
-          _setState("problemSolutionText", stepResults.problem_ai_parse.text);
-          _setState("blackboardLesson", stepResults.problem_ai_parse.board);
-          _setState("blackboardTitle", stepResults.problem_ai_parse.board.title);
-          _setState("blackboardProblemLabel", stepResults.problem_ai_parse.board.problemLabel);
-          _setState("blackboardProblemStatement", stepResults.problem_ai_parse.board.problemStatement);
-          _setState("blackboardLearningGoal", stepResults.problem_ai_parse.board.learningGoal);
-          _setState("blackboardSteps", stepResults.problem_ai_parse.board.steps);
-          _setState("activeStep", 0);
-          _setState("teacherQuestionPrompt", stepResults.problem_ai_parse.question.prompt);
-          _setState("teacherQuestionOptions", stepResults.problem_ai_parse.question.options);
-          _setState("teacherQuestionCorrectValue", stepResults.problem_ai_parse.question.correctValue);
-          _setState("teacherQuestionExplanation", stepResults.problem_ai_parse.question.explanation);
-          _setState("selectedTeacherAnswer", "");
-          _setState("teacherAnswerFeedback", "");
-          _setState("problemResolutionStatus", stepResults.problem_ai_parse.status);
-          _setState("isResolvingProblem", false);
-          _setState("hasProblemSolution", true);
-          return state.problemSolution;
+          _setState("problemResolutionStatus", "Unable to prepare a valid lesson. Your problem is preserved; please retry. AI content requires independent review.");
+          return { "ok": false };
+          return undefined;
         }
-      } else {
+        _setState("problemSolution", stepResults.problem_ai_parse.solution);
+        _setState("problemSolutionText", stepResults.problem_ai_parse.text);
+        _setState("blackboardLesson", stepResults.problem_ai_parse.board);
+        _setState("blackboardTitle", stepResults.problem_ai_parse.board.title);
+        _setState("blackboardProblemLabel", stepResults.problem_ai_parse.board.problemLabel);
+        _setState("blackboardProblemStatement", stepResults.problem_ai_parse.board.problemStatement);
+        _setState("blackboardLearningGoal", stepResults.problem_ai_parse.board.learningGoal);
+        _setState("blackboardSteps", stepResults.problem_ai_parse.board.steps);
+        _setState("activeStep", 0);
+        _setState("teacherQuestionPrompt", stepResults.problem_ai_parse.question.prompt);
+        _setState("teacherQuestionOptions", stepResults.problem_ai_parse.question.options);
+        _setState("teacherQuestionCorrectValue", stepResults.problem_ai_parse.question.correctValue);
+        _setState("teacherQuestionExplanation", stepResults.problem_ai_parse.question.explanation);
+        _setState("selectedTeacherAnswer", "");
+        _setState("teacherAnswerFeedback", "");
+        _setState("problemResolutionStatus", stepResults.problem_ai_parse.status);
         _setState("isResolvingProblem", false);
-        _setState("problemResolutionStatus", "Unable to prepare a valid lesson. Your problem is preserved; please retry. AI content requires independent review.");
-        return { "ok": false };
+        _setState("hasProblemSolution", true);
+        return state.problemSolution;
+      } else {
+        _setState("problemSolution", stepResults.problem_ai_parse.solution);
+        _setState("problemSolutionText", stepResults.problem_ai_parse.text);
+        _setState("blackboardLesson", stepResults.problem_ai_parse.board);
+        _setState("blackboardTitle", stepResults.problem_ai_parse.board.title);
+        _setState("blackboardProblemLabel", stepResults.problem_ai_parse.board.problemLabel);
+        _setState("blackboardProblemStatement", stepResults.problem_ai_parse.board.problemStatement);
+        _setState("blackboardLearningGoal", stepResults.problem_ai_parse.board.learningGoal);
+        _setState("blackboardSteps", stepResults.problem_ai_parse.board.steps);
+        _setState("activeStep", 0);
+        _setState("teacherQuestionPrompt", stepResults.problem_ai_parse.question.prompt);
+        _setState("teacherQuestionOptions", stepResults.problem_ai_parse.question.options);
+        _setState("teacherQuestionCorrectValue", stepResults.problem_ai_parse.question.correctValue);
+        _setState("teacherQuestionExplanation", stepResults.problem_ai_parse.question.explanation);
+        _setState("selectedTeacherAnswer", "");
+        _setState("teacherAnswerFeedback", "");
+        _setState("problemResolutionStatus", stepResults.problem_ai_parse.status);
+        _setState("isResolvingProblem", false);
+        _setState("hasProblemSolution", true);
+        return state.problemSolution;
       }
     }
     return undefined;
@@ -1648,7 +1629,7 @@ const root=state.finalHierarchy&&state.finalHierarchy.id?String(state.finalHiera
         } else {
           const queryResponse = await fetch("/api/modules/cmtma35xb000604jo2mif8zbl/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "scholarResolveContextStrategy", parameters, namedParameters }), signal: args.signal });
           const queryPayload = await queryResponse.json().catch(() => ({}));
-          if (!queryResponse.ok || queryPayload.success === false) throw new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')');
+          if (!queryResponse.ok || queryPayload.success === false) { const requestError = new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')'); requestError.status = queryResponse.status; throw requestError; }
           result = queryPayload.data;
         }
         stepResults["load_strategy_query"] = result; vars["queryResult"] = result; }
@@ -1774,7 +1755,7 @@ return {value,feedback:lead+(state.teacherQuestionExplanation?' '+String(state.t
           } else {
             const queryResponse = await fetch("/api/modules/cmtma35xb000604jo2mif8zbl/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "scholarLoadProfessorSyllabus", parameters, namedParameters }), signal: args.signal });
             const queryPayload = await queryResponse.json().catch(() => ({}));
-            if (!queryResponse.ok || queryPayload.success === false) throw new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')');
+            if (!queryResponse.ok || queryPayload.success === false) { const requestError = new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')'); requestError.status = queryResponse.status; throw requestError; }
             result = queryPayload.data;
           }
           stepResults["saved_syllabus_query"] = result; vars["queryResult"] = result; }
@@ -1905,7 +1886,7 @@ return (function prepareSyllabus(args, inputs, state) {
           } else {
             const queryResponse = await fetch("/api/modules/cmtma35xb000604jo2mif8zbl/database/execute", { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ queryId: "scholarSaveProfessorSyllabus", parameters, namedParameters }), signal: args.signal });
             const queryPayload = await queryResponse.json().catch(() => ({}));
-            if (!queryResponse.ok || queryPayload.success === false) throw new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')');
+            if (!queryResponse.ok || queryPayload.success === false) { const requestError = new Error(queryPayload.error || 'Database query failed (' + queryResponse.status + ')'); requestError.status = queryResponse.status; throw requestError; }
             result = queryPayload.data;
           }
           stepResults["save_syllabus_query"] = result; vars["queryResult"] = result; }
@@ -2084,7 +2065,7 @@ return ['You are an academic curriculum architect.','Return JSON only with Progr
         { const roots = { args, inputs, state, sharedState, applicationState, pageState, pageData, serverData, vars, stepResults };
           const argumentValues = _resolveRuntimeValue({"model":"gemini-3.5-flash-lite","prompt":"{{ stepResults.structure_prompt }}"}, roots) || {};
           const protectedResponse = await fetch('/api/rudra/protected', { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ moduleId: "cmtma35xb000604jo2mif8zbl", apiId: "geminiCurriculumStructure", argumentValues, context: roots }), signal: args.signal || AbortSignal.timeout(60000) });
-          const protectedPayload = await protectedResponse.json().catch(() => ({})); if (!protectedResponse.ok) throw new Error(protectedPayload.error || 'Protected API request failed (' + protectedResponse.status + ')'); const result = protectedPayload.data; stepResults["structure_api"] = result; vars["apiResult"] = result; }
+          const protectedPayload = await protectedResponse.json().catch(() => ({})); if (!protectedResponse.ok) { const requestError = new Error(protectedPayload.error || 'Protected API request failed (' + protectedResponse.status + ')'); requestError.status = protectedResponse.status; throw requestError; } const result = protectedPayload.data; stepResults["structure_api"] = result; vars["apiResult"] = result; }
       } catch (_caughtError) {
         const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "structure_api" };
         vars.error = error; stepResults["structure_api"] = { error };
@@ -2093,7 +2074,7 @@ return ['You are an academic curriculum architect.','Return JSON only with Progr
             { const roots = { args, inputs, state, sharedState, applicationState, pageState, pageData, serverData, vars, stepResults };
               const argumentValues = _resolveRuntimeValue({"model":"gemini-3.6-flash","prompt":"{{ stepResults.structure_prompt }}"}, roots) || {};
               const protectedResponse = await fetch('/api/rudra/protected', { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ moduleId: "cmtma35xb000604jo2mif8zbl", apiId: "geminiCurriculumStructure", argumentValues, context: roots }), signal: args.signal || AbortSignal.timeout(60000) });
-              const protectedPayload = await protectedResponse.json().catch(() => ({})); if (!protectedResponse.ok) throw new Error(protectedPayload.error || 'Protected API request failed (' + protectedResponse.status + ')'); const result = protectedPayload.data; stepResults["structure_api_fallback"] = result; vars["apiResult"] = result; }
+              const protectedPayload = await protectedResponse.json().catch(() => ({})); if (!protectedResponse.ok) { const requestError = new Error(protectedPayload.error || 'Protected API request failed (' + protectedResponse.status + ')'); requestError.status = protectedResponse.status; throw requestError; } const result = protectedPayload.data; stepResults["structure_api_fallback"] = result; vars["apiResult"] = result; }
           } catch (_caughtError) {
             const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "structure_api_fallback" };
             vars.error = error; stepResults["structure_api_fallback"] = { error };
@@ -2147,63 +2128,42 @@ const fallback=Boolean(stepResults.structure_api_fallback?.candidates);const r=f
         }
         return undefined;
       }
-      if ([429,500,502,503,504].includes(Number(error.status))) {
-        try {
-          { const roots = { args, inputs, state, sharedState, applicationState, pageState, pageData, serverData, vars, stepResults };
-            const argumentValues = _resolveRuntimeValue({"model":"gemini-3.6-flash","prompt":"{{ stepResults.structure_prompt }}"}, roots) || {};
-            const protectedResponse = await fetch('/api/rudra/protected', { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ moduleId: "cmtma35xb000604jo2mif8zbl", apiId: "geminiCurriculumStructure", argumentValues, context: roots }), signal: args.signal || AbortSignal.timeout(60000) });
-            const protectedPayload = await protectedResponse.json().catch(() => ({})); if (!protectedResponse.ok) throw new Error(protectedPayload.error || 'Protected API request failed (' + protectedResponse.status + ')'); const result = protectedPayload.data; stepResults["structure_api_fallback"] = result; vars["apiResult"] = result; }
-        } catch (_caughtError) {
-          const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "structure_api_fallback" };
-          vars.error = error; stepResults["structure_api_fallback"] = { error };
-          _setState("isGeneratingStructure", false);
-          await refreshStudioControls({  });
-          _setState("structureStatus", "Unable to propose a valid hierarchy. Check the syllabus and retry. Your existing hierarchy has been kept.");
-          return { "ok": false };
-          return undefined;
-        }
-        try {
-          { const event = args.event; const data = pageData; const globalState = state;
-            const customResult = await (async () => {
+      try {
+        { const event = args.event; const data = pageData; const globalState = state;
+          const customResult = await (async () => {
 const fallback=Boolean(stepResults.structure_api_fallback?.candidates);const r=fallback?stepResults.structure_api_fallback:(stepResults.structure_api||{}),parts=r?.candidates?.[0]?.content?.parts,raw=Array.isArray(parts)?parts.map(x=>String(x?.text||'')).join(''):'';if(!raw.trim())throw new Error('Gemini returned no curriculum structure.');const o=JSON.parse(raw.trim().replace(/^\`\`\`(?:json)?\s*/i,'').replace(/\s*\`\`\`$/,'')),types=['programme','semester','subject','unit','topic'],slug=(v,f)=>String(v||f).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,80)||f,norm=(v,d=0,f='item')=>{if(!v||typeof v!=='object'||d>4)return null;const title=String(v.title||'').trim().slice(0,180);if(!title)return null;const type=types[Math.min(d,4)],children=Array.isArray(v.children)?v.children.slice(0,16).map((c,i)=>norm(c,d+1,type+'-'+i)).filter(Boolean):[],problems=type==='topic'&&Array.isArray(v.problems)?v.problems.map(String).map(x=>x.trim()).filter(Boolean).slice(0,8):[];return{id:slug(v.id||title,f),type,title,children,...(type==='topic'?{problems:problems.length?problems:['Create a worked example for '+title+'.','Add one conceptual verification question for '+title+'.','Add one examination-style application problem for '+title+'.']}: {})}};const hierarchy=norm(o.hierarchy||o,0,'programme');if(!hierarchy)throw new Error('Gemini returned an invalid hierarchy.');const tree=(n,path=[])=>{const next=[...path,n.id];return{id:n.id,label:n.type[0].toUpperCase()+n.type.slice(1)+' · '+n.title,data:{type:n.type,title:n.title,path:next.join('/'),problems:n.problems||[]},children:n.children.map(c=>tree(c,next))}};const model=fallback?'gemini-3.6-flash':'gemini-3.5-flash-lite';return{hierarchy,items:[tree(hierarchy)],model,fallback,status:fallback?'Hierarchy ready using Gemini 3.6 Flash fallback. Select a Topic to view its problems.':'Hierarchy ready using Gemini 3.5 Flash-Lite. Select a Topic to view its problems.'};
-            })();
-            stepResults["structure_parse"] = customResult; vars["customCodeResult"] = customResult; }
-        } catch (_caughtError) {
-          const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "structure_parse" };
-          vars.error = error; stepResults["structure_parse"] = { error };
-          _setState("isGeneratingStructure", false);
-          await refreshStudioControls({  });
-          _setState("structureStatus", "Unable to propose a valid hierarchy. Check the syllabus and retry. Your existing hierarchy has been kept.");
-          return { "ok": false };
-          return undefined;
-        }
-        _setState("finalHierarchy", stepResults.structure_parse.hierarchy);
-        _setState("hierarchyItems", stepResults.structure_parse.items);
-        _setState("selectedHierarchyIds", []);
-        _setState("hasSelectedTopic", false);
-        _setState("showSyllabusSetup", false);
-        _setState("isSyllabusSetupCollapsed", true);
-        _setState("isGeneratingStructure", false);
-        await refreshStudioControls({  });
-        _setState("structureStatus", stepResults.structure_parse.status);
-        try {
-          await _emitOutput("aiStructureGenerated", { "hierarchy": stepResults.structure_parse.hierarchy, "languageCode": inputs.locale }, true);
-        } catch (_caughtError) {
-          const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "structure_generated" };
-          vars.error = error; stepResults["structure_generated"] = { error };
-          _setState("isGeneratingStructure", false);
-          await refreshStudioControls({  });
-          _setState("structureStatus", "Unable to propose a valid hierarchy. Check the syllabus and retry. Your existing hierarchy has been kept.");
-          return { "ok": false };
-          return undefined;
-        }
-        return stepResults.structure_parse;
-      } else {
+          })();
+          stepResults["structure_parse"] = customResult; vars["customCodeResult"] = customResult; }
+      } catch (_caughtError) {
+        const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "structure_parse" };
+        vars.error = error; stepResults["structure_parse"] = { error };
         _setState("isGeneratingStructure", false);
         await refreshStudioControls({  });
         _setState("structureStatus", "Unable to propose a valid hierarchy. Check the syllabus and retry. Your existing hierarchy has been kept.");
         return { "ok": false };
+        return undefined;
       }
+      _setState("finalHierarchy", stepResults.structure_parse.hierarchy);
+      _setState("hierarchyItems", stepResults.structure_parse.items);
+      _setState("selectedHierarchyIds", []);
+      _setState("hasSelectedTopic", false);
+      _setState("showSyllabusSetup", false);
+      _setState("isSyllabusSetupCollapsed", true);
+      _setState("isGeneratingStructure", false);
+      await refreshStudioControls({  });
+      _setState("structureStatus", stepResults.structure_parse.status);
+      try {
+        await _emitOutput("aiStructureGenerated", { "hierarchy": stepResults.structure_parse.hierarchy, "languageCode": inputs.locale }, true);
+      } catch (_caughtError) {
+        const error = { message: _caughtError instanceof Error ? _caughtError.message : String(_caughtError), name: _caughtError instanceof Error ? _caughtError.name : 'Error', status: typeof _caughtError?.status === 'number' ? _caughtError.status : undefined, stepId: "structure_generated" };
+        vars.error = error; stepResults["structure_generated"] = { error };
+        _setState("isGeneratingStructure", false);
+        await refreshStudioControls({  });
+        _setState("structureStatus", "Unable to propose a valid hierarchy. Check the syllabus and retry. Your existing hierarchy has been kept.");
+        return { "ok": false };
+        return undefined;
+      }
+      return stepResults.structure_parse;
     }
     return undefined;
   }
@@ -2412,37 +2372,37 @@ const text=String(state.newProblemText||'').trim();if(!text)throw new Error('Ent
 </>)}
 </>} icon={<>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="verification_icon" className="rs-verification-icon" as="span" content="!" />
 </>)}
-</>} variant="warning" appearance="soft" live="polite">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="verification_message" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Sign in with an approved professor account to use this studio." : _bindingValue)(accessGateMessage)} />
+</>} live="polite" variant="warning" appearance="soft">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="verification_message" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Sign in with an approved professor account to use this studio." : _bindingValue)(accessGateMessage)} />
 </>)}
 </RudraCoreAlert>
 </>)}
-      {isVisibleValue(canUseStudio) && (<>      <RudraLayoutBox id="grid" className={`${((_classValue) => _classValue == null || _classValue === false || typeof _classValue === 'object' ? '' : "" + String(_classValue))(((_bindingValue) => _bindingValue === undefined ? "grid rs-grid" : _bindingValue)(studioLayoutClass))}`}>      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(showStudioSidebar)) && (<>      <RudraCoreCard id="left" className="rs-panel rs-authoring-panel" as="section" theme="auto">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="syllabus_catalog" className="block rs-syllabus-catalog">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormSelect id="saved_syllabus_select" size="md" value={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(selectedSyllabusId)} radius="md" disabled={((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(_scope?.studioControls?.unavailable)} label="Continue with a saved syllabus" options={((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(savedSyllabusOptions)} placeholder="Select a syllabus" onChangeValue={(...eventArgs) => _callAction("selectSavedSyllabus", {}, eventArgs)} name="savedSyllabus" />
+      {isVisibleValue(canUseStudio) && (<>      <RudraLayoutBox id="grid" className={`${((_classValue) => _classValue == null || _classValue === false || typeof _classValue === 'object' ? '' : "" + String(_classValue))(((_bindingValue) => _bindingValue === undefined ? "grid rs-grid" : _bindingValue)(studioLayoutClass))}`}>      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(showStudioSidebar)) && (<>      <RudraCoreCard id="left" className="rs-panel rs-authoring-panel" as="section" theme="auto">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="syllabus_catalog" className="block rs-syllabus-catalog">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormSelect id="saved_syllabus_select" value={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(selectedSyllabusId)} disabled={((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(_scope?.studioControls?.unavailable)} placeholder="Select a syllabus" name="savedSyllabus" radius="md" options={((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(savedSyllabusOptions)} onChangeValue={(...eventArgs) => _callAction("selectSavedSyllabus", {}, eventArgs)} size="md" label="Continue with a saved syllabus" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="refresh_syllabi" className="rs-studio-action" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isLoadingSyllabi)} variant="ghost" disabled={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isLoadingSyllabi)} onAction={(...eventArgs) => _callAction("loadProfessorSyllabi", {}, eventArgs)} loadingText="Loading syllabi…" label="Refresh syllabi" theme="auto" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="refresh_syllabi" className="rs-studio-action" variant="ghost" disabled={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isLoadingSyllabi)} onAction={(...eventArgs) => _callAction("loadProfessorSyllabi", {}, eventArgs)} loadingText="Loading syllabi…" label="Refresh syllabi" theme="auto" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isLoadingSyllabi)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="save_syllabus_draft" className="rs-studio-action" onAction={(...eventArgs) => _callAction("saveProfessorSyllabus", {"status": "draft"}, eventArgs)} loadingText="Saving syllabus…" label="Save current syllabus" theme="auto" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isSavingSyllabus)} variant="outline" disabled={((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(_scope?.studioControls?.unavailable)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="save_syllabus_draft" className="rs-studio-action" label="Save current syllabus" theme="auto" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isSavingSyllabus)} variant="outline" disabled={((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(_scope?.studioControls?.unavailable)} onAction={(...eventArgs) => _callAction("saveProfessorSyllabus", {"status": "draft"}, eventArgs)} loadingText="Saving syllabus…" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="publish_syllabus_students" className="rs-studio-action" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isSavingSyllabus)} variant="primary" disabled={((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(_scope?.studioControls?.unavailable)} onAction={(...eventArgs) => _callAction("saveProfessorSyllabus", {"status": "published"}, eventArgs)} loadingText="Publishing syllabus…" label="Publish current syllabus for students" theme="auto" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="publish_syllabus_students" className="rs-studio-action" variant="primary" disabled={((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(_scope?.studioControls?.unavailable)} onAction={(...eventArgs) => _callAction("saveProfessorSyllabus", {"status": "published"}, eventArgs)} loadingText="Publishing syllabus…" label="Publish current syllabus for students" theme="auto" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isSavingSyllabus)} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="syllabus_catalog_status" className="rs-muted" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Select a saved syllabus or save this draft." : _bindingValue)(syllabusStatus)} />
 </>)}
 </RudraLayoutBox>
 </>)}
-      {isVisibleValue(showSyllabusSetup) && (<>      <RudraLayoutBox id="syllabus_metadata" className="block rs-syllabus-metadata">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormInput id="syllabus_title_input" placeholder="Engineering Mathematics I" onChangeValue={(...eventArgs) => _callAction("setSyllabusTitle", {}, eventArgs)} name="syllabusTitle" size="md" label="Syllabus title" value={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(syllabusTitle)} disabled={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(_scope?.studioControls?.busy)} required={true} />
+      {isVisibleValue(showSyllabusSetup) && (<>      <RudraLayoutBox id="syllabus_metadata" className="block rs-syllabus-metadata">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormInput id="syllabus_title_input" label="Syllabus title" value={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(syllabusTitle)} disabled={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(_scope?.studioControls?.busy)} required={true} placeholder="Engineering Mathematics I" onChangeValue={(...eventArgs) => _callAction("setSyllabusTitle", {}, eventArgs)} name="syllabusTitle" size="md" />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormTextarea id="syllabus_description_input" value={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(syllabusDescription)} disabled={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(_scope?.studioControls?.busy)} placeholder="What students will learn" onChangeValue={(...eventArgs) => _callAction("setSyllabusDescription", {}, eventArgs)} name="syllabusDescription" rows={3} label="Description" />
 </>)}
 </RudraLayoutBox>
 </>)}
-      {isVisibleValue(isSyllabusSetupCollapsed) && (<>      <RudraCoreButton id="edit_syllabus_setup" className="rs-studio-action" onAction={(...eventArgs) => _callAction("expandSyllabusSetup", {}, eventArgs)} label="Edit syllabus / Regenerate" theme="auto" variant="outline" />
+      {isVisibleValue(isSyllabusSetupCollapsed) && (<>      <RudraCoreButton id="edit_syllabus_setup" className="rs-studio-action" label="Edit syllabus / Regenerate" theme="auto" variant="outline" onAction={(...eventArgs) => _callAction("expandSyllabusSetup", {}, eventArgs)} />
 </>)}
       {isVisibleValue(showSyllabusSetup) && (<>      <RudraCoreTypography id="left_title" as="h3" content={((_bindingValue) => _bindingValue === undefined ? "Semester syllabus" : _bindingValue)(_scope?.i18n?.import)} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="structure_status" className="rs-muted" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Review the proposed hierarchy, add problems, then set it as context." : _bindingValue)(structureStatus)} />
 </>)}
-      {isVisibleValue(showSyllabusSetup) && (<>      <RudraFormTextarea id="syllabus" rows={10} label="Paste one section or a complete semester" value={((_bindingValue) => _bindingValue === undefined ? "Semester 1 · Linear Algebra\nUnit 1: Matrices and systems\nUnit 2: Vector spaces\nUnit 3: Eigenvalues and diagonalisation" : _bindingValue)(syllabusDraftText)} disabled={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(_scope?.studioControls?.busy)} helperText="AI proposes programme → semester → subject → unit → topic. You approve before anything is saved." onChangeValue={(...eventArgs) => _callAction("setSyllabusText", {}, eventArgs)} name="syllabus" />
+      {isVisibleValue(showSyllabusSetup) && (<>      <RudraFormTextarea id="syllabus" name="syllabus" rows={10} label="Paste one section or a complete semester" value={((_bindingValue) => _bindingValue === undefined ? "Semester 1 · Linear Algebra\nUnit 1: Matrices and systems\nUnit 2: Vector spaces\nUnit 3: Eigenvalues and diagonalisation" : _bindingValue)(syllabusDraftText)} disabled={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(_scope?.studioControls?.busy)} helperText="AI proposes programme → semester → subject → unit → topic. You approve before anything is saved." onChangeValue={(...eventArgs) => _callAction("setSyllabusText", {}, eventArgs)} />
 </>)}
-      {isVisibleValue(showSyllabusSetup) && (<>      <RudraLayoutBox id="syllabus_actions" className="flex flex-wrap rs-syllabus-actions">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="structure" className="rs-studio-action" variant="primary" disabled={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isGeneratingStructure)} onAction={(...eventArgs) => _callAction("requestStructure", {}, eventArgs)} loadingText="Generating hierarchy…" label="Propose structure with AI" theme="auto" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isGeneratingStructure)} />
+      {isVisibleValue(showSyllabusSetup) && (<>      <RudraLayoutBox id="syllabus_actions" className="flex flex-wrap rs-syllabus-actions">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="structure" className="rs-studio-action" label="Propose structure with AI" theme="auto" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isGeneratingStructure)} variant="primary" disabled={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isGeneratingStructure)} onAction={(...eventArgs) => _callAction("requestStructure", {}, eventArgs)} loadingText="Generating hierarchy…" />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="collapse_syllabus_setup" className="rs-studio-action" label="Hide setup" theme="auto" variant="ghost" onAction={(...eventArgs) => _callAction("collapseSyllabusSetup", {}, eventArgs)} />
 </>)}
@@ -2450,19 +2410,19 @@ const text=String(state.newProblemText||'').trim();if(!text)throw new Error('Ent
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="final_hierarchy_title" as="h3" content="Final hierarchy" />
 </>)}
-      {isVisibleValue(hasSelectedTopic) && (<>      <RudraWidgetsTreeView id="problems_text" className="rs-problem-list" showLines={false} selectedIds={((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(selectedProblemIds)} defaultExpandAll={true} showDefaultIcons={true} expandOnItemClick={true} indent={20} emptyText="No problems yet. Use Add problems to create examples." onItemClick={(...eventArgs) => _callAction("selectProblem", {"depth": "", "index": "", "item": ""}, eventArgs)} selectionMode="single" items={((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(selectedTopicProblemItems)}>{(_payload) => { const _parentScope = _scope || {}; return (() => { const _scope = { ..._parentScope, ...(_payload || {}), item: _payload?.item ?? _payload, index: _payload?.index ?? _payload?.i ?? 0, parent: _parentScope }; return (<>      <RudraCoreTypography id="problem_item_label" className="rs-tree-label-text" as="span" content={((_bindingValue) => _bindingValue === undefined ? "Untitled item" : _bindingValue)(_scope?.item?.label)} />
+      {isVisibleValue(hasSelectedTopic) && (<>      <RudraWidgetsTreeView id="problems_text" className="rs-problem-list" indent={20} showLines={false} onItemClick={(...eventArgs) => _callAction("selectProblem", {"depth": "", "index": "", "item": ""}, eventArgs)} selectionMode="single" items={((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(selectedTopicProblemItems)} emptyText="No problems yet. Use Add problems to create examples." selectedIds={((_bindingValue) => _bindingValue === undefined ? [] : _bindingValue)(selectedProblemIds)} defaultExpandAll={true} showDefaultIcons={true} expandOnItemClick={true}>{(_payload) => { const _parentScope = _scope || {}; return (() => { const _scope = { ..._parentScope, ...(_payload || {}), item: _payload?.item ?? _payload, index: _payload?.index ?? _payload?.i ?? 0, parent: _parentScope }; return (<>      <RudraCoreTypography id="problem_item_label" className="rs-tree-label-text" content={((_bindingValue) => _bindingValue === undefined ? "Untitled item" : _bindingValue)(_scope?.item?.label)} as="span" />
       <RudraCoreTypography id="hierarchy_item_label" className="rs-tree-label-text" as="span" content={((_bindingValue) => _bindingValue === undefined ? "Untitled item" : _bindingValue)(_scope?.item?.label)} />
 </>); })(); }}</RudraWidgetsTreeView>
 </>)}
       {isVisibleValue(showNewProblemForm) && (<>      <RudraLayoutBox id="new_problem_form" className="block rs-new-problem-form">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="new_problem_title" as="h4" content="Add a context-scoped problem" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormTextarea id="new_problem_input" name="newProblem" rows={5} value={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(newProblemText)} required={true} autoResize={true} label="Problem statement" disabled={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(_scope?.studioControls?.busy)} placeholder="Enter a new problem for the selected topic" onChangeValue={(...eventArgs) => _callAction("setNewProblemText", {}, eventArgs)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormTextarea id="new_problem_input" name="newProblem" rows={5} required={true} label="Problem statement" value={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(newProblemText)} disabled={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(_scope?.studioControls?.busy)} autoResize={true} placeholder="Enter a new problem for the selected topic" onChangeValue={(...eventArgs) => _callAction("setNewProblemText", {}, eventArgs)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormSelect id="new_problem_mode" radius="md" options={[{"label":"Detailed steps","value":"detailed"},{"label":"Quick solution","value":"quick"}]} onChangeValue={(...eventArgs) => _callAction("setNewProblemSolutionMode", {}, eventArgs)} name="solutionMode" size="md" label="Solution style" value={((_bindingValue) => _bindingValue === undefined ? "detailed" : _bindingValue)(newProblemSolutionMode)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormSelect id="new_problem_mode" size="md" label="Solution style" value={((_bindingValue) => _bindingValue === undefined ? "detailed" : _bindingValue)(newProblemSolutionMode)} radius="md" options={[{"label":"Detailed steps","value":"detailed"},{"label":"Quick solution","value":"quick"}]} onChangeValue={(...eventArgs) => _callAction("setNewProblemSolutionMode", {}, eventArgs)} name="solutionMode" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="new_problem_actions" className="flex flex-wrap rs-new-problem-actions">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="save_new_problem" className="rs-studio-action" variant="primary" disabled={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isResolvingProblem)} onAction={(...eventArgs) => _callAction("submitNewProblem", {}, eventArgs)} loadingText="Checking saved solutions…" label="Find or generate solution" theme="auto" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isResolvingProblem)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="new_problem_actions" className="flex flex-wrap rs-new-problem-actions">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="save_new_problem" className="rs-studio-action" theme="auto" loading={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isResolvingProblem)} variant="primary" disabled={((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(isResolvingProblem)} onAction={(...eventArgs) => _callAction("submitNewProblem", {}, eventArgs)} loadingText="Checking saved solutions…" label="Find or generate solution" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="cancel_new_problem" className="rs-studio-action" variant="ghost" onAction={(...eventArgs) => _callAction("closeNewProblemForm", {}, eventArgs)} label="Cancel" theme="auto" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="cancel_new_problem" className="rs-studio-action" label="Cancel" theme="auto" variant="ghost" onAction={(...eventArgs) => _callAction("closeNewProblemForm", {}, eventArgs)} />
 </>)}
 </RudraLayoutBox>
 </>)}
@@ -2472,29 +2432,29 @@ const text=String(state.newProblemText||'').trim();if(!text)throw new Error('Ent
 </>)}
 </RudraLayoutBox>
 </>)}
-      {isVisibleValue(hasSelectedTopic) && (<>      <RudraLayoutBox id="hierarchy_actions" className="flex flex-wrap rs-actions">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="add_problems" className="rs-studio-action" variant="outline" onAction={(...eventArgs) => _callAction("openNewProblemForm", {}, eventArgs)} label="Add new problem" theme="auto" />
+      {isVisibleValue(hasSelectedTopic) && (<>      <RudraLayoutBox id="hierarchy_actions" className="flex flex-wrap rs-actions">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="add_problems" className="rs-studio-action" onAction={(...eventArgs) => _callAction("openNewProblemForm", {}, eventArgs)} label="Add new problem" theme="auto" variant="outline" />
 </>)}
 </RudraLayoutBox>
 </>)}
 </RudraCoreCard>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreCard id="right" className="rs-panel rs-solution-panel" theme="auto" as="section">      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(problemResolutionStatus)) && (<>      <RudraCoreTypography id="problem_solution_status" className="rs-solution-source" as="p" role="status" content={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(problemResolutionStatus)} aria-live="polite" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreCard id="right" className="rs-panel rs-solution-panel" as="section" theme="auto">      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(problemResolutionStatus)) && (<>      <RudraCoreTypography id="problem_solution_status" className="rs-solution-source" aria-live="polite" as="p" role="status" content={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(problemResolutionStatus)} />
 </>)}
       {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(_scope?.studioControls?.lessonEmpty)) && (<>      <RudraCoreTypography id="studio_lesson_empty" className="rs-studio-contract-note" as="p" content="Save your syllabus, select a topic, then choose or add a problem to review its lesson." />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="right_title" as="h3" content={((_bindingValue) => _bindingValue === undefined ? "Steer a representative solution" : _bindingValue)(_scope?.i18n?.board)} />
 </>)}
-      {isVisibleValue(isResolvingProblem) && (<>      <RudraLayoutBox id="board_loading" className="flex rs-board-loading">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="board_loading_indicator" className="rs-loading-orb" content="" as="span" />
+      {isVisibleValue(isResolvingProblem) && (<>      <RudraLayoutBox id="board_loading" className="flex rs-board-loading">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="board_loading_indicator" className="rs-loading-orb" as="span" content="" />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="board_loading_text" as="p" content="Loading the saved solution or generating a new lesson…" />
 </>)}
 </RudraLayoutBox>
 </>)}
-      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(hasProblemSolution)) && (<>      <ChalkmindMathBlackboardLesson id="board" steps={((_bindingValue) => _bindingValue === undefined ? [{ "content": [{ "label": "Given", "latex": "A=\\begin{bmatrix}2\u00261\\\\1\u00262\\end{bmatrix}", "type": "equation", "visualText": "A = [[2, 1], [1, 2]]" }, { "term": "Eigenvalue", "text": "A scalar λ for which Av = λv for some non-zero vector v.", "type": "definition" }], "explanation": "For a square matrix A, eigenvalues satisfy det(A minus lambda I) equals zero.", "id": "classify", "narration": "First identify the matrix and the required eigenvalue equation.", "teacherPrompt": "What size identity matrix is required here?", "teacherQuestion": { "correctValue": "b", "explanation": "A is a 2 × 2 matrix, so I must have the same dimensions.", "options": [{ "label": "1 × 1", "value": "a" }, { "label": "2 × 2", "value": "b" }, { "label": "2 × 3", "value": "c" }, { "label": "3 × 3", "value": "d" }], "prompt": "What size identity matrix is required here?" }, "title": "Classify the system", "why": "This converts a matrix question into a polynomial equation." }, { "content": [{ "label": "Characteristic determinant", "latex": "\\det(A-\\lambda I)=(2-\\lambda)^2-1=0", "type": "equation", "visualText": "det(A − λI) = (2 − λ)² − 1 = 0" }, { "latex": "\\lambda^2-4\\lambda+3=0", "type": "equation", "visualText": "λ² − 4λ + 3 = 0" }], "explanation": "The determinant is (2 minus lambda) squared minus one.", "id": "determinant", "narration": "Subtract lambda on the diagonal, then compute the determinant.", "teacherPrompt": "Why is the off-diagonal product equal to one?", "teacherQuestion": { "correctValue": "a", "explanation": "The off-diagonal entries are both 1, so their product is 1.", "options": [{ "label": "Because 1 × 1 = 1", "value": "a" }, { "label": "Because 2 − λ = 1", "value": "b" }, { "label": "Because det(A) = 1", "value": "c" }, { "label": "Because λ is always 1", "value": "d" }], "prompt": "Why is the off-diagonal product equal to one?" }, "title": "Form the characteristic equation", "why": "A non-zero eigenvector exists only when A minus lambda I is singular." }, { "content": [{ "label": "Eigenvalues", "latex": "(\\lambda-1)(\\lambda-3)=0\\Rightarrow\\lambda=1,3", "type": "equation", "visualText": "(λ − 1)(λ − 3) = 0, so λ = 1 or 3" }, { "text": "Both values make det(A − λI) equal zero.", "tone": "success", "type": "note" }], "explanation": "The characteristic polynomial factors into lambda minus one times lambda minus three.", "id": "solve", "narration": "Factor the polynomial and verify each value.", "teacherPrompt": "Which eigenvalue corresponds to [1, 1]?", "teacherQuestion": { "correctValue": "d", "explanation": "A[1,1]ᵀ = [3,3]ᵀ = 3[1,1]ᵀ.", "options": [{ "label": "−1", "value": "a" }, { "label": 0, "value": "b" }, { "label": 1, "value": "c" }, { "label": 3, "value": "d" }], "prompt": "Which eigenvalue corresponds to [1, 1]?" }, "title": "Solve and verify", "why": "Substitution verifies both determinant values are zero." }] : _bindingValue)(blackboardSteps)} title={((_bindingValue) => _bindingValue === undefined ? "Find the eigenvalues of a 2 × 2 matrix" : _bindingValue)(blackboardTitle)} activeStep={((_bindingValue) => _bindingValue === undefined ? 0 : _bindingValue)(activeStep)} autoAdvance={true} problemLabel={((_bindingValue) => _bindingValue === undefined ? "Representative problem · Linear algebra" : _bindingValue)(blackboardProblemLabel)} reducedMotion={false} editOperations={[]} captionsEnabled={true} onNext={(...eventArgs) => _callAction("selectStep", {}, eventArgs)} playing={false} lessonKind={((_bindingValue) => _bindingValue === undefined ? "worked-example" : _bindingValue)(blackboardLesson?.lessonKind)} problemStatement={((_bindingValue) => _bindingValue === undefined ? "Find the eigenvalues of A = [[2, 1], [1, 2]]." : _bindingValue)(blackboardProblemStatement)} showStepPopup={true} popupInitiallyOpen={false} speedLabel="Normal" boardOptions={{"animateCurrentStepOnly":true,"clearFutureSteps":false,"preserveRevealedSteps":true,"writingEffect":true}} learningGoal={((_bindingValue) => _bindingValue === undefined ? "Form the characteristic equation, solve it and verify the eigenvalues." : _bindingValue)(blackboardLearningGoal)} onStepSelect={(...eventArgs) => _callAction("selectStep", {}, eventArgs)} stepDurationMs={5500} />
+      {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(hasProblemSolution)) && (<>      <ChalkmindMathBlackboardLesson id="board" lessonKind={((_bindingValue) => _bindingValue === undefined ? "worked-example" : _bindingValue)(blackboardLesson?.lessonKind)} problemLabel={((_bindingValue) => _bindingValue === undefined ? "Representative problem · Linear algebra" : _bindingValue)(blackboardProblemLabel)} editOperations={[]} captionsEnabled={true} title={((_bindingValue) => _bindingValue === undefined ? "Find the eigenvalues of a 2 × 2 matrix" : _bindingValue)(blackboardTitle)} autoAdvance={true} reducedMotion={false} problemStatement={((_bindingValue) => _bindingValue === undefined ? "Find the eigenvalues of A = [[2, 1], [1, 2]]." : _bindingValue)(blackboardProblemStatement)} popupInitiallyOpen={false} onNext={(...eventArgs) => _callAction("selectStep", {}, eventArgs)} speedLabel="Normal" onStepSelect={(...eventArgs) => _callAction("selectStep", {}, eventArgs)} showStepPopup={true} activeStep={((_bindingValue) => _bindingValue === undefined ? 0 : _bindingValue)(activeStep)} boardOptions={{"animateCurrentStepOnly":true,"clearFutureSteps":false,"preserveRevealedSteps":true,"writingEffect":true}} learningGoal={((_bindingValue) => _bindingValue === undefined ? "Form the characteristic equation, solve it and verify the eigenvalues." : _bindingValue)(blackboardLearningGoal)} stepDurationMs={5500} steps={((_bindingValue) => _bindingValue === undefined ? [{ "content": [{ "label": "Given", "latex": "A=\\begin{bmatrix}2\u00261\\\\1\u00262\\end{bmatrix}", "type": "equation", "visualText": "A = [[2, 1], [1, 2]]" }, { "term": "Eigenvalue", "text": "A scalar λ for which Av = λv for some non-zero vector v.", "type": "definition" }], "explanation": "For a square matrix A, eigenvalues satisfy det(A minus lambda I) equals zero.", "id": "classify", "narration": "First identify the matrix and the required eigenvalue equation.", "teacherPrompt": "What size identity matrix is required here?", "teacherQuestion": { "correctValue": "b", "explanation": "A is a 2 × 2 matrix, so I must have the same dimensions.", "options": [{ "label": "1 × 1", "value": "a" }, { "label": "2 × 2", "value": "b" }, { "label": "2 × 3", "value": "c" }, { "label": "3 × 3", "value": "d" }], "prompt": "What size identity matrix is required here?" }, "title": "Classify the system", "why": "This converts a matrix question into a polynomial equation." }, { "content": [{ "label": "Characteristic determinant", "latex": "\\det(A-\\lambda I)=(2-\\lambda)^2-1=0", "type": "equation", "visualText": "det(A − λI) = (2 − λ)² − 1 = 0" }, { "latex": "\\lambda^2-4\\lambda+3=0", "type": "equation", "visualText": "λ² − 4λ + 3 = 0" }], "explanation": "The determinant is (2 minus lambda) squared minus one.", "id": "determinant", "narration": "Subtract lambda on the diagonal, then compute the determinant.", "teacherPrompt": "Why is the off-diagonal product equal to one?", "teacherQuestion": { "correctValue": "a", "explanation": "The off-diagonal entries are both 1, so their product is 1.", "options": [{ "label": "Because 1 × 1 = 1", "value": "a" }, { "label": "Because 2 − λ = 1", "value": "b" }, { "label": "Because det(A) = 1", "value": "c" }, { "label": "Because λ is always 1", "value": "d" }], "prompt": "Why is the off-diagonal product equal to one?" }, "title": "Form the characteristic equation", "why": "A non-zero eigenvector exists only when A minus lambda I is singular." }, { "content": [{ "label": "Eigenvalues", "latex": "(\\lambda-1)(\\lambda-3)=0\\Rightarrow\\lambda=1,3", "type": "equation", "visualText": "(λ − 1)(λ − 3) = 0, so λ = 1 or 3" }, { "text": "Both values make det(A − λI) equal zero.", "tone": "success", "type": "note" }], "explanation": "The characteristic polynomial factors into lambda minus one times lambda minus three.", "id": "solve", "narration": "Factor the polynomial and verify each value.", "teacherPrompt": "Which eigenvalue corresponds to [1, 1]?", "teacherQuestion": { "correctValue": "d", "explanation": "A[1,1]ᵀ = [3,3]ᵀ = 3[1,1]ᵀ.", "options": [{ "label": "−1", "value": "a" }, { "label": 0, "value": "b" }, { "label": 1, "value": "c" }, { "label": 3, "value": "d" }], "prompt": "Which eigenvalue corresponds to [1, 1]?" }, "title": "Solve and verify", "why": "Substitution verifies both determinant values are zero." }] : _bindingValue)(blackboardSteps)} playing={false} />
 </>)}
       {isVisibleValue(((_bindingValue) => _bindingValue === undefined ? false : _bindingValue)(hasProblemSolution)) && (<>      <RudraLayoutBox id="teacher_question_panel" className="block rs-teacher-question">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="teacher_question_title" className="rs-teacher-question-title" as="h4" content={((_bindingValue) => _bindingValue === undefined ? "What size identity matrix is required here?" : _bindingValue)(teacherQuestionPrompt)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormRadioGroup id="teacher_question_choices" layout="vertical" options={((_bindingValue) => _bindingValue === undefined ? [{ "label": "1 × 1", "value": "a" }, { "label": "2 × 2", "value": "b" }, { "label": "2 × 3", "value": "c" }, { "label": "3 × 3", "value": "d" }] : _bindingValue)(teacherQuestionOptions)} colorScheme="emerald" onChangeValue={(...eventArgs) => _callAction("selectTeacherAnswer", {}, eventArgs)} name="teacherAnswer" size="md" label="Choose one answer" value={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(selectedTeacherAnswer)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraFormRadioGroup id="teacher_question_choices" size="md" label="Choose one answer" value={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(selectedTeacherAnswer)} layout="vertical" options={((_bindingValue) => _bindingValue === undefined ? [{ "label": "1 × 1", "value": "a" }, { "label": "2 × 2", "value": "b" }, { "label": "2 × 3", "value": "c" }, { "label": "3 × 3", "value": "d" }] : _bindingValue)(teacherQuestionOptions)} colorScheme="emerald" onChangeValue={(...eventArgs) => _callAction("selectTeacherAnswer", {}, eventArgs)} name="teacherAnswer" />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="teacher_question_feedback" className="rs-teacher-question-feedback" as="p" content={((_bindingValue) => _bindingValue === undefined ? "Select one answer." : _bindingValue)(teacherAnswerFeedback)} />
 </>)}
@@ -2504,7 +2464,7 @@ const text=String(state.newProblemText||'').trim();if(!text)throw new Error('Ent
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="remove" className="rs-studio-action" label="Remove" theme="auto" variant="outline" onAction={(...eventArgs) => _callAction("editStep", {"operation": "remove"}, eventArgs)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="annotate" className="rs-studio-action" label="Add teaching note" theme="auto" variant="ghost" onAction={(...eventArgs) => _callAction("editStep", {"note": "Explain why this step belongs in similar problems.", "operation": "annotate"}, eventArgs)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="annotate" className="rs-studio-action" theme="auto" variant="ghost" onAction={(...eventArgs) => _callAction("editStep", {"note": "Explain why this step belongs in similar problems.", "operation": "annotate"}, eventArgs)} label="Add teaching note" />
 </>)}
 </RudraLayoutBox>
 </>)}
@@ -2512,7 +2472,7 @@ const text=String(state.newProblemText||'').trim();if(!text)throw new Error('Ent
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="strategy_title" as="h3" content="Teaching strategy for this Topic" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="strategy_status" className="rs-strategy-status" content={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(strategyStatus)} as="p" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="strategy_status" className="rs-strategy-status" as="p" content={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(strategyStatus)} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="strategy_text" className="rs-strategy-text" as="div" content={((_bindingValue) => _bindingValue === undefined ? "" : _bindingValue)(strategyDraftText)} />
 </>)}
@@ -2520,15 +2480,15 @@ const text=String(state.newProblemText||'').trim();if(!text)throw new Error('Ent
 </>)}
 </RudraLayoutBox>
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="publish_actions" className="flex flex-wrap rs-actions">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="preview_content" className="rs-studio-action" variant="outline" disabled={((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(_scope?.studioControls?.previewDisabled)} onAction={(...eventArgs) => _callAction("prepareContentPreview", {}, eventArgs)} label="Prepare student preview" theme="auto" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="publish_actions" className="flex flex-wrap rs-actions">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="preview_content" className="rs-studio-action" label="Prepare student preview" theme="auto" variant="outline" disabled={((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(_scope?.studioControls?.previewDisabled)} onAction={(...eventArgs) => _callAction("prepareContentPreview", {}, eventArgs)} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="publish" className="rs-studio-action" label="Publish immutable context version" theme="auto" variant="primary" disabled={((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(_scope?.studioControls?.unavailable)} onAction={(...eventArgs) => _callAction("publishContext", {}, eventArgs)} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="next_syllabus_version" className="rs-studio-action" label="Start next version" theme="auto" variant="outline" disabled={((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(_scope?.studioControls?.versionDisabled)} onAction={(...eventArgs) => _callAction("startNextSyllabusVersion", {}, eventArgs)} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="next_syllabus_version" className="rs-studio-action" variant="outline" disabled={((_bindingValue) => _bindingValue === undefined ? true : _bindingValue)(_scope?.studioControls?.versionDisabled)} onAction={(...eventArgs) => _callAction("startNextSyllabusVersion", {}, eventArgs)} label="Start next version" theme="auto" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="studio_contract_note" className="rs-studio-contract-note" as="p" content="Save your syllabus, resolve and review a lesson, then prepare a student preview. Published versions are read-only; start the next version to make changes." />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreTypography id="studio_contract_note" className="rs-studio-contract-note" content="Save your syllabus, resolve and review a lesson, then prepare a student preview. Published versions are read-only; start the next version to make changes." as="p" />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="share" className="rs-studio-action" theme="auto" variant="outline" onAction={(...eventArgs) => _callAction("shareLesson", {}, eventArgs)} label="Create student share link" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreButton id="share" className="rs-studio-action" onAction={(...eventArgs) => _callAction("shareLesson", {}, eventArgs)} label="Create student share link" theme="auto" variant="outline" />
 </>)}
 </RudraLayoutBox>
 </>)}
