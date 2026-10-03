@@ -2043,7 +2043,7 @@ Unit 3: Eigenvalues and diagonalisation`)), _t(structuredClone("")), or(structur
                 ] }),
                 v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                   "      ",
-                  /* @__PURE__ */ C(Z, { id: "sidebar_toggle", className: "rs-studio-action rs-sidebar-toggle", variant: "outline", onAction: (...s) => B("toggleStudioSidebar", {}, s), "aria-controls": "left", "aria-expanded": /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(Ee), label: /* @__PURE__ */ ((s) => s === void 0 ? "Hide syllabus panel" : s)(Be), theme: "auto" })
+                  /* @__PURE__ */ C(Z, { id: "sidebar_toggle", className: "rs-studio-action rs-sidebar-toggle", theme: "auto", variant: "outline", onAction: (...s) => B("toggleStudioSidebar", {}, s), "aria-controls": "left", "aria-expanded": /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(Ee), label: /* @__PURE__ */ ((s) => s === void 0 ? "Hide syllabus panel" : s)(Be) })
                 ] })
               ] })
             ] }),
@@ -2061,7 +2061,7 @@ Unit 3: Eigenvalues and diagonalisation`)), _t(structuredClone("")), or(structur
                   "      ",
                   /* @__PURE__ */ C($, { id: "verification_icon", className: "rs-verification-icon", as: "span", content: "!" })
                 ] })
-              ] }), live: "polite", variant: "warning", appearance: "soft", children: [
+              ] }), variant: "warning", appearance: "soft", live: "polite", children: [
                 "      ",
                 v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                   "      ",
@@ -2083,19 +2083,19 @@ Unit 3: Eigenvalues and diagonalisation`)), _t(structuredClone("")), or(structur
                         "      ",
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ C(gr, { id: "saved_syllabus_select", value: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(xt), disabled: /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(re?.studioControls?.unavailable), placeholder: "Select a syllabus", name: "savedSyllabus", radius: "md", options: /* @__PURE__ */ ((s) => s === void 0 ? [] : s)(lt), onChangeValue: (...s) => B("selectSavedSyllabus", {}, s), size: "md", label: "Continue with a saved syllabus" })
+                          /* @__PURE__ */ C(gr, { id: "saved_syllabus_select", name: "savedSyllabus", size: "md", radius: "md", options: /* @__PURE__ */ ((s) => s === void 0 ? [] : s)(lt), disabled: /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(re?.studioControls?.unavailable), placeholder: "Select a syllabus", label: "Continue with a saved syllabus", value: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(xt), onChangeValue: (...s) => B("selectSavedSyllabus", {}, s) })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ C(Z, { id: "refresh_syllabi", className: "rs-studio-action", variant: "ghost", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Ae), onAction: (...s) => B("loadProfessorSyllabi", {}, s), loadingText: "Loading syllabi…", label: "Refresh syllabi", theme: "auto", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Ae) })
+                          /* @__PURE__ */ C(Z, { id: "refresh_syllabi", className: "rs-studio-action", theme: "auto", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Ae), variant: "ghost", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Ae), onAction: (...s) => B("loadProfessorSyllabi", {}, s), loadingText: "Loading syllabi…", label: "Refresh syllabi" })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ C(Z, { id: "save_syllabus_draft", className: "rs-studio-action", label: "Save current syllabus", theme: "auto", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Re), variant: "outline", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(re?.studioControls?.unavailable), onAction: (...s) => B("saveProfessorSyllabus", { status: "draft" }, s), loadingText: "Saving syllabus…" })
+                          /* @__PURE__ */ C(Z, { id: "save_syllabus_draft", className: "rs-studio-action", onAction: (...s) => B("saveProfessorSyllabus", { status: "draft" }, s), loadingText: "Saving syllabus…", label: "Save current syllabus", theme: "auto", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Re), variant: "outline", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(re?.studioControls?.unavailable) })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ C(Z, { id: "publish_syllabus_students", className: "rs-studio-action", variant: "primary", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(re?.studioControls?.unavailable), onAction: (...s) => B("saveProfessorSyllabus", { status: "published" }, s), loadingText: "Publishing syllabus…", label: "Publish current syllabus for students", theme: "auto", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Re) })
+                          /* @__PURE__ */ C(Z, { id: "publish_syllabus_students", className: "rs-studio-action", label: "Publish current syllabus for students", theme: "auto", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Re), variant: "primary", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(re?.studioControls?.unavailable), onAction: (...s) => B("saveProfessorSyllabus", { status: "published" }, s), loadingText: "Publishing syllabus…" })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
@@ -2109,17 +2109,17 @@ Unit 3: Eigenvalues and diagonalisation`)), _t(structuredClone("")), or(structur
                         "      ",
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ C(Us, { id: "syllabus_title_input", label: "Syllabus title", value: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(yt), disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(re?.studioControls?.busy), required: !0, placeholder: "Engineering Mathematics I", onChangeValue: (...s) => B("setSyllabusTitle", {}, s), name: "syllabusTitle", size: "md" })
+                          /* @__PURE__ */ C(Us, { id: "syllabus_title_input", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(re?.studioControls?.busy), required: !0, placeholder: "Engineering Mathematics I", onChangeValue: (...s) => B("setSyllabusTitle", {}, s), name: "syllabusTitle", size: "md", label: "Syllabus title", value: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(yt) })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ C(Le, { id: "syllabus_description_input", value: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(Ot), disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(re?.studioControls?.busy), placeholder: "What students will learn", onChangeValue: (...s) => B("setSyllabusDescription", {}, s), name: "syllabusDescription", rows: 3, label: "Description" })
+                          /* @__PURE__ */ C(Le, { id: "syllabus_description_input", placeholder: "What students will learn", onChangeValue: (...s) => B("setSyllabusDescription", {}, s), name: "syllabusDescription", rows: 3, label: "Description", value: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(Ot), disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(re?.studioControls?.busy) })
                         ] })
                       ] })
                     ] }),
                     v(Tt) && /* @__PURE__ */ y(f, { children: [
                       "      ",
-                      /* @__PURE__ */ C(Z, { id: "edit_syllabus_setup", className: "rs-studio-action", label: "Edit syllabus / Regenerate", theme: "auto", variant: "outline", onAction: (...s) => B("expandSyllabusSetup", {}, s) })
+                      /* @__PURE__ */ C(Z, { id: "edit_syllabus_setup", className: "rs-studio-action", variant: "outline", onAction: (...s) => B("expandSyllabusSetup", {}, s), label: "Edit syllabus / Regenerate", theme: "auto" })
                     ] }),
                     v(de) && /* @__PURE__ */ y(f, { children: [
                       "      ",
@@ -2131,10 +2131,10 @@ Unit 3: Eigenvalues and diagonalisation`)), _t(structuredClone("")), or(structur
                     ] }),
                     v(de) && /* @__PURE__ */ y(f, { children: [
                       "      ",
-                      /* @__PURE__ */ C(Le, { id: "syllabus", name: "syllabus", rows: 10, label: "Paste one section or a complete semester", value: /* @__PURE__ */ ((s) => s === void 0 ? `Semester 1 · Linear Algebra
+                      /* @__PURE__ */ C(Le, { id: "syllabus", label: "Paste one section or a complete semester", value: /* @__PURE__ */ ((s) => s === void 0 ? `Semester 1 · Linear Algebra
 Unit 1: Matrices and systems
 Unit 2: Vector spaces
-Unit 3: Eigenvalues and diagonalisation` : s)(pt), disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(re?.studioControls?.busy), helperText: "AI proposes programme → semester → subject → unit → topic. You approve before anything is saved.", onChangeValue: (...s) => B("setSyllabusText", {}, s) })
+Unit 3: Eigenvalues and diagonalisation` : s)(pt), disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(re?.studioControls?.busy), helperText: "AI proposes programme → semester → subject → unit → topic. You approve before anything is saved.", onChangeValue: (...s) => B("setSyllabusText", {}, s), name: "syllabus", rows: 10 })
                     ] }),
                     v(de) && /* @__PURE__ */ y(f, { children: [
                       "      ",
@@ -2142,21 +2142,21 @@ Unit 3: Eigenvalues and diagonalisation` : s)(pt), disabled: /* @__PURE__ */ ((s
                         "      ",
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ C(Z, { id: "structure", className: "rs-studio-action", label: "Propose structure with AI", theme: "auto", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Ce), variant: "primary", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Ce), onAction: (...s) => B("requestStructure", {}, s), loadingText: "Generating hierarchy…" })
+                          /* @__PURE__ */ C(Z, { id: "structure", className: "rs-studio-action", theme: "auto", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Ce), variant: "primary", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Ce), onAction: (...s) => B("requestStructure", {}, s), loadingText: "Generating hierarchy…", label: "Propose structure with AI" })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ C(Z, { id: "collapse_syllabus_setup", className: "rs-studio-action", label: "Hide setup", theme: "auto", variant: "ghost", onAction: (...s) => B("collapseSyllabusSetup", {}, s) })
+                          /* @__PURE__ */ C(Z, { id: "collapse_syllabus_setup", className: "rs-studio-action", variant: "ghost", onAction: (...s) => B("collapseSyllabusSetup", {}, s), label: "Hide setup", theme: "auto" })
                         ] })
                       ] })
                     ] }),
                     v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                       "      ",
-                      /* @__PURE__ */ C($, { id: "final_hierarchy_title", as: "h3", content: "Final hierarchy" })
+                      /* @__PURE__ */ C($, { id: "final_hierarchy_title", content: "Final hierarchy", as: "h3" })
                     ] }),
                     v(ye) && /* @__PURE__ */ y(f, { children: [
                       "      ",
-                      /* @__PURE__ */ C($s, { id: "problems_text", className: "rs-problem-list", indent: 20, showLines: !1, onItemClick: (...s) => B("selectProblem", { depth: "", index: "", item: "" }, s), selectionMode: "single", items: /* @__PURE__ */ ((s) => s === void 0 ? [] : s)(Ct), emptyText: "No problems yet. Use Add problems to create examples.", selectedIds: /* @__PURE__ */ ((s) => s === void 0 ? [] : s)(Yt), defaultExpandAll: !0, showDefaultIcons: !0, expandOnItemClick: !0, children: (s) => (() => {
+                      /* @__PURE__ */ C($s, { id: "problems_text", className: "rs-problem-list", expandOnItemClick: !0, items: /* @__PURE__ */ ((s) => s === void 0 ? [] : s)(Ct), emptyText: "No problems yet. Use Add problems to create examples.", onItemClick: (...s) => B("selectProblem", { depth: "", index: "", item: "" }, s), selectedIds: /* @__PURE__ */ ((s) => s === void 0 ? [] : s)(Yt), showDefaultIcons: !0, indent: 20, showLines: !1, selectionMode: "single", defaultExpandAll: !0, children: (s) => (() => {
                         const r = { ...s || {}, item: s?.item ?? s, index: s?.index ?? s?.i ?? 0 };
                         return /* @__PURE__ */ y(f, { children: [
                           "      ",
@@ -2171,15 +2171,15 @@ Unit 3: Eigenvalues and diagonalisation` : s)(pt), disabled: /* @__PURE__ */ ((s
                         "      ",
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ C($, { id: "new_problem_title", as: "h4", content: "Add a context-scoped problem" })
+                          /* @__PURE__ */ C($, { id: "new_problem_title", content: "Add a context-scoped problem", as: "h4" })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ C(Le, { id: "new_problem_input", name: "newProblem", rows: 5, required: !0, label: "Problem statement", value: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(Zt), disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(re?.studioControls?.busy), autoResize: !0, placeholder: "Enter a new problem for the selected topic", onChangeValue: (...s) => B("setNewProblemText", {}, s) })
+                          /* @__PURE__ */ C(Le, { id: "new_problem_input", label: "Problem statement", value: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(Zt), required: !0, placeholder: "Enter a new problem for the selected topic", onChangeValue: (...s) => B("setNewProblemText", {}, s), name: "newProblem", rows: 5, disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(re?.studioControls?.busy), autoResize: !0 })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ C(gr, { id: "new_problem_mode", size: "md", label: "Solution style", value: /* @__PURE__ */ ((s) => s === void 0 ? "detailed" : s)(it), radius: "md", options: [{ label: "Detailed steps", value: "detailed" }, { label: "Quick solution", value: "quick" }], onChangeValue: (...s) => B("setNewProblemSolutionMode", {}, s), name: "solutionMode" })
+                          /* @__PURE__ */ C(gr, { id: "new_problem_mode", value: /* @__PURE__ */ ((s) => s === void 0 ? "detailed" : s)(it), radius: "md", options: [{ label: "Detailed steps", value: "detailed" }, { label: "Quick solution", value: "quick" }], onChangeValue: (...s) => B("setNewProblemSolutionMode", {}, s), name: "solutionMode", size: "md", label: "Solution style" })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
@@ -2187,7 +2187,7 @@ Unit 3: Eigenvalues and diagonalisation` : s)(pt), disabled: /* @__PURE__ */ ((s
                             "      ",
                             v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                               "      ",
-                              /* @__PURE__ */ C(Z, { id: "save_new_problem", className: "rs-studio-action", theme: "auto", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(be), variant: "primary", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(be), onAction: (...s) => B("submitNewProblem", {}, s), loadingText: "Checking saved solutions…", label: "Find or generate solution" })
+                              /* @__PURE__ */ C(Z, { id: "save_new_problem", className: "rs-studio-action", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(be), variant: "primary", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(be), onAction: (...s) => B("submitNewProblem", {}, s), loadingText: "Checking saved solutions…", label: "Find or generate solution", theme: "auto" })
                             ] }),
                             v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                               "      ",
@@ -2213,7 +2213,7 @@ Unit 3: Eigenvalues and diagonalisation` : s)(pt), disabled: /* @__PURE__ */ ((s
                         "      ",
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ C(Z, { id: "add_problems", className: "rs-studio-action", onAction: (...s) => B("openNewProblemForm", {}, s), label: "Add new problem", theme: "auto", variant: "outline" })
+                          /* @__PURE__ */ C(Z, { id: "add_problems", className: "rs-studio-action", label: "Add new problem", theme: "auto", variant: "outline", onAction: (...s) => B("openNewProblemForm", {}, s) })
                         ] })
                       ] })
                     ] })
@@ -2225,7 +2225,7 @@ Unit 3: Eigenvalues and diagonalisation` : s)(pt), disabled: /* @__PURE__ */ ((s
                     "      ",
                     v(/* @__PURE__ */ ((s) => s === void 0 ? "" : s)(qe)) && /* @__PURE__ */ y(f, { children: [
                       "      ",
-                      /* @__PURE__ */ C($, { id: "problem_solution_status", className: "rs-solution-source", "aria-live": "polite", as: "p", role: "status", content: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(qe) })
+                      /* @__PURE__ */ C($, { id: "problem_solution_status", className: "rs-solution-source", as: "p", role: "status", content: /* @__PURE__ */ ((s) => s === void 0 ? "" : s)(qe), "aria-live": "polite" })
                     ] }),
                     v(/* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(re?.studioControls?.lessonEmpty)) && /* @__PURE__ */ y(f, { children: [
                       "      ",
@@ -2251,7 +2251,7 @@ Unit 3: Eigenvalues and diagonalisation` : s)(pt), disabled: /* @__PURE__ */ ((s
                     ] }),
                     v(/* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(me)) && /* @__PURE__ */ y(f, { children: [
                       "      ",
-                      /* @__PURE__ */ C(Bs, { id: "board", lessonKind: /* @__PURE__ */ ((s) => s === void 0 ? "worked-example" : s)(Kt?.lessonKind), problemLabel: /* @__PURE__ */ ((s) => s === void 0 ? "Representative problem · Linear algebra" : s)(Ht), editOperations: [], captionsEnabled: !0, title: /* @__PURE__ */ ((s) => s === void 0 ? "Find the eigenvalues of a 2 × 2 matrix" : s)(Ft), autoAdvance: !0, reducedMotion: !1, problemStatement: /* @__PURE__ */ ((s) => s === void 0 ? "Find the eigenvalues of A = [[2, 1], [1, 2]]." : s)(er), popupInitiallyOpen: !1, onNext: (...s) => B("selectStep", {}, s), speedLabel: "Normal", onStepSelect: (...s) => B("selectStep", {}, s), showStepPopup: !0, activeStep: /* @__PURE__ */ ((s) => s === void 0 ? 0 : s)(st), boardOptions: { animateCurrentStepOnly: !0, clearFutureSteps: !1, preserveRevealedSteps: !0, writingEffect: !0 }, learningGoal: /* @__PURE__ */ ((s) => s === void 0 ? "Form the characteristic equation, solve it and verify the eigenvalues." : s)(dt), stepDurationMs: 5500, steps: /* @__PURE__ */ ((s) => s === void 0 ? [{ content: [{ label: "Given", latex: "A=\\begin{bmatrix}2&1\\\\1&2\\end{bmatrix}", type: "equation", visualText: "A = [[2, 1], [1, 2]]" }, { term: "Eigenvalue", text: "A scalar λ for which Av = λv for some non-zero vector v.", type: "definition" }], explanation: "For a square matrix A, eigenvalues satisfy det(A minus lambda I) equals zero.", id: "classify", narration: "First identify the matrix and the required eigenvalue equation.", teacherPrompt: "What size identity matrix is required here?", teacherQuestion: { correctValue: "b", explanation: "A is a 2 × 2 matrix, so I must have the same dimensions.", options: [{ label: "1 × 1", value: "a" }, { label: "2 × 2", value: "b" }, { label: "2 × 3", value: "c" }, { label: "3 × 3", value: "d" }], prompt: "What size identity matrix is required here?" }, title: "Classify the system", why: "This converts a matrix question into a polynomial equation." }, { content: [{ label: "Characteristic determinant", latex: "\\det(A-\\lambda I)=(2-\\lambda)^2-1=0", type: "equation", visualText: "det(A − λI) = (2 − λ)² − 1 = 0" }, { latex: "\\lambda^2-4\\lambda+3=0", type: "equation", visualText: "λ² − 4λ + 3 = 0" }], explanation: "The determinant is (2 minus lambda) squared minus one.", id: "determinant", narration: "Subtract lambda on the diagonal, then compute the determinant.", teacherPrompt: "Why is the off-diagonal product equal to one?", teacherQuestion: { correctValue: "a", explanation: "The off-diagonal entries are both 1, so their product is 1.", options: [{ label: "Because 1 × 1 = 1", value: "a" }, { label: "Because 2 − λ = 1", value: "b" }, { label: "Because det(A) = 1", value: "c" }, { label: "Because λ is always 1", value: "d" }], prompt: "Why is the off-diagonal product equal to one?" }, title: "Form the characteristic equation", why: "A non-zero eigenvector exists only when A minus lambda I is singular." }, { content: [{ label: "Eigenvalues", latex: "(\\lambda-1)(\\lambda-3)=0\\Rightarrow\\lambda=1,3", type: "equation", visualText: "(λ − 1)(λ − 3) = 0, so λ = 1 or 3" }, { text: "Both values make det(A − λI) equal zero.", tone: "success", type: "note" }], explanation: "The characteristic polynomial factors into lambda minus one times lambda minus three.", id: "solve", narration: "Factor the polynomial and verify each value.", teacherPrompt: "Which eigenvalue corresponds to [1, 1]?", teacherQuestion: { correctValue: "d", explanation: "A[1,1]ᵀ = [3,3]ᵀ = 3[1,1]ᵀ.", options: [{ label: "−1", value: "a" }, { label: 0, value: "b" }, { label: 1, value: "c" }, { label: 3, value: "d" }], prompt: "Which eigenvalue corresponds to [1, 1]?" }, title: "Solve and verify", why: "Substitution verifies both determinant values are zero." }] : s)(Et), playing: !1 })
+                      /* @__PURE__ */ C(Bs, { id: "board", steps: /* @__PURE__ */ ((s) => s === void 0 ? [{ content: [{ label: "Given", latex: "A=\\begin{bmatrix}2&1\\\\1&2\\end{bmatrix}", type: "equation", visualText: "A = [[2, 1], [1, 2]]" }, { term: "Eigenvalue", text: "A scalar λ for which Av = λv for some non-zero vector v.", type: "definition" }], explanation: "For a square matrix A, eigenvalues satisfy det(A minus lambda I) equals zero.", id: "classify", narration: "First identify the matrix and the required eigenvalue equation.", teacherPrompt: "What size identity matrix is required here?", teacherQuestion: { correctValue: "b", explanation: "A is a 2 × 2 matrix, so I must have the same dimensions.", options: [{ label: "1 × 1", value: "a" }, { label: "2 × 2", value: "b" }, { label: "2 × 3", value: "c" }, { label: "3 × 3", value: "d" }], prompt: "What size identity matrix is required here?" }, title: "Classify the system", why: "This converts a matrix question into a polynomial equation." }, { content: [{ label: "Characteristic determinant", latex: "\\det(A-\\lambda I)=(2-\\lambda)^2-1=0", type: "equation", visualText: "det(A − λI) = (2 − λ)² − 1 = 0" }, { latex: "\\lambda^2-4\\lambda+3=0", type: "equation", visualText: "λ² − 4λ + 3 = 0" }], explanation: "The determinant is (2 minus lambda) squared minus one.", id: "determinant", narration: "Subtract lambda on the diagonal, then compute the determinant.", teacherPrompt: "Why is the off-diagonal product equal to one?", teacherQuestion: { correctValue: "a", explanation: "The off-diagonal entries are both 1, so their product is 1.", options: [{ label: "Because 1 × 1 = 1", value: "a" }, { label: "Because 2 − λ = 1", value: "b" }, { label: "Because det(A) = 1", value: "c" }, { label: "Because λ is always 1", value: "d" }], prompt: "Why is the off-diagonal product equal to one?" }, title: "Form the characteristic equation", why: "A non-zero eigenvector exists only when A minus lambda I is singular." }, { content: [{ label: "Eigenvalues", latex: "(\\lambda-1)(\\lambda-3)=0\\Rightarrow\\lambda=1,3", type: "equation", visualText: "(λ − 1)(λ − 3) = 0, so λ = 1 or 3" }, { text: "Both values make det(A − λI) equal zero.", tone: "success", type: "note" }], explanation: "The characteristic polynomial factors into lambda minus one times lambda minus three.", id: "solve", narration: "Factor the polynomial and verify each value.", teacherPrompt: "Which eigenvalue corresponds to [1, 1]?", teacherQuestion: { correctValue: "d", explanation: "A[1,1]ᵀ = [3,3]ᵀ = 3[1,1]ᵀ.", options: [{ label: "−1", value: "a" }, { label: 0, value: "b" }, { label: 1, value: "c" }, { label: 3, value: "d" }], prompt: "Which eigenvalue corresponds to [1, 1]?" }, title: "Solve and verify", why: "Substitution verifies both determinant values are zero." }] : s)(Et), onNext: (...s) => B("selectStep", {}, s), playing: !1, activeStep: /* @__PURE__ */ ((s) => s === void 0 ? 0 : s)(st), boardOptions: { animateCurrentStepOnly: !0, clearFutureSteps: !1, preserveRevealedSteps: !0, writingEffect: !0 }, reducedMotion: !1, showStepPopup: !0, captionsEnabled: !0, title: /* @__PURE__ */ ((s) => s === void 0 ? "Find the eigenvalues of a 2 × 2 matrix" : s)(Ft), lessonKind: /* @__PURE__ */ ((s) => s === void 0 ? "worked-example" : s)(Kt?.lessonKind), stepDurationMs: 5500, learningGoal: /* @__PURE__ */ ((s) => s === void 0 ? "Form the characteristic equation, solve it and verify the eigenvalues." : s)(dt), onStepSelect: (...s) => B("selectStep", {}, s), editOperations: [], popupInitiallyOpen: !1, speedLabel: "Normal", autoAdvance: !0, problemLabel: /* @__PURE__ */ ((s) => s === void 0 ? "Representative problem · Linear algebra" : s)(Ht), problemStatement: /* @__PURE__ */ ((s) => s === void 0 ? "Find the eigenvalues of A = [[2, 1], [1, 2]]." : s)(er) })
                     ] }),
                     v(/* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(me)) && /* @__PURE__ */ y(f, { children: [
                       "      ",
@@ -2277,7 +2277,7 @@ Unit 3: Eigenvalues and diagonalisation` : s)(pt), disabled: /* @__PURE__ */ ((s
                         "      ",
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ C(Z, { id: "keep", className: "rs-studio-action", label: "Keep", theme: "auto", variant: "primary", onAction: (...s) => B("editStep", { operation: "keep" }, s) })
+                          /* @__PURE__ */ C(Z, { id: "keep", className: "rs-studio-action", variant: "primary", onAction: (...s) => B("editStep", { operation: "keep" }, s), label: "Keep", theme: "auto" })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
@@ -2285,7 +2285,7 @@ Unit 3: Eigenvalues and diagonalisation` : s)(pt), disabled: /* @__PURE__ */ ((s
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ C(Z, { id: "annotate", className: "rs-studio-action", theme: "auto", variant: "ghost", onAction: (...s) => B("editStep", { note: "Explain why this step belongs in similar problems.", operation: "annotate" }, s), label: "Add teaching note" })
+                          /* @__PURE__ */ C(Z, { id: "annotate", className: "rs-studio-action", label: "Add teaching note", theme: "auto", variant: "ghost", onAction: (...s) => B("editStep", { note: "Explain why this step belongs in similar problems.", operation: "annotate" }, s) })
                         ] })
                       ] })
                     ] }),
@@ -2311,7 +2311,7 @@ Unit 3: Eigenvalues and diagonalisation` : s)(pt), disabled: /* @__PURE__ */ ((s
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ C(Z, { id: "set_context", className: "rs-studio-action", loadingText: "Saving strategy…", label: "Approve strategy as context", theme: "auto", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Te), variant: "primary", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Te), onAction: (...s) => B("setHierarchyContext", {}, s) })
+                          /* @__PURE__ */ C(Z, { id: "set_context", className: "rs-studio-action", loading: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Te), variant: "primary", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !1 : s)(Te), onAction: (...s) => B("setHierarchyContext", {}, s), loadingText: "Saving strategy…", label: "Approve strategy as context", theme: "auto" })
                         ] })
                       ] })
                     ] }),
@@ -2321,7 +2321,7 @@ Unit 3: Eigenvalues and diagonalisation` : s)(pt), disabled: /* @__PURE__ */ ((s
                         "      ",
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ C(Z, { id: "preview_content", className: "rs-studio-action", label: "Prepare student preview", theme: "auto", variant: "outline", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(re?.studioControls?.previewDisabled), onAction: (...s) => B("prepareContentPreview", {}, s) })
+                          /* @__PURE__ */ C(Z, { id: "preview_content", className: "rs-studio-action", theme: "auto", variant: "outline", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(re?.studioControls?.previewDisabled), onAction: (...s) => B("prepareContentPreview", {}, s), label: "Prepare student preview" })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
@@ -2329,15 +2329,15 @@ Unit 3: Eigenvalues and diagonalisation` : s)(pt), disabled: /* @__PURE__ */ ((s
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ C(Z, { id: "next_syllabus_version", className: "rs-studio-action", variant: "outline", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(re?.studioControls?.versionDisabled), onAction: (...s) => B("startNextSyllabusVersion", {}, s), label: "Start next version", theme: "auto" })
+                          /* @__PURE__ */ C(Z, { id: "next_syllabus_version", className: "rs-studio-action", onAction: (...s) => B("startNextSyllabusVersion", {}, s), label: "Start next version", theme: "auto", variant: "outline", disabled: /* @__PURE__ */ ((s) => s === void 0 ? !0 : s)(re?.studioControls?.versionDisabled) })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ C($, { id: "studio_contract_note", className: "rs-studio-contract-note", content: "Save your syllabus, resolve and review a lesson, then prepare a student preview. Published versions are read-only; start the next version to make changes.", as: "p" })
+                          /* @__PURE__ */ C($, { id: "studio_contract_note", className: "rs-studio-contract-note", as: "p", content: "Save your syllabus, resolve and review a lesson, then prepare a student preview. Published versions are read-only; start the next version to make changes." })
                         ] }),
                         v(N({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ y(f, { children: [
                           "      ",
-                          /* @__PURE__ */ C(Z, { id: "share", className: "rs-studio-action", onAction: (...s) => B("shareLesson", {}, s), label: "Create student share link", theme: "auto", variant: "outline" })
+                          /* @__PURE__ */ C(Z, { id: "share", className: "rs-studio-action", variant: "outline", onAction: (...s) => B("shareLesson", {}, s), label: "Create student share link", theme: "auto" })
                         ] })
                       ] })
                     ] })
