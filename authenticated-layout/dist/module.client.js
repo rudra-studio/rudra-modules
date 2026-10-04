@@ -106,7 +106,11 @@ function ot(t) {
     });
     return e.observe(a.current), () => e.disconnect();
   }, []);
-  const i = L((e) => typeof e != "object" || e === null ? e : j === "sm" ? e.sm !== void 0 ? e.sm : e.md !== void 0 ? e.md : e.lg : j === "md" ? e.md !== void 0 ? e.md : e.sm !== void 0 ? e.sm : e.lg : e.lg !== void 0 ? e.lg : e.md !== void 0 ? e.md : e.sm, [j]), d = (e) => Array.isArray(e) ? e.length > 0 : typeof e == "string" ? e.trim() !== "" && e.trim().toLowerCase() !== "false" : !!e, y = t.children !== void 0 ? t.children : t.data?.children !== void 0 ? t.data.children : void 0, k = t.userName !== void 0 ? t.userName : t.data?.userName !== void 0 ? t.data.userName : "rudra", E = t.avatarUrl !== void 0 ? t.avatarUrl : t.data?.avatarUrl !== void 0 ? t.data.avatarUrl : void 0, A = t.userEmail !== void 0 ? t.userEmail : t.data?.userEmail !== void 0 ? t.data.userEmail : "rudra@rudraapp.in", f = { children: y, userName: k, avatarUrl: E, userEmail: A }, g = L((e, n) => n, [{}]);
+  const i = L((e) => {
+    if (typeof e != "object" || e === null) return e;
+    const n = j === "sm" ? e.sm !== void 0 ? e.sm : e.md !== void 0 ? e.md : e.lg : j === "md" ? e.md !== void 0 ? e.md : e.sm !== void 0 ? e.sm : e.lg : e.lg !== void 0 ? e.lg : e.md !== void 0 ? e.md : e.sm;
+    return n && typeof n == "object" && n.type === "static" && Object.prototype.hasOwnProperty.call(n, "value") ? n.value : n;
+  }, [j]), d = (e) => Array.isArray(e) ? e.length > 0 : typeof e == "string" ? e.trim() !== "" && e.trim().toLowerCase() !== "false" : !!e, y = t.children !== void 0 ? t.children : t.data?.children !== void 0 ? t.data.children : void 0, k = t.userName !== void 0 ? t.userName : t.data?.userName !== void 0 ? t.data.userName : "rudra", E = t.avatarUrl !== void 0 ? t.avatarUrl : t.data?.avatarUrl !== void 0 ? t.data.avatarUrl : void 0, A = t.userEmail !== void 0 ? t.userEmail : t.data?.userEmail !== void 0 ? t.data.userEmail : "rudra@rudraapp.in", f = { children: y, userName: k, avatarUrl: E, userEmail: A }, g = L((e, n) => n, [{}]);
   L((e, n) => {
     const [o, ...s] = String(e || "").split(".");
     return o && s.length === 0 ? g(o, n) : n;
@@ -139,7 +143,7 @@ function ot(t) {
     return o ? await b : n;
   }, [t.onOutput, t.onModuleOutput, t.runtime?.onOutput, t.moduleId]);
   async function B(e = {}) {
-    await c("output_5562270e-9b19-4d81-9927-4ed00a254d84", null, !0);
+    await c("output_5562270e-9b19-4d81-9927-4ed00a254d84", { source: "authenticated-layout" }, !0);
   }
   async function J(e = {}) {
     const n = e || {};
@@ -154,13 +158,13 @@ function ot(t) {
   }, K = {
     signOut: ["event"],
     onSearchChange: ["searchString"]
-  }, F = (e, n = {}, o = []) => {
+  }, V = (e, n = {}, o = []) => {
     const s = G[e];
     if (s) {
       const Q = K[e] || [];
-      return s(Object.fromEntries(Q.map((N, V) => {
+      return s(Object.fromEntries(Q.map((N, F) => {
         const q = Object.prototype.hasOwnProperty.call(n, N) ? n[N] : void 0;
-        return [N, (q === "" || q === void 0) && o[V] !== void 0 ? o[V] : N === "event" && (q === "" || q === void 0) ? o[0] : q];
+        return [N, (q === "" || q === void 0) && o[F] !== void 0 ? o[F] : N === "event" && (q === "" || q === void 0) ? o[0] : q];
       })));
     }
     const w = I?.[e];
@@ -176,7 +180,7 @@ function ot(t) {
       "      ",
       d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(m, { children: [
         "      ",
-        /* @__PURE__ */ S(Y, { id: "el_1791073888602_ta3i06u", primaryActionIcon: /* @__PURE__ */ S(U, { icon: i({ sm: { iconType: "lucide", name: "Plus", props: { color: "#000000", size: 18, strokeWidth: 1.5 } } }) }), showNotifications: i({ sm: !1 }), title: i({ sm: "Workspaces" }), description: i({ sm: "Choose a workspace to continue" }), notificationCount: i({ sm: 0 }), primaryActionLabel: i({ sm: "Create workspace" }), showAccountSettings: !1, userName: f?.userName, showSearch: i({ sm: !0 }), userAvatarUrl: f?.avatarUrl, onSearchChange: (...e) => F("onSearchChange", {}, e), showMenuTrigger: i({ sm: !1 }), showPrimaryAction: i({ sm: !0 }), ariaLabel: i({ sm: "Workspace Header" }), onSignOut: (...e) => F("signOut", {}, e), userEmail: f?.userEmail, showUserMenu: i({ sm: !0 }) })
+        /* @__PURE__ */ S(Y, { id: "el_1791073888602_ta3i06u", ariaLabel: i({ sm: "Workspace Header" }), onSearchChange: (...e) => V("onSearchChange", {}, e), showUserMenu: i({ sm: !0 }), notificationCount: i({ sm: 0 }), showSearch: i({ sm: !0 }), userAvatarUrl: f?.avatarUrl, showMenuTrigger: i({ sm: !1 }), showNotifications: i({ sm: !1 }), showPrimaryAction: i({ sm: !0 }), showAccountSettings: !1, title: i({ sm: "Workspaces" }), userName: f?.userName, onSignOut: (...e) => V("signOut", {}, e), userEmail: f?.userEmail, description: i({ sm: "Choose a workspace to continue" }), primaryActionIcon: /* @__PURE__ */ S(U, { icon: i({ sm: { iconType: "lucide", name: "Plus", props: { color: "#000000", size: 18, strokeWidth: 1.5 } } }) }), primaryActionLabel: i({ sm: "Create workspace" }) })
       ] }),
       d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(m, { children: [
         "      ",
@@ -232,7 +236,7 @@ function ot(t) {
   aria-hidden="true"
 >
   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817-5.967 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
-</svg>` } }), id: "el_1791074384531_z08q6dx", size: 20, color: "#111827", strokeWidth: 1.2 })
+</svg>` } }), id: "el_1791074384531_z08q6dx", strokeWidth: 1.2, size: 20, color: "#111827" })
                       ] })
                     ] })
                   ] })
