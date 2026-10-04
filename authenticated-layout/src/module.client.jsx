@@ -83,10 +83,12 @@ export default function CompiledModule(props) {
   const avatarUrl = props.avatarUrl !== undefined ? props.avatarUrl : (props.data?.avatarUrl !== undefined ? props.data.avatarUrl : undefined);
   const userEmail = props.userEmail !== undefined ? props.userEmail : (props.data?.userEmail !== undefined ? props.data.userEmail : "rudra@rudraapp.in");
   const inputs = { "children": children, "userName": userName, "avatarUrl": avatarUrl, "userEmail": userEmail };
-  const state = {  };
+  const [searchString, set_searchString] = useState(() => structuredClone(""));
+  const state = { "searchString": searchString };
 
   const _setState = useCallback((name, value) => {
     switch (name) {
+      case "searchString": { const next = typeof value === 'function' ? value(state.searchString) : value; state.searchString = next; set_searchString(next); return next; }
       default: return value;
     }
   }, [state]);
@@ -108,6 +110,7 @@ export default function CompiledModule(props) {
       return next;
     };
     switch (root) {
+      case "searchString": _setState("searchString", updateNested); return value;
       default: return value;
     }
   }, [_setState]);
@@ -184,12 +187,14 @@ export default function CompiledModule(props) {
     const stepResults = {};
     await _emitOutput("output_5562270e-9b19-4d81-9927-4ed00a254d84", { "source": "authenticated-layout" }, true);
     return undefined;
+    return undefined;
   }
 
   async function onSearchChange(initialArgs = {}) {
     const args = initialArgs || {};
     const vars = {};
     const stepResults = {};
+    _setState("searchString", args.searchString);
     if (args.searchString?.length > 3) {
       await _emitOutput("output_dcfd049c-046c-4528-bd69-db49860ba8ff", { "searchString": args.searchString }, true);
     } else {
@@ -198,13 +203,23 @@ export default function CompiledModule(props) {
     return undefined;
   }
 
+  async function createWorkspace(initialArgs = {}) {
+    const args = initialArgs || {};
+    const vars = {};
+    const stepResults = {};
+    await _emitOutput("output_f4a4febd-f2c7-423c-a5ca-11552d44fe6e", { "empty": "" }, true);
+    return undefined;
+  }
+
   const _localActions = {
     "signOut": signOut,
     "onSearchChange": onSearchChange,
+    "createWorkspace": createWorkspace,
   };
   const _localActionArguments = {
     "signOut": ["event"],
     "onSearchChange": ["searchString"],
+    "createWorkspace": [],
   };
   const _callAction = (name, configuredArgs = {}, eventArgs = []) => {
     const localAction = _localActions[name];
@@ -229,7 +244,7 @@ export default function CompiledModule(props) {
 
   return (
     <div ref={wrapperRef} className="rudra-module-wrapper">
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="el_1791073881947_6a9oh9x" className={`${getResponsiveProp({sm: 'authenticated-layout'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <LeadflowUiAppHeader id="el_1791073888602_ta3i06u" ariaLabel={getResponsiveProp({"sm":"Workspace Header"})} onSearchChange={(...eventArgs) => _callAction("onSearchChange", {}, eventArgs)} showUserMenu={getResponsiveProp({"sm":true})} notificationCount={getResponsiveProp({"sm":0})} showSearch={getResponsiveProp({"sm":true})} userAvatarUrl={inputs?.avatarUrl} showMenuTrigger={getResponsiveProp({"sm":false})} showNotifications={getResponsiveProp({"sm":false})} showPrimaryAction={getResponsiveProp({"sm":true})} showAccountSettings={false} title={getResponsiveProp({"sm":"Workspaces"})} userName={inputs?.userName} onSignOut={(...eventArgs) => _callAction("signOut", {}, eventArgs)} userEmail={inputs?.userEmail} description={getResponsiveProp({"sm":"Choose a workspace to continue"})} primaryActionIcon={<UniversalIcon icon={getResponsiveProp({"sm":{"iconType":"lucide","name":"Plus","props":{"color":"#000000","size":18,"strokeWidth":1.5}}})} />} primaryActionLabel={getResponsiveProp({"sm":"Create workspace"})} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="el_1791073881947_6a9oh9x" className={`${getResponsiveProp({sm: 'authenticated-layout'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <LeadflowUiAppHeader id="el_1791073888602_ta3i06u" onSignOut={(...eventArgs) => _callAction("createWorkspace", {}, eventArgs)} userEmail={inputs?.userEmail} primaryActionIcon={<UniversalIcon icon={getResponsiveProp({"sm":{"iconType":"lucide","name":"Plus","props":{"color":"#000000","size":18,"strokeWidth":1.5}}})} />} ariaLabel={getResponsiveProp({"sm":"Workspace Header"})} description={getResponsiveProp({"sm":"Choose a workspace to continue"})} primaryActionLabel={getResponsiveProp({"sm":"Create workspace"})} showAccountSettings={false} showMenuTrigger={getResponsiveProp({"sm":false})} userName={inputs?.userName} showSearch={getResponsiveProp({"sm":true})} showUserMenu={getResponsiveProp({"sm":true})} userAvatarUrl={inputs?.avatarUrl} onSearchChange={(...eventArgs) => _callAction("onSearchChange", {}, eventArgs)} searchValue={searchString} onPrimaryAction={(...eventArgs) => _callAction("signOut", {"event": ""}, eventArgs)} notificationCount={getResponsiveProp({"sm":0})} showNotifications={getResponsiveProp({"sm":false})} showPrimaryAction={getResponsiveProp({"sm":true})} title={getResponsiveProp({"sm":"Workspaces"})} />
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="el_1791073897025_7amwznk">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="el_1791073901971_e90mron">{inputs?.children}</RudraLayoutBox>
 </>)}
@@ -239,7 +254,7 @@ export default function CompiledModule(props) {
 </>)}
       {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraLayoutBox id="el_1791074298490_f1wsnio" className={`${getResponsiveProp({sm: 'cta-group'}) || ''}`}>      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreLink id="el_1791074352003_j5nck95">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={getResponsiveProp({"sm":{"iconType":"svg","svgContent":"\u003csvg\n  viewBox=\"0 0 24 24\"\n  width=\"20\"\n  height=\"20\"\n  fill=\"#0A66C2\"\n  xmlns=\"http://www.w3.org/2000/svg\"\n  aria-hidden=\"true\"\n\u003e\n  \u003cpath d=\"M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.1 20.45H3.54V9H7.1v11.45Z\" /\u003e\n\u003c/svg\u003e"}})} id="el_1791074365364_dditf3n" size={20} color="#111827" strokeWidth={1.2} />
 </>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreLink id="el_1791074380507_glkjt3l">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={getResponsiveProp({"sm":{"iconType":"svg","svgContent":"\u003csvg\n  viewBox=\"0 0 24 24\"\n  width=\"20\"\n  height=\"20\"\n  fill=\"#000000\"\n  xmlns=\"http://www.w3.org/2000/svg\"\n  aria-hidden=\"true\"\n\u003e\n  \u003cpath d=\"M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817-5.967 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z\" /\u003e\n\u003c/svg\u003e"}})} id="el_1791074384531_z08q6dx" strokeWidth={1.2} size={20} color="#111827" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreLink id="el_1791074380507_glkjt3l">      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <UniversalIcon icon={getResponsiveProp({"sm":{"iconType":"svg","svgContent":"\u003csvg\n  viewBox=\"0 0 24 24\"\n  width=\"20\"\n  height=\"20\"\n  fill=\"#000000\"\n  xmlns=\"http://www.w3.org/2000/svg\"\n  aria-hidden=\"true\"\n\u003e\n  \u003cpath d=\"M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817-5.967 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z\" /\u003e\n\u003c/svg\u003e"}})} id="el_1791074384531_z08q6dx" size={20} color="#111827" strokeWidth={1.2} />
 </>)}
 </RudraCoreLink>
 </>)}

@@ -1,216 +1,236 @@
-import { jsx as S, jsxs as l, Fragment as m } from "react/jsx-runtime";
-import M, { useState as H, useEffect as z, useRef as X, useCallback as L } from "react";
-import { Box as P } from "@rudra-studio/rudra-layout";
-import { AppHeader as Y } from "@rudra-studio/leadflow-ui";
-import { Typography as p, Link as D } from "@rudra-studio/rudra-core";
-import * as W from "lucide-react";
-const Z = (t) => String(t || "").replace(/<script[\s\S]*?<\/script>/gi, "").replace(/<foreignObject[\s\S]*?<\/foreignObject>/gi, "").replace(/\son\w+\s*=\s*(?:"[^"]*"|'[^']*')/gi, "").replace(/\s(?:href|xlink:href)\s*=\s*(?:"javascript:[^"]*"|'javascript:[^']*')/gi, ""), tt = (t) => {
-  let r = t;
+import { jsx as O, jsxs as l, Fragment as f } from "react/jsx-runtime";
+import D, { useState as M, useEffect as U, useRef as ee, useCallback as z } from "react";
+import { Box as T } from "@rudra-studio/rudra-layout";
+import { AppHeader as te } from "@rudra-studio/leadflow-ui";
+import { Typography as ne, Link as J } from "@rudra-studio/rudra-core";
+import * as I from "lucide-react";
+const G = (e) => String(e || "").replace(/<script[\s\S]*?<\/script>/gi, "").replace(/<foreignObject[\s\S]*?<\/foreignObject>/gi, "").replace(/\son\w+\s*=\s*(?:"[^"]*"|'[^']*')/gi, "").replace(/\s(?:href|xlink:href)\s*=\s*(?:"javascript:[^"]*"|'javascript:[^']*')/gi, ""), re = (e) => {
+  let r = e;
   for (; r && typeof r == "object" && "type" in r && "value" in r; )
     r = r.value;
   return r;
 };
-function U({ icon: t, size: r, color: I, strokeWidth: h, className: _ = "", style: T, ...O }) {
-  const a = tt(t), [j, $] = H(null), i = a && typeof a == "object" ? JSON.stringify(a) : String(a || "");
-  z(() => {
-    const g = new AbortController();
-    let x = "", v = "";
-    if ($(null), typeof a == "string") {
-      const c = a.trim();
-      if (W[c]) return () => g.abort();
-      c.startsWith("<svg") ? v = c : (/^https?:\/\//.test(c) || c.startsWith("/") || c.startsWith("data:image/svg")) && (x = c);
-    } else a && typeof a == "object" && (a.iconType === "svg" && a.svgContent ? v = a.svgContent : a.iconType === "url" && a.url && (x = a.url));
-    return v ? $(Z(v)) : x && fetch(x, { signal: g.signal }).then((c) => {
-      if (!c.ok) throw new Error("Icon request failed (" + c.status + ")");
-      return c.text();
-    }).then((c) => {
-      c.trim().startsWith("<svg") && $(Z(c));
-    }).catch((c) => {
-      c.name !== "AbortError" && console.warn("Failed to load custom SVG icon:", c);
-    }), () => g.abort();
+function Z({ icon: e, size: r, color: H, strokeWidth: g, className: j = "", style: N, ...A }) {
+  const a = re(e), [x, k] = M(null), i = a && typeof a == "object" ? JSON.stringify(a) : String(a || "");
+  U(() => {
+    const S = new AbortController();
+    let $ = "", w = "";
+    if (k(null), typeof a == "string") {
+      const s = a.trim();
+      if (I[s]) return () => S.abort();
+      s.startsWith("<svg") ? w = s : (/^https?:\/\//.test(s) || s.startsWith("/") || s.startsWith("data:image/svg")) && ($ = s);
+    } else a && typeof a == "object" && (a.iconType === "svg" && a.svgContent ? w = a.svgContent : a.iconType === "url" && a.url && ($ = a.url));
+    return w ? k(G(w)) : $ && fetch($, { signal: S.signal }).then((s) => {
+      if (!s.ok) throw new Error("Icon request failed (" + s.status + ")");
+      return s.text();
+    }).then((s) => {
+      s.trim().startsWith("<svg") && k(G(s));
+    }).catch((s) => {
+      s.name !== "AbortError" && console.warn("Failed to load custom SVG icon:", s);
+    }), () => S.abort();
   }, [i]);
-  const d = a && typeof a == "object" ? a.props || {} : {}, y = { ...d };
-  delete y.size, delete y.color, delete y.strokeWidth;
-  const k = r ?? d.size ?? 24, E = I ?? d.color ?? "currentColor", A = h ?? d.strokeWidth ?? 1.5;
-  let f = "";
-  if (typeof a == "string" && W[a] ? f = a : a && typeof a == "object" && a.name && (!a.iconType || a.iconType === "lucide") && (f = a.name), f) {
-    const g = W[f];
-    if (g)
-      return M.createElement(g, {
-        size: k,
-        color: E,
-        strokeWidth: A,
-        className: _,
-        style: T,
-        ...y,
-        ...O
+  const d = a && typeof a == "object" ? a.props || {} : {}, b = { ...d };
+  delete b.size, delete b.color, delete b.strokeWidth;
+  const E = r ?? d.size ?? 24, q = H ?? d.color ?? "currentColor", P = g ?? d.strokeWidth ?? 1.5;
+  let v = "";
+  if (typeof a == "string" && I[a] ? v = a : a && typeof a == "object" && a.name && (!a.iconType || a.iconType === "lucide") && (v = a.name), v) {
+    const S = I[v];
+    if (S)
+      return D.createElement(S, {
+        size: E,
+        color: q,
+        strokeWidth: P,
+        className: j,
+        style: N,
+        ...b,
+        ...A
       });
   }
-  if (j)
-    return M.createElement("span", {
-      ...y,
-      ...O,
-      className: ("rudra-universal-icon " + _).trim(),
+  if (x)
+    return D.createElement("span", {
+      ...b,
+      ...A,
+      className: ("rudra-universal-icon " + j).trim(),
       style: {
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        width: k,
-        height: k,
-        color: E,
-        ...T
+        width: E,
+        height: E,
+        color: q,
+        ...N
       },
       dangerouslySetInnerHTML: {
-        __html: j.replace(/<svg([^>]*)>/i, '<svg$1 style="width:100%;height:100%;" stroke-width="' + A + '">')
+        __html: x.replace(/<svg([^>]*)>/i, '<svg$1 style="width:100%;height:100%;" stroke-width="' + P + '">')
       }
     });
-  const R = W.LayoutGrid;
-  return M.createElement(R, {
-    size: k,
-    color: E,
-    strokeWidth: A,
-    className: _,
-    style: T,
-    ...y,
-    ...O
+  const L = I.LayoutGrid;
+  return D.createElement(L, {
+    size: E,
+    color: q,
+    strokeWidth: P,
+    className: j,
+    style: N,
+    ...b,
+    ...A
   });
 }
-function ot(t) {
-  const r = t.serverData || t.serverState || {};
-  t.sharedState, t.applicationState || r.applicationState, t.pageState || r.pageState, t.pageData || r.pageData;
-  const I = {
-    ...t.runtime?.functions || {},
-    ...t.runtime?.actions || {},
-    ...t.functions || {},
-    ...t.actions || {}
+function ue(e) {
+  const r = e.serverData || e.serverState || {};
+  e.sharedState, e.applicationState || r.applicationState, e.pageState || r.pageState, e.pageData || r.pageData;
+  const H = {
+    ...e.runtime?.functions || {},
+    ...e.runtime?.actions || {},
+    ...e.functions || {},
+    ...e.actions || {}
   };
-  t.$route ?? t.route ?? t.data?.$route ?? t.data?.route ?? t.runtime?.data?.$route ?? t.runtime?.route ?? r?.$route ?? r?.route, t.$params ?? t.routeParams ?? t.params ?? t.data?.$params ?? t.data?.routeParams ?? t.data?.params ?? t.runtime?.data?.$params ?? t.runtime?.route?.params ?? t.runtime?.routeParams ?? t.runtime?.params ?? r?.$params ?? r?.routeParams ?? r?.params, t.$query ?? t.queryParams ?? t.query ?? t.data?.$query ?? t.data?.queryParams ?? t.data?.query ?? t.runtime?.data?.$query ?? t.runtime?.route?.query ?? t.runtime?.queryParams ?? t.runtime?.query ?? r?.$query ?? r?.queryParams ?? r?.query, t.$auth ?? t.auth ?? t.data?.$auth ?? t.data?.auth ?? t.runtime?.data?.$auth ?? t.runtime?.authInfo ?? t.runtime?.auth ?? r?.$auth ?? r?.auth, t.$config ?? t.config ?? t.data?.$config ?? t.data?.config ?? t.runtime?.data?.$config ?? t.runtime?.config ?? r?.$config ?? r?.config, t.$env ?? t.env ?? t.data?.$env ?? t.data?.env ?? t.runtime?.data?.$env ?? t.runtime?.env ?? r?.$env ?? r?.env, t.$locale ?? t.locale ?? t.data?.$locale ?? t.data?.locale ?? t.runtime?.data?.$locale ?? t.runtime?.locale ?? r?.$locale ?? r?.locale, t.$translations ?? t.translations ?? t.data?.$translations ?? t.data?.translations ?? t.runtime?.data?.$translations ?? t.runtime?.translations ?? r?.$translations ?? r?.translations, t.$i18n ?? t.i18n ?? t.data?.$i18n ?? t.data?.i18n ?? t.runtime?.data?.$i18n ?? t.runtime?.i18n ?? r?.$i18n ?? r?.i18n;
-  const h = t.$theme ?? t.theme ?? t.data?.$theme ?? t.runtime?.data?.$theme ?? t.runtime?.theme, _ = () => typeof document > "u" ? "light" : document.documentElement.dataset.theme || (document.documentElement.classList.contains("dark") ? "dark" : "light"), [T, O] = H(() => h ?? _());
-  z(() => {
-    h != null && O(h);
-  }, [h]), z(() => {
-    if (h != null || typeof document > "u") return;
-    const e = document.documentElement, n = (s) => O(s?.detail?.theme ?? _()), o = new MutationObserver(n);
-    return o.observe(e, { attributes: !0, attributeFilter: ["class", "data-theme"] }), window.addEventListener("rudra:theme-change", n), n(), () => {
+  e.$route ?? e.route ?? e.data?.$route ?? e.data?.route ?? e.runtime?.data?.$route ?? e.runtime?.route ?? r?.$route ?? r?.route, e.$params ?? e.routeParams ?? e.params ?? e.data?.$params ?? e.data?.routeParams ?? e.data?.params ?? e.runtime?.data?.$params ?? e.runtime?.route?.params ?? e.runtime?.routeParams ?? e.runtime?.params ?? r?.$params ?? r?.routeParams ?? r?.params, e.$query ?? e.queryParams ?? e.query ?? e.data?.$query ?? e.data?.queryParams ?? e.data?.query ?? e.runtime?.data?.$query ?? e.runtime?.route?.query ?? e.runtime?.queryParams ?? e.runtime?.query ?? r?.$query ?? r?.queryParams ?? r?.query, e.$auth ?? e.auth ?? e.data?.$auth ?? e.data?.auth ?? e.runtime?.data?.$auth ?? e.runtime?.authInfo ?? e.runtime?.auth ?? r?.$auth ?? r?.auth, e.$config ?? e.config ?? e.data?.$config ?? e.data?.config ?? e.runtime?.data?.$config ?? e.runtime?.config ?? r?.$config ?? r?.config, e.$env ?? e.env ?? e.data?.$env ?? e.data?.env ?? e.runtime?.data?.$env ?? e.runtime?.env ?? r?.$env ?? r?.env, e.$locale ?? e.locale ?? e.data?.$locale ?? e.data?.locale ?? e.runtime?.data?.$locale ?? e.runtime?.locale ?? r?.$locale ?? r?.locale, e.$translations ?? e.translations ?? e.data?.$translations ?? e.data?.translations ?? e.runtime?.data?.$translations ?? e.runtime?.translations ?? r?.$translations ?? r?.translations, e.$i18n ?? e.i18n ?? e.data?.$i18n ?? e.data?.i18n ?? e.runtime?.data?.$i18n ?? e.runtime?.i18n ?? r?.$i18n ?? r?.i18n;
+  const g = e.$theme ?? e.theme ?? e.data?.$theme ?? e.runtime?.data?.$theme ?? e.runtime?.theme, j = () => typeof document > "u" ? "light" : document.documentElement.dataset.theme || (document.documentElement.classList.contains("dark") ? "dark" : "light"), [N, A] = M(() => g ?? j());
+  U(() => {
+    g != null && A(g);
+  }, [g]), U(() => {
+    if (g != null || typeof document > "u") return;
+    const t = document.documentElement, n = (u) => A(u?.detail?.theme ?? j()), o = new MutationObserver(n);
+    return o.observe(t, { attributes: !0, attributeFilter: ["class", "data-theme"] }), window.addEventListener("rudra:theme-change", n), n(), () => {
       o.disconnect(), window.removeEventListener("rudra:theme-change", n);
     };
-  }, [h]);
-  const a = X(null), [j, $] = H("lg");
-  z(() => {
+  }, [g]);
+  const a = ee(null), [x, k] = M("lg");
+  U(() => {
     if (!a.current) return;
-    const e = new ResizeObserver((n) => {
+    const t = new ResizeObserver((n) => {
       for (let o of n) {
-        const s = o.contentRect.width;
-        s < 768 ? $("sm") : s < 1024 ? $("md") : $("lg");
+        const u = o.contentRect.width;
+        u < 768 ? k("sm") : u < 1024 ? k("md") : k("lg");
       }
     });
-    return e.observe(a.current), () => e.disconnect();
+    return t.observe(a.current), () => t.disconnect();
   }, []);
-  const i = L((e) => {
-    if (typeof e != "object" || e === null) return e;
-    const n = j === "sm" ? e.sm !== void 0 ? e.sm : e.md !== void 0 ? e.md : e.lg : j === "md" ? e.md !== void 0 ? e.md : e.sm !== void 0 ? e.sm : e.lg : e.lg !== void 0 ? e.lg : e.md !== void 0 ? e.md : e.sm;
+  const i = z((t) => {
+    if (typeof t != "object" || t === null) return t;
+    const n = x === "sm" ? t.sm !== void 0 ? t.sm : t.md !== void 0 ? t.md : t.lg : x === "md" ? t.md !== void 0 ? t.md : t.sm !== void 0 ? t.sm : t.lg : t.lg !== void 0 ? t.lg : t.md !== void 0 ? t.md : t.sm;
     return n && typeof n == "object" && n.type === "static" && Object.prototype.hasOwnProperty.call(n, "value") ? n.value : n;
-  }, [j]), d = (e) => Array.isArray(e) ? e.length > 0 : typeof e == "string" ? e.trim() !== "" && e.trim().toLowerCase() !== "false" : !!e, y = t.children !== void 0 ? t.children : t.data?.children !== void 0 ? t.data.children : void 0, k = t.userName !== void 0 ? t.userName : t.data?.userName !== void 0 ? t.data.userName : "rudra", E = t.avatarUrl !== void 0 ? t.avatarUrl : t.data?.avatarUrl !== void 0 ? t.data.avatarUrl : void 0, A = t.userEmail !== void 0 ? t.userEmail : t.data?.userEmail !== void 0 ? t.data.userEmail : "rudra@rudraapp.in", f = { children: y, userName: k, avatarUrl: E, userEmail: A }, g = L((e, n) => n, [{}]);
-  L((e, n) => {
-    const [o, ...s] = String(e || "").split(".");
-    return o && s.length === 0 ? g(o, n) : n;
-  }, [g]);
-  const x = { "output_5562270e-9b19-4d81-9927-4ed00a254d84": { properties: { source: { type: "string" } }, required: ["source"], type: "object" }, "output_dcfd049c-046c-4528-bd69-db49860ba8ff": { properties: { searchString: { type: "string" } }, required: ["searchString"], type: "object" }, "output_f4a4febd-f2c7-423c-a5ca-11552d44fe6e": { properties: {}, type: "object" } }, v = (e, n, o) => {
+  }, [x]), d = (t) => Array.isArray(t) ? t.length > 0 : typeof t == "string" ? t.trim() !== "" && t.trim().toLowerCase() !== "false" : !!t, b = e.children !== void 0 ? e.children : e.data?.children !== void 0 ? e.data.children : void 0, E = e.userName !== void 0 ? e.userName : e.data?.userName !== void 0 ? e.data.userName : "rudra", q = e.avatarUrl !== void 0 ? e.avatarUrl : e.data?.avatarUrl !== void 0 ? e.data.avatarUrl : void 0, P = e.userEmail !== void 0 ? e.userEmail : e.data?.userEmail !== void 0 ? e.data.userEmail : "rudra@rudraapp.in", v = { children: b, userName: E, avatarUrl: q, userEmail: P }, [L, S] = M(() => structuredClone("")), $ = { searchString: L }, w = z((t, n) => {
+    if (t === "searchString") {
+      const o = typeof n == "function" ? n($.searchString) : n;
+      return $.searchString = o, S(o), o;
+    } else
+      return n;
+  }, [$]);
+  z((t, n) => {
+    const [o, ...u] = String(t || "").split(".");
+    if (!o) return n;
+    if (u.length === 0) return w(o, n);
+    const y = (c) => {
+      const h = Array.isArray(c) ? [...c] : { ...c || {} };
+      let m = h;
+      return u.forEach((_, C) => {
+        C === u.length - 1 ? m[_] = n : (m[_] = Array.isArray(m[_]) ? [...m[_]] : { ...m[_] || {} }, m = m[_]);
+      }), h;
+    };
+    return o === "searchString" && w("searchString", y), n;
+  }, [w]);
+  const s = { "output_5562270e-9b19-4d81-9927-4ed00a254d84": { properties: { source: { type: "string" } }, required: ["source"], type: "object" }, "output_dcfd049c-046c-4528-bd69-db49860ba8ff": { properties: { searchString: { type: "string" } }, required: ["searchString"], type: "object" }, "output_f4a4febd-f2c7-423c-a5ca-11552d44fe6e": { properties: {}, type: "object" } }, V = (t, n, o) => {
     if (!n || typeof n != "object") return "";
-    const s = Array.isArray(n.type) ? n.type : n.type ? [n.type] : [], w = e === null ? "null" : Array.isArray(e) ? "array" : Number.isInteger(e) ? "integer" : typeof e;
-    if (s.length && !s.includes(w) && !(w === "integer" && s.includes("number"))) return o + " must be " + s.join(" or ") + ".";
-    if (n.enum && !n.enum.some((u) => JSON.stringify(u) === JSON.stringify(e))) return o + " is not an allowed value.";
-    if (e && typeof e == "object" && !Array.isArray(e)) {
-      for (const u of n.required || []) if (!Object.prototype.hasOwnProperty.call(e, u)) return o + "." + u + " is required.";
-      for (const [u, b] of Object.entries(n.properties || {})) if (Object.prototype.hasOwnProperty.call(e, u)) {
-        const C = v(e[u], b, o + "." + u);
-        if (C) return C;
+    const u = Array.isArray(n.type) ? n.type : n.type ? [n.type] : [], y = t === null ? "null" : Array.isArray(t) ? "array" : Number.isInteger(t) ? "integer" : typeof t;
+    if (u.length && !u.includes(y) && !(y === "integer" && u.includes("number"))) return o + " must be " + u.join(" or ") + ".";
+    if (n.enum && !n.enum.some((c) => JSON.stringify(c) === JSON.stringify(t))) return o + " is not an allowed value.";
+    if (t && typeof t == "object" && !Array.isArray(t)) {
+      for (const c of n.required || []) if (!Object.prototype.hasOwnProperty.call(t, c)) return o + "." + c + " is required.";
+      for (const [c, h] of Object.entries(n.properties || {})) if (Object.prototype.hasOwnProperty.call(t, c)) {
+        const m = V(t[c], h, o + "." + c);
+        if (m) return m;
       }
     }
-    if (Array.isArray(e) && n.items) for (let u = 0; u < e.length; u++) {
-      const b = v(e[u], n.items, o + "[" + u + "]");
-      if (b) return b;
+    if (Array.isArray(t) && n.items) for (let c = 0; c < t.length; c++) {
+      const h = V(t[c], n.items, o + "[" + c + "]");
+      if (h) return h;
     }
     return "";
-  }, c = L(async (e, n, o = !1) => {
-    const s = x[e];
-    if (!s) throw new Error("Module output '" + e + "' is not declared.");
-    const w = v(n, s, "output." + e);
-    if (w) throw new Error(w);
-    const u = t.onOutput || t.onModuleOutput || t.runtime?.onOutput;
-    if (typeof u != "function") return n;
-    const b = u(e, n, { moduleId: t.moduleId, awaitHandlers: o });
-    return o ? await b : n;
-  }, [t.onOutput, t.onModuleOutput, t.runtime?.onOutput, t.moduleId]);
-  async function B(e = {}) {
-    await c("output_5562270e-9b19-4d81-9927-4ed00a254d84", { source: "authenticated-layout" }, !0);
+  }, R = z(async (t, n, o = !1) => {
+    const u = s[t];
+    if (!u) throw new Error("Module output '" + t + "' is not declared.");
+    const y = V(n, u, "output." + t);
+    if (y) throw new Error(y);
+    const c = e.onOutput || e.onModuleOutput || e.runtime?.onOutput;
+    if (typeof c != "function") return n;
+    const h = c(t, n, { moduleId: e.moduleId, awaitHandlers: o });
+    return o ? await h : n;
+  }, [e.onOutput, e.onModuleOutput, e.runtime?.onOutput, e.moduleId]);
+  async function K(t = {}) {
+    await R("output_5562270e-9b19-4d81-9927-4ed00a254d84", { source: "authenticated-layout" }, !0);
   }
-  async function J(e = {}) {
-    const n = e || {};
-    if (n.searchString?.length > 3)
-      await c("output_dcfd049c-046c-4528-bd69-db49860ba8ff", { searchString: n.searchString }, !0);
+  async function Q(t = {}) {
+    const n = t || {};
+    if (w("searchString", n.searchString), n.searchString?.length > 3)
+      await R("output_dcfd049c-046c-4528-bd69-db49860ba8ff", { searchString: n.searchString }, !0);
     else
       return;
   }
-  const G = {
-    signOut: B,
-    onSearchChange: J
-  }, K = {
+  async function X(t = {}) {
+    await R("output_f4a4febd-f2c7-423c-a5ca-11552d44fe6e", { empty: "" }, !0);
+  }
+  const Y = {
+    signOut: K,
+    onSearchChange: Q,
+    createWorkspace: X
+  }, p = {
     signOut: ["event"],
-    onSearchChange: ["searchString"]
-  }, V = (e, n = {}, o = []) => {
-    const s = G[e];
-    if (s) {
-      const Q = K[e] || [];
-      return s(Object.fromEntries(Q.map((N, F) => {
-        const q = Object.prototype.hasOwnProperty.call(n, N) ? n[N] : void 0;
-        return [N, (q === "" || q === void 0) && o[F] !== void 0 ? o[F] : N === "event" && (q === "" || q === void 0) ? o[0] : q];
+    onSearchChange: ["searchString"],
+    createWorkspace: []
+  }, F = (t, n = {}, o = []) => {
+    const u = Y[t];
+    if (u) {
+      const _ = p[t] || [];
+      return u(Object.fromEntries(_.map((C, B) => {
+        const W = Object.prototype.hasOwnProperty.call(n, C) ? n[C] : void 0;
+        return [C, (W === "" || W === void 0) && o[B] !== void 0 ? o[B] : C === "event" && (W === "" || W === void 0) ? o[0] : W];
       })));
     }
-    const w = I?.[e];
-    if (typeof w == "function")
-      return w(Object.keys(n).length > 0 ? n : o[0]);
-    const [u, b] = String(e).split("."), C = typeof globalThis < "u" ? globalThis[u]?.[b] : void 0;
-    if (typeof C == "function") return C(...Object.values(n));
-    console.warn("Rudra action '" + e + "' is not available in this runtime.");
+    const y = H?.[t];
+    if (typeof y == "function")
+      return y(Object.keys(n).length > 0 ? n : o[0]);
+    const [c, h] = String(t).split("."), m = typeof globalThis < "u" ? globalThis[c]?.[h] : void 0;
+    if (typeof m == "function") return m(...Object.values(n));
+    console.warn("Rudra action '" + t + "' is not available in this runtime.");
   };
-  return /* @__PURE__ */ S("div", { ref: a, className: "rudra-module-wrapper", children: d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(m, { children: [
+  return /* @__PURE__ */ O("div", { ref: a, className: "rudra-module-wrapper", children: d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(f, { children: [
     "      ",
-    /* @__PURE__ */ l(P, { id: "el_1791073881947_6a9oh9x", className: `${i({ sm: "authenticated-layout" }) || ""}`, children: [
+    /* @__PURE__ */ l(T, { id: "el_1791073881947_6a9oh9x", className: `${i({ sm: "authenticated-layout" }) || ""}`, children: [
       "      ",
-      d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(m, { children: [
+      d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(f, { children: [
         "      ",
-        /* @__PURE__ */ S(Y, { id: "el_1791073888602_ta3i06u", ariaLabel: i({ sm: "Workspace Header" }), onSearchChange: (...e) => V("onSearchChange", {}, e), showUserMenu: i({ sm: !0 }), notificationCount: i({ sm: 0 }), showSearch: i({ sm: !0 }), userAvatarUrl: f?.avatarUrl, showMenuTrigger: i({ sm: !1 }), showNotifications: i({ sm: !1 }), showPrimaryAction: i({ sm: !0 }), showAccountSettings: !1, title: i({ sm: "Workspaces" }), userName: f?.userName, onSignOut: (...e) => V("signOut", {}, e), userEmail: f?.userEmail, description: i({ sm: "Choose a workspace to continue" }), primaryActionIcon: /* @__PURE__ */ S(U, { icon: i({ sm: { iconType: "lucide", name: "Plus", props: { color: "#000000", size: 18, strokeWidth: 1.5 } } }) }), primaryActionLabel: i({ sm: "Create workspace" }) })
+        /* @__PURE__ */ O(te, { id: "el_1791073888602_ta3i06u", onSignOut: (...t) => F("createWorkspace", {}, t), userEmail: v?.userEmail, primaryActionIcon: /* @__PURE__ */ O(Z, { icon: i({ sm: { iconType: "lucide", name: "Plus", props: { color: "#000000", size: 18, strokeWidth: 1.5 } } }) }), ariaLabel: i({ sm: "Workspace Header" }), description: i({ sm: "Choose a workspace to continue" }), primaryActionLabel: i({ sm: "Create workspace" }), showAccountSettings: !1, showMenuTrigger: i({ sm: !1 }), userName: v?.userName, showSearch: i({ sm: !0 }), showUserMenu: i({ sm: !0 }), userAvatarUrl: v?.avatarUrl, onSearchChange: (...t) => F("onSearchChange", {}, t), searchValue: L, onPrimaryAction: (...t) => F("signOut", { event: "" }, t), notificationCount: i({ sm: 0 }), showNotifications: i({ sm: !1 }), showPrimaryAction: i({ sm: !0 }), title: i({ sm: "Workspaces" }) })
       ] }),
-      d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(m, { children: [
+      d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(f, { children: [
         "      ",
-        /* @__PURE__ */ l(P, { id: "el_1791073897025_7amwznk", children: [
+        /* @__PURE__ */ l(T, { id: "el_1791073897025_7amwznk", children: [
           "      ",
-          d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(m, { children: [
+          d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(f, { children: [
             "      ",
-            /* @__PURE__ */ S(P, { id: "el_1791073901971_e90mron", children: f?.children })
+            /* @__PURE__ */ O(T, { id: "el_1791073901971_e90mron", children: v?.children })
           ] })
         ] })
       ] }),
-      d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(m, { children: [
+      d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(f, { children: [
         "      ",
-        /* @__PURE__ */ l(P, { id: "el_1791074116515_mmn0th9", className: `flex ${i({ sm: "flex items-center justify-between p-2" }) || ""}`, children: [
+        /* @__PURE__ */ l(T, { id: "el_1791074116515_mmn0th9", className: `flex ${i({ sm: "flex items-center justify-between p-2" }) || ""}`, children: [
           "      ",
-          d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(m, { children: [
+          d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(f, { children: [
             "      ",
-            /* @__PURE__ */ S(p, { id: "el_1791074287339_6c1kv3x", className: `${i({ sm: "text-center text-xs text-slate-400 dark:text-slate-500" }) || ""}`, content: i({ sm: " © 2026 LeadFlow. All rights reserved." }) })
+            /* @__PURE__ */ O(ne, { id: "el_1791074287339_6c1kv3x", className: `${i({ sm: "text-center text-xs text-slate-400 dark:text-slate-500" }) || ""}`, content: i({ sm: " © 2026 LeadFlow. All rights reserved." }) })
           ] }),
-          d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(m, { children: [
+          d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(f, { children: [
             "      ",
-            /* @__PURE__ */ l(P, { id: "el_1791074298490_f1wsnio", className: `${i({ sm: "cta-group" }) || ""}`, children: [
+            /* @__PURE__ */ l(T, { id: "el_1791074298490_f1wsnio", className: `${i({ sm: "cta-group" }) || ""}`, children: [
               "      ",
-              d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(m, { children: [
+              d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(f, { children: [
                 "      ",
-                /* @__PURE__ */ l(D, { id: "el_1791074352003_j5nck95", children: [
+                /* @__PURE__ */ l(J, { id: "el_1791074352003_j5nck95", children: [
                   "      ",
-                  d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(m, { children: [
+                  d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(f, { children: [
                     "      ",
-                    /* @__PURE__ */ S(U, { icon: i({ sm: { iconType: "svg", svgContent: `<svg
+                    /* @__PURE__ */ O(Z, { icon: i({ sm: { iconType: "svg", svgContent: `<svg
   viewBox="0 0 24 24"
   width="20"
   height="20"
@@ -221,13 +241,13 @@ function ot(t) {
   <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.1 20.45H3.54V9H7.1v11.45Z" />
 </svg>` } }), id: "el_1791074365364_dditf3n", size: 20, color: "#111827", strokeWidth: 1.2 })
                   ] }),
-                  d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(m, { children: [
+                  d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(f, { children: [
                     "      ",
-                    /* @__PURE__ */ l(D, { id: "el_1791074380507_glkjt3l", children: [
+                    /* @__PURE__ */ l(J, { id: "el_1791074380507_glkjt3l", children: [
                       "      ",
-                      d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(m, { children: [
+                      d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(f, { children: [
                         "      ",
-                        /* @__PURE__ */ S(U, { icon: i({ sm: { iconType: "svg", svgContent: `<svg
+                        /* @__PURE__ */ O(Z, { icon: i({ sm: { iconType: "svg", svgContent: `<svg
   viewBox="0 0 24 24"
   width="20"
   height="20"
@@ -236,7 +256,7 @@ function ot(t) {
   aria-hidden="true"
 >
   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817-5.967 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
-</svg>` } }), id: "el_1791074384531_z08q6dx", strokeWidth: 1.2, size: 20, color: "#111827" })
+</svg>` } }), id: "el_1791074384531_z08q6dx", size: 20, color: "#111827", strokeWidth: 1.2 })
                       ] })
                     ] })
                   ] })
@@ -250,5 +270,5 @@ function ot(t) {
   ] }) });
 }
 export {
-  ot as default
+  ue as default
 };
