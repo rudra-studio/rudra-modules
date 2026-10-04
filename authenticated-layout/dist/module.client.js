@@ -200,7 +200,7 @@ function ue(e) {
       "      ",
       d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(f, { children: [
         "      ",
-        /* @__PURE__ */ O(te, { id: "el_1791073888602_ta3i06u", onSignOut: (...t) => F("createWorkspace", {}, t), userEmail: v?.userEmail, primaryActionIcon: /* @__PURE__ */ O(Z, { icon: i({ sm: { iconType: "lucide", name: "Plus", props: { color: "#000000", size: 18, strokeWidth: 1.5 } } }) }), ariaLabel: i({ sm: "Workspace Header" }), description: i({ sm: "Choose a workspace to continue" }), primaryActionLabel: i({ sm: "Create workspace" }), showAccountSettings: !1, showMenuTrigger: i({ sm: !1 }), userName: v?.userName, showSearch: i({ sm: !0 }), showUserMenu: i({ sm: !0 }), userAvatarUrl: v?.avatarUrl, onSearchChange: (...t) => F("onSearchChange", {}, t), searchValue: L, onPrimaryAction: (...t) => F("signOut", { event: "" }, t), notificationCount: i({ sm: 0 }), showNotifications: i({ sm: !1 }), showPrimaryAction: i({ sm: !0 }), title: i({ sm: "Workspaces" }) })
+        /* @__PURE__ */ O(te, { id: "el_1791073888602_ta3i06u", onPrimaryAction: (...t) => F("createWorkspace", {}, t), notificationCount: i({ sm: 0 }), userName: v?.userName, userEmail: v?.userEmail, showUserMenu: i({ sm: !0 }), onSearchChange: (...t) => F("onSearchChange", {}, t), showPrimaryAction: i({ sm: !0 }), showAccountSettings: !1, showSearch: i({ sm: !0 }), description: i({ sm: "Choose a workspace to continue" }), primaryActionIcon: /* @__PURE__ */ O(Z, { icon: i({ sm: { iconType: "lucide", name: "Plus", props: { color: "#000000", size: 18, strokeWidth: 1.5 } } }) }), title: i({ sm: "Workspaces" }), ariaLabel: i({ sm: "Workspace Header" }), onSignOut: (...t) => F("signOut", {}, t), userAvatarUrl: v?.avatarUrl, showNotifications: i({ sm: !1 }), searchValue: L, showMenuTrigger: i({ sm: !1 }), primaryActionLabel: i({ sm: "Create workspace" }) })
       ] }),
       d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(f, { children: [
         "      ",
@@ -239,7 +239,7 @@ function ue(e) {
   aria-hidden="true"
 >
   <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.1 20.45H3.54V9H7.1v11.45Z" />
-</svg>` } }), id: "el_1791074365364_dditf3n", size: 20, color: "#111827", strokeWidth: 1.2 })
+</svg>` } }), id: "el_1791074365364_dditf3n", color: "#111827", strokeWidth: 1.2, size: 20 })
                   ] }),
                   d(i({ lg: !0, md: !0, sm: !0 })) && /* @__PURE__ */ l(f, { children: [
                     "      ",
