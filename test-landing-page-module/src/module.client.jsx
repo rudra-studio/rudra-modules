@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './styles.css';
 
-import { FeatureCard as LandingPageLibFeatureCard, Footer as LandingPageLibFooter, HeroSection as LandingPageLibHeroSection, Navbar as LandingPageLibNavbar } from '@rudra-studio/landing-page-lib';
+import { LandingPage as LandingPageLibLandingPage } from '@rudra-studio/landing-page-lib';
 
 export default function CompiledModule(props) {
   const _scope = {};
@@ -198,12 +198,7 @@ export default function CompiledModule(props) {
 
   return (
     <div ref={wrapperRef} className="rudra-module-wrapper">
-      <LandingPageLibFeatureCard id="feature-three" title="Production ready" description="Publish responsive modules and applications with confidence." icon="✓" />
-      <LandingPageLibFooter id="landing-footer" theme="dark" />
-      <LandingPageLibHeroSection id="landing-hero" theme="light" />
-      <LandingPageLibFeatureCard id="feature-one" icon="✦" title="Reusable building blocks" description="Compose polished experiences quickly." />
-      <LandingPageLibFeatureCard id="feature-two" icon="◫" title="Visual development" description="Build complete applications without repetitive boilerplate." />
-      <LandingPageLibNavbar id="landing-navbar" brand="Rudra" />
+      <LandingPageLibLandingPage id="landing-page" headline="From idea to working application." brand="Rudra" theme="{{$theme}}" />
     </div>
   );
 }
