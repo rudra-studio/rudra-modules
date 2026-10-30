@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+/* Tailwind v4 scans the generated module and installed Rudra component packages. */
+@source "./module.client.jsx";
+@source "../node_modules/@rudra-studio";
+
+.rudra-module-wrapper.light .dark-header {
+  background-color: var(--nav-background-light);
+  color: var(--nav-text-light);
+}
+.rudra-module-wrapper.dark .dark-header {
+  background-color: var(--nav-background-dark);
+  color: var(--nav-text-dark);
+}

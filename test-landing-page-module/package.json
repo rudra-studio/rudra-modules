@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "@rudra-studio/landing-page-lib": "latest",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "tailwindcss": "^4.0.0",
+    "vite": "^7.0.0"
+  },
+  "name": "@rudra-studio/test-landing-page-module",
+  "type": "module",
+  "version": "1.0.1"
+}
