@@ -1,6 +1,6 @@
 import { jsx as O } from "react/jsx-runtime";
-import { useState as q, useEffect as $, useRef as S, useCallback as c } from "react";
-import { LandingPage as j } from "@rudra-studio/landing-page-lib";
+import { useState as q, useEffect as $, useRef as j, useCallback as c } from "react";
+import { LandingPage as E } from "@rudra-studio/landing-page-lib";
 function M(t) {
   const a = t.serverData || t.serverState || {};
   t.sharedState, t.applicationState || a.applicationState, t.pageState || a.pageState, t.pageData || a.pageData, {
@@ -9,7 +9,7 @@ function M(t) {
     ...t.functions || {},
     ...t.actions || {}
   }, t.$route ?? t.route ?? t.data?.$route ?? t.data?.route ?? t.runtime?.data?.$route ?? t.runtime?.route ?? a?.$route ?? a?.route, t.$params ?? t.routeParams ?? t.params ?? t.data?.$params ?? t.data?.routeParams ?? t.data?.params ?? t.runtime?.data?.$params ?? t.runtime?.route?.params ?? t.runtime?.routeParams ?? t.runtime?.params ?? a?.$params ?? a?.routeParams ?? a?.params, t.$query ?? t.queryParams ?? t.query ?? t.data?.$query ?? t.data?.queryParams ?? t.data?.query ?? t.runtime?.data?.$query ?? t.runtime?.route?.query ?? t.runtime?.queryParams ?? t.runtime?.query ?? a?.$query ?? a?.queryParams ?? a?.query, t.$auth ?? t.auth ?? t.data?.$auth ?? t.data?.auth ?? t.runtime?.data?.$auth ?? t.runtime?.authInfo ?? t.runtime?.auth ?? a?.$auth ?? a?.auth, t.$config ?? t.config ?? t.data?.$config ?? t.data?.config ?? t.runtime?.data?.$config ?? t.runtime?.config ?? a?.$config ?? a?.config, t.$env ?? t.env ?? t.data?.$env ?? t.data?.env ?? t.runtime?.data?.$env ?? t.runtime?.env ?? a?.$env ?? a?.env, t.$locale ?? t.locale ?? t.data?.$locale ?? t.data?.locale ?? t.runtime?.data?.$locale ?? t.runtime?.locale ?? a?.$locale ?? a?.locale, t.$translations ?? t.translations ?? t.data?.$translations ?? t.data?.translations ?? t.runtime?.data?.$translations ?? t.runtime?.translations ?? a?.$translations ?? a?.translations, t.$i18n ?? t.i18n ?? t.data?.$i18n ?? t.data?.i18n ?? t.runtime?.data?.$i18n ?? t.runtime?.i18n ?? a?.$i18n ?? a?.i18n;
-  const d = t.$theme ?? t.theme ?? t.data?.$theme ?? t.runtime?.data?.$theme ?? t.runtime?.theme, g = () => typeof document > "u" ? "light" : document.documentElement.dataset.theme || (document.documentElement.classList.contains("dark") ? "dark" : "light"), [E, h] = q(() => d ?? g());
+  const d = t.$theme ?? t.theme ?? t.data?.$theme ?? t.runtime?.data?.$theme ?? t.runtime?.theme, g = () => typeof document > "u" ? "light" : document.documentElement.dataset.theme || (document.documentElement.classList.contains("dark") ? "dark" : "light"), [P, h] = q(() => d ?? g());
   $(() => {
     d != null && h(d);
   }, [d]), $(() => {
@@ -19,7 +19,7 @@ function M(t) {
       r.disconnect(), window.removeEventListener("rudra:theme-change", n);
     };
   }, [d]);
-  const l = S(null), [f, y] = q("lg");
+  const l = j(null), [f, y] = q("lg");
   $(() => {
     if (!l.current) return;
     const e = new ResizeObserver((n) => {
@@ -39,7 +39,7 @@ function M(t) {
     const [r, ...u] = String(e || "").split(".");
     return r && u.length === 0 ? w(r, n) : n;
   }, [w]);
-  const P = {}, s = (e, n, r) => {
+  const S = {}, s = (e, n, r) => {
     if (!n || typeof n != "object") return "";
     const u = Array.isArray(n.type) ? n.type : n.type ? [n.type] : [], o = e === null ? "null" : Array.isArray(e) ? "array" : Number.isInteger(e) ? "integer" : typeof e;
     if (u.length && !u.includes(o) && !(o === "integer" && u.includes("number"))) return r + " must be " + u.join(" or ") + ".";
@@ -58,7 +58,7 @@ function M(t) {
     return "";
   };
   return c(async (e, n, r = !1) => {
-    const u = P[e];
+    const u = S[e];
     if (!u) throw new Error("Module output '" + e + "' is not declared.");
     const o = s(n, u, "output." + e);
     if (o) throw new Error(o);
@@ -66,7 +66,7 @@ function M(t) {
     if (typeof i != "function") return n;
     const m = i(e, n, { moduleId: t.moduleId, awaitHandlers: r });
     return r ? await m : n;
-  }, [t.onOutput, t.onModuleOutput, t.runtime?.onOutput, t.moduleId]), /* @__PURE__ */ O("div", { ref: l, className: "rudra-module-wrapper", children: /* @__PURE__ */ O(j, { id: "landing-page", headline: "From idea to working application.", brand: "Rudra", theme: "{{$theme}}" }) });
+  }, [t.onOutput, t.onModuleOutput, t.runtime?.onOutput, t.moduleId]), /* @__PURE__ */ O("div", { ref: l, className: "rudra-module-wrapper", children: /* @__PURE__ */ O(E, { id: "landing-page", brand: "Rudra", theme: P, headline: "From idea to working application." }) });
 }
 export {
   M as default
