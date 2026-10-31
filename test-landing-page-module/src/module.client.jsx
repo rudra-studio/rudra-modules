@@ -198,7 +198,7 @@ export default function CompiledModule(props) {
 
   return (
     <div ref={wrapperRef} className="rudra-module-wrapper">
-      <LandingPageLibLandingPage id="landing-page" headline="From idea to working application." brand="Rudra" theme="{{$theme}}" />
+      <LandingPageLibLandingPage id="landing-page" brand="Rudra" theme={$theme} headline="From idea to working application." />
     </div>
   );
 }
