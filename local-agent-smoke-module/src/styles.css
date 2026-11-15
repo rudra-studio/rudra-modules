@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+/* Tailwind v4 scans the generated module and installed Rudra component packages. */
+@source "./module.client.jsx";
+@source "../node_modules/@rudra-studio";
+
+
