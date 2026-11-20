@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+/* Tailwind v4 scans the generated module and installed Rudra component packages. */
+@source "./module.client.jsx";
+@source "../node_modules/@rudra-studio";
+
+/* Rudra light/dark token foundation. Components may consume these variables. */
+.rudra-module-wrapper {
+  color-scheme: light;
+  --rudra-color-bg: #ffffff;
+  --rudra-color-surface: #f8fafc;
+  --rudra-color-text: #0f172a;
+  --rudra-color-muted: #475569;
+  --rudra-color-border: #e2e8f0;
+  --rudra-color-accent: #4f46e5;
+}
+
+:root.dark .rudra-module-wrapper,
+:root[data-theme="dark"] .rudra-module-wrapper,
+.dark .rudra-module-wrapper,
+[data-theme="dark"] .rudra-module-wrapper {
+  color-scheme: dark;
+  --rudra-color-bg: #020617;
+  --rudra-color-surface: #0f172a;
+  --rudra-color-text: #f8fafc;
+  --rudra-color-muted: #94a3b8;
+  --rudra-color-border: #334155;
+  --rudra-color-accent: #818cf8;
+}
