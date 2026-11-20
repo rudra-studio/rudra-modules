@@ -248,7 +248,7 @@ return { partnerName: partner, senderName: sender, youtubeVideoId: video };
   return (
     <div ref={wrapperRef} className="rudra-module-wrapper">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@rudra-studio/marry-me-proposal@1.2.0/components/ProposalExperience/styles.css" precedence="rudra-library" />
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <MarryMeProposalProposalExperience id="el_proposal_experience" onAccept={{"kind":"action","value":"console.log('Ashika said YES!')"}} senderName={{"kind":"binding","path":"resolvedSenderName","source":"localState"}} partnerName={{"kind":"binding","path":"resolvedPartnerName","source":"localState"}} youtubeVideoId={{"kind":"binding","path":"resolvedVideoId","source":"localState"}} defaultLanguage={{"kind":"static","value":"ml"}} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <MarryMeProposalProposalExperience id="el_proposal_experience" defaultLanguage={getResponsiveProp({"kind":"static","sm":"ml","value":"ml"})} onAccept={{"kind":"action","value":"console.log('Ashika said YES!')"}} senderName={getResponsiveProp({"kind":"binding","path":"resolvedSenderName","sm":"Sivasankar","source":"localState"})} partnerName={getResponsiveProp({"kind":"binding","path":"resolvedPartnerName","sm":"Ashika","source":"localState"})} youtubeVideoId={getResponsiveProp({"kind":"binding","path":"resolvedVideoId","sm":"8T7WQrcyE9s","source":"localState"})} />
 </>)}
     </div>
   );
