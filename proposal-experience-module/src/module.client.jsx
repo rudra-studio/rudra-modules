@@ -82,7 +82,7 @@ export default function CompiledModule(props) {
   const inputs = { "partnerName": partnerName, "senderName": senderName, "youtubeVideoId": youtubeVideoId, "defaultLanguage": defaultLanguage };
   const [resolvedPartnerName, set_resolvedPartnerName] = useState(() => structuredClone("Ashika"));
   const [resolvedSenderName, set_resolvedSenderName] = useState(() => structuredClone("Sivasankar"));
-  const [resolvedVideoId, set_resolvedVideoId] = useState(() => structuredClone("8T7WQrcyE9s"));
+  const [resolvedVideoId, set_resolvedVideoId] = useState(() => structuredClone("8T7WQrcyE9"));
   const state = { "resolvedPartnerName": resolvedPartnerName, "resolvedSenderName": resolvedSenderName, "resolvedVideoId": resolvedVideoId };
 
   const _setState = useCallback((name, value) => {

@@ -36,7 +36,7 @@ function B(e) {
     return n && typeof n == "object" && n.type === "static" && Object.prototype.hasOwnProperty.call(n, "value") ? n.value : n;
   }, [N]), O = (t) => Array.isArray(t) ? t.length > 0 : typeof t == "string" ? t.trim() !== "" && t.trim().toLowerCase() !== "false" : !!t;
   e.partnerName !== void 0 ? e.partnerName : e.data?.partnerName !== void 0 && e.data.partnerName, e.senderName !== void 0 ? e.senderName : e.data?.senderName !== void 0 && e.data.senderName, e.youtubeVideoId !== void 0 ? e.youtubeVideoId : e.data?.youtubeVideoId !== void 0 && e.data.youtubeVideoId, e.defaultLanguage !== void 0 ? e.defaultLanguage : e.data?.defaultLanguage !== void 0 && e.data.defaultLanguage;
-  const [q, k] = g(() => structuredClone("Ashika")), [E, x] = g(() => structuredClone("Sivasankar")), [j, L] = g(() => structuredClone("8T7WQrcyE9s")), l = { resolvedPartnerName: q, resolvedSenderName: E, resolvedVideoId: j }, f = v((t, n) => {
+  const [q, k] = g(() => structuredClone("Ashika")), [E, x] = g(() => structuredClone("Sivasankar")), [j, L] = g(() => structuredClone("8T7WQrcyE9")), l = { resolvedPartnerName: q, resolvedSenderName: E, resolvedVideoId: j }, f = v((t, n) => {
     switch (t) {
       case "resolvedPartnerName": {
         const r = typeof n == "function" ? n(l.resolvedPartnerName) : n;
