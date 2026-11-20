@@ -35,8 +35,8 @@ function B(e) {
     const n = N === "sm" ? t.sm !== void 0 ? t.sm : t.md !== void 0 ? t.md : t.lg : N === "md" ? t.md !== void 0 ? t.md : t.sm !== void 0 ? t.sm : t.lg : t.lg !== void 0 ? t.lg : t.md !== void 0 ? t.md : t.sm;
     return n && typeof n == "object" && n.type === "static" && Object.prototype.hasOwnProperty.call(n, "value") ? n.value : n;
   }, [N]), O = (t) => Array.isArray(t) ? t.length > 0 : typeof t == "string" ? t.trim() !== "" && t.trim().toLowerCase() !== "false" : !!t;
-  e.senderName !== void 0 ? e.senderName : e.data?.senderName !== void 0 && e.data.senderName, e.youtubeVideoId !== void 0 ? e.youtubeVideoId : e.data?.youtubeVideoId !== void 0 && e.data.youtubeVideoId, e.defaultLanguage !== void 0 ? e.defaultLanguage : e.data?.defaultLanguage !== void 0 && e.data.defaultLanguage, e.partnerName !== void 0 ? e.partnerName : e.data?.partnerName !== void 0 && e.data.partnerName;
-  const [q, k] = g(() => structuredClone("Ashika")), [E, x] = g(() => structuredClone("Sivasankar")), [j, L] = g(() => structuredClone("8T7WQrcyE9")), l = { resolvedPartnerName: q, resolvedSenderName: E, resolvedVideoId: j }, f = v((t, n) => {
+  e.youtubeVideoId !== void 0 ? e.youtubeVideoId : e.data?.youtubeVideoId !== void 0 && e.data.youtubeVideoId, e.defaultLanguage !== void 0 ? e.defaultLanguage : e.data?.defaultLanguage !== void 0 && e.data.defaultLanguage, e.partnerName !== void 0 ? e.partnerName : e.data?.partnerName !== void 0 && e.data.partnerName, e.senderName !== void 0 ? e.senderName : e.data?.senderName !== void 0 && e.data.senderName;
+  const [q, k] = g(() => structuredClone("Ashika")), [E, x] = g(() => structuredClone("Sivasankar")), [j, L] = g(() => structuredClone("8T7WQrcyE9s")), l = { resolvedPartnerName: q, resolvedSenderName: E, resolvedVideoId: j }, f = v((t, n) => {
     switch (t) {
       case "resolvedPartnerName": {
         const r = typeof n == "function" ? n(l.resolvedPartnerName) : n;
@@ -106,7 +106,7 @@ function B(e) {
   }, [e.onOutput, e.onModuleOutput, e.runtime?.onOutput, e.moduleId]);
   async function C(t = {}) {
     (t || {}).event, await (async () => {
-      const r = typeof window < "u" ? window.location.search : "", o = new URLSearchParams(r), d = (o.get("partnerName") || "").trim() || "Ashika", a = (o.get("senderName") || "").trim() || "Sivasankar", c = (o.get("videoId") || o.get("youtubeVideoId") || "").trim() || "8T7WQrcyE9";
+      const r = typeof window < "u" ? window.location.search : "", o = new URLSearchParams(r), d = (o.get("partnerName") || "").trim() || "Ashika", a = (o.get("senderName") || "").trim() || "Sivasankar", c = (o.get("videoId") || o.get("youtubeVideoId") || "").trim() || "8T7WQrcyE9s";
       return { partnerName: d, senderName: a, youtubeVideoId: c };
     })(), f("", null);
   }

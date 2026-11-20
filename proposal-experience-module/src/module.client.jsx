@@ -75,14 +75,14 @@ export default function CompiledModule(props) {
 
   const isVisibleValue = (value) => Array.isArray(value) ? value.length > 0 : (typeof value === 'string' ? value.trim() !== '' && value.trim().toLowerCase() !== 'false' : Boolean(value));
 
-  const senderName = props.senderName !== undefined ? props.senderName : (props.data?.senderName !== undefined ? props.data.senderName : "Sivasankar");
-  const youtubeVideoId = props.youtubeVideoId !== undefined ? props.youtubeVideoId : (props.data?.youtubeVideoId !== undefined ? props.data.youtubeVideoId : "8T7WQrcyE9");
+  const youtubeVideoId = props.youtubeVideoId !== undefined ? props.youtubeVideoId : (props.data?.youtubeVideoId !== undefined ? props.data.youtubeVideoId : "8T7WQrcyE9s");
   const defaultLanguage = props.defaultLanguage !== undefined ? props.defaultLanguage : (props.data?.defaultLanguage !== undefined ? props.data.defaultLanguage : "ml");
   const partnerName = props.partnerName !== undefined ? props.partnerName : (props.data?.partnerName !== undefined ? props.data.partnerName : "Ashika");
-  const inputs = { "senderName": senderName, "youtubeVideoId": youtubeVideoId, "defaultLanguage": defaultLanguage, "partnerName": partnerName };
+  const senderName = props.senderName !== undefined ? props.senderName : (props.data?.senderName !== undefined ? props.data.senderName : "Sivasankar");
+  const inputs = { "youtubeVideoId": youtubeVideoId, "defaultLanguage": defaultLanguage, "partnerName": partnerName, "senderName": senderName };
   const [resolvedPartnerName, set_resolvedPartnerName] = useState(() => structuredClone("Ashika"));
   const [resolvedSenderName, set_resolvedSenderName] = useState(() => structuredClone("Sivasankar"));
-  const [resolvedVideoId, set_resolvedVideoId] = useState(() => structuredClone("8T7WQrcyE9"));
+  const [resolvedVideoId, set_resolvedVideoId] = useState(() => structuredClone("8T7WQrcyE9s"));
   const state = { "resolvedPartnerName": resolvedPartnerName, "resolvedSenderName": resolvedSenderName, "resolvedVideoId": resolvedVideoId };
 
   const _setState = useCallback((name, value) => {
@@ -194,7 +194,7 @@ const search = typeof window !== 'undefined' ? window.location.search : '';
 const params = new URLSearchParams(search);
 const partner = (params.get('partnerName') || '').trim() || 'Ashika';
 const sender = (params.get('senderName') || '').trim() || 'Sivasankar';
-const video = (params.get('videoId') || params.get('youtubeVideoId') || '').trim() || '8T7WQrcyE9';
+const video = (params.get('videoId') || params.get('youtubeVideoId') || '').trim() || '8T7WQrcyE9s';
 return { partnerName: partner, senderName: sender, youtubeVideoId: video };
       })();
       stepResults["step_read_query_params"] = customResult; vars["customCodeResult"] = customResult; }
