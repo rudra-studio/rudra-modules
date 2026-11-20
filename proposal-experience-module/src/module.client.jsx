@@ -75,11 +75,11 @@ export default function CompiledModule(props) {
 
   const isVisibleValue = (value) => Array.isArray(value) ? value.length > 0 : (typeof value === 'string' ? value.trim() !== '' && value.trim().toLowerCase() !== 'false' : Boolean(value));
 
-  const partnerName = props.partnerName !== undefined ? props.partnerName : (props.data?.partnerName !== undefined ? props.data.partnerName : "Ashika");
   const senderName = props.senderName !== undefined ? props.senderName : (props.data?.senderName !== undefined ? props.data.senderName : "Sivasankar");
   const youtubeVideoId = props.youtubeVideoId !== undefined ? props.youtubeVideoId : (props.data?.youtubeVideoId !== undefined ? props.data.youtubeVideoId : "8T7WQrcyE9");
   const defaultLanguage = props.defaultLanguage !== undefined ? props.defaultLanguage : (props.data?.defaultLanguage !== undefined ? props.data.defaultLanguage : "ml");
-  const inputs = { "partnerName": partnerName, "senderName": senderName, "youtubeVideoId": youtubeVideoId, "defaultLanguage": defaultLanguage };
+  const partnerName = props.partnerName !== undefined ? props.partnerName : (props.data?.partnerName !== undefined ? props.data.partnerName : "Ashika");
+  const inputs = { "senderName": senderName, "youtubeVideoId": youtubeVideoId, "defaultLanguage": defaultLanguage, "partnerName": partnerName };
   const [resolvedPartnerName, set_resolvedPartnerName] = useState(() => structuredClone("Ashika"));
   const [resolvedSenderName, set_resolvedSenderName] = useState(() => structuredClone("Sivasankar"));
   const [resolvedVideoId, set_resolvedVideoId] = useState(() => structuredClone("8T7WQrcyE9"));
