@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './styles.css';
 
-import { OccasionTemplateGallery as SmileyyfyUiOccasionTemplateGallery } from '@rudra-studio/smileyyfy-ui';
+import { StepWalkthroughGrid as RudraCoreUiStepWalkthroughGrid, HeroBanner as RudraCoreUiHeroBanner, CoreNavbar as RudraCoreUiCoreNavbar, FeatureCardGrid as RudraCoreUiFeatureCardGrid } from '@rudra-studio/rudra-core-ui';
 
 export default function CompiledModule(props) {
   const _scope = {};
@@ -75,20 +75,22 @@ export default function CompiledModule(props) {
 
   const isVisibleValue = (value) => Array.isArray(value) ? value.length > 0 : (typeof value === 'string' ? value.trim() !== '' && value.trim().toLowerCase() !== 'false' : Boolean(value));
 
-  const signedInUserName = props.signedInUserName !== undefined ? props.signedInUserName : (props.data?.signedInUserName !== undefined ? props.data.signedInUserName : "");
   const signedInUserEmail = props.signedInUserEmail !== undefined ? props.signedInUserEmail : (props.data?.signedInUserEmail !== undefined ? props.data.signedInUserEmail : "");
-  const heroTitle = props.heroTitle !== undefined ? props.heroTitle : (props.data?.heroTitle !== undefined ? props.data.heroTitle : "Create Wedding Invites, Love Proposals \u0026 Joyful Websites");
   const heroDescription = props.heroDescription !== undefined ? props.heroDescription : (props.data?.heroDescription !== undefined ? props.data.heroDescription : "Design expressive event invitations with optional RSVP tracking, romantic love proposals with floating hearts \u0026 playful buttons, and multilingual celebration pages without coding.");
+  const featureCards = props.featureCards !== undefined ? props.featureCards : (props.data?.featureCards !== undefined ? props.data.featureCards : [{"actionLabel":"Open Invite Studio","badge":"Events","description":"Craft digital invitations for weddings, birthdays, and celebrations with countdowns, themes, and optional RSVP tracking.","icon":"💌","id":"invites","title":"Weddings, Birthdays \u0026 Invites"},{"actionLabel":"Try Proposal","badge":"Romance","description":"Create playful love proposal pages with personal notes, Polaroid memories, floating hearts, and runaway buttons.","icon":"💘","id":"proposals","title":"Interactive Love Proposals"},{"actionLabel":"Open Canvas","badge":"No-Code","description":"Arrange widgets on a visual canvas, switch languages live, and add looping songs or story animations.","icon":"🎨","id":"canvas","title":"Drag-and-Drop Canvas \u0026 i18n"}]);
+  const signedInUserName = props.signedInUserName !== undefined ? props.signedInUserName : (props.data?.signedInUserName !== undefined ? props.data.signedInUserName : "");
+  const heroTitle = props.heroTitle !== undefined ? props.heroTitle : (props.data?.heroTitle !== undefined ? props.data.heroTitle : "Create Wedding Invites, Love Proposals \u0026 Joyful Websites");
+  const walkthroughSteps = props.walkthroughSteps !== undefined ? props.walkthroughSteps : (props.data?.walkthroughSteps !== undefined ? props.data.walkthroughSteps : [{"description":"Pick a wedding invite, love proposal, birthday bash, anniversary timeline, or baby shower layout.","step":"01","title":"Choose a Template or Preset"},{"description":"Customize text in multiple languages, add photos or sprite animations, and attach looping music.","step":"02","title":"Customize \u0026 Add Media"},{"description":"Share your link and track optional guest RSVPs whenever response tracking is enabled.","step":"03","title":"Share \u0026 Track Optional RSVPs"}]);
   const themeMode = props.themeMode !== undefined ? props.themeMode : (props.data?.themeMode !== undefined ? props.data.themeMode : "light");
-  const inputs = { "signedInUserName": signedInUserName, "signedInUserEmail": signedInUserEmail, "heroTitle": heroTitle, "heroDescription": heroDescription, "themeMode": themeMode };
-  const [activeTab, set_activeTab] = useState(() => structuredClone("hub"));
+  const inputs = { "signedInUserEmail": signedInUserEmail, "heroDescription": heroDescription, "featureCards": featureCards, "signedInUserName": signedInUserName, "heroTitle": heroTitle, "walkthroughSteps": walkthroughSteps, "themeMode": themeMode };
   const [activeNavId, set_activeNavId] = useState(() => structuredClone("overview"));
-  const state = { "activeTab": activeTab, "activeNavId": activeNavId };
+  const [activeTab, set_activeTab] = useState(() => structuredClone("hub"));
+  const state = { "activeNavId": activeNavId, "activeTab": activeTab };
 
   const _setState = useCallback((name, value) => {
     switch (name) {
-      case "activeTab": { const next = typeof value === 'function' ? value(state.activeTab) : value; state.activeTab = next; set_activeTab(next); return next; }
       case "activeNavId": { const next = typeof value === 'function' ? value(state.activeNavId) : value; state.activeNavId = next; set_activeNavId(next); return next; }
+      case "activeTab": { const next = typeof value === 'function' ? value(state.activeTab) : value; state.activeTab = next; set_activeTab(next); return next; }
       default: return value;
     }
   }, [state]);
@@ -110,8 +112,8 @@ export default function CompiledModule(props) {
       return next;
     };
     switch (root) {
-      case "activeTab": _setState("activeTab", updateNested); return value;
       case "activeNavId": _setState("activeNavId", updateNested); return value;
+      case "activeTab": _setState("activeTab", updateNested); return value;
       default: return value;
     }
   }, [_setState]);
@@ -209,8 +211,17 @@ export default function CompiledModule(props) {
 
   return (
     <div ref={wrapperRef} className="rudra-module-wrapper">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@rudra-studio/smileyyfy-ui@1.4.1/components/OccasionTemplateGallery/styles.css" precedence="rudra-library" />
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <SmileyyfyUiOccasionTemplateGallery id="el_core_nav" heading="Celebration Templates — Invites, Proposals \u0026 Many More" themeMode={{"kind":"binding","path":"inputs.themeMode"}} subheading="Pick a reusable Smileyyfy experience to customize with your own text, photos, and animations." onSelectTemplate={{"kind":"action","name":"emitSelectTemplate","params":{"outputName":"onSelectTemplate"}}} />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@rudra-studio/rudra-core-ui@1.0.0/components/CoreNavbar/styles.css" precedence="rudra-library" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@rudra-studio/rudra-core-ui@1.0.0/components/FeatureCardGrid/styles.css" precedence="rudra-library" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@rudra-studio/rudra-core-ui@1.0.0/components/HeroBanner/styles.css" precedence="rudra-library" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@rudra-studio/rudra-core-ui@1.0.0/components/StepWalkthroughGrid/styles.css" precedence="rudra-library" />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreUiCoreNavbar id="el_1795351921789_cjrbjpx" tagline="Invites, Proposals \u0026 Joyful Moments" navItems={[{"id":"overview","label":"Overview"},{"id":"features","label":"What It Does"},{"id":"templates","label":"Templates"}]} brandMark="😊" brandName="Smileyyfy" themeMode="light" activeItemId="overview" onSelectItem="fn: (id) =\u003e console.log('Nav:', id)" onToggleTheme="fn: (mode) =\u003e console.log('Theme:', mode)" />
+</>)}
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreUiFeatureCardGrid id="el_1795351931684_q0nrgzt" kicker="WHAT SMILEYYFY IS ABOUT" heading="Everything You Need for Memorable Pages" themeMode="light" subheading="Compose modular sections for event invitations, romantic proposals, and milestone celebrations." onCardAction="fn: (item) =\u003e console.log('Card:', item)" items={[{"actionLabel":"Open Invite Studio","badge":"Events","description":"Build shareable celebration pages with countdowns, event details, themes, and optional RSVP tracking.","icon":"💌","id":"invites","title":"Weddings, Birthdays \u0026 Invites"}]} />
+</>)}
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreUiHeroBanner id="el_1795351937148_bja38me" title="Create Wedding Invites, Love Proposals \u0026 Joyful Websites" themeMode="light" onSecondaryAction="fn: () =\u003e console.log('Secondary CTA')" primaryActionLabel="Start Building" badge="✨ Interactive Celebration Studio" layout="split" description="Design expressive event invitations with optional RSVP tracking, romantic proposal pages with floating hearts \u0026 flying buttons, and multilingual celebration pages without coding." onPrimaryAction="fn: () =\u003e console.log('Primary CTA')" secondaryActionLabel="Browse Templates" />
+</>)}
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <RudraCoreUiStepWalkthroughGrid id="el_1795352064212_7rd9cg7" heading="How It Works" themeMode="light" steps={[{"description":"Pick a wedding invite, love proposal, birthday celebration, or anniversary layout.","step":"01","title":"Choose a Template or Preset"}]} />
 </>)}
     </div>
   );
