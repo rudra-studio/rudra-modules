@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './styles.css';
 
-import { OccasionTemplateGallery as SmileyyfyUiOccasionTemplateGallery, SmileyyfyNavbar as SmileyyfyUiSmileyyfyNavbar, FloatingHeartsCanvas as SmileyyfyUiFloatingHeartsCanvas, GoogleSignInButton as SmileyyfyUiGoogleSignInButton } from '@rudra-studio/smileyyfy-ui';
+import { OccasionTemplateGallery as SmileyyfyUiOccasionTemplateGallery } from '@rudra-studio/smileyyfy-ui';
 
 export default function CompiledModule(props) {
   const _scope = {};
@@ -75,18 +75,20 @@ export default function CompiledModule(props) {
 
   const isVisibleValue = (value) => Array.isArray(value) ? value.length > 0 : (typeof value === 'string' ? value.trim() !== '' && value.trim().toLowerCase() !== 'false' : Boolean(value));
 
-  const themeMode = props.themeMode !== undefined ? props.themeMode : (props.data?.themeMode !== undefined ? props.data.themeMode : "light");
   const signedInUserName = props.signedInUserName !== undefined ? props.signedInUserName : (props.data?.signedInUserName !== undefined ? props.data.signedInUserName : "");
   const signedInUserEmail = props.signedInUserEmail !== undefined ? props.signedInUserEmail : (props.data?.signedInUserEmail !== undefined ? props.data.signedInUserEmail : "");
   const heroTitle = props.heroTitle !== undefined ? props.heroTitle : (props.data?.heroTitle !== undefined ? props.data.heroTitle : "Create Wedding Invites, Love Proposals \u0026 Joyful Websites");
-  const heroSubtitle = props.heroSubtitle !== undefined ? props.heroSubtitle : (props.data?.heroSubtitle !== undefined ? props.data.heroSubtitle : "Build interactive wedding \u0026 event invitations with optional RSVP tracking, romantic love proposals with floating hearts \u0026 runaway buttons, and multilingual celebration pages in minutes.");
-  const inputs = { "themeMode": themeMode, "signedInUserName": signedInUserName, "signedInUserEmail": signedInUserEmail, "heroTitle": heroTitle, "heroSubtitle": heroSubtitle };
+  const heroDescription = props.heroDescription !== undefined ? props.heroDescription : (props.data?.heroDescription !== undefined ? props.data.heroDescription : "Design expressive event invitations with optional RSVP tracking, romantic love proposals with floating hearts \u0026 playful buttons, and multilingual celebration pages without coding.");
+  const themeMode = props.themeMode !== undefined ? props.themeMode : (props.data?.themeMode !== undefined ? props.data.themeMode : "light");
+  const inputs = { "signedInUserName": signedInUserName, "signedInUserEmail": signedInUserEmail, "heroTitle": heroTitle, "heroDescription": heroDescription, "themeMode": themeMode };
   const [activeTab, set_activeTab] = useState(() => structuredClone("hub"));
-  const state = { "activeTab": activeTab };
+  const [activeNavId, set_activeNavId] = useState(() => structuredClone("overview"));
+  const state = { "activeTab": activeTab, "activeNavId": activeNavId };
 
   const _setState = useCallback((name, value) => {
     switch (name) {
       case "activeTab": { const next = typeof value === 'function' ? value(state.activeTab) : value; state.activeTab = next; set_activeTab(next); return next; }
+      case "activeNavId": { const next = typeof value === 'function' ? value(state.activeNavId) : value; state.activeNavId = next; set_activeNavId(next); return next; }
       default: return value;
     }
   }, [state]);
@@ -109,11 +111,12 @@ export default function CompiledModule(props) {
     };
     switch (root) {
       case "activeTab": _setState("activeTab", updateNested); return value;
+      case "activeNavId": _setState("activeNavId", updateNested); return value;
       default: return value;
     }
   }, [_setState]);
 
-  const _outputSchemas = {"out_sign_out":{"properties":{},"type":"object"}};
+  const _outputSchemas = {"out_navigate":{"properties":{"target":{"type":"string"}},"type":"object"}};
   const _validateOutputPayload = (value, schema, path) => {
     if (!schema || typeof schema !== 'object') return '';
     const allowedTypes = Array.isArray(schema.type) ? schema.type : schema.type ? [schema.type] : [];
@@ -206,17 +209,8 @@ export default function CompiledModule(props) {
 
   return (
     <div ref={wrapperRef} className="rudra-module-wrapper">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@rudra-studio/smileyyfy-ui@1.4.1/components/FloatingHeartsCanvas/styles.css" precedence="rudra-library" />
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@rudra-studio/smileyyfy-ui@1.4.1/components/GoogleSignInButton/styles.css" precedence="rudra-library" />
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@rudra-studio/smileyyfy-ui@1.4.1/components/OccasionTemplateGallery/styles.css" precedence="rudra-library" />
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@rudra-studio/smileyyfy-ui@1.4.1/components/SmileyyfyNavbar/styles.css" precedence="rudra-library" />
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <SmileyyfyUiSmileyyfyNavbar id="el_landing_navbar" tagline={{"kind":"static","value":"Invites, Proposals \u0026 Joyful Moments"}} activeTab={{"kind":"binding","path":"localState.activeTab"}} brandName={{"kind":"static","value":"Smileyyfy"}} themeMode={{"kind":"binding","path":"inputs.themeMode"}} onNavigate={{"kind":"action","name":"setActiveTabAndEmit","params":{"outputName":"onNavigate"}}} onToggleTheme={{"kind":"action","name":"emitThemeToggle","params":{"outputName":"onToggleTheme"}}} />
-</>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <SmileyyfyUiFloatingHeartsCanvas id="el_landing_hero" bannerSubtitle={{"kind":"binding","path":"inputs.heroSubtitle"}} active={true} intensity="burst" themeMode={{"kind":"binding","path":"inputs.themeMode"}} effectType="hearts" bannerTitle={{"kind":"binding","path":"inputs.heroTitle"}} />
-</>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <SmileyyfyUiGoogleSignInButton id="el_landing_signin" loadingLabel="Signing in..." styleVariant="blush" signedInLabel="Signed in" size="lg" label="Continue with Google" loading={false} onSignIn={{"kind":"action","name":"emitGoogleSignIn","params":{"outputName":"onGoogleSignIn"}}} fullWidth={false} disabled={false} userName={{"kind":"binding","path":"inputs.signedInUserName"}} onSignOut={{"kind":"action","name":"emitSignOut","params":{"outputName":"onSignOut"}}} themeMode={{"kind":"binding","path":"inputs.themeMode"}} />
-</>)}
-      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <SmileyyfyUiOccasionTemplateGallery id="el_landing_gallery" heading="Celebration Templates — Invites, Proposals \u0026 Many More" themeMode={{"kind":"binding","path":"inputs.themeMode"}} subheading="Pick a reusable Smileyyfy experience to customize with your own text, photos, and animations." onSelectTemplate={{"kind":"action","name":"emitSelectTemplate","params":{"outputName":"onSelectTemplate"}}} />
+      {isVisibleValue(getResponsiveProp({ "lg": true, "md": true, "sm": true })) && (<>      <SmileyyfyUiOccasionTemplateGallery id="el_core_nav" heading="Celebration Templates — Invites, Proposals \u0026 Many More" themeMode={{"kind":"binding","path":"inputs.themeMode"}} subheading="Pick a reusable Smileyyfy experience to customize with your own text, photos, and animations." onSelectTemplate={{"kind":"action","name":"emitSelectTemplate","params":{"outputName":"onSelectTemplate"}}} />
 </>)}
     </div>
   );
