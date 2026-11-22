@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@rudra-studio/smileyyfy-ui": "latest",
+    "@rudra-studio/rudra-core-ui": "latest",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
@@ -12,5 +12,5 @@
   },
   "name": "@rudra-studio/smileyyfy-landing-module",
   "type": "module",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }
